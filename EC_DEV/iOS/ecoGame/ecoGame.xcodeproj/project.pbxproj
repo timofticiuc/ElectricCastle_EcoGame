@@ -8,13 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		2513BAFE1CA9AF3A00CC9C7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513BAFD1CA9AF3A00CC9C7E /* AppDelegate.swift */; };
-		2513BB001CA9AF3A00CC9C7E /* ECMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513BAFF1CA9AF3A00CC9C7E /* ECMenuViewController.swift */; };
-		2513BB021CA9AF3A00CC9C7E /* ECUsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513BB011CA9AF3A00CC9C7E /* ECUsersListViewController.swift */; };
 		2513BB051CA9AF3A00CC9C7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2513BB031CA9AF3A00CC9C7E /* Main.storyboard */; };
 		2513BB071CA9AF3A00CC9C7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2513BB061CA9AF3A00CC9C7E /* Assets.xcassets */; };
 		2513BB0A1CA9AF3A00CC9C7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2513BB081CA9AF3A00CC9C7E /* LaunchScreen.storyboard */; };
 		2513BB151CA9AF3A00CC9C7E /* ecoGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513BB141CA9AF3A00CC9C7E /* ecoGameTests.swift */; };
 		2513BB201CA9AF3A00CC9C7E /* ecoGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513BB1F1CA9AF3A00CC9C7E /* ecoGameUITests.swift */; };
+		252C5A7F1CB04DC4006CC6F9 /* ECUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A7E1CB04DC4006CC6F9 /* ECUser.swift */; };
+		252C5A811CB04FBE006CC6F9 /* ECConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A801CB04FBE006CC6F9 /* ECConstants.swift */; };
+		252C5A851CB05B76006CC6F9 /* ECMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A831CB05B76006CC6F9 /* ECMenuViewController.swift */; };
+		252C5A881CB05BB0006CC6F9 /* Selector+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A871CB05BB0006CC6F9 /* Selector+ECAdditions.swift */; };
+		252C5A8B1CB062D7006CC6F9 /* ECUsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A8A1CB062D7006CC6F9 /* ECUsersListViewController.swift */; };
+		252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A8C1CB062E8006CC6F9 /* ECUserListDataSource.swift */; };
+		252C5A901CB067F7006CC6F9 /* ECUserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A8F1CB067F7006CC6F9 /* ECUserListCell.swift */; };
+		252C5A961CB0717B006CC6F9 /* UITableView+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A951CB0717B006CC6F9 /* UITableView+ECAdditions.swift */; };
+		252C5A971CB07E9C006CC6F9 /* ECUserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 252C5A911CB06805006CC6F9 /* ECUserListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +44,6 @@
 /* Begin PBXFileReference section */
 		2513BAFA1CA9AF3A00CC9C7E /* ecoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ecoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2513BAFD1CA9AF3A00CC9C7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2513BAFF1CA9AF3A00CC9C7E /* ECMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ECMenuViewController.swift; path = ../ECMenuViewController.swift; sourceTree = "<group>"; };
-		2513BB011CA9AF3A00CC9C7E /* ECUsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ECUsersListViewController.swift; path = ../ECUsersListViewController.swift; sourceTree = "<group>"; };
 		2513BB041CA9AF3A00CC9C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2513BB061CA9AF3A00CC9C7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2513BB091CA9AF3A00CC9C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +54,15 @@
 		2513BB1B1CA9AF3A00CC9C7E /* ecoGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecoGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2513BB1F1CA9AF3A00CC9C7E /* ecoGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecoGameUITests.swift; sourceTree = "<group>"; };
 		2513BB211CA9AF3A00CC9C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		252C5A7E1CB04DC4006CC6F9 /* ECUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUser.swift; sourceTree = "<group>"; };
+		252C5A801CB04FBE006CC6F9 /* ECConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECConstants.swift; sourceTree = "<group>"; };
+		252C5A831CB05B76006CC6F9 /* ECMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECMenuViewController.swift; sourceTree = "<group>"; };
+		252C5A871CB05BB0006CC6F9 /* Selector+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Selector+ECAdditions.swift"; sourceTree = "<group>"; };
+		252C5A8A1CB062D7006CC6F9 /* ECUsersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUsersListViewController.swift; sourceTree = "<group>"; };
+		252C5A8C1CB062E8006CC6F9 /* ECUserListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUserListDataSource.swift; sourceTree = "<group>"; };
+		252C5A8F1CB067F7006CC6F9 /* ECUserListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUserListCell.swift; sourceTree = "<group>"; };
+		252C5A911CB06805006CC6F9 /* ECUserListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECUserListCell.xib; sourceTree = "<group>"; };
+		252C5A951CB0717B006CC6F9 /* UITableView+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+ECAdditions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,11 +113,12 @@
 		2513BAFC1CA9AF3A00CC9C7E /* ecoGame */ = {
 			isa = PBXGroup;
 			children = (
+				252C5A821CB05B6E006CC6F9 /* Extensions */,
 				2513BB2F1CA9B1E600CC9C7E /* Data */,
-				2513BB311CA9B72900CC9C7E /* Categories */,
 				2513BB301CA9B1E600CC9C7E /* Model */,
 				2513BB2E1CA9B1E600CC9C7E /* Controllers */,
 				2513BAFD1CA9AF3A00CC9C7E /* AppDelegate.swift */,
+				252C5A801CB04FBE006CC6F9 /* ECConstants.swift */,
 				2513BB031CA9AF3A00CC9C7E /* Main.storyboard */,
 				2513BB061CA9AF3A00CC9C7E /* Assets.xcassets */,
 				2513BB081CA9AF3A00CC9C7E /* LaunchScreen.storyboard */,
@@ -133,8 +148,8 @@
 		2513BB2E1CA9B1E600CC9C7E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2513BB011CA9AF3A00CC9C7E /* ECUsersListViewController.swift */,
-				2513BAFF1CA9AF3A00CC9C7E /* ECMenuViewController.swift */,
+				252C5A891CB062D7006CC6F9 /* UserList */,
+				252C5A831CB05B76006CC6F9 /* ECMenuViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -149,15 +164,37 @@
 		2513BB301CA9B1E600CC9C7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				252C5A7E1CB04DC4006CC6F9 /* ECUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		2513BB311CA9B72900CC9C7E /* Categories */ = {
+		252C5A821CB05B6E006CC6F9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				252C5A871CB05BB0006CC6F9 /* Selector+ECAdditions.swift */,
+				252C5A951CB0717B006CC6F9 /* UITableView+ECAdditions.swift */,
 			);
-			path = Categories;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		252C5A891CB062D7006CC6F9 /* UserList */ = {
+			isa = PBXGroup;
+			children = (
+				252C5A8E1CB067D4006CC6F9 /* Cells */,
+				252C5A8A1CB062D7006CC6F9 /* ECUsersListViewController.swift */,
+				252C5A8C1CB062E8006CC6F9 /* ECUserListDataSource.swift */,
+			);
+			path = UserList;
+			sourceTree = "<group>";
+		};
+		252C5A8E1CB067D4006CC6F9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				252C5A8F1CB067F7006CC6F9 /* ECUserListCell.swift */,
+				252C5A911CB06805006CC6F9 /* ECUserListCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +303,7 @@
 			files = (
 				2513BB0A1CA9AF3A00CC9C7E /* LaunchScreen.storyboard in Resources */,
 				2513BB071CA9AF3A00CC9C7E /* Assets.xcassets in Resources */,
+				252C5A971CB07E9C006CC6F9 /* ECUserListCell.xib in Resources */,
 				2513BB051CA9AF3A00CC9C7E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,8 +329,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2513BB021CA9AF3A00CC9C7E /* ECUsersListViewController.swift in Sources */,
-				2513BB001CA9AF3A00CC9C7E /* ECMenuViewController.swift in Sources */,
+				252C5A881CB05BB0006CC6F9 /* Selector+ECAdditions.swift in Sources */,
+				252C5A811CB04FBE006CC6F9 /* ECConstants.swift in Sources */,
+				252C5A901CB067F7006CC6F9 /* ECUserListCell.swift in Sources */,
+				252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */,
+				252C5A851CB05B76006CC6F9 /* ECMenuViewController.swift in Sources */,
+				252C5A8B1CB062D7006CC6F9 /* ECUsersListViewController.swift in Sources */,
+				252C5A961CB0717B006CC6F9 /* UITableView+ECAdditions.swift in Sources */,
+				252C5A7F1CB04DC4006CC6F9 /* ECUser.swift in Sources */,
 				2513BAFE1CA9AF3A00CC9C7E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
