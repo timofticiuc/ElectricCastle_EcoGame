@@ -17,10 +17,10 @@ class ECUserListCell: UITableViewCell {
         self.backgroundColor = UIColor.clearColor()
     }
     
-    var user: ECUser? {
+    var user: ECUser! {
         didSet {
-            self.userNameLabel?.text = user?.userName
-            self.userRoleLabel?.text = user?.userRole.ec_enumName()
+            self.userNameLabel?.text = user.userName
+            self.userRoleLabel?.text = user.userRole.ec_enumName()
         }
     }
     

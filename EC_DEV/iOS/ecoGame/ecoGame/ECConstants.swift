@@ -6,10 +6,10 @@
 //  Copyright © 2016 timofticiuc andrei. All rights reserved.
 //
 
-public enum ECUserRole: Int {
-    case ECUserRoleAdmin = 0
+public enum ECUserRole: Int32 {
+    case ECUserRoleParticipant = 0
     case ECUserRoleVolunteer
-    case ECUserRoleParticipant
+    case ECUserRoleAdmin
     
     func ec_enumName() -> String {
         switch self {
