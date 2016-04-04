@@ -25,9 +25,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User role" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNs-M7-bqc">
-                        <rect key="frame" x="20" y="66" width="305" height="15"/>
+                        <rect key="frame" x="20" y="66" width="400" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="305" id="0au-3c-fhT"/>
+                            <constraint firstAttribute="width" constant="400" id="0au-3c-fhT"/>
                             <constraint firstAttribute="height" constant="15" id="5AW-xT-3jt"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>

@@ -40,7 +40,8 @@ class ECUserListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate
     }
     
     func addUser() {
-        self.users.append(ECUser.init(withDictionary: ["user_name" : "Gianni bujie", "user_phone" : "0000000"]))
+        self.users.append(ECUser.objectCreatedOrUpdatedWithDictionary(["id":"0", "userPhone":"0740811856", "userName":"timo"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser)
+        ECCoreManager.sharedInstance.storeManager.saveContext()
         self.tableView?.insertRowsAtIndexPaths([NSIndexPath(forRow: self.users.count - 1, inSection: 0)], withRowAnimation: .Automatic)
     }
     

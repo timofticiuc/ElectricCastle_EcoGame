@@ -20,7 +20,7 @@ class ECUserListCell: UITableViewCell {
     var user: ECUser? {
         didSet {
             self.userNameLabel?.text = user?.userName
-            self.userRoleLabel?.text = "\(user?.userRole)"
+            self.userRoleLabel?.text = user?.userRole.ec_enumName()
         }
     }
     

@@ -6,10 +6,21 @@
 //  Copyright © 2016 timofticiuc andrei. All rights reserved.
 //
 
-public enum ECUserRole {
-    case ECUserRoleAdmin
+public enum ECUserRole: Int {
+    case ECUserRoleAdmin = 0
     case ECUserRoleVolunteer
     case ECUserRoleParticipant
+    
+    func ec_enumName() -> String {
+        switch self {
+        case .ECUserRoleAdmin:
+            return "Admin"
+        case .ECUserRoleVolunteer:
+            return "Volunteer"
+        default:
+            return "Participant"
+        }
+    }
 }
 
 struct ECConstants {
