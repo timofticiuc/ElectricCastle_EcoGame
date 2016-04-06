@@ -9,13 +9,13 @@
 import UIKit
 import CoreData
 
-protocol ECUserListDataSourceDelegate {
-    func dataSource(ds:ECUserListDataSource, wantsToShowViewController vc:UIViewController)
+protocol ECUsersDataSourceDelegate {
+    func dataSource(ds:ECUsersDataSource, wantsToShowViewController vc:UIViewController)
 }
 
-class ECUserListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, ECUserControllerDelegate {
     
-    private var delegate: ECUserListDataSourceDelegate?
+    private var delegate: ECUsersDataSourceDelegate?
     private var tableView: UITableView!
     private var _frc: NSFetchedResultsController!
     private var frc: NSFetchedResultsController! {
@@ -32,18 +32,18 @@ class ECUserListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate
         }
     }
     
-    convenience init(withDelegate delegate:ECUserListDataSourceDelegate, andTableView tableView:UITableView) {
+    convenience init(withDelegate delegate:ECUsersDataSourceDelegate, andTableView tableView:UITableView) {
         self.init()
         
         self.delegate = delegate
         self.tableView = tableView
-        self.tableView?.dataSource = self
-        self.tableView?.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         self.registerRequiredCells()
     }
     
     func registerRequiredCells() {
-        self.tableView?.ec_registerCell(ECUserListCell);
+        self.tableView.ec_registerCell(ECUserListCell);
     }
     
     func fetchData() {
@@ -53,15 +53,14 @@ class ECUserListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate
     }
     
     func addUser() {
-        let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\((self.frc?.fetchedObjects?.count)! as Int)", "userPhone":"0740811856", "userName":"timo"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-        user.createdAt = NSDate()
-        
-        ECCoreManager.sharedInstance.storeManager.saveContext()
+        let userController: ECUserController = ECUserController.ec_createFromStoryboard() as! ECUserController
+        userController.delegate = self
+        self.delegate?.dataSource(self, wantsToShowViewController: userController)
     }
     
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.frc!.fetchedObjects!.count;
+        return self.frc.fetchedObjects!.count;
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -77,7 +76,7 @@ class ECUserListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.fetchData()
+
     }
     
     // MARK: NSFetchedResultsControllerDelegate
@@ -85,5 +84,21 @@ class ECUserListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         };
+    }
+    
+    // MARK: ECUserControllerDelegate
+    func userController(uc:ECUserController, hasCreatedUser user:ECUser) {
+        //        let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\((self.frc?.fetchedObjects?.count)! as Int)", "userPhone":"0740811856", "userName":"timo"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
+        //        user.createdAt = NSDate()
+        //
+        ECCoreManager.sharedInstance.storeManager.saveContext()
+    }
+    
+    func userController(uc:ECUserController, hasUpdatedUser user:ECUser) {
+        
+    }
+    
+    func userController(uc:ECUserController, hasDeletedUser user:ECUser) {
+        
     }
 }

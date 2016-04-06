@@ -8,17 +8,17 @@
 
 import UIKit
 
-class ECUsersListViewController: UIViewController, ECUserListDataSourceDelegate {
+class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate {
     
     @IBOutlet weak var tableView: UITableView!
 
-    private var dataSource: ECUserListDataSource?
+    private var dataSource: ECUsersDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.dataSource = ECUserListDataSource.init(withDelegate: self, andTableView: self.tableView)
+        self.dataSource = ECUsersDataSource.init(withDelegate: self, andTableView: self.tableView)
         self.configureView()
     }
     
@@ -29,13 +29,13 @@ class ECUsersListViewController: UIViewController, ECUserListDataSourceDelegate 
     }
 
     func configureView() {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self.dataSource, action: #selector(ECUserListDataSource.addUser))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self.dataSource, action: #selector(ECUsersDataSource.addUser))
         self.navigationItem.rightBarButtonItem = addButton
     }
     
     // MARK: ECUserListDataSourceDelegate
     
-    func dataSource(ds: ECUserListDataSource, wantsToShowViewController vc: UIViewController) {
+    func dataSource(ds: ECUsersDataSource, wantsToShowViewController vc: UIViewController) {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

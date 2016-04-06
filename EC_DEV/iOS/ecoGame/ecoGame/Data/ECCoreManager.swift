@@ -13,11 +13,11 @@ class ECCoreManager: NSObject {
     
     var storeManager: ECStoreManager
     var requestManager: ECRequestManager
-    
+    var currentUser: ECUser?
+
     override init() {
-        storeManager = ECStoreManager.init()
-        requestManager = ECRequestManager.init()
+        storeManager = ECStoreManager()
+        requestManager = ECRequestManager()
     }
     
-    var currentUser: ECUser?
 }

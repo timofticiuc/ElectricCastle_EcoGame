@@ -29,6 +29,8 @@
 		25728F651CB1C8690063C7E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25728F641CB1C8690063C7E3 /* CoreData.framework */; };
 		25728F681CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25728F661CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld */; };
 		258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */; };
+		25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E3BC951CB59FA100CCD783 /* ECUserController.swift */; };
+		25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		25728F641CB1C8690063C7E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		25728F671CB1C8D20063C7E3 /* ECDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ECDataModel.xcdatamodel; sourceTree = "<group>"; };
 		258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+ECAdditions.swift"; sourceTree = "<group>"; };
+		25E3BC951CB59FA100CCD783 /* ECUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUserController.swift; sourceTree = "<group>"; };
+		25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ECAdditions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 		2513BB2E1CA9B1E600CC9C7E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				25E3BC921CB59E3900CCD783 /* UserCreation */,
 				252C5A891CB062D7006CC6F9 /* UserList */,
 				252C5A831CB05B76006CC6F9 /* ECMenuViewController.swift */,
 			);
@@ -195,6 +200,7 @@
 				252C5A871CB05BB0006CC6F9 /* Selector+ECAdditions.swift */,
 				252C5A951CB0717B006CC6F9 /* UITableView+ECAdditions.swift */,
 				258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */,
+				25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -235,6 +241,14 @@
 			name = Store;
 			path = ecoGame/Data/Store;
 			sourceTree = SOURCE_ROOT;
+		};
+		25E3BC921CB59E3900CCD783 /* UserCreation */ = {
+			isa = PBXGroup;
+			children = (
+				25E3BC951CB59FA100CCD783 /* ECUserController.swift */,
+			);
+			path = UserCreation;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -377,9 +391,11 @@
 				25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */,
 				252C5A851CB05B76006CC6F9 /* ECMenuViewController.swift in Sources */,
 				258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */,
+				25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */,
 				252C5A8B1CB062D7006CC6F9 /* ECUsersListViewController.swift in Sources */,
 				252C5A961CB0717B006CC6F9 /* UITableView+ECAdditions.swift in Sources */,
 				25728F631CB1C8530063C7E3 /* ECSeralizableObject.swift in Sources */,
+				25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */,
 				25728F611CB1C8000063C7E3 /* ECRequestManager.swift in Sources */,
 				252C5A7F1CB04DC4006CC6F9 /* ECUser.swift in Sources */,
 				2513BAFE1CA9AF3A00CC9C7E /* AppDelegate.swift in Sources */,
