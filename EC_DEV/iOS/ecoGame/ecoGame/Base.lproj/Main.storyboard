@@ -215,6 +215,11 @@
                             <outlet property="delegate" destination="0Fm-Rg-csq" id="7Xg-Lr-czh"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="userNameField" destination="wen-Kt-DGj" id="cJW-cz-fGv"/>
+                        <outlet property="userPhoneField" destination="xtS-g4-yNp" id="269-AT-KR3"/>
+                        <outlet property="userRoleSegment" destination="zPf-b0-9nq" id="6pR-bF-6QZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVZ-aT-kSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

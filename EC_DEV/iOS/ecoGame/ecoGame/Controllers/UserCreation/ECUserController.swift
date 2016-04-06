@@ -15,6 +15,10 @@ protocol ECUserControllerDelegate {
 }
 
 class ECUserController: UITableViewController {
+    @IBOutlet var userNameField: UITextField!
+    @IBOutlet var userPhoneField: UITextField!
+    @IBOutlet var userRoleSegment: UISegmentedControl!
+
     private var isNewUser: Bool = false
 
     var delegate:ECUserControllerDelegate? = nil
@@ -27,21 +31,38 @@ class ECUserController: UITableViewController {
     }
 
     func configureView() {
+        isNewUser = (self.user == nil)
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(doneEditing))
         self.navigationItem.rightBarButtonItem = addButton
         
-        isNewUser = (self.user == nil)
-//        tableView.bac
+        if !isNewUser {
+            self.userNameField.text = self.user.userName
+            self.userPhoneField.text = self.user.userPhone
+            self.userRoleSegment.selectedSegmentIndex = Int(self.user.userRole.rawValue)
+        }
     }
     
     func doneEditing() {
         if delegate != nil {
             if isNewUser {
+                let id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
+                self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"],
+                                                                              inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
+                self.user.createdAt = NSDate()
+                self.user.userName = self.userNameField.text!
+                self.user.userPhone = self.userPhoneField.text!
+                self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
+                
                 self.delegate?.userController(self, hasCreatedUser: self.user)
             } else {
+                self.user.userName = self.userNameField.text!
+                self.user.userPhone = self.userPhoneField.text!
+                self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
                 self.delegate?.userController(self, hasUpdatedUser: self.user)
             }
         }
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: - Table view data source

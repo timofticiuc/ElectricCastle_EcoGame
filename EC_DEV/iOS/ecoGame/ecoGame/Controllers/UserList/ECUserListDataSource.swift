@@ -76,7 +76,12 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let userController: ECUserController = ECUserController.ec_createFromStoryboard() as! ECUserController
+        userController.delegate = self
+        userController.user = self.frc.fetchedObjects?[indexPath.row] as! ECUser
+        self.delegate?.dataSource(self, wantsToShowViewController: userController)
     }
     
     // MARK: NSFetchedResultsControllerDelegate
@@ -88,14 +93,11 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     // MARK: ECUserControllerDelegate
     func userController(uc:ECUserController, hasCreatedUser user:ECUser) {
-        //        let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\((self.frc?.fetchedObjects?.count)! as Int)", "userPhone":"0740811856", "userName":"timo"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-        //        user.createdAt = NSDate()
-        //
         ECCoreManager.sharedInstance.storeManager.saveContext()
     }
     
     func userController(uc:ECUserController, hasUpdatedUser user:ECUser) {
-        
+        ECCoreManager.sharedInstance.storeManager.saveContext()
     }
     
     func userController(uc:ECUserController, hasDeletedUser user:ECUser) {

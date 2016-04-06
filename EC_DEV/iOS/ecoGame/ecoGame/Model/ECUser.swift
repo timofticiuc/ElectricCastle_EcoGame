@@ -14,10 +14,10 @@ class ECUser: ECSeralizableObject {
     @NSManaged var userName: String
     @NSManaged var userPhone: String
     @NSManaged var createdAt: NSDate
-    @NSManaged var role: Int32
+    @NSManaged private var role: Int32
     var userRole:ECUserRole {
-        get { return ECUserRole(rawValue: self.role) ?? .ECUserRoleParticipant }
-        set { self.role = newValue.rawValue }
+        get { return ECUserRole(rawValue: role) ?? .ECUserRoleParticipant }
+        set { role = newValue.rawValue }
     }
     
     static func fetchRequestForUsers() -> NSFetchRequest {
