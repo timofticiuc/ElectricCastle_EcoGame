@@ -70,4 +70,8 @@ class ECSeralizableObject: NSManagedObject {
         
         return result
     }
+    
+    func removeFromStore() {
+        ECCoreManager.sharedInstance.storeManager.managedObjectContext?.deleteObject(self);
+    }
 }

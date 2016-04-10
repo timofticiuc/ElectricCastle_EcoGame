@@ -23,6 +23,8 @@
 		252C5A961CB0717B006CC6F9 /* UITableView+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A951CB0717B006CC6F9 /* UITableView+ECAdditions.swift */; };
 		252C5A971CB07E9C006CC6F9 /* ECUserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 252C5A911CB06805006CC6F9 /* ECUserListCell.xib */; };
 		252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A981CB09BDA006CC6F9 /* ECCoreManager.swift */; };
+		2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543CCF81CBA954C00EA677B /* ECLoginController.swift */; };
+		2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */; };
 		25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25728F5E1CB1C7F20063C7E3 /* ECStoreManager.swift */; };
 		25728F611CB1C8000063C7E3 /* ECRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25728F601CB1C8000063C7E3 /* ECRequestManager.swift */; };
 		25728F631CB1C8530063C7E3 /* ECSeralizableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25728F621CB1C8530063C7E3 /* ECSeralizableObject.swift */; };
@@ -73,6 +75,8 @@
 		252C5A911CB06805006CC6F9 /* ECUserListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECUserListCell.xib; sourceTree = "<group>"; };
 		252C5A951CB0717B006CC6F9 /* UITableView+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+ECAdditions.swift"; sourceTree = "<group>"; };
 		252C5A981CB09BDA006CC6F9 /* ECCoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCoreManager.swift; sourceTree = "<group>"; };
+		2543CCF81CBA954C00EA677B /* ECLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECLoginController.swift; sourceTree = "<group>"; };
+		2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ECAdditions.swift"; sourceTree = "<group>"; };
 		25728F5E1CB1C7F20063C7E3 /* ECStoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECStoreManager.swift; sourceTree = "<group>"; };
 		25728F601CB1C8000063C7E3 /* ECRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECRequestManager.swift; sourceTree = "<group>"; };
 		25728F621CB1C8530063C7E3 /* ECSeralizableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSeralizableObject.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 		2513BB2E1CA9B1E600CC9C7E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2543CCF51CBA8A7C00EA677B /* Login */,
 				25E3BC921CB59E3900CCD783 /* UserCreation */,
 				252C5A891CB062D7006CC6F9 /* UserList */,
 				252C5A831CB05B76006CC6F9 /* ECMenuViewController.swift */,
@@ -201,6 +206,7 @@
 				252C5A951CB0717B006CC6F9 /* UITableView+ECAdditions.swift */,
 				258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */,
 				25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */,
+				2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +228,14 @@
 				252C5A911CB06805006CC6F9 /* ECUserListCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		2543CCF51CBA8A7C00EA677B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2543CCF81CBA954C00EA677B /* ECLoginController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		25728F5C1CB1C7D40063C7E3 /* API */ = {
@@ -388,6 +402,7 @@
 				252C5A901CB067F7006CC6F9 /* ECUserListCell.swift in Sources */,
 				252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */,
 				252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */,
+				2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */,
 				25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */,
 				252C5A851CB05B76006CC6F9 /* ECMenuViewController.swift in Sources */,
 				258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */,
@@ -395,6 +410,7 @@
 				252C5A8B1CB062D7006CC6F9 /* ECUsersListViewController.swift in Sources */,
 				252C5A961CB0717B006CC6F9 /* UITableView+ECAdditions.swift in Sources */,
 				25728F631CB1C8530063C7E3 /* ECSeralizableObject.swift in Sources */,
+				2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */,
 				25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */,
 				25728F611CB1C8000063C7E3 /* ECRequestManager.swift in Sources */,
 				252C5A7F1CB04DC4006CC6F9 /* ECUser.swift in Sources */,

@@ -101,6 +101,6 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     }
     
     func userController(uc:ECUserController, hasDeletedUser user:ECUser) {
-        
+        ECCoreManager.sharedInstance.storeManager.saveContext()
     }
 }
