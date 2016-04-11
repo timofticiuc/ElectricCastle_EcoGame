@@ -222,8 +222,11 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REMOVE USER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kH5-sF-85E">
-                                                    <rect key="frame" x="25" y="10" width="550" height="50"/>
+                                                    <rect key="frame" x="25" y="9" width="550" height="52"/>
                                                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="52" id="dJ6-D7-oEz"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -231,12 +234,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="kH5-sF-85E" secondAttribute="trailing" constant="25" id="GJz-yp-iqt"/>
-                                                <constraint firstItem="VQf-WQ-HCI" firstAttribute="top" secondItem="kH5-sF-85E" secondAttribute="bottom" constant="9" id="InR-2Y-HSx"/>
                                                 <constraint firstAttribute="trailing" secondItem="VQf-WQ-HCI" secondAttribute="trailing" id="PUA-Uu-m2v"/>
                                                 <constraint firstItem="kH5-sF-85E" firstAttribute="leading" secondItem="Ws0-U6-vtP" secondAttribute="leading" constant="25" id="SMl-cz-gWQ"/>
-                                                <constraint firstItem="kH5-sF-85E" firstAttribute="top" secondItem="Ws0-U6-vtP" secondAttribute="top" constant="10" id="etY-Ys-FS4"/>
                                                 <constraint firstAttribute="bottom" secondItem="VQf-WQ-HCI" secondAttribute="bottom" id="hCA-VU-SJz"/>
                                                 <constraint firstItem="VQf-WQ-HCI" firstAttribute="leading" secondItem="Ws0-U6-vtP" secondAttribute="leading" id="jVV-s6-0MH"/>
+                                                <constraint firstItem="kH5-sF-85E" firstAttribute="centerY" secondItem="Ws0-U6-vtP" secondAttribute="centerY" id="n6k-1b-7n1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -367,10 +369,20 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDa-s8-DI7" userLabel="separatorView">
+                                                    <rect key="frame" x="150" y="55" width="300" height="1"/>
+                                                    <color key="backgroundColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="73X-Ah-3QO"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="StW-Ns-VWk" firstAttribute="centerY" secondItem="rpM-Tb-YrT" secondAttribute="centerY" id="57z-uH-W4F"/>
+                                                <constraint firstItem="KDa-s8-DI7" firstAttribute="width" secondItem="StW-Ns-VWk" secondAttribute="width" id="5oz-A9-hEr"/>
                                                 <constraint firstItem="StW-Ns-VWk" firstAttribute="centerX" secondItem="rpM-Tb-YrT" secondAttribute="centerX" id="902-nS-a7r"/>
+                                                <constraint firstItem="KDa-s8-DI7" firstAttribute="centerX" secondItem="rpM-Tb-YrT" secondAttribute="centerX" id="IJ2-mc-L8P"/>
+                                                <constraint firstItem="KDa-s8-DI7" firstAttribute="top" secondItem="StW-Ns-VWk" secondAttribute="bottom" id="ilD-tj-hBE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -392,23 +404,33 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOT-Vh-Upf" userLabel="separatorView">
+                                                    <rect key="frame" x="150" y="55" width="300" height="1"/>
+                                                    <color key="backgroundColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="YXk-dI-ESg"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="gOT-Vh-Upf" firstAttribute="width" secondItem="v3O-k9-iFY" secondAttribute="width" id="aP2-bu-ugf"/>
+                                                <constraint firstItem="gOT-Vh-Upf" firstAttribute="centerX" secondItem="a4L-Ua-kIp" secondAttribute="centerX" id="cqe-gM-cPC"/>
+                                                <constraint firstItem="gOT-Vh-Upf" firstAttribute="top" secondItem="v3O-k9-iFY" secondAttribute="bottom" id="csb-Vd-JFA"/>
                                                 <constraint firstItem="v3O-k9-iFY" firstAttribute="centerX" secondItem="a4L-Ua-kIp" secondAttribute="centerX" id="mTB-KY-enE"/>
                                                 <constraint firstItem="v3O-k9-iFY" firstAttribute="centerY" secondItem="a4L-Ua-kIp" secondAttribute="centerY" id="vuY-X5-XbO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="8DY-CE-9UH">
-                                        <rect key="frame" x="0.0" y="470" width="600" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="8DY-CE-9UH">
+                                        <rect key="frame" x="0.0" y="470" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8DY-CE-9UH" id="qiK-Bh-OKv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clm-xB-pVv" userLabel="loginButton">
-                                                    <rect key="frame" x="150" y="5" width="300" height="50"/>
+                                                    <rect key="frame" x="150" y="15" width="300" height="50"/>
                                                     <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="gWs-OO-HCQ"/>
@@ -439,9 +461,8 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="loginButton" destination="clm-xB-pVv" id="RRT-DB-Bxt"/>
-                        <outlet property="userNameField" destination="StW-Ns-VWk" id="oDF-8R-cKB"/>
-                        <outlet property="userPasswordField" destination="v3O-k9-iFY" id="C9k-Km-cKb"/>
+                        <outlet property="userNameField" destination="StW-Ns-VWk" id="7W3-Il-UG3"/>
+                        <outlet property="userPasswordField" destination="v3O-k9-iFY" id="R2X-kL-or1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qlq-bx-hHv" userLabel="First Responder" sceneMemberID="firstResponder"/>

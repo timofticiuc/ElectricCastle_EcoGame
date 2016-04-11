@@ -11,6 +11,8 @@ import Foundation
 
 class ECSeralizableObject: NSManagedObject {
     @NSManaged var id: String
+    @NSManaged var createdAt: NSDate
+
     private var _dictionaryRepresentation: Dictionary<String, AnyObject>?
     var dictionaryRepresentation: Dictionary<String, AnyObject>? {
         get {
@@ -64,7 +66,7 @@ class ECSeralizableObject: NSManagedObject {
         var result:ECSeralizableObject? = self.objectWithIdentifier(dictionary["id"] as! String, fromContext: context) as? ECSeralizableObject
         if result == nil {
             result = ECSeralizableObject.init(objClass:self, inManagedObjectContext:context)
-
+            result!.createdAt = NSDate()
         }
         result!.dictionaryRepresentation = dictionary
         

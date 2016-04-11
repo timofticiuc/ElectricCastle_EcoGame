@@ -29,4 +29,6 @@ struct ECConstants {
         static let kUserPhone = "user_phone"
         static let kUserId = "user_id"
     }
+    
+    static let kCurrentUserId = "kCurrentUserId"
 }

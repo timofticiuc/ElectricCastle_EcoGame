@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2502B6D41CBC553200F7DC28 /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D31CBC553200F7DC28 /* KeychainSwift.swift */; };
+		2502B6D71CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D51CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift */; };
+		2502B6D81CBC56EE00F7DC28 /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D61CBC56EE00F7DC28 /* TegKeychainConstants.swift */; };
 		2513BAFE1CA9AF3A00CC9C7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513BAFD1CA9AF3A00CC9C7E /* AppDelegate.swift */; };
 		2513BB051CA9AF3A00CC9C7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2513BB031CA9AF3A00CC9C7E /* Main.storyboard */; };
 		2513BB071CA9AF3A00CC9C7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2513BB061CA9AF3A00CC9C7E /* Assets.xcassets */; };
@@ -53,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2502B6D31CBC553200F7DC28 /* KeychainSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
+		2502B6D51CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
+		2502B6D61CBC56EE00F7DC28 /* TegKeychainConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TegKeychainConstants.swift; sourceTree = "<group>"; };
 		2513BAFA1CA9AF3A00CC9C7E /* ecoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ecoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2513BAFD1CA9AF3A00CC9C7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2513BB041CA9AF3A00CC9C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,6 +119,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2502B6D21CBC552100F7DC28 /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				2502B6D31CBC553200F7DC28 /* KeychainSwift.swift */,
+				2502B6D51CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift */,
+				2502B6D61CBC56EE00F7DC28 /* TegKeychainConstants.swift */,
+			);
+			path = KeyChain;
+			sourceTree = "<group>";
+		};
 		2513BAF11CA9AF3A00CC9C7E = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				252C5A981CB09BDA006CC6F9 /* ECCoreManager.swift */,
+				2502B6D21CBC552100F7DC28 /* KeyChain */,
 				25728F5C1CB1C7D40063C7E3 /* API */,
 				25728F5D1CB1C7DA0063C7E3 /* Store */,
 			);
@@ -400,6 +417,7 @@
 				25728F681CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld in Sources */,
 				252C5A811CB04FBE006CC6F9 /* ECConstants.swift in Sources */,
 				252C5A901CB067F7006CC6F9 /* ECUserListCell.swift in Sources */,
+				2502B6D81CBC56EE00F7DC28 /* TegKeychainConstants.swift in Sources */,
 				252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */,
 				252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */,
 				2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */,
@@ -411,6 +429,8 @@
 				252C5A961CB0717B006CC6F9 /* UITableView+ECAdditions.swift in Sources */,
 				25728F631CB1C8530063C7E3 /* ECSeralizableObject.swift in Sources */,
 				2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */,
+				2502B6D41CBC553200F7DC28 /* KeychainSwift.swift in Sources */,
+				2502B6D71CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift in Sources */,
 				25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */,
 				25728F611CB1C8000063C7E3 /* ECRequestManager.swift in Sources */,
 				252C5A7F1CB04DC4006CC6F9 /* ECUser.swift in Sources */,

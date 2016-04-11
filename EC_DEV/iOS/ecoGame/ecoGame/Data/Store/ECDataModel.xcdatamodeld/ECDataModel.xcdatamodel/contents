@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
     <entity name="ECSerializableObject" representedClassName="ECSerializableObject" isAbstract="YES" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="ECUser" representedClassName="ECUser" parentEntity="ECSerializableObject" syncable="YES">
-        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="role" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userPhone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ECSerializableObject" positionX="-63" positionY="-18" width="128" height="60"/>
-        <element name="ECUser" positionX="-54" positionY="0" width="128" height="105"/>
+        <element name="ECSerializableObject" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="ECUser" positionX="-54" positionY="0" width="128" height="90"/>
     </elements>
 </model>

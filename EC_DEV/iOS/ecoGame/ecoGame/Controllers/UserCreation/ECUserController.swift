@@ -52,7 +52,6 @@ class ECUserController: UITableViewController {
             if isNewUser {
                 let id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
                 self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-                self.user.createdAt = NSDate()
                 self.user.userName = self.userNameField.text!
                 self.user.userPhone = self.userPhoneField.text!
                 self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!

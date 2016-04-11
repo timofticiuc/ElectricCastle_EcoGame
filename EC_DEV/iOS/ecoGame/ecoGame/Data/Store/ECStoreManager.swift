@@ -29,17 +29,15 @@ class ECStoreManager: NSObject {
         let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
         managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         managedObjectContext!.persistentStoreCoordinator = psc
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-            let docURL = urls[urls.endIndex-1]
-            let storeURL = docURL.URLByAppendingPathComponent("ECDataModel.sqlite")
-            
-            do {
-                try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
-            } catch {
-                fatalError("Error migrating store: \(error)")
-            }
-//        }
+        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let docURL = urls[urls.endIndex-1]
+        let storeURL = docURL.URLByAppendingPathComponent("ECDataModel.sqlite")
+        
+        do {
+            try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+        } catch {
+            fatalError("Error migrating store: \(error)")
+        }
     }
     
     func saveContext() {

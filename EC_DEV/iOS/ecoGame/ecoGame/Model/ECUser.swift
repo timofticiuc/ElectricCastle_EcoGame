@@ -13,7 +13,6 @@ import CoreData
 class ECUser: ECSeralizableObject {
     @NSManaged var userName: String
     @NSManaged var userPhone: String
-    @NSManaged var createdAt: NSDate
     @NSManaged private var role: Int32
     var userRole:ECUserRole {
         get { return ECUserRole(rawValue: role) ?? .ECUserRoleParticipant }
