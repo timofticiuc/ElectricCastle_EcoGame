@@ -13,13 +13,24 @@ class ECCoreManager: NSObject {
     
     var storeManager: ECStoreManager
     var requestManager: ECRequestManager
+    var currentSessionTimeStamp: NSDate {
+        get {
+            return NSUserDefaults.standardUserDefaults().objectForKey(ECConstants.kCurrentSessionTimeStamp) as! NSDate
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: ECConstants.kCurrentSessionTimeStamp)
+        }
+    }
     var currentUser: ECUser? {
         get {
             guard let currentId = KeychainSwift().get(ECConstants.kCurrentUserId) else {return nil}
             return ECUser.objectWithIdentifier(currentId, fromContext: self.storeManager.managedObjectContext!) as? ECUser
         }
         set {
-            guard let _=newValue else {return}
+            guard let _=newValue else {
+                KeychainSwift().delete(ECConstants.kCurrentUserId)
+                return
+            }
             KeychainSwift().set(newValue!.id, forKey: ECConstants.kCurrentUserId)
         }
     }

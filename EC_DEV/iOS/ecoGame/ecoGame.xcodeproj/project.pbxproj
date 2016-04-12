@@ -10,6 +10,7 @@
 		2502B6D41CBC553200F7DC28 /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D31CBC553200F7DC28 /* KeychainSwift.swift */; };
 		2502B6D71CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D51CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift */; };
 		2502B6D81CBC56EE00F7DC28 /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D61CBC56EE00F7DC28 /* TegKeychainConstants.swift */; };
+		2502B6DA1CBC7C1B00F7DC28 /* NSDate+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D91CBC7C1B00F7DC28 /* NSDate+ECAdditions.swift */; };
 		2513BAFE1CA9AF3A00CC9C7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513BAFD1CA9AF3A00CC9C7E /* AppDelegate.swift */; };
 		2513BB051CA9AF3A00CC9C7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2513BB031CA9AF3A00CC9C7E /* Main.storyboard */; };
 		2513BB071CA9AF3A00CC9C7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2513BB061CA9AF3A00CC9C7E /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		2502B6D31CBC553200F7DC28 /* KeychainSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
 		2502B6D51CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
 		2502B6D61CBC56EE00F7DC28 /* TegKeychainConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TegKeychainConstants.swift; sourceTree = "<group>"; };
+		2502B6D91CBC7C1B00F7DC28 /* NSDate+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+ECAdditions.swift"; sourceTree = "<group>"; };
 		2513BAFA1CA9AF3A00CC9C7E /* ecoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ecoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2513BAFD1CA9AF3A00CC9C7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2513BB041CA9AF3A00CC9C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */,
 				25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */,
 				2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */,
+				2502B6D91CBC7C1B00F7DC28 /* NSDate+ECAdditions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				25728F681CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld in Sources */,
 				252C5A811CB04FBE006CC6F9 /* ECConstants.swift in Sources */,
 				252C5A901CB067F7006CC6F9 /* ECUserListCell.swift in Sources */,
+				2502B6DA1CBC7C1B00F7DC28 /* NSDate+ECAdditions.swift in Sources */,
 				2502B6D81CBC56EE00F7DC28 /* TegKeychainConstants.swift in Sources */,
 				252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */,
 				252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */,

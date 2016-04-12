@@ -31,4 +31,6 @@ struct ECConstants {
     }
     
     static let kCurrentUserId = "kCurrentUserId"
+    static let kCurrentSessionTimeStamp = "kCurrentSessionTimeStamp"
+
 }

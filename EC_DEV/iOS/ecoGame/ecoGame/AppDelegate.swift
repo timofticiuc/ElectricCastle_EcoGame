@@ -20,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+        
+        navigationController.view.backgroundColor = UIColor.whiteColor()
+        UINavigationBar.appearance().barTintColor = UIColor.ec_greenNavBar()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        
         return true
     }
 

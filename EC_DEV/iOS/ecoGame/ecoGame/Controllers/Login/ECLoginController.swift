@@ -30,6 +30,8 @@ class ECLoginController: UITableViewController {
         dummyUser.userRole = .ECUserRoleAdmin
         
         ECCoreManager.sharedInstance.currentUser = dummyUser
+        ECCoreManager.sharedInstance.currentSessionTimeStamp = NSDate()
+        ECCoreManager.sharedInstance.storeManager.saveContext()
 
         self.dismissViewControllerAnimated(true) {
             
