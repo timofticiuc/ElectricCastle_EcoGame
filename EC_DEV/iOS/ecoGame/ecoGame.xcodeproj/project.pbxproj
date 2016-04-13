@@ -27,6 +27,9 @@
 		252C5A961CB0717B006CC6F9 /* UITableView+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A951CB0717B006CC6F9 /* UITableView+ECAdditions.swift */; };
 		252C5A971CB07E9C006CC6F9 /* ECUserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 252C5A911CB06805006CC6F9 /* ECUserListCell.xib */; };
 		252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A981CB09BDA006CC6F9 /* ECCoreManager.swift */; };
+		2534D34D1CBF00D7003A9195 /* ECSearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534D34C1CBF00D7003A9195 /* ECSearchHeaderView.swift */; };
+		2534D34F1CBF00F2003A9195 /* ECSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2534D34E1CBF00F2003A9195 /* ECSearchHeaderView.xib */; };
+		2534D3511CBF02C8003A9195 /* UIVIew+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534D3501CBF02C8003A9195 /* UIVIew+ECAdditions.swift */; };
 		2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543CCF81CBA954C00EA677B /* ECLoginController.swift */; };
 		2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */; };
 		25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25728F5E1CB1C7F20063C7E3 /* ECStoreManager.swift */; };
@@ -83,6 +86,9 @@
 		252C5A911CB06805006CC6F9 /* ECUserListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECUserListCell.xib; sourceTree = "<group>"; };
 		252C5A951CB0717B006CC6F9 /* UITableView+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+ECAdditions.swift"; sourceTree = "<group>"; };
 		252C5A981CB09BDA006CC6F9 /* ECCoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCoreManager.swift; sourceTree = "<group>"; };
+		2534D34C1CBF00D7003A9195 /* ECSearchHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSearchHeaderView.swift; sourceTree = "<group>"; };
+		2534D34E1CBF00F2003A9195 /* ECSearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSearchHeaderView.xib; sourceTree = "<group>"; };
+		2534D3501CBF02C8003A9195 /* UIVIew+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIVIew+ECAdditions.swift"; sourceTree = "<group>"; };
 		2543CCF81CBA954C00EA677B /* ECLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECLoginController.swift; sourceTree = "<group>"; };
 		2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ECAdditions.swift"; sourceTree = "<group>"; };
 		25728F5E1CB1C7F20063C7E3 /* ECStoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECStoreManager.swift; sourceTree = "<group>"; };
@@ -227,6 +233,7 @@
 				25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */,
 				2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */,
 				2502B6D91CBC7C1B00F7DC28 /* NSDate+ECAdditions.swift */,
+				2534D3501CBF02C8003A9195 /* UIVIew+ECAdditions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -246,6 +253,8 @@
 			children = (
 				252C5A8F1CB067F7006CC6F9 /* ECUserListCell.swift */,
 				252C5A911CB06805006CC6F9 /* ECUserListCell.xib */,
+				2534D34C1CBF00D7003A9195 /* ECSearchHeaderView.swift */,
+				2534D34E1CBF00F2003A9195 /* ECSearchHeaderView.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -388,6 +397,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2534D34F1CBF00F2003A9195 /* ECSearchHeaderView.xib in Resources */,
 				2513BB0A1CA9AF3A00CC9C7E /* LaunchScreen.storyboard in Resources */,
 				2513BB071CA9AF3A00CC9C7E /* Assets.xcassets in Resources */,
 				252C5A971CB07E9C006CC6F9 /* ECUserListCell.xib in Resources */,
@@ -427,8 +437,10 @@
 				2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */,
 				25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */,
 				252C5A851CB05B76006CC6F9 /* ECMenuViewController.swift in Sources */,
+				2534D3511CBF02C8003A9195 /* UIVIew+ECAdditions.swift in Sources */,
 				258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */,
 				25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */,
+				2534D34D1CBF00D7003A9195 /* ECSearchHeaderView.swift in Sources */,
 				252C5A8B1CB062D7006CC6F9 /* ECUsersListViewController.swift in Sources */,
 				252C5A961CB0717B006CC6F9 /* UITableView+ECAdditions.swift in Sources */,
 				25728F631CB1C8530063C7E3 /* ECSeralizableObject.swift in Sources */,

@@ -13,7 +13,7 @@ protocol ECUsersDataSourceDelegate {
     func dataSource(ds:ECUsersDataSource, wantsToShowViewController vc:UIViewController)
 }
 
-class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, ECUserControllerDelegate {
+class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, ECUserControllerDelegate {
     
     private var delegate: ECUsersDataSourceDelegate?
     private var tableView: UITableView!
@@ -29,6 +29,15 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
             }
             
             return _frc
+        }
+    }
+    private var _searchView: ECSearchHeaderView!
+    private var searchView: ECSearchHeaderView! {
+        get {
+            if _searchView == nil {
+                _searchView = ECSearchHeaderView.ec_loadFromNib()
+            }
+            return _searchView
         }
     }
     
@@ -58,13 +67,27 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         self.delegate?.dataSource(self, wantsToShowViewController: userController)
     }
     
-    // MARK: UITableViewDataSource
+    // MARK: UIScrollViewDelegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        UIApplication.sharedApplication().keyWindow!.endEditing(true)
+    }
+    
+    // MARK: UITableViewDataSource    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.frc.fetchedObjects!.count;
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100;
+        return 100
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.searchView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

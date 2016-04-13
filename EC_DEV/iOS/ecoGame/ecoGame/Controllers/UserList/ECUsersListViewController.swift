@@ -35,7 +35,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate {
     
     // MARK: ECUserListDataSourceDelegate
     
-    func dataSource(ds: ECUsersDataSource, wantsToShowViewController vc: UIViewController) {
+    func dataSource(ds: ECUsersDataSource, wantsToShowViewController vc: UIViewController) {        
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
