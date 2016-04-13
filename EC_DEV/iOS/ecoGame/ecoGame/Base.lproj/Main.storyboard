@@ -6,10 +6,10 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Master-->
+        <!--Menu-->
         <scene sceneID="pY4-Hu-kfo">
             <objects>
-                <navigationController title="Master" id="RMx-3f-FxP" sceneMemberID="viewController">
+                <navigationController title="Menu" id="RMx-3f-FxP" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -21,10 +21,10 @@
             </objects>
             <point key="canvasLocation" x="-38" y="-630"/>
         </scene>
-        <!--Users-->
+        <!--Participants-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="Users" automaticallyAdjustsScrollViewInsets="NO" id="JEX-9P-axG" customClass="ECUsersListViewController" customModule="ecoGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Participants" automaticallyAdjustsScrollViewInsets="NO" id="JEX-9P-axG" customClass="ECUsersListViewController" customModule="ecoGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -197,11 +197,10 @@
                                                 <constraint firstItem="49P-gO-KcV" firstAttribute="leading" secondItem="pqQ-9V-LI0" secondAttribute="leading" constant="20" id="68w-Ad-ymM"/>
                                                 <constraint firstItem="zPf-b0-9nq" firstAttribute="leading" secondItem="49P-gO-KcV" secondAttribute="trailing" constant="8" id="F8s-gX-2Q6"/>
                                                 <constraint firstAttribute="bottom" secondItem="hbZ-Fk-qUy" secondAttribute="bottom" id="GA2-RZ-J79"/>
-                                                <constraint firstItem="zPf-b0-9nq" firstAttribute="top" secondItem="pqQ-9V-LI0" secondAttribute="top" constant="21" id="MvU-5A-9fz"/>
                                                 <constraint firstItem="hbZ-Fk-qUy" firstAttribute="leading" secondItem="pqQ-9V-LI0" secondAttribute="leading" id="PQd-Tl-7dj"/>
+                                                <constraint firstItem="zPf-b0-9nq" firstAttribute="centerY" secondItem="pqQ-9V-LI0" secondAttribute="centerY" id="Qbw-dz-rNU"/>
                                                 <constraint firstAttribute="trailing" secondItem="zPf-b0-9nq" secondAttribute="trailing" constant="45" id="Zy1-O9-Obs"/>
                                                 <constraint firstAttribute="trailing" secondItem="hbZ-Fk-qUy" secondAttribute="trailing" id="cbt-ZH-vy6"/>
-                                                <constraint firstItem="hbZ-Fk-qUy" firstAttribute="top" secondItem="zPf-b0-9nq" secondAttribute="bottom" constant="20" id="dHz-fp-yE0"/>
                                                 <constraint firstAttribute="bottom" secondItem="49P-gO-KcV" secondAttribute="bottom" id="dPa-w9-xse"/>
                                                 <constraint firstItem="49P-gO-KcV" firstAttribute="top" secondItem="pqQ-9V-LI0" secondAttribute="top" id="jNQ-Ie-P64"/>
                                             </constraints>
@@ -268,6 +267,7 @@
             <objects>
                 <splitViewController id="H1p-Uh-vWS" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="BlO-5A-QYV"/>
                         <segue destination="vC3-pB-5Vb" kind="relationship" relationship="detailViewController" id="Tll-UG-LXB"/>
@@ -277,14 +277,14 @@
             </objects>
             <point key="canvasLocation" x="-856" y="-330"/>
         </scene>
-        <!--Master-->
+        <!--Menu-->
         <scene sceneID="smW-Zh-WAh">
             <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="ECMenuViewController" customModule="ecoGame" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Menu" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="ECMenuViewController" customModule="ecoGame" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="r7i-6Z-zg0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.59999999999999998" alpha="0.0" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="Rd4-1X-24p">
                                 <cells>
@@ -326,12 +326,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2m-Cz-Zkl" userLabel="userNameLabel">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbs-pa-jOc" userLabel="separatorView">
                                                     <rect key="frame" x="25" y="43" width="553" height="1"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.877249053" green="0.877249053" blue="0.877249053" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="xDG-zI-LJV"/>
                                                     </constraints>
@@ -359,12 +359,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User role" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hY5-Lr-CIL" userLabel="userNameLabel">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d36-73-uOn" userLabel="separatorView">
                                                     <rect key="frame" x="25" y="43" width="553" height="1"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.877249053" green="0.877249053" blue="0.877249053" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="Qnz-55-wgX"/>
                                                     </constraints>
@@ -392,12 +392,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online for: 24h 15m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZy-Mv-KK0" userLabel="userNameLabel">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1f-0W-OWf" userLabel="separatorView">
                                                     <rect key="frame" x="25" y="43" width="553" height="1"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.877249053" green="0.877249053" blue="0.877249053" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="2EX-kA-K6X"/>
                                                     </constraints>

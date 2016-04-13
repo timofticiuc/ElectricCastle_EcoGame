@@ -22,10 +22,19 @@ class ECMenuViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if (!UIAccessibilityIsReduceTransparencyEnabled()) {
+            tableView.backgroundColor = UIColor.clearColor()
+            let blurEffect = UIBlurEffect(style: .Light)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            tableView.backgroundView = blurEffectView
+            
+            //if you want translucent vibrant table view separator lines
+            tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
+        }
         
         self.userNameLabel.text = ECCoreManager.sharedInstance.currentUser?.userName
         self.userRoleLabel.text = ECCoreManager.sharedInstance.currentUser?.userRole.ec_enumName()
-        self.userSessionLabel.text = "Online for: " + String(NSDate().hoursFrom(ECCoreManager.sharedInstance.currentSessionTimeStamp)) + "h " + String(NSDate().minutesFrom(ECCoreManager.sharedInstance.currentSessionTimeStamp)) + "m"
+        self.userSessionLabel.text = "Online for: " + String(NSDate().offsetFrom(ECCoreManager.sharedInstance.currentSessionTimeStamp))
     }
 
     @IBAction func logoutAction() {

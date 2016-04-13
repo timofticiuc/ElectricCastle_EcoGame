@@ -74,12 +74,37 @@ class ECUserController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 3 && self.isNewUser {
-            return 0;
-        }
-        
         if indexPath.row < 4 {
-            return 70;
+            if let role = ECCoreManager.sharedInstance.currentUser?.userRole {
+                switch role {
+                case .ECUserRoleAdmin:
+                    if indexPath.row == 3 {
+                        if self.isNewUser {
+                            self.userRemoveLabel.hidden = true
+                            return 0;
+                        }
+                    }
+                    return 70;
+                case .ECUserRoleVolunteer:
+                    if indexPath.row == 2 {
+                        self.userRoleSegment.hidden = true
+                        return 0;
+                    } else if indexPath.row == 3 {
+                        if self.isNewUser {
+                            self.userRemoveLabel.hidden = true
+                            return 0;
+                        } else if self.user.userRole != .ECUserRoleParticipant {
+                            self.userRemoveLabel.hidden = true
+                            return 0;
+                        }
+                    }
+                    return 70
+                default:
+                    self.userRoleSegment.hidden = true
+                    self.userRemoveLabel.hidden = true
+                    return 0;
+                }
+            }
         }
         
         return 0;
