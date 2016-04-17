@@ -19,7 +19,6 @@
 		2513BB201CA9AF3A00CC9C7E /* ecoGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513BB1F1CA9AF3A00CC9C7E /* ecoGameUITests.swift */; };
 		252C5A7F1CB04DC4006CC6F9 /* ECUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A7E1CB04DC4006CC6F9 /* ECUser.swift */; };
 		252C5A811CB04FBE006CC6F9 /* ECConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A801CB04FBE006CC6F9 /* ECConstants.swift */; };
-		252C5A851CB05B76006CC6F9 /* ECMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A831CB05B76006CC6F9 /* ECMenuViewController.swift */; };
 		252C5A881CB05BB0006CC6F9 /* Selector+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A871CB05BB0006CC6F9 /* Selector+ECAdditions.swift */; };
 		252C5A8B1CB062D7006CC6F9 /* ECUsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A8A1CB062D7006CC6F9 /* ECUsersListViewController.swift */; };
 		252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C5A8C1CB062E8006CC6F9 /* ECUserListDataSource.swift */; };
@@ -38,6 +37,7 @@
 		25728F651CB1C8690063C7E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25728F641CB1C8690063C7E3 /* CoreData.framework */; };
 		25728F681CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25728F661CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld */; };
 		258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */; };
+		25AC2A8B1CC3C307003D3C61 /* ECMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AC2A8A1CC3C307003D3C61 /* ECMenuViewController.swift */; };
 		25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E3BC951CB59FA100CCD783 /* ECUserController.swift */; };
 		25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */; };
 /* End PBXBuildFile section */
@@ -78,7 +78,6 @@
 		2513BB211CA9AF3A00CC9C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252C5A7E1CB04DC4006CC6F9 /* ECUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUser.swift; sourceTree = "<group>"; };
 		252C5A801CB04FBE006CC6F9 /* ECConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECConstants.swift; sourceTree = "<group>"; };
-		252C5A831CB05B76006CC6F9 /* ECMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECMenuViewController.swift; sourceTree = "<group>"; };
 		252C5A871CB05BB0006CC6F9 /* Selector+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Selector+ECAdditions.swift"; sourceTree = "<group>"; };
 		252C5A8A1CB062D7006CC6F9 /* ECUsersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUsersListViewController.swift; sourceTree = "<group>"; };
 		252C5A8C1CB062E8006CC6F9 /* ECUserListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUserListDataSource.swift; sourceTree = "<group>"; };
@@ -97,6 +96,7 @@
 		25728F641CB1C8690063C7E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		25728F671CB1C8D20063C7E3 /* ECDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ECDataModel.xcdatamodel; sourceTree = "<group>"; };
 		258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+ECAdditions.swift"; sourceTree = "<group>"; };
+		25AC2A8A1CC3C307003D3C61 /* ECMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECMenuViewController.swift; sourceTree = "<group>"; };
 		25E3BC951CB59FA100CCD783 /* ECUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUserController.swift; sourceTree = "<group>"; };
 		25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ECAdditions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,7 +199,7 @@
 				2543CCF51CBA8A7C00EA677B /* Login */,
 				25E3BC921CB59E3900CCD783 /* UserCreation */,
 				252C5A891CB062D7006CC6F9 /* UserList */,
-				252C5A831CB05B76006CC6F9 /* ECMenuViewController.swift */,
+				25AC2A891CC3C307003D3C61 /* Menu */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -284,6 +284,14 @@
 			name = Store;
 			path = ecoGame/Data/Store;
 			sourceTree = SOURCE_ROOT;
+		};
+		25AC2A891CC3C307003D3C61 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				25AC2A8A1CC3C307003D3C61 /* ECMenuViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
 		};
 		25E3BC921CB59E3900CCD783 /* UserCreation */ = {
 			isa = PBXGroup;
@@ -427,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				252C5A881CB05BB0006CC6F9 /* Selector+ECAdditions.swift in Sources */,
+				25AC2A8B1CC3C307003D3C61 /* ECMenuViewController.swift in Sources */,
 				25728F681CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld in Sources */,
 				252C5A811CB04FBE006CC6F9 /* ECConstants.swift in Sources */,
 				252C5A901CB067F7006CC6F9 /* ECUserListCell.swift in Sources */,
@@ -436,7 +445,6 @@
 				252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */,
 				2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */,
 				25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */,
-				252C5A851CB05B76006CC6F9 /* ECMenuViewController.swift in Sources */,
 				2534D3511CBF02C8003A9195 /* UIVIew+ECAdditions.swift in Sources */,
 				258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */,
 				25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */,

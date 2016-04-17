@@ -16,8 +16,8 @@ class ECSearchHeaderView: UIView, UITextFieldDelegate {
     var delegate: ECSearchDelegate?
     @IBOutlet var searchFieldWidthConstraint: NSLayoutConstraint!
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        self.delegate?.searchView(self, didChangeQueryWithText: searchBar.text!)
+    @IBAction func searchFieldTextDidChange(sender: UITextField) {
+        self.delegate?.searchView(self, didChangeQueryWithText: sender.text!)
     }
 
     func textFieldDidBeginEditing(textField: UITextField) {

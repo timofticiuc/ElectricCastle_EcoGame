@@ -25,6 +25,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <action selector="searchFieldTextDidChange:" destination="iN0-l3-epB" eventType="editingChanged" id="E6J-Pw-1SY"/>
                         <outlet property="delegate" destination="iN0-l3-epB" id="5EQ-3P-0qn"/>
                     </connections>
                 </textField>
