@@ -28,7 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
-        
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+
         return true
     }
 

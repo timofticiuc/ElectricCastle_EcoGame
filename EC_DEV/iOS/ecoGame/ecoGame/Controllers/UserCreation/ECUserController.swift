@@ -8,6 +8,13 @@
 
 import UIKit
 
+let kUserNameIndex          = 0
+let kUserPhoneIndex         = 1
+let kUserRoleIndex          = 2
+let kUserNewsletterIndex    = 3
+let kUserRemoveIndex        = 4
+
+
 protocol ECUserControllerDelegate {
     func userController(uc:ECUserController, hasCreatedUser user:ECUser)
     func userController(uc:ECUserController, hasUpdatedUser user:ECUser)
@@ -70,31 +77,39 @@ class ECUserController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row < 4 {
+        if indexPath.row < 5 {
             if let role = ECCoreManager.sharedInstance.currentUser?.userRole {
                 switch role {
                 case .ECUserRoleAdmin:
-                    if indexPath.row == 3 {
+                    if indexPath.row == kUserRemoveIndex {
                         if self.isNewUser {
                             self.userRemoveLabel.hidden = true
+                            return 0;
+                        }
+                    } else if indexPath.row == kUserNewsletterIndex {
+                        if !self.isNewUser {
                             return 0;
                         }
                     }
                     return 70;
                 case .ECUserRoleVolunteer:
-                    if indexPath.row == 2 {
+                    if indexPath.row == kUserRoleIndex {
                         self.userRoleSegment.hidden = true
                         return 0;
-                    } else if indexPath.row == 3 {
+                    } else if indexPath.row == kUserRemoveIndex {
                         if self.isNewUser {
                             self.userRemoveLabel.hidden = true
                             return 0;
                         } else if self.user.userRole != .ECUserRoleParticipant {
                             self.userRemoveLabel.hidden = true
+                            return 0;
+                        }
+                    } else if indexPath.row == kUserNewsletterIndex {
+                        if !self.isNewUser {
                             return 0;
                         }
                     }

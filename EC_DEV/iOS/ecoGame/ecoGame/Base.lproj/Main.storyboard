@@ -139,7 +139,7 @@
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyh-Lo-xQh" userLabel="separatorView">
                                                     <rect key="frame" x="0.0" y="69" width="600" height="1"/>
-                                                    <color key="backgroundColor" red="0.40000000000000002" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="61o-Vc-O75"/>
                                                     </constraints>
@@ -184,7 +184,7 @@
                                                     </constraints>
                                                 </view>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zPf-b0-9nq">
-                                                    <rect key="frame" x="108" y="21" width="447" height="29"/>
+                                                    <rect key="frame" x="108" y="21" width="467" height="29"/>
                                                     <segments>
                                                         <segment title="Participant"/>
                                                         <segment title="Volunteer"/>
@@ -199,7 +199,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="hbZ-Fk-qUy" secondAttribute="bottom" id="GA2-RZ-J79"/>
                                                 <constraint firstItem="hbZ-Fk-qUy" firstAttribute="leading" secondItem="pqQ-9V-LI0" secondAttribute="leading" id="PQd-Tl-7dj"/>
                                                 <constraint firstItem="zPf-b0-9nq" firstAttribute="centerY" secondItem="pqQ-9V-LI0" secondAttribute="centerY" id="Qbw-dz-rNU"/>
-                                                <constraint firstAttribute="trailing" secondItem="zPf-b0-9nq" secondAttribute="trailing" constant="45" id="Zy1-O9-Obs"/>
+                                                <constraint firstAttribute="trailing" secondItem="zPf-b0-9nq" secondAttribute="trailing" constant="25" id="Zy1-O9-Obs"/>
                                                 <constraint firstAttribute="trailing" secondItem="hbZ-Fk-qUy" secondAttribute="trailing" id="cbt-ZH-vy6"/>
                                                 <constraint firstAttribute="bottom" secondItem="49P-gO-KcV" secondAttribute="bottom" id="dPa-w9-xse"/>
                                                 <constraint firstItem="49P-gO-KcV" firstAttribute="top" secondItem="pqQ-9V-LI0" secondAttribute="top" id="jNQ-Ie-P64"/>
@@ -207,8 +207,50 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ECUserRoleCell" rowHeight="70" id="8Id-dd-3ep">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ECUserNewsletterCell" rowHeight="70" id="3x5-Ud-72L">
                                         <rect key="frame" x="0.0" y="210" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3x5-Ud-72L" id="PeN-L6-QqA">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign me up for the newsletter!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhB-4G-hvP">
+                                                    <rect key="frame" x="20" y="0.0" width="333" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="gT9-xj-NFg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzd-pD-J7P" userLabel="separatorView">
+                                                    <rect key="frame" x="0.0" y="69" width="600" height="1"/>
+                                                    <color key="backgroundColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="QhQ-6X-2Nl"/>
+                                                    </constraints>
+                                                </view>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="edf-qt-j5c">
+                                                    <rect key="frame" x="526" y="19" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="thumbTintColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="edf-qt-j5c" firstAttribute="centerY" secondItem="PeN-L6-QqA" secondAttribute="centerY" id="HqC-x8-Psl"/>
+                                                <constraint firstItem="fhB-4G-hvP" firstAttribute="top" secondItem="PeN-L6-QqA" secondAttribute="top" id="IEg-Zg-Bkr"/>
+                                                <constraint firstItem="dzd-pD-J7P" firstAttribute="leading" secondItem="PeN-L6-QqA" secondAttribute="leading" id="U1q-bO-6Hg"/>
+                                                <constraint firstAttribute="bottom" secondItem="fhB-4G-hvP" secondAttribute="bottom" id="fRa-2T-lf5"/>
+                                                <constraint firstAttribute="trailing" secondItem="dzd-pD-J7P" secondAttribute="trailing" id="kO4-RP-hua"/>
+                                                <constraint firstItem="fhB-4G-hvP" firstAttribute="leading" secondItem="PeN-L6-QqA" secondAttribute="leading" constant="20" id="tr8-cl-PcO"/>
+                                                <constraint firstAttribute="trailing" secondItem="edf-qt-j5c" secondAttribute="trailing" constant="25" id="uLo-tT-U64"/>
+                                                <constraint firstAttribute="bottom" secondItem="dzd-pD-J7P" secondAttribute="bottom" id="vSK-Ep-mAK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ECUserRoleCell" rowHeight="70" id="8Id-dd-3ep">
+                                        <rect key="frame" x="0.0" y="280" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Id-dd-3ep" id="Ws0-U6-vtP">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
