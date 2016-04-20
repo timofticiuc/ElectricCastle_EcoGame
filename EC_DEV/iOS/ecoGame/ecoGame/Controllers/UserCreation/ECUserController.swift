@@ -90,10 +90,6 @@ class ECUserController: UITableViewController {
                             self.userRemoveLabel.hidden = true
                             return 0;
                         }
-                    } else if indexPath.row == kUserNewsletterIndex {
-                        if !self.isNewUser {
-                            return 0;
-                        }
                     }
                     return 70;
                 case .ECUserRoleVolunteer:
@@ -106,10 +102,6 @@ class ECUserController: UITableViewController {
                             return 0;
                         } else if self.user.userRole != .ECUserRoleParticipant {
                             self.userRemoveLabel.hidden = true
-                            return 0;
-                        }
-                    } else if indexPath.row == kUserNewsletterIndex {
-                        if !self.isNewUser {
                             return 0;
                         }
                     }

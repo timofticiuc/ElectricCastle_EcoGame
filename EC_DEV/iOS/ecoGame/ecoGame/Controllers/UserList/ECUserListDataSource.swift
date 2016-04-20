@@ -13,7 +13,7 @@ protocol ECUsersDataSourceDelegate {
     func dataSource(ds:ECUsersDataSource, wantsToShowViewController vc:UIViewController)
 }
 
-class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, ECUserControllerDelegate, ECSearchDelegate {
+class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, ECUserControllerDelegate {
     
     private var users: [ECUser]?
     private var query: String!
@@ -31,16 +31,6 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
             }
             
             return _frc
-        }
-    }
-    private var _searchView: ECSearchHeaderView!
-    private var searchView: ECSearchHeaderView! {
-        get {
-            if _searchView == nil {
-                _searchView = ECSearchHeaderView.ec_loadFromNib()
-                _searchView.delegate = self
-            }
-            return _searchView
         }
     }
     
@@ -68,7 +58,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     private func reloadData() {
         let tempUsers:[ECUser] = (self.frc.fetchedObjects as? [ECUser])!
         defer {
-            self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         }
         
         guard self.query.characters.count > 0 else {
@@ -87,40 +77,25 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         self.delegate?.dataSource(self, wantsToShowViewController: userController)
     }
     
+    func fetchWithQuery(query: String) {
+        self.query = query
+        self.reloadData()
+    }
+    
     // MARK: UIScrollViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         UIApplication.sharedApplication().keyWindow!.endEditing(true)
     }
     
-    // MARK: UITableViewDataSource    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2;
-    }
+    // MARK: UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 0
-        }
         return self.users!.count;
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
-    }
-    
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 0
-        }
-        return 50
-    }
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
-            return nil;
-        }
-        return self.searchView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -158,12 +133,5 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func userController(uc:ECUserController, hasDeletedUser user:ECUser) {
         ECCoreManager.sharedInstance.storeManager.saveContext()
-    }
-    
-    // MARK: ECSearchDelegate
-    
-    func searchView(searchView: ECSearchHeaderView, didChangeQueryWithText query: String) {
-        self.query = query
-        self.reloadData()
     }
 }
