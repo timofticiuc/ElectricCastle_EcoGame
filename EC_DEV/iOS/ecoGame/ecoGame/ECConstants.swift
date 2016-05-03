@@ -23,14 +23,48 @@ public enum ECUserRole: Int32 {
     }
 }
 
+
+
 struct ECConstants {
     struct user {
-        static let kUserName = "user_name"
+        static let kUserName  = "user_name"
         static let kUserPhone = "user_phone"
-        static let kUserId = "user_id"
+        static let kUserId    = "user_id"
     }
     
-    static let kCurrentUserId = "kCurrentUserId"
+    enum DirtyState: Int32 {
+        case Create = 0
+        case Delete
+        case Update
+    }
+    
+    enum Category: Int32 {
+        case Energy = 0
+        case Water
+        case Transport
+        case Social
+        case Waste
+        case Count
+        
+        func ec_enumName() -> String {
+            switch self {
+            case .Energy:
+                return "Energy"
+            case .Water:
+                return "Water"
+            case .Transport:
+                return "Transport"
+            case .Social:
+                return "Social"
+            case .Waste:
+                return "Waste"
+            default:
+                return ""
+            }
+        }
+    }
+    
+    static let kCurrentUserId           = "kCurrentUserId"
     static let kCurrentSessionTimeStamp = "kCurrentSessionTimeStamp"
 
 }

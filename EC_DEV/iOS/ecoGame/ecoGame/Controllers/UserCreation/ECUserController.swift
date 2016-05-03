@@ -8,11 +8,12 @@
 
 import UIKit
 
-let kUserNameIndex          = 0
-let kUserPhoneIndex         = 1
-let kUserRoleIndex          = 2
-let kUserNewsletterIndex    = 3
-let kUserRemoveIndex        = 4
+let kUserNameIndex       = 0
+let kUserPhoneIndex      = 1
+let kUserRoleIndex       = 2
+let kUserNewsletterIndex = 3
+let kUserRemoveIndex     = 4
+let kUserCategoriesIndex = 5
 
 
 protocol ECUserControllerDelegate {
@@ -64,6 +65,8 @@ class ECUserController: UITableViewController {
                 self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
                 
                 self.delegate?.userController(self, hasCreatedUser: self.user)
+                
+                // mark as dirty
             } else {
                 self.user.userName = self.userNameField.text!
                 self.user.userPhone = self.userPhoneField.text!
@@ -77,11 +80,11 @@ class ECUserController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row < 5 {
+        if indexPath.row < 6 {
             if let role = ECCoreManager.sharedInstance.currentUser?.userRole {
                 switch role {
                 case .ECUserRoleAdmin:
@@ -89,6 +92,12 @@ class ECUserController: UITableViewController {
                         if self.isNewUser {
                             self.userRemoveLabel.hidden = true
                             return 0;
+                        }
+                    } else if indexPath.row == kUserCategoriesIndex {
+                        if self.isNewUser {
+                            return 0;
+                        } else {
+                            return 500;
                         }
                     }
                     return 70;
@@ -103,6 +112,12 @@ class ECUserController: UITableViewController {
                         } else if self.user.userRole != .ECUserRoleParticipant {
                             self.userRemoveLabel.hidden = true
                             return 0;
+                        }
+                    } else if indexPath.row == kUserCategoriesIndex {
+                        if self.isNewUser {
+                            return 0;
+                        } else {
+                            return 500;
                         }
                     }
                     return 70
@@ -124,7 +139,7 @@ class ECUserController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true);
         
-        if indexPath.row == 3 {
+        if indexPath.row == kUserRemoveIndex {
             self.user.removeFromStore()
             self.delegate?.userController(self, hasDeletedUser: self.user)
             self.navigationController?.popViewControllerAnimated(true)

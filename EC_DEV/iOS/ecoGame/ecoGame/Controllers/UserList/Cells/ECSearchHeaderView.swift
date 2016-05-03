@@ -20,7 +20,7 @@ class ECSearchHeaderView: UIView, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search for participants", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+        self.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search for participants", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()	])
     }
     
     @IBAction func searchFieldTextDidChange(sender: UITextField) {

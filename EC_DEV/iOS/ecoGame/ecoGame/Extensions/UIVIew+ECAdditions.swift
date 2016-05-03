@@ -40,4 +40,12 @@ extension UIView {
         
         return constraint
     }
+    
+    public func ec_applyGradientWithColor(topColor: UIColor, andBottomColor bottomColor:UIColor) {
+        let gl: CAGradientLayer = CAGradientLayer()
+        gl.colors = [topColor.CGColor, bottomColor.CGColor]
+        gl.locations = [ 0.0, 1.0]
+        gl.frame = self.bounds
+        self.layer.insertSublayer(gl, atIndex: 0)
+    }
 }
