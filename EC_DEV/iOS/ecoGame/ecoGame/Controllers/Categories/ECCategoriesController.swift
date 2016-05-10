@@ -45,8 +45,14 @@ class ECCategoriesController: UICollectionViewController {
         let cell:ECCategoryCell = collectionView.dequeueReusableCellWithReuseIdentifier(String(ECCategoryCell), forIndexPath: indexPath) as! ECCategoryCell
     
         cell.category = ECConstants.Category(rawValue:Int32(indexPath.row))!
-    
+
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        let cell:ECCategoryCell = cell as! ECCategoryCell
+        
+        cell.categoryLevel = ECConstants.ECCategoryLevel(rawValue: Int32(arc4random()%3 + 1))
     }
 
     // MARK: UICollectionViewDelegate

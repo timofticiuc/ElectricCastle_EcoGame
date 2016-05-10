@@ -23,8 +23,6 @@ public enum ECUserRole: Int32 {
     }
 }
 
-
-
 struct ECConstants {
     struct user {
         static let kUserName  = "user_name"
@@ -60,6 +58,26 @@ struct ECConstants {
                 return "Waste"
             default:
                 return ""
+            }
+        }
+    }
+    
+    enum ECCategoryLevel: Int32 {
+        case Beginner = 0
+        case Legend
+        case Angel
+        case Guardian
+        
+        func ec_enumName() -> String {
+            switch self {
+            case .Legend:
+                return "Legend"
+            case .Angel:
+                return "Angel"
+            case .Guardian:
+                return "Guardian"
+            default:
+                return "Beginner :("
             }
         }
     }

@@ -1,1 +1,10 @@
+PODS:
+  - KDCircularProgress (1.4.0)
+
+DEPENDENCIES:
+  - KDCircularProgress (~> 1.4)
+
+SPEC CHECKSUMS:
+  KDCircularProgress: f5770bbd83da909bf6cd96c2dea0b8bae45ec774
+
 COCOAPODS: 0.39.0

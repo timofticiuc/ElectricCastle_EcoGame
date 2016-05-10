@@ -18,7 +18,7 @@ class ECUser: ECSeralizableObject {
         get { return ECUserRole(rawValue: role) ?? .ECUserRoleParticipant }
         set { role = newValue.rawValue }
     }
-    
+        
     static func fetchRequestForUsers() -> NSFetchRequest {
         let fr: NSFetchRequest = NSFetchRequest(entityName: String(self))
         fr.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]

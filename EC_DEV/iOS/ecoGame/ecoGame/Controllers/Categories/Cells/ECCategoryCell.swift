@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import KDCircularProgress
 
 class ECCategoryCell: UICollectionViewCell {
     @IBOutlet private weak var categoryTitleLabel: UILabel!
+    @IBOutlet private weak var categoryLevelLabel: UILabel!
+    private var progressView: KDCircularProgress! = nil
+    
     var category:ECConstants.Category? = nil {
         didSet {
             var gradientColor:UIColor = UIColor.clearColor()
@@ -34,17 +38,60 @@ class ECCategoryCell: UICollectionViewCell {
                 break
             }
             
-            self.ec_applyGradientWithColor(UIColor.ec_greenNavBar(), andBottomColor: gradientColor)
+            self.progressView.setColors(UIColor.whiteColor(), gradientColor)
+            self.layer.borderColor = gradientColor.CGColor
+            self.layer.borderWidth = 3.0
             self.categoryTitleLabel.text = category?.ec_enumName()
         }
     }
-
+    
+    var categoryLevel:ECConstants.ECCategoryLevel? = nil {
+        didSet {
+            var level:Double = 0
+            switch categoryLevel! {
+            case .Angel:
+                level = 120
+                break
+            case .Legend:
+                level = 240
+                break
+            case .Guardian:
+                level = 360
+                break
+            default:
+                level = 0
+                break
+            }
+            
+            self.progressView.animateToAngle(level, duration: 1.25, completion: nil)
+            self.categoryLevelLabel.text = categoryLevel?.ec_enumName()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
+        
+        progressView = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+        progressView.startAngle = -90
+        progressView.progressThickness = 0.2
+        progressView.trackThickness = 0.7
+        progressView.clockwise = true
+        progressView.center = self.center
+        progressView.gradientRotateSpeed = 2
+        progressView.roundedCorners = true
+        progressView.glowMode = .Forward
+        progressView.trackColor = UIColor.clearColor()
+        self.ec_addSubView(progressView, withInsets: UIEdgeInsetsZero)
+        self.sendSubviewToBack(progressView)
     }
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.layer.cornerRadius = self.frame.size.width/2
+        progressView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+    }
 }
