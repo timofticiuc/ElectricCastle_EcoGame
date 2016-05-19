@@ -56,27 +56,54 @@ class ECUserController: UITableViewController {
     }
     
     func doneEditing() {
+        
         if delegate != nil {
-            if isNewUser {
-                let id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
-                self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-                self.user.userName = self.userNameField.text!
-                self.user.userPhone = self.userPhoneField.text!
-                self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
-                
-                self.delegate?.userController(self, hasCreatedUser: self.user)
-                
-                // mark as dirty
+            if (self.validatePhoneNumber(self.userPhoneField.text!) && (self.userNameField.text != "")) {
+                if isNewUser {
+                    let id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
+                    self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
+                    self.user.userName = self.userNameField.text!
+                    self.user.userPhone = self.userPhoneField.text!
+                    self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
+                    
+                    self.delegate?.userController(self, hasCreatedUser: self.user)
+                    
+                    // mark as dirty
+                } else {
+                    self.user.userName = self.userNameField.text!
+                    self.user.userPhone = self.userPhoneField.text!
+                    self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
+                    self.delegate?.userController(self, hasUpdatedUser: self.user)
+                }
+
             } else {
-                self.user.userName = self.userNameField.text!
-                self.user.userPhone = self.userPhoneField.text!
-                self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
-                self.delegate?.userController(self, hasUpdatedUser: self.user)
+                let alertController = UIAlertController(title: "Alert", message: "Invalid data! Try again!", preferredStyle: .Alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(defaultAction)
+                
+                presentViewController(alertController, animated: true, completion: nil)
             }
+            
         }
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    // MARK: Methods 
+    
+    func validatePhoneNumber(value: String) -> Bool {
+        let PHONE_REGEX = "[-+]?[0-9]+"
+        let phonePredicate = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let result =  phonePredicate.evaluateWithObject(value)
+        return result
+    }
+
+    func removeUser(alert: UIAlertAction!) {
+        self.user.removeFromStore()
+        self.delegate?.userController(self, hasDeletedUser: self.user)
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -140,9 +167,17 @@ class ECUserController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true);
         
         if indexPath.row == kUserRemoveIndex {
-            self.user.removeFromStore()
-            self.delegate?.userController(self, hasDeletedUser: self.user)
-            self.navigationController?.popViewControllerAnimated(true)
+            
+            let alertController = UIAlertController(title: "Alert", message: "Are you sure you want to delete this user?", preferredStyle: .Alert)
+            
+            let defaultAction = UIAlertAction(title: "Yes", style: .Destructive, handler: removeUser)
+            alertController.addAction(defaultAction)
+            
+            let cancelAction = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
         }
     }
+    
 }

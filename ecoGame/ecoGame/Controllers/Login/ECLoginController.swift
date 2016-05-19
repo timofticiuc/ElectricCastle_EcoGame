@@ -9,6 +9,9 @@
 import UIKit
 
 class ECLoginController: UITableViewController {
+    
+    let sectionsCount = 4
+    
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userPasswordField: UITextField!
     
@@ -40,7 +43,7 @@ class ECLoginController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return sectionsCount
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {

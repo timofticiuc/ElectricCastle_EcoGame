@@ -8,8 +8,13 @@
 
 import UIKit
 
+
 class ECCategoriesController: UICollectionViewController {
 
+    let kMinLineSpacing: CGFloat = 50
+    let kMinInteritemSpacing: CGFloat = 10
+    let kEdgeInset: CGFloat = 25
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,20 +30,20 @@ class ECCategoriesController: UICollectionViewController {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(25, 25, 25, 25);
+        return UIEdgeInsetsMake(kEdgeInset, kEdgeInset, kEdgeInset, kEdgeInset);
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let defaultWidth = (collectionView.frame.size.width / 3) - 50
+        let defaultWidth = (collectionView.frame.size.width / 3) - kMinLineSpacing
         return CGSizeMake(defaultWidth, defaultWidth)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 50
+        return kMinLineSpacing
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 10
+        return kMinInteritemSpacing
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
