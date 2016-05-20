@@ -14,11 +14,11 @@ class ECCategoryCell: UICollectionViewCell {
     @IBOutlet private weak var categoryLevelLabel: UILabel!
     private var progressView: KDCircularProgress! = nil
     
-    var category:ECConstants.Category? = nil {
+    var category:ECCategory! {
         didSet {
             var gradientColor:UIColor = UIColor.clearColor()
             let alpha:CGFloat = 0.7
-            switch category! {
+            switch category.categoryType {
             case .Energy:
                 gradientColor = UIColor ( red: 0.5725, green: 0.8157, blue: 0.3137, alpha: alpha )
                 break
@@ -41,7 +41,7 @@ class ECCategoryCell: UICollectionViewCell {
             self.progressView.setColors(UIColor.whiteColor(), gradientColor)
             self.layer.borderColor = gradientColor.CGColor
             self.layer.borderWidth = 3.0
-            self.categoryTitleLabel.text = category?.ec_enumName()
+            self.categoryTitleLabel.text = category.categoryName
         }
     }
     
