@@ -63,6 +63,7 @@ class ECUserController: UITableViewController {
                 self.user.userName = self.userNameField.text!
                 self.user.userPhone = self.userPhoneField.text!
                 self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
+                self.user.userCategories = self.categoriesForUser(self.user)
                 
                 self.delegate?.userController(self, hasCreatedUser: self.user)
                 
@@ -75,6 +76,36 @@ class ECUserController: UITableViewController {
             }
         }
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    private func categoriesForUser(user: ECUser) -> [ECCategory] {
+        var id = arc4random()%32767
+        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        energyCategory.categoryType = .Energy
+        
+        id = arc4random()%32767
+        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        waterCategory.categoryType = .Water
+        
+        id = arc4random()%32767
+        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        transportCategory.categoryType = .Transport
+        
+        id = arc4random()%32767
+        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        wasteCategory.categoryType = .Waste
+
+        id = arc4random()%32767
+        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        socialCategory.categoryType = .Social
+
+        return [energyCategory, wasteCategory, waterCategory, transportCategory, socialCategory]
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController.self .isKindOfClass(ECCategoriesController) {
+            (segue.destinationViewController as! ECCategoriesController).user = self.user
+        }
     }
     
     // MARK: - Table view data source

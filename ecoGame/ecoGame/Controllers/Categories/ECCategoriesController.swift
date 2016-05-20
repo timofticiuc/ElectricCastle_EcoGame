@@ -9,6 +9,7 @@
 import UIKit
 
 class ECCategoriesController: UICollectionViewController {
+    var user:ECUser! = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class ECCategoriesController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Int(ECConstants.Category.Count.rawValue)
+        return (self.user != nil ? self.user.userCategories!.count : 0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
@@ -43,8 +44,8 @@ class ECCategoriesController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell:ECCategoryCell = collectionView.dequeueReusableCellWithReuseIdentifier(String(ECCategoryCell), forIndexPath: indexPath) as! ECCategoryCell
-    
-        cell.category = ECConstants.Category(rawValue:Int32(indexPath.row))!
+        let category:ECCategory = (self.user.userCategories as [ECCategory])[indexPath.row]
+        cell.category = category
 
         return cell
     }
