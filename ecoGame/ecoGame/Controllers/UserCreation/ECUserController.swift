@@ -22,7 +22,7 @@ protocol ECUserControllerDelegate {
     func userController(uc:ECUserController, hasDeletedUser user:ECUser)
 }
 
-class ECUserController: UITableViewController {
+class ECUserController: UITableViewController, ECCategoriesDelegate {
     @IBOutlet var userNameField: UITextField!
     @IBOutlet var userPhoneField: UITextField!
     @IBOutlet var userRoleSegment: UISegmentedControl!
@@ -106,24 +106,26 @@ class ECUserController: UITableViewController {
     }
 
     private func categoriesForUser(user: ECUser) -> [ECCategory] {
-        var id = arc4random()%32767
-        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let count = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECCategory.fetchRequestForCategories(), error: nil))!
+        
+        var id = count
+        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         energyCategory.categoryType = .Energy
         
-        id = arc4random()%32767
-        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        id = count + 1
+        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         waterCategory.categoryType = .Water
         
-        id = arc4random()%32767
-        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        id = count + 2
+        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         transportCategory.categoryType = .Transport
         
-        id = arc4random()%32767
-        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        id = count + 3
+        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         wasteCategory.categoryType = .Waste
 
-        id = arc4random()%32767
-        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        id = count + 4
+        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         socialCategory.categoryType = .Social
 
         return [energyCategory, wasteCategory, waterCategory, transportCategory, socialCategory]
@@ -132,6 +134,7 @@ class ECUserController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.destinationViewController.self .isKindOfClass(ECCategoriesController) {
             (segue.destinationViewController as! ECCategoriesController).user = self.user
+            (segue.destinationViewController as! ECCategoriesController).delegate = self
         }
     }
     
@@ -211,4 +214,12 @@ class ECUserController: UITableViewController {
         }
     }
     
+    //MARK: - ECCategoriesDelegate
+    
+    func categoriesController(cc: ECCategoriesController, hasSelectedCategory category: ECCategory) {
+        let categoryVC: ECCategoryController = ECCategoryController.ec_createFromStoryboard() as! ECCategoryController
+        categoryVC.category = category
+        
+        self.navigationController?.pushViewController(categoryVC, animated: true)
+    }
 }

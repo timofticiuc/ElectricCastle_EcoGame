@@ -23,6 +23,9 @@ class ECUser: ECSeralizableObject {
     var userCategories:[ECCategory]! {
         get {
             var tempCategories:[ECCategory] = [ECCategory]()
+            if categories.characters.count == 0 {
+                return []
+            }
             let categoryIds = categories.componentsSeparatedByString(",")
             for categoryId in categoryIds {
                 let persistedCategory = ECCategory.objectWithIdentifier(categoryId, fromContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!)

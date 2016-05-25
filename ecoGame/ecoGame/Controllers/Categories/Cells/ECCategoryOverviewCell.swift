@@ -9,7 +9,7 @@
 import UIKit
 import KDCircularProgress
 
-class ECCategoryCell: UICollectionViewCell {
+class ECCategoryOverviewCell: UICollectionViewCell {
     @IBOutlet private weak var categoryTitleLabel: UILabel!
     @IBOutlet private weak var categoryLevelLabel: UILabel!
     private var progressView: KDCircularProgress! = nil
@@ -49,14 +49,14 @@ class ECCategoryCell: UICollectionViewCell {
         didSet {
             var level:Double = 0
             switch categoryLevel! {
-            case .Angel:
-                level = 120
-                break
             case .Legend:
+                level = 360
+                break
+            case .Angel:
                 level = 240
                 break
             case .Guardian:
-                level = 360
+                level = 120
                 break
             default:
                 level = 0

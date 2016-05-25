@@ -6,6 +6,8 @@
 //  Copyright © 2016 timofticiuc andrei. All rights reserved.
 //
 
+import Foundation
+
 public enum ECUserRole: Int32 {
     case ECUserRoleParticipant = 0
     case ECUserRoleVolunteer
@@ -22,6 +24,12 @@ public enum ECUserRole: Int32 {
         }
     }
 }
+
+let kCurrentUserId           = "kCurrentUserId"
+let kCurrentSessionTimeStamp = "kCurrentSessionTimeStamp"
+let kTitle                   = "title"
+let kDescription             = "description"
+let kScore                   = "score"
 
 struct ECConstants {
     struct user {
@@ -64,9 +72,9 @@ struct ECConstants {
     
     enum ECCategoryLevel: Int32 {
         case Beginner = 0
-        case Legend
-        case Angel
         case Guardian
+        case Angel
+        case Legend
         
         func ec_enumName() -> String {
             switch self {
@@ -80,9 +88,9 @@ struct ECConstants {
                 return "Beginner :("
             }
         }
+        
+        func ec_value() -> NSNumber {
+            return NSNumber(int: self.rawValue)
+        }
     }
-    
-    static let kCurrentUserId           = "kCurrentUserId"
-    static let kCurrentSessionTimeStamp = "kCurrentSessionTimeStamp"
-
 }

@@ -15,23 +15,23 @@ class ECCoreManager: NSObject {
     var requestManager: ECRequestManager
     var currentSessionTimeStamp: NSDate {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey(ECConstants.kCurrentSessionTimeStamp) as! NSDate
+            return NSUserDefaults.standardUserDefaults().objectForKey(kCurrentSessionTimeStamp) as! NSDate
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: ECConstants.kCurrentSessionTimeStamp)
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: kCurrentSessionTimeStamp)
         }
     }
     var currentUser: ECUser? {
         get {
-            guard let currentId = KeychainSwift().get(ECConstants.kCurrentUserId) else {return nil}
+            guard let currentId = KeychainSwift().get(kCurrentUserId) else {return nil}
             return ECUser.objectWithIdentifier(currentId, fromContext: self.storeManager.managedObjectContext!) as? ECUser
         }
         set {
             guard let _=newValue else {
-                KeychainSwift().delete(ECConstants.kCurrentUserId)
+                KeychainSwift().delete(kCurrentUserId)
                 return
             }
-            KeychainSwift().set(newValue!.id, forKey: ECConstants.kCurrentUserId)
+            KeychainSwift().set(newValue!.id, forKey: kCurrentUserId)
         }
     }
 

@@ -3,6 +3,7 @@
     <entity name="ECCategory" representedClassName="ECCategory" parentEntity="ECSerializableObject" syncable="YES">
         <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="selectedAction" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="ECSerializableObject" representedClassName="ECSerializableObject" isAbstract="YES" syncable="YES">
@@ -16,8 +17,8 @@
         <attribute name="userPhone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="ECCategory" positionX="-54" positionY="18" width="128" height="105"/>
         <element name="ECSerializableObject" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="ECUser" positionX="-54" positionY="0" width="128" height="105"/>
-        <element name="ECCategory" positionX="-54" positionY="18" width="128" height="90"/>
     </elements>
 </model>

@@ -38,13 +38,16 @@
 		25728F651CB1C8690063C7E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25728F641CB1C8690063C7E3 /* CoreData.framework */; };
 		25728F681CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25728F661CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld */; };
 		25752E881CD7A901004040CB /* ECCategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25752E871CD7A901004040CB /* ECCategoriesController.swift */; };
-		25752E8C1CD7A96D004040CB /* ECCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25752E8A1CD7A96D004040CB /* ECCategoryCell.swift */; };
-		25752E8D1CD7A96D004040CB /* ECCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25752E8B1CD7A96D004040CB /* ECCategoryCell.xib */; };
+		25752E8C1CD7A96D004040CB /* ECCategoryOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25752E8A1CD7A96D004040CB /* ECCategoryOverviewCell.swift */; };
+		25752E8D1CD7A96D004040CB /* ECCategoryOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25752E8B1CD7A96D004040CB /* ECCategoryOverviewCell.xib */; };
 		25752E8F1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25752E8E1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift */; };
 		258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */; };
 		25AC2A8B1CC3C307003D3C61 /* ECMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AC2A8A1CC3C307003D3C61 /* ECMenuViewController.swift */; };
 		25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E3BC951CB59FA100CCD783 /* ECUserController.swift */; };
 		25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */; };
+		25FC6D371CF51EAE00D06D21 /* ECCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FC6D361CF51EAE00D06D21 /* ECCategoryController.swift */; };
+		25FC6D3A1CF528D600D06D21 /* ECCategoryActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FC6D381CF528D600D06D21 /* ECCategoryActionCell.swift */; };
+		25FC6D3B1CF528D600D06D21 /* ECCategoryActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25FC6D391CF528D600D06D21 /* ECCategoryActionCell.xib */; };
 		7072DE3D9AC1CACE8A2ADC01 /* Pods_ecoGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2B3B446B52172628CA2D92 /* Pods_ecoGame.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,13 +106,16 @@
 		25728F641CB1C8690063C7E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		25728F671CB1C8D20063C7E3 /* ECDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ECDataModel.xcdatamodel; sourceTree = "<group>"; };
 		25752E871CD7A901004040CB /* ECCategoriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategoriesController.swift; sourceTree = "<group>"; };
-		25752E8A1CD7A96D004040CB /* ECCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategoryCell.swift; sourceTree = "<group>"; };
-		25752E8B1CD7A96D004040CB /* ECCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECCategoryCell.xib; sourceTree = "<group>"; };
+		25752E8A1CD7A96D004040CB /* ECCategoryOverviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategoryOverviewCell.swift; sourceTree = "<group>"; };
+		25752E8B1CD7A96D004040CB /* ECCategoryOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECCategoryOverviewCell.xib; sourceTree = "<group>"; };
 		25752E8E1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ECAdditions.swift"; sourceTree = "<group>"; };
 		258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+ECAdditions.swift"; sourceTree = "<group>"; };
 		25AC2A8A1CC3C307003D3C61 /* ECMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECMenuViewController.swift; sourceTree = "<group>"; };
 		25E3BC951CB59FA100CCD783 /* ECUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUserController.swift; sourceTree = "<group>"; };
 		25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ECAdditions.swift"; sourceTree = "<group>"; };
+		25FC6D361CF51EAE00D06D21 /* ECCategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategoryController.swift; sourceTree = "<group>"; };
+		25FC6D381CF528D600D06D21 /* ECCategoryActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategoryActionCell.swift; sourceTree = "<group>"; };
+		25FC6D391CF528D600D06D21 /* ECCategoryActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECCategoryActionCell.xib; sourceTree = "<group>"; };
 		C4AC105D40F2A4FA4262990B /* Pods-ecoGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame.debug.xcconfig"; sourceTree = "<group>"; };
 		CD2B3B446B52172628CA2D92 /* Pods_ecoGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ecoGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACC02D0070F297BC3E1316D /* Pods-ecoGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame.release.xcconfig"; sourceTree = "<group>"; };
@@ -310,6 +316,7 @@
 			children = (
 				25752E891CD7A952004040CB /* Cells */,
 				25752E871CD7A901004040CB /* ECCategoriesController.swift */,
+				25FC6D361CF51EAE00D06D21 /* ECCategoryController.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -317,8 +324,10 @@
 		25752E891CD7A952004040CB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				25752E8A1CD7A96D004040CB /* ECCategoryCell.swift */,
-				25752E8B1CD7A96D004040CB /* ECCategoryCell.xib */,
+				25752E8A1CD7A96D004040CB /* ECCategoryOverviewCell.swift */,
+				25752E8B1CD7A96D004040CB /* ECCategoryOverviewCell.xib */,
+				25FC6D381CF528D600D06D21 /* ECCategoryActionCell.swift */,
+				25FC6D391CF528D600D06D21 /* ECCategoryActionCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -466,9 +475,10 @@
 				2534D34F1CBF00F2003A9195 /* ECSearchHeaderView.xib in Resources */,
 				2513BB0A1CA9AF3A00CC9C7E /* LaunchScreen.storyboard in Resources */,
 				2513BB071CA9AF3A00CC9C7E /* Assets.xcassets in Resources */,
-				25752E8D1CD7A96D004040CB /* ECCategoryCell.xib in Resources */,
+				25752E8D1CD7A96D004040CB /* ECCategoryOverviewCell.xib in Resources */,
 				252C5A971CB07E9C006CC6F9 /* ECUserListCell.xib in Resources */,
 				2513BB051CA9AF3A00CC9C7E /* Main.storyboard in Resources */,
+				25FC6D3B1CF528D600D06D21 /* ECCategoryActionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +558,7 @@
 				25728F681CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld in Sources */,
 				252C5A901CB067F7006CC6F9 /* ECUserListCell.swift in Sources */,
 				2502B6DA1CBC7C1B00F7DC28 /* NSDate+ECAdditions.swift in Sources */,
+				25FC6D371CF51EAE00D06D21 /* ECCategoryController.swift in Sources */,
 				2502B6D81CBC56EE00F7DC28 /* TegKeychainConstants.swift in Sources */,
 				252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */,
 				252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */,
@@ -558,10 +569,11 @@
 				25594D6F1CEE86FF000B4561 /* ECConstants.swift in Sources */,
 				25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */,
 				2534D34D1CBF00D7003A9195 /* ECSearchHeaderView.swift in Sources */,
-				25752E8C1CD7A96D004040CB /* ECCategoryCell.swift in Sources */,
+				25752E8C1CD7A96D004040CB /* ECCategoryOverviewCell.swift in Sources */,
 				252C5A8B1CB062D7006CC6F9 /* ECUsersListViewController.swift in Sources */,
 				252C5A961CB0717B006CC6F9 /* UITableView+ECAdditions.swift in Sources */,
 				25752E881CD7A901004040CB /* ECCategoriesController.swift in Sources */,
+				25FC6D3A1CF528D600D06D21 /* ECCategoryActionCell.swift in Sources */,
 				25728F631CB1C8530063C7E3 /* ECSeralizableObject.swift in Sources */,
 				2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */,
 				2502B6D41CBC553200F7DC28 /* KeychainSwift.swift in Sources */,

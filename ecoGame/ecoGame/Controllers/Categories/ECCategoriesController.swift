@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol ECCategoriesDelegate {
+    func categoriesController(cc:ECCategoriesController, hasSelectedCategory category:ECCategory)
+}
 
 class ECCategoriesController: UICollectionViewController {
     var user:ECUser! = nil
+    var delegate:ECCategoriesDelegate? = nil
 
     let kMinLineSpacing: CGFloat = 50
     let kMinInteritemSpacing: CGFloat = 10
@@ -19,10 +23,13 @@ class ECCategoriesController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        self.collectionView!.ec_registerCell(ECCategoryCell)
+        self.collectionView!.ec_registerCell(ECCategoryOverviewCell)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.collectionView?.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -48,7 +55,7 @@ class ECCategoriesController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell:ECCategoryCell = collectionView.dequeueReusableCellWithReuseIdentifier(String(ECCategoryCell), forIndexPath: indexPath) as! ECCategoryCell
+        let cell:ECCategoryOverviewCell = collectionView.dequeueReusableCellWithReuseIdentifier(String(ECCategoryOverviewCell), forIndexPath: indexPath) as! ECCategoryOverviewCell
         let category:ECCategory = (self.user.userCategories as [ECCategory])[indexPath.row]
         cell.category = category
 
@@ -56,40 +63,16 @@ class ECCategoriesController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        let cell:ECCategoryCell = cell as! ECCategoryCell
+        let cell:ECCategoryOverviewCell = cell as! ECCategoryOverviewCell
+        let category:ECCategory = (self.user.userCategories as [ECCategory])[indexPath.row]
         
-        cell.categoryLevel = ECConstants.ECCategoryLevel(rawValue: Int32(arc4random()%3 + 1))
+        cell.categoryLevel = category.userLevel
     }
 
     // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.delegate?.categoriesController(self, hasSelectedCategory: (self.user.userCategories as [ECCategory])[indexPath.row])
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
 
 }
