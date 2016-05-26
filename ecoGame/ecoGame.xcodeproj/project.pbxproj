@@ -116,6 +116,7 @@
 		25FC6D361CF51EAE00D06D21 /* ECCategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategoryController.swift; sourceTree = "<group>"; };
 		25FC6D381CF528D600D06D21 /* ECCategoryActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategoryActionCell.swift; sourceTree = "<group>"; };
 		25FC6D391CF528D600D06D21 /* ECCategoryActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECCategoryActionCell.xib; sourceTree = "<group>"; };
+		25FC6D3C1CF66CCD00D06D21 /* ecoGame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ecoGame-Bridging-Header.h"; sourceTree = "<group>"; };
 		C4AC105D40F2A4FA4262990B /* Pods-ecoGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame.debug.xcconfig"; sourceTree = "<group>"; };
 		CD2B3B446B52172628CA2D92 /* Pods_ecoGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ecoGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACC02D0070F297BC3E1316D /* Pods-ecoGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +169,7 @@
 				2513BAFB1CA9AF3A00CC9C7E /* Products */,
 				A0C16A8D2A20484EB6486184 /* Pods */,
 				80612B95B3E714FD7C415420 /* Frameworks */,
+				25FC6D3C1CF66CCD00D06D21 /* ecoGame-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -430,7 +432,7 @@
 		2513BAF21CA9AF3A00CC9C7E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "timofticiuc andrei";
 				TargetAttributes = {
@@ -724,11 +726,14 @@
 			baseConfigurationReference = C4AC105D40F2A4FA4262990B /* Pods-ecoGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ecoGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timo.ecoGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ecoGame-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -737,11 +742,13 @@
 			baseConfigurationReference = FACC02D0070F297BC3E1316D /* Pods-ecoGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ecoGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timo.ecoGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ecoGame-Bridging-Header.h";
 			};
 			name = Release;
 		};

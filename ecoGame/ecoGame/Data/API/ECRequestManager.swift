@@ -7,7 +7,21 @@
 //
 
 import Foundation
+import AFNetworking
 
 class ECRequestManager: NSObject {
 
+    static func fetchUsersWithCompletion(completion: (users:[AnyObject]) -> Void) {
+        let url = "http://www.mainoi.ro/service/api.php/users"
+        let manager:AFHTTPSessionManager = AFHTTPSessionManager(sessionConfiguration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        
+        manager.GET(url, parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(users: []); return }
+            guard let usersArray = responseDict["data"] as? [AnyObject] else { completion(users: []); return }
+            completion(users: usersArray)
+            
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+                
+        }
+    }
 }

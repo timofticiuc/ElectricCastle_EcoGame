@@ -52,6 +52,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     func fetchData() {
         // fetch data
         self.frc.ec_performFetch()
+        ECCoreManager.sharedInstance.getUsers()
         self.reloadData()
     }
     

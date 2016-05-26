@@ -31,6 +31,7 @@ class ECLoginController: UITableViewController {
         dummyUser.userName = self.userNameField.text!
         dummyUser.userPhone = "0000000000"
         dummyUser.userRole = .ECUserRoleAdmin
+        dummyUser.userCategories = dummyUser.defaultCategories()
         
         ECCoreManager.sharedInstance.currentUser = dummyUser
         ECCoreManager.sharedInstance.currentSessionTimeStamp = NSDate()

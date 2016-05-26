@@ -6,6 +6,7 @@ use_frameworks!
 target 'ecoGame' do
 
 pod 'KDCircularProgress', '~> 1.4'
+pod 'AFNetworking', '~> 3.1'
 
 end
 

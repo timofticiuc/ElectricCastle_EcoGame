@@ -45,7 +45,59 @@ class ECUser: ECSeralizableObject {
             self.categories = tempCategs
         }
     }
+    
+    override func serializationKeyForAttribute(attribute: String) -> String? {
+        if attribute == "id" {
+            return "user_unique_tag"
+        } else if attribute == "role" {
+            return "user_role"
+        } else if attribute == "categories" {
+            return "user_categories"
+        } else if attribute == "userName" {
+            return "user_first_name"
+        } else if attribute == "userPhone" {
+            return "user_phone"
+        }
         
+        return attribute
+    }
+    
+    override func serializationValueForAttribute(attribute: String, andValue value:AnyObject) -> AnyObject? {
+        if attribute == "role" {
+            let stringValue = value as! String
+            
+            return NSNumber(integer: Int(stringValue)!)
+        }
+        
+        return value
+    }
+    
+    func defaultCategories() -> [ECCategory] {
+        let count = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECCategory.fetchRequestForCategories(), error: nil))!
+        
+        var id = count
+        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        energyCategory.categoryType = .Energy
+        
+        id = count + 1
+        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        waterCategory.categoryType = .Water
+        
+        id = count + 2
+        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        transportCategory.categoryType = .Transport
+        
+        id = count + 3
+        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        wasteCategory.categoryType = .Waste
+        
+        id = count + 4
+        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        socialCategory.categoryType = .Social
+        
+        return [energyCategory, wasteCategory, waterCategory, transportCategory, socialCategory]
+    }
+    
     static func fetchRequestForUsers() -> NSFetchRequest {
         let fr: NSFetchRequest = NSFetchRequest(entityName: String(self))
         fr.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]

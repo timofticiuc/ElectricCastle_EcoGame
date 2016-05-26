@@ -22,19 +22,24 @@ class ECSeralizableObject: NSManagedObject {
             _dictionaryRepresentation = newValue
             
             for (attr, _) in self.entity.attributesByName {
-                var value: AnyObject? = _dictionaryRepresentation![attr as String]
+                var serializationKey = self.serializationKeyForAttribute(attr)
+                if serializationKey == nil {
+                    serializationKey = attr
+                }
+                var value: AnyObject? = _dictionaryRepresentation![serializationKey! as String]
                 
                 if value == nil {
-                    continue
+                    value = _dictionaryRepresentation![attr as String]
+                    if value == nil {
+                        continue
+                    }
                 }
                 
                 if value!.isKindOfClass(NSNull) {
                     continue
                 }
                 
-                if value!.isKindOfClass(NSString) {
-                    value = value as! String
-                }
+                value = self.serializationValueForAttribute(attr, andValue: value!)
                 
                 if value != nil {
                     self.setValue(value, forKey: attr as String)
@@ -43,13 +48,21 @@ class ECSeralizableObject: NSManagedObject {
         }
     }
     
+    func serializationKeyForAttribute(attribute: String) -> String? {
+        return attribute
+    }
+    
+    func serializationValueForAttribute(attribute: String, andValue value:AnyObject) -> AnyObject? {
+        return value
+    }
+    
     convenience init(objClass:AnyClass, inManagedObjectContext managedObjectContext: NSManagedObjectContext) {
         self.init(entity:NSEntityDescription.entityForName(String(objClass), inManagedObjectContext: managedObjectContext)!, insertIntoManagedObjectContext: managedObjectContext)
     }
     
     static func fetchRequestForObjectWithId(id: String) -> NSFetchRequest {
         let fetchRequest: NSFetchRequest = NSFetchRequest.init(entityName:String(self))
-        fetchRequest.predicate = NSPredicate.init(format:"id == \(id)")
+        fetchRequest.predicate = NSPredicate.init(format:"id == \"\(id)\"")
         fetchRequest.fetchLimit = 1
         
         return fetchRequest
@@ -67,8 +80,8 @@ class ECSeralizableObject: NSManagedObject {
         if result == nil {
             result = ECSeralizableObject.init(objClass:self, inManagedObjectContext:context)
             result!.createdAt = NSDate()
+            result!.dictionaryRepresentation = dictionary
         }
-        result!.dictionaryRepresentation = dictionary
         
         return result
     }

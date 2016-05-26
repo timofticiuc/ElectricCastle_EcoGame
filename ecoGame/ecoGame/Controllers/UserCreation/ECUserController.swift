@@ -65,8 +65,8 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
                     self.user.userName = self.userNameField.text!
                     self.user.userPhone = self.userPhoneField.text!
                     self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
-                    self.user.userCategories = self.categoriesForUser(self.user)
-
+                    self.user.userCategories = self.user.defaultCategories()
+                    
                     self.delegate?.userController(self, hasCreatedUser: self.user)
                     
                     // mark as dirty
@@ -103,32 +103,6 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
         self.user.removeFromStore()
         self.delegate?.userController(self, hasDeletedUser: self.user)
         self.navigationController?.popViewControllerAnimated(true)
-    }
-
-    private func categoriesForUser(user: ECUser) -> [ECCategory] {
-        let count = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECCategory.fetchRequestForCategories(), error: nil))!
-        
-        var id = count
-        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
-        energyCategory.categoryType = .Energy
-        
-        id = count + 1
-        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
-        waterCategory.categoryType = .Water
-        
-        id = count + 2
-        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
-        transportCategory.categoryType = .Transport
-        
-        id = count + 3
-        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
-        wasteCategory.categoryType = .Waste
-
-        id = count + 4
-        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(user.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
-        socialCategory.categoryType = .Social
-
-        return [energyCategory, wasteCategory, waterCategory, transportCategory, socialCategory]
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
