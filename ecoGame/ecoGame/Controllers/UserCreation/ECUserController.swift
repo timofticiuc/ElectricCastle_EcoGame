@@ -8,12 +8,13 @@
 
 import UIKit
 
-let kUserNameIndex       = 0
-let kUserPhoneIndex      = 1
-let kUserRoleIndex       = 2
-let kUserNewsletterIndex = 3
-let kUserRemoveIndex     = 4
-let kUserCategoriesIndex = 5
+let kUserFirstNameIndex  = 0
+let kUserLastNameIndex   = 1
+let kUserPhoneIndex      = 2
+let kUserRoleIndex       = 3
+let kUserNewsletterIndex = 4
+let kUserRemoveIndex     = 5
+let kUserCategoriesIndex = 6
 
 
 protocol ECUserControllerDelegate {
@@ -23,7 +24,8 @@ protocol ECUserControllerDelegate {
 }
 
 class ECUserController: UITableViewController, ECCategoriesDelegate {
-    @IBOutlet var userNameField: UITextField!
+    @IBOutlet var userFirstNameField: UITextField!
+    @IBOutlet var userLastNameField: UITextField!
     @IBOutlet var userPhoneField: UITextField!
     @IBOutlet var userRoleSegment: UISegmentedControl!
     @IBOutlet var userRemoveLabel: UILabel!
@@ -49,7 +51,8 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
         self.userRemoveLabel.layer.cornerRadius = 15.0
         
         if !isNewUser {
-            self.userNameField.text = self.user.userName
+            self.userFirstNameField.text = self.user.userFirstName
+            self.userLastNameField.text = self.user.userLastName
             self.userPhoneField.text = self.user.userPhone
             self.userRoleSegment.selectedSegmentIndex = Int(self.user.userRole.rawValue)
         }
@@ -58,11 +61,12 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
     func doneEditing() {
         
         if delegate != nil {
-            if (self.validatePhoneNumber(self.userPhoneField.text!) && (self.userNameField.text != "")) {
+            if (self.validatePhoneNumber(self.userPhoneField.text!) && (self.userFirstNameField.text != "") && (self.userLastNameField.text != "")) {
                 if isNewUser {
                     let id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
                     self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-                    self.user.userName = self.userNameField.text!
+                    self.user.userFirstName = self.userFirstNameField.text!
+                    self.user.userLastName = self.userLastNameField.text!
                     self.user.userPhone = self.userPhoneField.text!
                     self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
                     self.user.userCategories = self.user.defaultCategories()
@@ -71,7 +75,8 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
                     
                     // mark as dirty
                 } else {
-                    self.user.userName = self.userNameField.text!
+                    self.user.userFirstName = self.userFirstNameField.text!
+                    self.user.userLastName = self.userLastNameField.text!
                     self.user.userPhone = self.userPhoneField.text!
                     self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
                     self.delegate?.userController(self, hasUpdatedUser: self.user)
@@ -115,11 +120,11 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row < 6 {
+        if indexPath.row < 7 {
             if let role = ECCoreManager.sharedInstance.currentUser?.userRole {
                 switch role {
                 case .ECUserRoleAdmin:
@@ -144,7 +149,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
                         if self.isNewUser {
                             self.userRemoveLabel.hidden = true
                             return 0;
-                        } else if self.user.userRole != .ECUserRoleParticipant {
+                        } else if self.user.userRole != .ECUserRoleAdmin {
                             self.userRemoveLabel.hidden = true
                             return 0;
                         }

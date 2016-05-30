@@ -68,7 +68,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         }
         
         self.users = tempUsers.filter({
-            $0.userName.lowercaseString.hasPrefix(self.query!)
+            ($0.userFirstName.lowercaseString.hasPrefix(self.query!) || $0.userLastName.lowercaseString.hasPrefix(self.query!))
         })
     }
     

@@ -19,7 +19,7 @@ class ECUserListCell: UITableViewCell {
     
     var user: ECUser! {
         didSet {
-            self.userNameLabel?.text = user.userName
+            self.userNameLabel?.text = user.userFirstName + " " + user.userLastName
             self.userRoleLabel?.text = user.userRole.ec_enumName()
         }
     }

@@ -32,7 +32,7 @@ class ECMenuViewController: UITableViewController {
             tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
         }
         
-        self.userNameLabel.text = ECCoreManager.sharedInstance.currentUser?.userName
+        self.userNameLabel.text = (ECCoreManager.sharedInstance.currentUser?.userFirstName)! + " " + (ECCoreManager.sharedInstance.currentUser?.userLastName)!
         self.userRoleLabel.text = ECCoreManager.sharedInstance.currentUser?.userRole.ec_enumName()
         self.userSessionLabel.text = "Online for: " + String(NSDate().offsetFrom(ECCoreManager.sharedInstance.currentSessionTimeStamp))
     }

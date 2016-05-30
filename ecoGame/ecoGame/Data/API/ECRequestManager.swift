@@ -10,12 +10,13 @@ import Foundation
 import AFNetworking
 
 class ECRequestManager: NSObject {
+    let manager:AFHTTPSessionManager = AFHTTPSessionManager(sessionConfiguration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    let baseUrl = "http://www.mainoi.ro/service/api.php"
 
-    static func fetchUsersWithCompletion(completion: (users:[AnyObject]) -> Void) {
-        let url = "http://www.mainoi.ro/service/api.php/users"
-        let manager:AFHTTPSessionManager = AFHTTPSessionManager(sessionConfiguration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    func fetchUsersWithCompletion(completion: (users:[AnyObject]) -> Void) {
+        let url = self.baseUrl+"/users"
         
-        manager.GET(url, parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
+        self.manager.GET(url, parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
             guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(users: []); return }
             guard let usersArray = responseDict["data"] as? [AnyObject] else { completion(users: []); return }
             completion(users: usersArray)

@@ -12,6 +12,7 @@ class ECCoreManager: NSObject {
     static let sharedInstance = ECCoreManager()
     
     var storeManager: ECStoreManager
+    var requestManager: ECRequestManager
     var currentSessionTimeStamp: NSDate {
         get {
             return NSUserDefaults.standardUserDefaults().objectForKey(kCurrentSessionTimeStamp) as! NSDate
@@ -36,12 +37,13 @@ class ECCoreManager: NSObject {
 
     override init() {
         storeManager = ECStoreManager()
+        requestManager = ECRequestManager()
     }
     
     //MARK: - Request methods
     
     func getUsers() {
-        ECRequestManager.fetchUsersWithCompletion { (users) in
+        self.requestManager.fetchUsersWithCompletion { (users) in
             for userObj in users {
                 guard let userDict = userObj as? Dictionary<String, AnyObject> else { continue }
                 var newUserDict = userDict

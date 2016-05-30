@@ -28,7 +28,9 @@ class ECLoginController: UITableViewController {
     
     @IBAction func loginAction() {
         let dummyUser:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(arc4random()%32767)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-        dummyUser.userName = self.userNameField.text!
+        let userNames = self.userNameField.text?.componentsSeparatedByString(" ")
+        dummyUser.userFirstName = (userNames?.count > 0 ? userNames![0] : "")
+        dummyUser.userLastName  = (userNames?.count > 1 ? userNames![1] : "")
         dummyUser.userPhone = "0000000000"
         dummyUser.userRole = .ECUserRoleAdmin
         dummyUser.userCategories = dummyUser.defaultCategories()

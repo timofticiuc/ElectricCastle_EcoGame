@@ -93,24 +93,24 @@
                         <sections>
                             <tableViewSection id="iBM-GA-1YT">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ECUserNameCell" rowHeight="70" id="wnl-z2-Mfx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ECUserFirstNameCell" rowHeight="70" id="wnl-z2-Mfx">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wnl-z2-Mfx" id="7Ic-kN-gO6">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="user name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wen-Kt-DGj">
-                                                    <rect key="frame" x="108" y="0.0" width="447" height="70"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wen-Kt-DGj">
+                                                    <rect key="frame" x="178" y="0.0" width="377" height="70"/>
                                                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLe-Jc-URc">
-                                                    <rect key="frame" x="20" y="0.0" width="80" height="70"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLe-Jc-URc">
+                                                    <rect key="frame" x="20" y="0.0" width="150" height="70"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="80" id="7sW-ey-FOQ"/>
+                                                        <constraint firstAttribute="width" constant="150" id="7sW-ey-FOQ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -139,8 +139,54 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ECUserPhoneCell" rowHeight="70" id="Llh-98-6Hx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ECUserLastNameCell" rowHeight="70" id="M9S-q5-bPo">
                                         <rect key="frame" x="0.0" y="70" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M9S-q5-bPo" id="fZI-Xm-SP7">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ejp-t8-kpf">
+                                                    <rect key="frame" x="178" y="0.0" width="377" height="70"/>
+                                                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkw-z8-CtM">
+                                                    <rect key="frame" x="20" y="0.0" width="150" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="4b1-tN-t9b"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZPn-4E-XBx" userLabel="separatorView">
+                                                    <rect key="frame" x="0.0" y="69" width="600" height="1"/>
+                                                    <color key="backgroundColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="BEr-so-IF3"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="lkw-z8-CtM" secondAttribute="bottom" id="AOx-UX-beZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZPn-4E-XBx" secondAttribute="bottom" id="FdT-JX-axh"/>
+                                                <constraint firstItem="lkw-z8-CtM" firstAttribute="top" secondItem="fZI-Xm-SP7" secondAttribute="top" id="SpX-EY-XEz"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ejp-t8-kpf" secondAttribute="bottom" id="Zeu-Oz-iQc"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZPn-4E-XBx" secondAttribute="trailing" id="c26-Jd-19g"/>
+                                                <constraint firstItem="ZPn-4E-XBx" firstAttribute="leading" secondItem="fZI-Xm-SP7" secondAttribute="leading" id="loi-mI-ybf"/>
+                                                <constraint firstItem="Ejp-t8-kpf" firstAttribute="leading" secondItem="lkw-z8-CtM" secondAttribute="trailing" constant="8" id="mfz-tZ-STu"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ejp-t8-kpf" secondAttribute="trailing" constant="45" id="od2-ph-vQv"/>
+                                                <constraint firstItem="lkw-z8-CtM" firstAttribute="leading" secondItem="fZI-Xm-SP7" secondAttribute="leading" constant="20" id="opF-yY-FKU"/>
+                                                <constraint firstItem="Ejp-t8-kpf" firstAttribute="top" secondItem="fZI-Xm-SP7" secondAttribute="top" id="u3L-rO-URS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ECUserPhoneCell" rowHeight="70" id="Llh-98-6Hx">
+                                        <rect key="frame" x="0.0" y="140" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Llh-98-6Hx" id="pdX-RX-L8M">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
@@ -186,7 +232,7 @@
                                         <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ECUserRoleCell" rowHeight="70" id="5Q7-Bv-zUy">
-                                        <rect key="frame" x="0.0" y="140" width="600" height="70"/>
+                                        <rect key="frame" x="0.0" y="210" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Q7-Bv-zUy" id="pqQ-9V-LI0">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
@@ -233,7 +279,7 @@
                                         <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ECUserNewsletterCell" rowHeight="70" id="3x5-Ud-72L">
-                                        <rect key="frame" x="0.0" y="210" width="600" height="70"/>
+                                        <rect key="frame" x="0.0" y="280" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3x5-Ud-72L" id="PeN-L6-QqA">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
@@ -275,7 +321,7 @@
                                         <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ECUserRoleCell" rowHeight="70" id="8Id-dd-3ep">
-                                        <rect key="frame" x="0.0" y="280" width="600" height="70"/>
+                                        <rect key="frame" x="0.0" y="350" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Id-dd-3ep" id="Ws0-U6-vtP">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
@@ -311,7 +357,7 @@
                                         <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="600" id="lnT-DC-Eam">
-                                        <rect key="frame" x="0.0" y="350" width="600" height="600"/>
+                                        <rect key="frame" x="0.0" y="420" width="600" height="600"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lnT-DC-Eam" id="54H-4w-9ZI">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -344,7 +390,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1000"/>
                     <connections>
-                        <outlet property="userNameField" destination="wen-Kt-DGj" id="cJW-cz-fGv"/>
+                        <outlet property="userFirstNameField" destination="wen-Kt-DGj" id="fM2-gq-ch6"/>
+                        <outlet property="userLastNameField" destination="Ejp-t8-kpf" id="fXT-b9-cbL"/>
                         <outlet property="userPhoneField" destination="xtS-g4-yNp" id="269-AT-KR3"/>
                         <outlet property="userRemoveLabel" destination="kH5-sF-85E" id="3CH-kR-b2N"/>
                         <outlet property="userRoleSegment" destination="zPf-b0-9nq" id="6pR-bF-6QZ"/>

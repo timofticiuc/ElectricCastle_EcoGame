@@ -11,7 +11,11 @@ import CoreData
 
 @objc(ECUser)
 class ECUser: ECSeralizableObject {
-    @NSManaged var userName: String
+    @NSManaged var userAddress: String
+    @NSManaged var userEmail: String
+    @NSManaged var userFirstName: String
+    @NSManaged var userLastName: String
+    @NSManaged var userPasswordHash: String
     @NSManaged var userPhone: String
     @NSManaged private var role: Int32
     var userRole:ECUserRole {
@@ -53,8 +57,16 @@ class ECUser: ECSeralizableObject {
             return "user_role"
         } else if attribute == "categories" {
             return "user_categories"
-        } else if attribute == "userName" {
+        } else if attribute == "userFirstName" {
             return "user_first_name"
+        } else if attribute == "userLastName" {
+            return "user_last_name"
+        } else if attribute == "userAddress" {
+            return "user_address"
+        } else if attribute == "userEmail" {
+            return "user_mail"
+        } else if attribute == "userPasswordHash" {
+            return "user_password_hash"
         } else if attribute == "userPhone" {
             return "user_phone"
         }
