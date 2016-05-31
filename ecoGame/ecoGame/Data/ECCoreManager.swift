@@ -58,4 +58,10 @@ class ECCoreManager: NSObject {
             self.storeManager.saveContext()
         }
     }
+    
+    func createUser(user: ECUser) {
+        self.requestManager.createUser(user) { (success) in
+            
+        }
+    }
 }

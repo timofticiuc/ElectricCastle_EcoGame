@@ -126,6 +126,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     // MARK: ECUserControllerDelegate
     func userController(uc:ECUserController, hasCreatedUser user:ECUser) {
         ECCoreManager.sharedInstance.storeManager.saveContext()
+        ECCoreManager.sharedInstance.createUser(user)
     }
     
     func userController(uc:ECUserController, hasUpdatedUser user:ECUser) {

@@ -22,7 +22,27 @@ class ECRequestManager: NSObject {
             completion(users: usersArray)
             
         }) { (task: NSURLSessionDataTask?, error: NSError) in
-                
+            let status = task?.response as! NSHTTPURLResponse
+            if status == 200 {
+                completion(users: [])
+            }
+        }
+    }
+    
+    func createUser(user:ECUser, withCompletion completion: (success: Bool) -> Void) {
+        let url = self.baseUrl+"/user"
+        
+        self.manager.POST(url, parameters: user.dictionaryRepresentation, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { return }
+            let status = task?.response as! NSHTTPURLResponse
+            if status.statusCode == 200 {
+                completion(success: true)
+            }
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+            let status = task?.response as! NSHTTPURLResponse
+            if status == 200 {
+                completion(success: false)
+            }
         }
     }
 }

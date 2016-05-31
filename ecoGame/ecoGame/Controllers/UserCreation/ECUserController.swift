@@ -146,13 +146,8 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
                         self.userRoleSegment.hidden = true
                         return 0;
                     } else if indexPath.row == kUserRemoveIndex {
-                        if self.isNewUser {
-                            self.userRemoveLabel.hidden = true
-                            return 0;
-                        } else if self.user.userRole != .ECUserRoleAdmin {
-                            self.userRemoveLabel.hidden = true
-                            return 0;
-                        }
+                        self.userRemoveLabel.hidden = true
+                        return 0;
                     } else if indexPath.row == kUserCategoriesIndex {
                         if self.isNewUser {
                             return 0;

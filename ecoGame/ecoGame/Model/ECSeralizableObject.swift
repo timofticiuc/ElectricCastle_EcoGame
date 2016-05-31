@@ -16,16 +16,32 @@ class ECSeralizableObject: NSManagedObject {
     private var _dictionaryRepresentation: Dictionary<String, AnyObject>?
     var dictionaryRepresentation: Dictionary<String, AnyObject>? {
         get {
-            return _dictionaryRepresentation
+            var userDict = Dictionary<String, AnyObject>()
+            
+            for (attr, _) in self.entity.attributesByName {
+                let serializationKey = self.serializationKeyForAttribute(attr)!
+
+                let value: AnyObject? = self.valueForKey(attr)
+                
+                if value == nil {
+                    continue
+                }
+                
+                if value!.isKindOfClass(NSNull) {
+                    continue
+                }
+                
+                userDict[serializationKey] = value
+            }
+            
+            return userDict
         }
         set {
             _dictionaryRepresentation = newValue
             
             for (attr, _) in self.entity.attributesByName {
-                var serializationKey = self.serializationKeyForAttribute(attr)
-                if serializationKey == nil {
-                    serializationKey = attr
-                }
+                let serializationKey = self.serializationKeyForAttribute(attr)
+
                 var value: AnyObject? = _dictionaryRepresentation![serializationKey! as String]
                 
                 if value == nil {

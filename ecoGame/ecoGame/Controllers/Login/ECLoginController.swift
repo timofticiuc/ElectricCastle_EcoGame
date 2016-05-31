@@ -32,6 +32,8 @@ class ECLoginController: UITableViewController {
         dummyUser.userFirstName = (userNames?.count > 0 ? userNames![0] : "")
         dummyUser.userLastName  = (userNames?.count > 1 ? userNames![1] : "")
         dummyUser.userPhone = "0000000000"
+        dummyUser.userAddress = "Default address"
+        dummyUser.userPasswordHash = String(self.userPasswordField.text?.hash)
         dummyUser.userRole = .ECUserRoleAdmin
         dummyUser.userCategories = dummyUser.defaultCategories()
         
