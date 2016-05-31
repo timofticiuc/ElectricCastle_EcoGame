@@ -105,9 +105,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
     }
 
     func removeUser(alert: UIAlertAction!) {
-        self.user.removeFromStore()
         self.delegate?.userController(self, hasDeletedUser: self.user)
-        self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

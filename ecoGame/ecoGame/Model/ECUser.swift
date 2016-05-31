@@ -69,6 +69,8 @@ class ECUser: ECSeralizableObject {
             return "user_password_hash"
         } else if attribute == "userPhone" {
             return "user_phone"
+        } else if attribute == "createdAt" {
+            return nil
         }
         
         return attribute

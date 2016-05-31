@@ -36,6 +36,11 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         self.dataSource?.fetchData()
     }
 

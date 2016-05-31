@@ -64,4 +64,16 @@ class ECCoreManager: NSObject {
             
         }
     }
+    
+    func updateUser(user: ECUser) {
+        self.requestManager.updateUser(user) { (success) in
+            
+        }
+    }
+    
+    func deleteUser(user: ECUser, withCompletion completion: (success: Bool) -> Void) {
+        self.requestManager.deleteUser(user) { (success) in
+            completion(success: success);
+        }
+    }
 }

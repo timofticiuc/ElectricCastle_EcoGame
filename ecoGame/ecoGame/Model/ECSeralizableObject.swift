@@ -19,7 +19,7 @@ class ECSeralizableObject: NSManagedObject {
             var userDict = Dictionary<String, AnyObject>()
             
             for (attr, _) in self.entity.attributesByName {
-                let serializationKey = self.serializationKeyForAttribute(attr)!
+                guard let serializationKey = self.serializationKeyForAttribute(attr) else { continue }
 
                 let value: AnyObject? = self.valueForKey(attr)
                 
@@ -40,9 +40,9 @@ class ECSeralizableObject: NSManagedObject {
             _dictionaryRepresentation = newValue
             
             for (attr, _) in self.entity.attributesByName {
-                let serializationKey = self.serializationKeyForAttribute(attr)
+                guard let serializationKey = self.serializationKeyForAttribute(attr) else { continue }
 
-                var value: AnyObject? = _dictionaryRepresentation![serializationKey! as String]
+                var value: AnyObject? = _dictionaryRepresentation![serializationKey as String]
                 
                 if value == nil {
                     value = _dictionaryRepresentation![attr as String]

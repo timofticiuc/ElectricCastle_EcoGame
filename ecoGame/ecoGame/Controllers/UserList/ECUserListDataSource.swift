@@ -15,7 +15,7 @@ protocol ECUsersDataSourceDelegate {
 
 class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, ECUserControllerDelegate {
     
-    private var users: [ECUser]?
+    private var users: [ECUser] = [ECUser]()
     private var query: String!
     private var delegate: ECUsersDataSourceDelegate?
     private var tableView: UITableView!
@@ -92,7 +92,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     // MARK: UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.users!.count;
+        return self.users.count;
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -102,7 +102,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: ECUserListCell = tableView.dequeueReusableCellWithIdentifier(String(ECUserListCell), forIndexPath: indexPath) as! ECUserListCell
         
-        cell.user = self.users![indexPath.row]
+        cell.user = self.users[indexPath.row]
         
         return cell
     }
@@ -112,7 +112,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         
         let userController: ECUserController = ECUserController.ec_createFromStoryboard() as! ECUserController
         userController.delegate = self
-        userController.user = self.users![indexPath.row]
+        userController.user = self.users[indexPath.row]
         self.delegate?.dataSource(self, wantsToShowViewController: userController)
     }
     
@@ -131,9 +131,14 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func userController(uc:ECUserController, hasUpdatedUser user:ECUser) {
         ECCoreManager.sharedInstance.storeManager.saveContext()
+        ECCoreManager.sharedInstance.updateUser(user)
     }
     
     func userController(uc:ECUserController, hasDeletedUser user:ECUser) {
+        ECCoreManager.sharedInstance.deleteUser(user) { (success) in
+            uc.navigationController?.popViewControllerAnimated(true)
+        }
+        user.removeFromStore()
         ECCoreManager.sharedInstance.storeManager.saveContext()
     }
 }
