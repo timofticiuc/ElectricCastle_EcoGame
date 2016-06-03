@@ -3,7 +3,7 @@
     <entity name="ECCategory" representedClassName="ECCategory" parentEntity="ECSerializableObject" syncable="YES">
         <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="selectedAction" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="scores" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="ECSerializableObject" representedClassName="ECSerializableObject" isAbstract="YES" syncable="YES">

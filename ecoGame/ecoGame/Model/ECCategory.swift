@@ -24,7 +24,31 @@ class ECCategory: ECSeralizableObject {
             self.categoryName = newValue.ec_enumName()
         }
     }
-    @NSManaged var selectedAction: Int32
+    @NSManaged private var scores: String
+    var categoryScores:[Int]! {
+        get {
+            var tempScores:[Int] = [Int]()
+            if scores.characters.count == 0 {
+                return []
+            }
+            let scoresArray = scores.componentsSeparatedByString(",")
+            for score in scoresArray {
+                tempScores.append(Int(score)!)
+            }
+            
+            return tempScores
+        }
+        set {
+            var tempScores = ""
+            for i in (0...newValue!.count - 1) {
+                tempScores += String(newValue[i])
+                if i != newValue.count - 1 {
+                    tempScores += ","
+                }
+            }
+            self.scores = tempScores
+        }
+    }
     
     func actions() -> [Dictionary<String, AnyObject>] {
         switch self.categoryType {
@@ -62,8 +86,8 @@ class ECCategory: ECSeralizableObject {
                     kDescription:"Cei cu autobuzul ne arata biletul de autobuz, cu destinatia Cluj sau Bontida.",
                     kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()]]
         case .Social:
-            return [[kTitle:"Donate something useful for the poor",
-                    kDescription:"Strangem donatii, la eco spot din camping, pentru comunitatea de romi din Rascruci. Donatiile pot fi lucruri neperisabile ca: haine, saci de dormit, incaltaminte, conserve etc. De asemenea, instituim punct de colectare la intrarea principala, in prima zi de fest, pentru lucrurile confiscate.",
+            return [[kTitle:"Music Drives Change",
+                    kDescription:"·Accepta provocarea artistilor in Music Drives Change leaat de actiuni pe care le poti face ca sa fii eco inainte si in timpul festivalului.",
                     kScore:ECConstants.ECCategoryLevel.Legend.ec_value()],
                     [kTitle:"ECO-match / ECO Quiz",
                     kDescription:"ECO Quiz este o aplicatie pe care am dezvoltat-o anul trecut sub forma de intrebari si raspunsuri din zona eco, si il vom folosi daca nu dezvoltam aplicatia ECO Match. ECO Match este o aplicatie care combina oamenii singuri, in functie de obiceiurile si preferintele lor eco.",
@@ -72,10 +96,7 @@ class ECCategory: ECSeralizableObject {
                     kDescription:"Pe formatul jocului twister, câte 2-4 participanți, ghidați de un arbitru-voluntar MAINOI, învață structurile atomice ale gazelor cu efect de seră, precum și efectele acestora asupra mediului înconjurător",
                     kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()]]
         case .Waste: 
-            return [[kTitle:"Buy a reusable cup",
-                    kDescription:"Cumpara un pahar refolosibil. Iti poti recupera banii la final, daca aduci paharul ok inapoi. Altfel, banii se vor dona unei cauze eco.",
-                    kScore:ECConstants.ECCategoryLevel.Legend.ec_value()],
-                    [kTitle:"Collect 30 waste packages",
+            return [[kTitle:"Collect 30 waste packages",
                     kDescription:"Pe desen va arata ce poti aduce la reciclat (doze de aluminiu, pachete de tigari, sticle de plastic). In functie de cate aduci, primesti punctajul corespunzator.",
                     kScore:ECConstants.ECCategoryLevel.Angel.ec_value()],
                     [kTitle:"Collect 20 waste packages",
@@ -83,12 +104,32 @@ class ECCategory: ECSeralizableObject {
                     kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()],
                     [kTitle:"Collect 10 waste packages",
                     kDescription:"Pe desen va arata ce poti aduce la reciclat (doze de aluminiu, pachete de tigari, sticle de plastic). In functie de cate aduci, primesti punctajul corespunzator.",
-                    kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()]]
+                    kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()],
+                    [kTitle:"Donate something useful for the poor",
+                    kDescription:"Strangem donatii, la eco spot din camping, pentru comunitatea de romi din Rascruci. Donatiile pot fi lucruri neperisabile ca: haine, saci de dormit, incaltaminte, conserve etc. De asemenea, instituim punct de colectare la intrarea principala, in prima zi de fest, pentru lucrurile confiscate.",
+                    kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()],]
         case .Count:
             break;
         }
         
         return [];
+    }
+    
+    func defaultScores() -> [Int] {
+        switch self.categoryType {
+        case .Energy:
+            return [0,0,0]
+        case .Water:
+            return [0,0,0]
+        case .Transport:
+            return [0,0,0,0]
+        case .Social:
+            return [0,0,0]
+        case .Waste: 
+            return [0,0,0,0]
+        case .Count: 
+            return []
+        }
     }
     
     static func fetchRequestForCategories() -> NSFetchRequest {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDataSource, ECCategoryActionCellDelegate {
     @IBOutlet private weak var tableView:UITableView!
     var category:ECCategory!
 
@@ -25,9 +25,6 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         self.title = self.category.categoryName
         self.tableView.reloadData()
 
-        if category.userLevel != .Beginner {
-            self.tableView.selectRowAtIndexPath(NSIndexPath(forRow:Int(self.category.selectedAction), inSection: 0), animated: true, scrollPosition: .Middle)
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,16 +46,24 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell:ECCategoryActionCell = tableView.dequeueReusableCellWithIdentifier(String(ECCategoryActionCell), forIndexPath: indexPath) as! ECCategoryActionCell
         
         cell.actionDictionary = self.category.actions()[indexPath.row]
+        cell.scoreMultiplier = self.category.actions().count - indexPath.row
+        cell.actionScore = self.category.categoryScores[indexPath.row]
+        cell.delegate = self
+        cell.index = indexPath.row
         
         return cell
     }
     
-    // MARK: - UITableViewDelegate
+    //MARK: - ECCategoryActionCellDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.category.selectedAction = Int32(indexPath.row)
-        let score = self.category.actions()[indexPath.row][kScore]?.intValue
-        self.category.userLevel = ECConstants.ECCategoryLevel(rawValue: score!)!
+    func actionCell(cell: ECCategoryActionCell, hasChangedScore score: Int) {
+        self.category.categoryScores[cell.index] = cell.actionScore
+        for i in (0...self.category.actions().count - 1).reverse() {
+            if self.category.categoryScores[i] != 0 {
+                let level = self.category.actions()[i][kScore]?.intValue
+                self.category.userLevel = ECConstants.ECCategoryLevel(rawValue: level!)!
+            }
+        }
         
         ECCoreManager.sharedInstance.storeManager.saveContext()
     }

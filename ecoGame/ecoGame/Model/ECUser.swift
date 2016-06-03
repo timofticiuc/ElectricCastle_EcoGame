@@ -92,22 +92,27 @@ class ECUser: ECSeralizableObject {
         var id = count
         let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         energyCategory.categoryType = .Energy
+        energyCategory.categoryScores = energyCategory.defaultScores()
         
         id = count + 1
         let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         waterCategory.categoryType = .Water
+        waterCategory.categoryScores = waterCategory.defaultScores()
         
         id = count + 2
         let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         transportCategory.categoryType = .Transport
+        transportCategory.categoryScores = transportCategory.defaultScores()
         
         id = count + 3
         let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         wasteCategory.categoryType = .Waste
+        wasteCategory.categoryScores = wasteCategory.defaultScores()
         
         id = count + 4
         let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         socialCategory.categoryType = .Social
+        socialCategory.categoryScores = socialCategory.defaultScores()
         
         return [energyCategory, wasteCategory, waterCategory, transportCategory, socialCategory]
     }

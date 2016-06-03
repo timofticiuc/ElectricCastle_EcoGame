@@ -8,10 +8,22 @@
 
 import UIKit
 
+protocol ECCategoryActionCellDelegate {
+    func actionCell(cell: ECCategoryActionCell, hasChangedScore score: Int)
+}
+
 class ECCategoryActionCell: UITableViewCell {
     @IBOutlet private weak var actionTitleLabel:UILabel!
     @IBOutlet private weak var actionDescriptionLabel:UILabel!
-    @IBOutlet private weak var actionCheckImageView:UIImageView!
+    @IBOutlet private weak var actionScoreLabel:UILabel!
+    var delegate:ECCategoryActionCellDelegate? = nil
+    var scoreMultiplier:Int = 0
+    var index:Int = 0
+    var actionScore:Int = 0 {
+        didSet {
+            self.actionScoreLabel.text = String(actionScore * scoreMultiplier)
+        }
+    }
     
     var actionDictionary:Dictionary<String, AnyObject>! {
         didSet {
@@ -29,7 +41,17 @@ class ECCategoryActionCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        self.actionCheckImageView.hidden = !selected
     }
     
+    @IBAction func didTapPlusButton() {
+        self.actionScore += 1
+        self.delegate?.actionCell(self, hasChangedScore: self.actionScore * scoreMultiplier)
+    }
+    
+    @IBAction func didTapMinusButton() {
+        if self.actionScore > 0 {
+            self.actionScore -= 1
+            self.delegate?.actionCell(self, hasChangedScore: self.actionScore)
+        }
+    }
 }
