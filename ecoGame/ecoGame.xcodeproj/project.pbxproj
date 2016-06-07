@@ -42,6 +42,7 @@
 		25752E8D1CD7A96D004040CB /* ECCategoryOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25752E8B1CD7A96D004040CB /* ECCategoryOverviewCell.xib */; };
 		25752E8F1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25752E8E1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift */; };
 		258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */; };
+		2593FC2E1D06352100F93DD0 /* ECAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593FC2D1D06352100F93DD0 /* ECAgreementController.swift */; };
 		25AC2A8B1CC3C307003D3C61 /* ECMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AC2A8A1CC3C307003D3C61 /* ECMenuViewController.swift */; };
 		25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E3BC951CB59FA100CCD783 /* ECUserController.swift */; };
 		25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */; };
@@ -110,6 +111,7 @@
 		25752E8B1CD7A96D004040CB /* ECCategoryOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECCategoryOverviewCell.xib; sourceTree = "<group>"; };
 		25752E8E1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ECAdditions.swift"; sourceTree = "<group>"; };
 		258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+ECAdditions.swift"; sourceTree = "<group>"; };
+		2593FC2D1D06352100F93DD0 /* ECAgreementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECAgreementController.swift; sourceTree = "<group>"; };
 		25AC2A8A1CC3C307003D3C61 /* ECMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECMenuViewController.swift; sourceTree = "<group>"; };
 		25E3BC951CB59FA100CCD783 /* ECUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUserController.swift; sourceTree = "<group>"; };
 		25E3BC971CB59FD000CCD783 /* UIViewController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ECAdditions.swift"; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				25E3BC951CB59FA100CCD783 /* ECUserController.swift */,
+				2593FC2D1D06352100F93DD0 /* ECAgreementController.swift */,
 			);
 			path = UserCreation;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				25728F631CB1C8530063C7E3 /* ECSeralizableObject.swift in Sources */,
 				2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */,
 				2502B6D41CBC553200F7DC28 /* KeychainSwift.swift in Sources */,
+				2593FC2E1D06352100F93DD0 /* ECAgreementController.swift in Sources */,
 				2502B6D71CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift in Sources */,
 				25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */,
 				25728F611CB1C8000063C7E3 /* ECRequestManager.swift in Sources */,

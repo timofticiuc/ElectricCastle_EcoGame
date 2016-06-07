@@ -11,11 +11,12 @@ import UIKit
 let kUserFirstNameIndex  = 0
 let kUserLastNameIndex   = 1
 let kUserPhoneIndex      = 2
-let kUserRoleIndex       = 3
-let kUserNewsletterIndex = 4
-let kUserRemoveIndex     = 5
-let kUserCategoriesIndex = 6
-
+let kUserAddressIndex    = 3
+let kUserEmailIndex      = 4
+let kUserRoleIndex       = 5
+let kUserNewsletterIndex = 6
+let kUserRemoveIndex     = 7
+let kUserCategoriesIndex = 8
 
 protocol ECUserControllerDelegate {
     func userController(uc:ECUserController, hasCreatedUser user:ECUser)
@@ -23,10 +24,12 @@ protocol ECUserControllerDelegate {
     func userController(uc:ECUserController, hasDeletedUser user:ECUser)
 }
 
-class ECUserController: UITableViewController, ECCategoriesDelegate {
+class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreementDelegate {
     @IBOutlet var userFirstNameField: UITextField!
     @IBOutlet var userLastNameField: UITextField!
     @IBOutlet var userPhoneField: UITextField!
+    @IBOutlet var userAddressField: UITextField!
+    @IBOutlet var userEmailField: UITextField!
     @IBOutlet var userRoleSegment: UISegmentedControl!
     @IBOutlet var userRemoveLabel: UILabel!
 
@@ -54,32 +57,24 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
             self.userFirstNameField.text = self.user.userFirstName
             self.userLastNameField.text = self.user.userLastName
             self.userPhoneField.text = self.user.userPhone
+            self.userAddressField.text = self.user.userAddress
+            self.userEmailField.text = self.user.userEmail
             self.userRoleSegment.selectedSegmentIndex = Int(self.user.userRole.rawValue)
         }
     }
     
     func doneEditing() {
-        
         if delegate != nil {
             if (self.validatePhoneNumber(self.userPhoneField.text!) && (self.userFirstNameField.text != "") && (self.userLastNameField.text != "")) {
                 if isNewUser {
-                    let id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
-                    self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-                    self.user.userFirstName = self.userFirstNameField.text!
-                    self.user.userLastName = self.userLastNameField.text!
-                    self.user.userPhone = self.userPhoneField.text!
-                    self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
-                    self.user.userCategories = self.user.defaultCategories()
+                    let ac:ECAgreementController = ECAgreementController.ec_createFromStoryboard() as! ECAgreementController
+                    ac.delegate = self
                     
-                    self.delegate?.userController(self, hasCreatedUser: self.user)
-                    
-                    // mark as dirty
+                    self.presentViewController(ac, animated: true) {
+                        
+                    }
                 } else {
-                    self.user.userFirstName = self.userFirstNameField.text!
-                    self.user.userLastName = self.userLastNameField.text!
-                    self.user.userPhone = self.userPhoneField.text!
-                    self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
-                    self.delegate?.userController(self, hasUpdatedUser: self.user)
+                    self.updateUser()
                 }
 
             } else {
@@ -93,6 +88,30 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
             
         }
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    private func createUser() {
+        let id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
+        self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
+        self.user.userFirstName = self.userFirstNameField.text!
+        self.user.userLastName = self.userLastNameField.text!
+        self.user.userPhone = self.userPhoneField.text!
+        self.user.userAddress = self.userAddressField.text!
+        self.user.userEmail = self.userEmailField.text!
+        self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
+        self.user.userCategories = self.user.defaultCategories()
+        
+        self.delegate?.userController(self, hasCreatedUser: self.user)
+    }
+    
+    private func updateUser() {
+        self.user.userFirstName = self.userFirstNameField.text!
+        self.user.userLastName = self.userLastNameField.text!
+        self.user.userPhone = self.userPhoneField.text!
+        self.user.userAddress = self.userAddressField.text!
+        self.user.userEmail = self.userEmailField.text!
+        self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
+        self.delegate?.userController(self, hasUpdatedUser: self.user)
     }
     
     // MARK: - Methods
@@ -118,11 +137,11 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 9
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row < 7 {
+        if indexPath.row < 9 {
             if let role = ECCoreManager.sharedInstance.currentUser?.userRole {
                 switch role {
                 case .ECUserRoleAdmin:
@@ -193,5 +212,11 @@ class ECUserController: UITableViewController, ECCategoriesDelegate {
         categoryVC.category = category
         
         self.navigationController?.pushViewController(categoryVC, animated: true)
+    }
+    
+    //MARK: - ECAgreementDelegate
+    
+    func agreementController(ac: ECAgreementController, hasCompletedWithSelectedTerms selectedTerms:Bool) {
+        self.createUser()
     }
 }
