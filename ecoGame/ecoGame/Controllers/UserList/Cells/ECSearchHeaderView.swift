@@ -14,30 +14,15 @@ protocol ECSearchDelegate {
 
 class ECSearchHeaderView: UIView, UITextFieldDelegate {
     var delegate: ECSearchDelegate?
-    @IBOutlet weak var searchFieldWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchTextField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search for participants", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()	])
+        self.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search for participants", attributes: [NSForegroundColorAttributeName : UIColor ( red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0 )	])
     }
     
     @IBAction func searchFieldTextDidChange(sender: UITextField) {
         self.delegate?.searchView(self, didChangeQueryWithText: sender.text!)
-    }
-
-    func textFieldDidBeginEditing(textField: UITextField) {
-        self.searchFieldWidthConstraint.constant = 0;
-        UIView.animateWithDuration(0.25) { 
-            self.layoutIfNeeded()
-        }
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        self.searchFieldWidthConstraint.constant = -300;
-        UIView.animateWithDuration(0.25) {
-            self.layoutIfNeeded()
-        }
     }
 }

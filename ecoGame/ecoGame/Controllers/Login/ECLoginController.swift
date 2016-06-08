@@ -19,6 +19,8 @@ class ECLoginController: UITableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.userNameField.attributedPlaceholder = NSAttributedString(string: "phone/email", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+        self.userPasswordField.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,11 +30,11 @@ class ECLoginController: UITableViewController {
     
     @IBAction func loginAction() {
         let dummyUser:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(arc4random()%32767)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-        let userNames = self.userNameField.text?.componentsSeparatedByString(" ")
-        dummyUser.userFirstName = (userNames?.count > 0 ? userNames![0] : "")
-        dummyUser.userLastName  = (userNames?.count > 1 ? userNames![1] : "")
+        dummyUser.userFirstName = "Gheo"
+        dummyUser.userLastName  = "Aglanetasului"
         dummyUser.userPhone = "0000000000"
         dummyUser.userAddress = "Default address"
+        dummyUser.userEmail = "mail@provider.com"
         dummyUser.userPasswordHash = String(self.userPasswordField.text?.hash)
         dummyUser.userRole = .ECUserRoleAdmin
         dummyUser.userCategories = dummyUser.defaultCategories()

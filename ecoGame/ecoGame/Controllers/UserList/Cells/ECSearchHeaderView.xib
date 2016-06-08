@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,34 +11,45 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for participants" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8fu-4e-grC">
-                    <rect key="frame" x="185" y="10" width="230" height="35"/>
-                    <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.1375775709219858" colorSpace="calibratedRGB"/>
-                    <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <textInputTraits key="textInputTraits"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7J6-yL-tf7">
+                    <rect key="frame" x="25" y="10" width="550" height="35"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for participants" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8fu-4e-grC">
+                            <rect key="frame" x="15" y="0.0" width="520" height="35"/>
+                            <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.0" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="searchFieldTextDidChange:" destination="iN0-l3-epB" eventType="editingChanged" id="E6J-Pw-1SY"/>
+                                <outlet property="delegate" destination="iN0-l3-epB" id="5EQ-3P-0qn"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="8fu-4e-grC" firstAttribute="leading" secondItem="7J6-yL-tf7" secondAttribute="leading" constant="15" id="9kq-ll-bBh"/>
+                        <constraint firstItem="8fu-4e-grC" firstAttribute="top" secondItem="7J6-yL-tf7" secondAttribute="top" id="Dh7-37-vop"/>
+                        <constraint firstAttribute="trailing" secondItem="8fu-4e-grC" secondAttribute="trailing" constant="15" id="KdM-Rt-lI7"/>
+                        <constraint firstAttribute="bottom" secondItem="8fu-4e-grC" secondAttribute="bottom" id="M1W-ep-tJR"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="15"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="searchFieldTextDidChange:" destination="iN0-l3-epB" eventType="editingChanged" id="E6J-Pw-1SY"/>
-                        <outlet property="delegate" destination="iN0-l3-epB" id="5EQ-3P-0qn"/>
-                    </connections>
-                </textField>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="8fu-4e-grC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3lb-dF-ZuE"/>
-                <constraint firstAttribute="bottom" secondItem="8fu-4e-grC" secondAttribute="bottom" constant="5" id="Xyn-30-XWY"/>
-                <constraint firstItem="8fu-4e-grC" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.884" constant="-300" id="YU5-nd-zFD"/>
-                <constraint firstItem="8fu-4e-grC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="jel-c1-DaN"/>
+                <constraint firstItem="7J6-yL-tf7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="8x1-4J-Z2s"/>
+                <constraint firstAttribute="bottom" secondItem="7J6-yL-tf7" secondAttribute="bottom" constant="5" id="Cxm-Q6-nZv"/>
+                <constraint firstAttribute="trailing" secondItem="7J6-yL-tf7" secondAttribute="trailing" constant="25" id="t39-QP-bht"/>
+                <constraint firstItem="7J6-yL-tf7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="y6t-1D-zhN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="searchFieldWidthConstraint" destination="YU5-nd-zFD" id="6VP-s4-6UG"/>
                 <outlet property="searchTextField" destination="8fu-4e-grC" id="Bn5-hy-hkE"/>
             </connections>
             <point key="canvasLocation" x="572" y="224"/>

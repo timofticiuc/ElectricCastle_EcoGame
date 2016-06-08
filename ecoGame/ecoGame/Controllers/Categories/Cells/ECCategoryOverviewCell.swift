@@ -12,35 +12,33 @@ import KDCircularProgress
 class ECCategoryOverviewCell: UICollectionViewCell {
     @IBOutlet private weak var categoryTitleLabel: UILabel!
     @IBOutlet private weak var categoryLevelLabel: UILabel!
+    @IBOutlet private weak var categoryProgressContainerView: UIView!
+    @IBOutlet private weak var categoryImageView: UIImageView!
+
     private var progressView: KDCircularProgress! = nil
     
     var category:ECCategory! {
         didSet {
-            var gradientColor:UIColor = UIColor.clearColor()
-            let alpha:CGFloat = 0.7
             switch category.categoryType {
             case .Energy:
-                gradientColor = UIColor ( red: 0.5725, green: 0.8157, blue: 0.3137, alpha: alpha )
+                self.categoryImageView.image = UIImage(named: "Energy")
                 break
             case .Water:
-                gradientColor = UIColor ( red: 0.2667, green: 0.4471, blue: 0.7686, alpha: alpha )
+                self.categoryImageView.image = UIImage(named: "Water")
                 break;
             case .Transport:
-                gradientColor = UIColor ( red: 1.0, green: 1.0, blue: 0.0, alpha: alpha )
+                self.categoryImageView.image = UIImage(named: "Transport")
                 break
             case .Social:
-                gradientColor = UIColor ( red: 1.0, green: 0.7529, blue: 0.0, alpha: alpha )
+                self.categoryImageView.image = UIImage(named: "Social")
                 break
             case .Waste:
-                gradientColor = UIColor ( red: 0.3546, green: 1.0, blue: 0.9992, alpha: alpha )
+                self.categoryImageView.image = UIImage(named: "Waste")
                 break
             default:
                 break
             }
-            
-            self.progressView.setColors(UIColor.whiteColor(), gradientColor)
-            self.layer.borderColor = gradientColor.CGColor
-            self.layer.borderWidth = 3.0
+        
             self.categoryTitleLabel.text = category.categoryName
         }
     }
@@ -72,26 +70,26 @@ class ECCategoryOverviewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.layer.masksToBounds = true
-        
-        progressView = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+        progressView = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: self.categoryProgressContainerView.frame.size.width, height: self.categoryProgressContainerView.frame.size.height))
         progressView.startAngle = -90
-        progressView.progressThickness = 0.2
-        progressView.trackThickness = 0.7
         progressView.clockwise = true
-        progressView.center = self.center
+        progressView.center = self.categoryProgressContainerView.center
         progressView.gradientRotateSpeed = 2
         progressView.roundedCorners = true
         progressView.glowMode = .Forward
-        progressView.trackColor = UIColor.clearColor()
-        self.ec_addSubView(progressView, withInsets: UIEdgeInsetsZero)
-        self.sendSubviewToBack(progressView)
+        progressView.setColors(UIColor.ec_green())
+        progressView.trackColor = UIColor ( red: 0.8588, green: 0.8588, blue: 0.8588, alpha: 1.0 )
+        progressView.trackThickness = 0.2
+        progressView.progressThickness = 0.2
+        self.categoryProgressContainerView.ec_addSubView(progressView, withInsets: UIEdgeInsetsZero)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        self.layer.cornerRadius = self.frame.size.width/2
-        progressView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+        progressView.frame = CGRectMake(0,
+                                        0,
+                                        self.categoryProgressContainerView.frame.size.width,
+                                        self.categoryProgressContainerView.frame.size.height)
+        progressView.center = self.categoryProgressContainerView.center
     }
 }

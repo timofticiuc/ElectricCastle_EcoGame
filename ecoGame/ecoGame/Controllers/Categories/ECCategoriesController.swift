@@ -43,7 +43,7 @@ class ECCategoriesController: UICollectionViewController {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let defaultWidth = (collectionView.frame.size.width / 3) - kMinLineSpacing
-        return CGSizeMake(defaultWidth, defaultWidth)
+        return CGSizeMake(200, 250)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {

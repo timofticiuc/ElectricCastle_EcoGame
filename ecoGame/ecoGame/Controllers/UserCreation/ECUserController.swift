@@ -154,7 +154,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
                         if self.isNewUser {
                             return 0;
                         } else {
-                            return 500;
+                            return 600;
                         }
                     }
                     return 70;
@@ -169,7 +169,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
                         if self.isNewUser {
                             return 0;
                         } else {
-                            return 500;
+                            return 600;
                         }
                     }
                     return 70

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     static func ec_green() -> UIColor {
-        return UIColor.init(colorLiteralRed: 88/255.0, green: 198/255.0, blue: 6/255.0, alpha: 1.0)
+        return UIColor ( red: 0.3529, green: 0.7333, blue: 0.0196, alpha: 1.0 )
     }
     
     static func ec_greenFaded() -> UIColor {
@@ -18,10 +18,10 @@ extension UIColor {
     }
     
     static func ec_greenNavBar() -> UIColor {
-        return UIColor.init(colorLiteralRed: 102/255.0, green: 153/255.0, blue: 102/255.0, alpha: 0.5)
+        return UIColor ( red: 0.1098, green: 0.1098, blue: 0.1098, alpha: 1.0 )
     }
     
     static func ec_gray() -> UIColor {
-        return UIColor.init(colorLiteralRed: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 1.0)
+        return UIColor ( red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0 )
     }
 }

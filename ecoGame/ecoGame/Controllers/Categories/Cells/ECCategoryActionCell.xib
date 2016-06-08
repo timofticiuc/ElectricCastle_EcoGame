@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="gu3-fD-0CH"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -30,8 +30,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3s-dd-JAW" userLabel="separatorView">
-                        <rect key="frame" x="0.0" y="103" width="493" height="1"/>
-                        <color key="backgroundColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="25" y="103" width="443" height="1"/>
+                        <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Ml4-en-atf"/>
                         </constraints>
@@ -56,8 +56,8 @@
                             <constraint firstAttribute="height" constant="50" id="99B-xs-Qki"/>
                             <constraint firstAttribute="width" constant="25" id="sQY-S2-rY4"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NY8-bv-olv">
@@ -82,7 +82,7 @@
                     <constraint firstItem="ukp-hQ-lsT" firstAttribute="top" secondItem="0ty-0X-rTj" secondAttribute="bottom" constant="3" id="KFe-6H-gYS"/>
                     <constraint firstItem="O3s-dd-JAW" firstAttribute="top" secondItem="gUD-qf-u7C" secondAttribute="bottom" constant="26" id="OXT-H6-78f"/>
                     <constraint firstAttribute="bottom" secondItem="ukp-hQ-lsT" secondAttribute="bottom" constant="8" id="PK5-mz-BgB"/>
-                    <constraint firstAttribute="trailing" secondItem="O3s-dd-JAW" secondAttribute="trailing" id="SSI-r8-c9u"/>
+                    <constraint firstAttribute="trailing" secondItem="O3s-dd-JAW" secondAttribute="trailing" constant="25" id="SSI-r8-c9u"/>
                     <constraint firstAttribute="trailing" secondItem="gUD-qf-u7C" secondAttribute="trailing" constant="8" id="U12-OD-OQc"/>
                     <constraint firstAttribute="bottom" secondItem="O3s-dd-JAW" secondAttribute="bottom" id="Y9w-VM-GkO"/>
                     <constraint firstItem="NY8-bv-olv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="27" id="YMy-Fs-pGs"/>
@@ -93,7 +93,7 @@
                     <constraint firstItem="ukp-hQ-lsT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="fM7-aG-zfY"/>
                     <constraint firstItem="0ty-0X-rTj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="fu7-IN-IqO"/>
                     <constraint firstItem="bbW-QW-gfc" firstAttribute="leading" secondItem="NY8-bv-olv" secondAttribute="trailing" constant="8" id="ksH-pQ-edN"/>
-                    <constraint firstItem="O3s-dd-JAW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nm7-aX-019"/>
+                    <constraint firstItem="O3s-dd-JAW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="nm7-aX-019"/>
                     <constraint firstItem="gUD-qf-u7C" firstAttribute="leading" secondItem="bbW-QW-gfc" secondAttribute="trailing" constant="8" id="yqO-Ns-dAg"/>
                 </constraints>
             </tableViewCellContentView>

@@ -22,15 +22,6 @@ class ECMenuViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if (!UIAccessibilityIsReduceTransparencyEnabled()) {
-            tableView.backgroundColor = UIColor.clearColor()
-            let blurEffect = UIBlurEffect(style: .Light)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            tableView.backgroundView = blurEffectView
-            
-            //if you want translucent vibrant table view separator lines
-            tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
-        }
         
         self.userNameLabel.text = (ECCoreManager.sharedInstance.currentUser?.userFirstName)! + " " + (ECCoreManager.sharedInstance.currentUser?.userLastName)!
         self.userRoleLabel.text = ECCoreManager.sharedInstance.currentUser?.userRole.ec_enumName()
@@ -49,23 +40,6 @@ class ECMenuViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0:
-            return 150
-        case 1:
-            return 50
-        case 2:
-            return 50
-        case 3:
-            return 50
-        case 4:
-            return 70
-        default:
-            return 0
-        }
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
