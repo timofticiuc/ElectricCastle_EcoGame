@@ -86,8 +86,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-ecoGame/AFNetworking.framework"
   install_framework "Pods-ecoGame/KDCircularProgress.framework"
+  install_framework "Pods-ecoGame/QRCodeReader.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-ecoGame/AFNetworking.framework"
   install_framework "Pods-ecoGame/KDCircularProgress.framework"
+  install_framework "Pods-ecoGame/QRCodeReader.framework"
 fi

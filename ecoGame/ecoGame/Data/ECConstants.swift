@@ -27,9 +27,10 @@ public enum ECUserRole: Int32 {
 
 let kCurrentUserId           = "kCurrentUserId"
 let kCurrentSessionTimeStamp = "kCurrentSessionTimeStamp"
-let kTitle                   = "title"
-let kDescription             = "description"
-let kScore                   = "score"
+let kTitle                   = "kTitle"
+let kDescription             = "kDescription"
+let kScore                   = "kScore"
+let kAction                  = "kAction"
 
 struct ECConstants {
     struct user {

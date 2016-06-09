@@ -42,7 +42,6 @@ class ECCategoriesController: UICollectionViewController {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let defaultWidth = (collectionView.frame.size.width / 3) - kMinLineSpacing
         return CGSizeMake(200, 250)
     }
     

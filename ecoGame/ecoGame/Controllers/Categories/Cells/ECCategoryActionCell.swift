@@ -10,12 +10,14 @@ import UIKit
 
 protocol ECCategoryActionCellDelegate {
     func actionCell(cell: ECCategoryActionCell, hasChangedScore score: Int)
+    func actionCell(cell: ECCategoryActionCell, requestsActionForIndex index: Int)
 }
 
 class ECCategoryActionCell: UITableViewCell {
     @IBOutlet private weak var actionTitleLabel:UILabel!
     @IBOutlet private weak var actionDescriptionLabel:UILabel!
     @IBOutlet private weak var actionScoreLabel:UILabel!
+    private var hasAction: Bool = false
     var delegate:ECCategoryActionCellDelegate? = nil
     var scoreMultiplier:Int = 0
     var index:Int = 0
@@ -29,6 +31,11 @@ class ECCategoryActionCell: UITableViewCell {
         didSet {
             self.actionTitleLabel.text = actionDictionary[kTitle] as? String
             self.actionDescriptionLabel.text = actionDictionary[kDescription] as? String
+            if (actionDictionary[kAction] != nil) {
+                if actionDictionary[kAction] as! Bool == true {
+                    self.hasAction = true
+                }
+            }
         }
     }
     
@@ -44,8 +51,12 @@ class ECCategoryActionCell: UITableViewCell {
     }
     
     @IBAction func didTapPlusButton() {
-        self.actionScore += 1
-        self.delegate?.actionCell(self, hasChangedScore: self.actionScore * scoreMultiplier)
+        if self.hasAction {
+            self.delegate?.actionCell(self, requestsActionForIndex: self.index)
+        } else {
+            self.actionScore += 1
+            self.delegate?.actionCell(self, hasChangedScore: self.actionScore * scoreMultiplier)
+        }
     }
     
     @IBAction func didTapMinusButton() {

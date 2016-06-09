@@ -28,6 +28,9 @@
 		2534D34D1CBF00D7003A9195 /* ECSearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534D34C1CBF00D7003A9195 /* ECSearchHeaderView.swift */; };
 		2534D34F1CBF00F2003A9195 /* ECSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2534D34E1CBF00F2003A9195 /* ECSearchHeaderView.xib */; };
 		2534D3511CBF02C8003A9195 /* UIVIew+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534D3501CBF02C8003A9195 /* UIVIew+ECAdditions.swift */; };
+		254394AC1D08DC19001F079C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254394AB1D08DC19001F079C /* AVFoundation.framework */; };
+		254394AF1D08E900001F079C /* ECActionInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254394AE1D08E900001F079C /* ECActionInputController.swift */; };
+		254394B11D08EFDE001F079C /* ECCarbonFootprintController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254394B01D08EFDE001F079C /* ECCarbonFootprintController.swift */; };
 		2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543CCF81CBA954C00EA677B /* ECLoginController.swift */; };
 		2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */; };
 		25594D6F1CEE86FF000B4561 /* ECConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25594D6E1CEE86FF000B4561 /* ECConstants.swift */; };
@@ -97,6 +100,9 @@
 		2534D34C1CBF00D7003A9195 /* ECSearchHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSearchHeaderView.swift; sourceTree = "<group>"; };
 		2534D34E1CBF00F2003A9195 /* ECSearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSearchHeaderView.xib; sourceTree = "<group>"; };
 		2534D3501CBF02C8003A9195 /* UIVIew+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIVIew+ECAdditions.swift"; sourceTree = "<group>"; };
+		254394AB1D08DC19001F079C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		254394AE1D08E900001F079C /* ECActionInputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECActionInputController.swift; sourceTree = "<group>"; };
+		254394B01D08EFDE001F079C /* ECCarbonFootprintController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCarbonFootprintController.swift; sourceTree = "<group>"; };
 		2543CCF81CBA954C00EA677B /* ECLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECLoginController.swift; sourceTree = "<group>"; };
 		2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ECAdditions.swift"; sourceTree = "<group>"; };
 		25594D6E1CEE86FF000B4561 /* ECConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECConstants.swift; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254394AC1D08DC19001F079C /* AVFoundation.framework in Frameworks */,
 				25728F651CB1C8690063C7E3 /* CoreData.framework in Frameworks */,
 				7072DE3D9AC1CACE8A2ADC01 /* Pods_ecoGame.framework in Frameworks */,
 			);
@@ -164,7 +171,6 @@
 		2513BAF11CA9AF3A00CC9C7E = {
 			isa = PBXGroup;
 			children = (
-				25728F641CB1C8690063C7E3 /* CoreData.framework */,
 				2513BAFC1CA9AF3A00CC9C7E /* ecoGame */,
 				2513BB131CA9AF3A00CC9C7E /* ecoGameTests */,
 				2513BB1E1CA9AF3A00CC9C7E /* ecoGameUITests */,
@@ -289,6 +295,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		254394AD1D08E8DA001F079C /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				254394AE1D08E900001F079C /* ECActionInputController.swift */,
+				254394B01D08EFDE001F079C /* ECCarbonFootprintController.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
 		2543CCF51CBA8A7C00EA677B /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +333,7 @@
 		25752E861CD7A8ED004040CB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				254394AD1D08E8DA001F079C /* Actions */,
 				25752E891CD7A952004040CB /* Cells */,
 				25752E871CD7A901004040CB /* ECCategoriesController.swift */,
 				25FC6D361CF51EAE00D06D21 /* ECCategoryController.swift */,
@@ -356,6 +372,8 @@
 		80612B95B3E714FD7C415420 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25728F641CB1C8690063C7E3 /* CoreData.framework */,
+				254394AB1D08DC19001F079C /* AVFoundation.framework */,
 				CD2B3B446B52172628CA2D92 /* Pods_ecoGame.framework */,
 			);
 			name = Frameworks;
@@ -571,6 +589,7 @@
 				25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */,
 				2534D3511CBF02C8003A9195 /* UIVIew+ECAdditions.swift in Sources */,
 				258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */,
+				254394AF1D08E900001F079C /* ECActionInputController.swift in Sources */,
 				25594D6F1CEE86FF000B4561 /* ECConstants.swift in Sources */,
 				25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */,
 				2534D34D1CBF00D7003A9195 /* ECSearchHeaderView.swift in Sources */,
@@ -581,6 +600,7 @@
 				25FC6D3A1CF528D600D06D21 /* ECCategoryActionCell.swift in Sources */,
 				25728F631CB1C8530063C7E3 /* ECSeralizableObject.swift in Sources */,
 				2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */,
+				254394B11D08EFDE001F079C /* ECCarbonFootprintController.swift in Sources */,
 				2502B6D41CBC553200F7DC28 /* KeychainSwift.swift in Sources */,
 				2593FC2E1D06352100F93DD0 /* ECAgreementController.swift in Sources */,
 				2502B6D71CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift in Sources */,
