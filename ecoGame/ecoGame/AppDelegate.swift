@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -29,6 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ec_green()]
         UIBarButtonItem.appearance().tintColor = UIColor.ec_green()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("4895df84f5d34c938adec490e6e3197d")
+        // Do some additional configuration if needed here
+        BITHockeyManager.sharedHockeyManager().startManager()
+        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+
 
         return true
     }

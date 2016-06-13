@@ -8,6 +8,7 @@ target 'ecoGame' do
 pod 'KDCircularProgress', '~> 1.4'
 pod 'AFNetworking', '~> 3.1'
 pod 'QRCodeReader.swift', '~> 6.0.0'
+pod 'HockeySDK', '~> 4.0'
 
 end
 
