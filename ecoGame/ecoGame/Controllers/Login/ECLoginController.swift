@@ -29,22 +29,24 @@ class ECLoginController: UITableViewController {
     }
     
     @IBAction func loginAction() {
-        let dummyUser:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(arc4random()%32767)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-        dummyUser.userFirstName = "Gheo"
-        dummyUser.userLastName  = "Aglanetasului"
-        dummyUser.userPhone = "0000000000"
-        dummyUser.userAddress = "Default address"
-        dummyUser.userEmail = "mail@provider.com"
-        dummyUser.userPasswordHash = String(self.userPasswordField.text?.hash)
-        dummyUser.userRole = .ECUserRoleAdmin
-        dummyUser.userCategories = dummyUser.defaultCategories()
-        
-        ECCoreManager.sharedInstance.currentUser = dummyUser
-        ECCoreManager.sharedInstance.currentSessionTimeStamp = NSDate()
-        ECCoreManager.sharedInstance.storeManager.saveContext()
-
-        self.dismissViewControllerAnimated(true) {
+        ECCoreManager.sharedInstance.loginWithCredentials(self.userNameField.text!, andPasswordHash: String(self.userPasswordField.text!.hash)) { (user) in
+            if user == nil {
+                let alertController = UIAlertController(title: "Alert", message: "Login failed", preferredStyle: .Alert)
+                
+                let defaultAction = UIAlertAction(title: "Ok", style: .Destructive, handler: nil)
+                alertController.addAction(defaultAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                return
+            }
             
+            ECCoreManager.sharedInstance.currentUser = user
+            ECCoreManager.sharedInstance.currentSessionTimeStamp = NSDate()
+            ECCoreManager.sharedInstance.storeManager.saveContext()
+            
+            self.dismissViewControllerAnimated(true) {
+                
+            }
         }
     }
     

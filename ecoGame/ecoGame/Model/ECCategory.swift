@@ -99,8 +99,9 @@ class ECCategory: ECSeralizableObject {
                     kScore:ECConstants.ECCategoryLevel.Angel.ec_value()],
                     [kTitle:"ECO-match / ECO Quiz",
                     kDescription:"ECO Quiz este o aplicatie pe care am dezvoltat-o anul trecut sub forma de intrebari si raspunsuri din zona eco, si il vom folosi daca nu dezvoltam aplicatia ECO Match. ECO Match este o aplicatie care combina oamenii singuri, in functie de obiceiurile si preferintele lor eco.",
-                    kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()]]
-        case .Waste: 
+                    kScore:ECConstants.ECCategoryLevel.Guardian.ec_value(),
+                    kAction:true]]
+        case .Waste:
             return [[kTitle:"Collect 30 waste packages",
                     kDescription:"Pe desen va arata ce poti aduce la reciclat (doze de aluminiu, pachete de tigari, sticle de plastic). In functie de cate aduci, primesti punctajul corespunzator.",
                     kScore:ECConstants.ECCategoryLevel.Legend.ec_value()],

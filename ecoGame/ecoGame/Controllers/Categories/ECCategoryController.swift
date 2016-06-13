@@ -102,6 +102,15 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             break
             
+        case .Social:
+            switch index {
+            case 2:
+                break
+            default:
+                return
+            }
+            break
+            
         default:
             return
         }

@@ -27,10 +27,7 @@ class ECRequestManager: NSObject {
             completion(users: usersArray)
             
         }) { (task: NSURLSessionDataTask?, error: NSError) in
-            let status = task?.response as! NSHTTPURLResponse
-            if status == 200 {
-                completion(users: [])
-            }
+            completion(users: [])
         }
     }
     
@@ -44,12 +41,11 @@ class ECRequestManager: NSObject {
             let status = task?.response as! NSHTTPURLResponse
             if status.statusCode == 200 {
                 completion(success: true)
-            }
-        }) { (task: NSURLSessionDataTask?, error: NSError) in
-            let status = task?.response as! NSHTTPURLResponse
-            if status == 200 {
+            } else {
                 completion(success: false)
             }
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+            completion(success: false)
         }
     }
     
@@ -63,12 +59,11 @@ class ECRequestManager: NSObject {
             let status = task?.response as! NSHTTPURLResponse
             if status.statusCode == 200 {
                 completion(success: true)
-            }
-        }) { (task: NSURLSessionDataTask?, error: NSError) in
-            let status = task?.response as! NSHTTPURLResponse
-            if status == 200 {
+            } else {
                 completion(success: false)
             }
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+            completion(success: false)
         }
     }
     
@@ -83,10 +78,28 @@ class ECRequestManager: NSObject {
                 completion(success: true)
             }
         }) { (task: NSURLSessionDataTask?, error: NSError) in
+            completion(success: false)
+        }
+    }
+    
+    func loginWithCredentials(userIdentifier: String, andPasswordHash passwordHash:String, withCompletion completion: (userDictionary: Dictionary<String, AnyObject>?) -> Void) {
+        let url = "http://www.mainoi.ro/service/login_api.php/login"
+        
+        let bodyDict = ["login_identifier":userIdentifier,
+                        "login_password_hash":passwordHash]
+        self.manager.POST(url, parameters: bodyDict, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(userDictionary: nil); return }
+            guard let userDict = responseDict["data"] as? Dictionary<String, AnyObject> else { completion(userDictionary: nil); return }
+
+            NSLog("%@", responseDict)
             let status = task?.response as! NSHTTPURLResponse
-            if status == 200 {
-                completion(success: false)
+            if status.statusCode == 200 {
+                completion(userDictionary: userDict)
+            } else {
+                completion(userDictionary: nil)
             }
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+            completion(userDictionary: nil)
         }
     }
 }

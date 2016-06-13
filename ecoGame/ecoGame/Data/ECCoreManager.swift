@@ -42,6 +42,25 @@ class ECCoreManager: NSObject {
     
     //MARK: - Request methods
     
+    func loginWithCredentials(userIdentifier: String, andPasswordHash passwordHash:String, withCompletion completion: (user: ECUser?) -> Void) {
+        self.requestManager.loginWithCredentials(userIdentifier, andPasswordHash: passwordHash) { (userDictionary) in
+            if userDictionary == nil {
+                completion(user: nil)
+                return
+            }
+            
+            var newUserDict = userDictionary!
+            newUserDict["id"] = userDictionary!["user_unique_tag"]
+            let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(newUserDict, inContext: self.storeManager.managedObjectContext!) as! ECUser
+            if user.userCategories.count == 0 {
+                user.userCategories = user.defaultCategories()
+            }
+            
+            NSLog("%@", user)
+            completion(user: user)
+        }
+    }
+    
     func getUsers() {
         self.requestManager.fetchUsersWithCompletion { (users) in
             for userObj in users {

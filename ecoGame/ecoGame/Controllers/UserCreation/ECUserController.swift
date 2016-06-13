@@ -13,10 +13,11 @@ let kUserLastNameIndex   = 1
 let kUserPhoneIndex      = 2
 let kUserAddressIndex    = 3
 let kUserEmailIndex      = 4
-let kUserRoleIndex       = 5
-let kUserNewsletterIndex = 6
-let kUserRemoveIndex     = 7
-let kUserCategoriesIndex = 8
+let kUserPasswordIndex   = 5
+let kUserRoleIndex       = 6
+let kUserNewsletterIndex = 7
+let kUserRemoveIndex     = 8
+let kUserCategoriesIndex = 9
 
 protocol ECUserControllerDelegate {
     func userController(uc:ECUserController, hasCreatedUser user:ECUser)
@@ -24,16 +25,18 @@ protocol ECUserControllerDelegate {
     func userController(uc:ECUserController, hasDeletedUser user:ECUser)
 }
 
-class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreementDelegate {
+class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreementDelegate, UITextFieldDelegate {
     @IBOutlet var userFirstNameField: UITextField!
     @IBOutlet var userLastNameField: UITextField!
     @IBOutlet var userPhoneField: UITextField!
     @IBOutlet var userAddressField: UITextField!
     @IBOutlet var userEmailField: UITextField!
+    @IBOutlet var userPasswordField: UITextField!
     @IBOutlet var userRoleSegment: UISegmentedControl!
     @IBOutlet var userRemoveLabel: UILabel!
 
     private var isNewUser: Bool = false
+    private var hasChangedPassword:Bool = false
 
     var delegate:ECUserControllerDelegate? = nil
     var user:ECUser! = nil
@@ -42,6 +45,13 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         super.viewDidLoad()
         
         self.setupUI()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController.self .isKindOfClass(ECCategoriesController) {
+            (segue.destinationViewController as! ECCategoriesController).user = self.user
+            (segue.destinationViewController as! ECCategoriesController).delegate = self
+        }
     }
 
     func setupUI() {
@@ -59,6 +69,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
             self.userPhoneField.text = self.user.userPhone
             self.userAddressField.text = self.user.userAddress
             self.userEmailField.text = self.user.userEmail
+            self.userPasswordField.text = self.user.userPasswordHash
             self.userRoleSegment.selectedSegmentIndex = Int(self.user.userRole.rawValue)
         }
     }
@@ -98,6 +109,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.user.userPhone = self.userPhoneField.text!
         self.user.userAddress = self.userAddressField.text!
         self.user.userEmail = self.userEmailField.text!
+        self.user.userPasswordHash = String(self.userPasswordField.text!.hash)
         self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
         self.user.userCategories = self.user.defaultCategories()
         
@@ -110,11 +122,24 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.user.userPhone = self.userPhoneField.text!
         self.user.userAddress = self.userAddressField.text!
         self.user.userEmail = self.userEmailField.text!
+        self.user.userPasswordHash = (self.hasChangedPassword ? String(self.userPasswordField.text!.hash) : self.userPasswordField.text!)
         self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
         self.delegate?.userController(self, hasUpdatedUser: self.user)
     }
     
-    // MARK: - Methods
+    func removeUser(alert: UIAlertAction!) {
+        self.delegate?.userController(self, hasDeletedUser: self.user)
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        self.hasChangedPassword = true
+
+        return true
+    }
+    
+    // MARK: - Helper Methods
     
     func validatePhoneNumber(value: String) -> Bool {
         let PHONE_REGEX = "[-+]?[0-9]+"
@@ -122,26 +147,15 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         let result =  phonePredicate.evaluateWithObject(value)
         return result
     }
-
-    func removeUser(alert: UIAlertAction!) {
-        self.delegate?.userController(self, hasDeletedUser: self.user)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destinationViewController.self .isKindOfClass(ECCategoriesController) {
-            (segue.destinationViewController as! ECCategoriesController).user = self.user
-            (segue.destinationViewController as! ECCategoriesController).delegate = self
-        }
-    }
     
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 10
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row < 9 {
+        if indexPath.row < 10 {
             if let role = ECCoreManager.sharedInstance.currentUser?.userRole {
                 switch role {
                 case .ECUserRoleAdmin:
@@ -171,6 +185,9 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
                         } else {
                             return 600;
                         }
+                    } else if indexPath.row == kUserPasswordIndex {
+                        self.userPasswordField.hidden = true
+                        return 0;
                     }
                     return 70
                 default:
