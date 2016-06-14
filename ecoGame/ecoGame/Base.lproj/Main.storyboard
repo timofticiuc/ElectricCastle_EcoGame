@@ -846,6 +846,89 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
             </objects>
             <point key="canvasLocation" x="2777" y="376"/>
         </scene>
+        <!--Controller-->
+        <scene sceneID="y1U-J9-l5t">
+            <objects>
+                <viewController storyboardIdentifier="ECQRController" id="yeu-MJ-neN" customClass="ECQRController" customModule="ecoGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a1t-yJ-AsS"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZAo-aa-zcF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xf4-2a-gO3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vCX-CI-bSz">
+                                <rect key="frame" x="20" y="40" width="560" height="483"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rJ-XO-YaZ">
+                                <rect key="frame" x="225" y="531" width="150" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Mcc-RY-hMc"/>
+                                    <constraint firstAttribute="height" constant="49" id="f7Y-aS-ed7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneAction" destination="yeu-MJ-neN" eventType="touchUpInside" id="Kgf-Er-l5b"/>
+                                    <action selector="doneAction" destination="4H1-cm-5KK" eventType="touchUpInside" id="Wjh-JE-Lg3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gs4-cZ-5ru">
+                                <rect key="frame" x="67" y="531" width="150" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Hq8-i4-l7A"/>
+                                    <constraint firstAttribute="height" constant="49" id="nxj-J5-24s"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelAction" destination="4H1-cm-5KK" eventType="touchUpInside" id="lNm-ah-olR"/>
+                                    <action selector="cancelAction" destination="yeu-MJ-neN" eventType="touchUpInside" id="xYo-px-muz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ou6-Ro-g77">
+                                <rect key="frame" x="383" y="531" width="150" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="5oy-xu-oCW"/>
+                                    <constraint firstAttribute="width" constant="150" id="m5a-d8-kdJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="SCAN">
+                                    <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelAction" destination="4H1-cm-5KK" eventType="touchUpInside" id="PtE-AZ-Oc5"/>
+                                    <action selector="showQRScanner" destination="yeu-MJ-neN" eventType="touchUpInside" id="AbX-2j-4Bd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Gs4-cZ-5ru" firstAttribute="top" secondItem="vCX-CI-bSz" secondAttribute="bottom" constant="8" id="2K9-fa-Td2"/>
+                            <constraint firstItem="ZAo-aa-zcF" firstAttribute="top" secondItem="Gs4-cZ-5ru" secondAttribute="bottom" constant="20" id="Bcu-BA-E1U"/>
+                            <constraint firstItem="1rJ-XO-YaZ" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" id="Nr3-dO-qcK"/>
+                            <constraint firstItem="Ou6-Ro-g77" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" constant="158" id="Zfz-9s-FeH"/>
+                            <constraint firstItem="vCX-CI-bSz" firstAttribute="top" secondItem="a1t-yJ-AsS" secondAttribute="bottom" constant="20" id="akM-ab-0fw"/>
+                            <constraint firstItem="ZAo-aa-zcF" firstAttribute="top" secondItem="Ou6-Ro-g77" secondAttribute="bottom" constant="20" id="h6I-cW-2mu"/>
+                            <constraint firstAttribute="trailing" secondItem="vCX-CI-bSz" secondAttribute="trailing" constant="20" id="p4x-dw-zRp"/>
+                            <constraint firstItem="vCX-CI-bSz" firstAttribute="leading" secondItem="xf4-2a-gO3" secondAttribute="leading" constant="20" id="r3L-Dj-zEk"/>
+                            <constraint firstItem="ZAo-aa-zcF" firstAttribute="top" secondItem="1rJ-XO-YaZ" secondAttribute="bottom" constant="20" id="s8Z-sH-TzQ"/>
+                            <constraint firstItem="Gs4-cZ-5ru" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" constant="-158" id="zep-3e-vef"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="qrImageView" destination="vCX-CI-bSz" id="USz-a6-bGh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JMb-1b-Nfe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2677" y="1038"/>
+        </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
             <objects>

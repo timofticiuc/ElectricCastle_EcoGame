@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import QRCodeReader
-import AVFoundation
 
-class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDataSource, ECCategoryActionCellDelegate, ECActionInputDelegate, ECCarbonFootprintDelegate {
+class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDataSource, ECCategoryActionCellDelegate, ECActionInputDelegate, ECCarbonFootprintDelegate, ECQRDelegate {
     @IBOutlet private weak var tableView:UITableView!
-    lazy var readerVC = QRCodeReaderViewController(metadataObjectTypes: [AVMetadataObjectTypeQRCode])
 
     var category:ECCategory!
+    var user:ECUser!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,14 +117,13 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
     //MARK: - action methods
     
     func handleQRForCell(cell: ECCategoryActionCell) {
-        readerVC.completionBlock = { (result: QRCodeReaderResult?) in
-            cell.actionScore+=1
-            self.saveActionForCell(cell)
-        }
+        let qrVC: ECQRController = ECQRController.ec_createFromStoryboard() as! ECQRController
+        qrVC.qrDict = ["id":self.user.id]
+        qrVC.delegate = self
+        qrVC.targetActionCell = cell
         
-        // Presents the readerVC as modal form sheet
-        readerVC.modalPresentationStyle = .FormSheet
-        presentViewController(readerVC, animated: true, completion: nil)
+        qrVC.modalPresentationStyle = .FormSheet
+        self.presentViewController(qrVC, animated: true, completion: nil)
     }
     
     func handleCarbonFootprintForCell(cell: ECCategoryActionCell) {
@@ -134,7 +131,6 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         carbonVC.delegate = self
         carbonVC.targetActionCell = cell
         
-//        carbonVC.modalPresentationStyle = .FormSheet
         self.presentViewController(carbonVC, animated: true, completion: nil)
     }
     
@@ -166,5 +162,16 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         cfc.targetActionCell.actionScore+=1
         self.saveActionForCell(cfc.targetActionCell)
         cfc.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //MARK: - ECQRDelegate
+    
+    func qrController(qrc: ECQRController, hasScannedWithValue value: String) {
+        if value.characters.count == 0 {
+            return
+        }
+        qrc.targetActionCell.actionScore+=1
+        self.saveActionForCell(qrc.targetActionCell)
+        qrc.dismissViewControllerAnimated(true, completion: nil)
     }
 }

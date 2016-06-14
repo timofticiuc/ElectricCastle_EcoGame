@@ -33,6 +33,7 @@
 		254394B11D08EFDE001F079C /* ECCarbonFootprintController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254394B01D08EFDE001F079C /* ECCarbonFootprintController.swift */; };
 		2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543CCF81CBA954C00EA677B /* ECLoginController.swift */; };
 		2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */; };
+		2553CC7D1D0F7D9100CA0F42 /* ECQRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2553CC7C1D0F7D9100CA0F42 /* ECQRController.swift */; };
 		25594D6F1CEE86FF000B4561 /* ECConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25594D6E1CEE86FF000B4561 /* ECConstants.swift */; };
 		256771EF1CD9678A007769AB /* ECCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256771EE1CD9678A007769AB /* ECCategory.swift */; };
 		25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25728F5E1CB1C7F20063C7E3 /* ECStoreManager.swift */; };
@@ -105,6 +106,7 @@
 		254394B01D08EFDE001F079C /* ECCarbonFootprintController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCarbonFootprintController.swift; sourceTree = "<group>"; };
 		2543CCF81CBA954C00EA677B /* ECLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECLoginController.swift; sourceTree = "<group>"; };
 		2543CCFA1CBA99F600EA677B /* UIColor+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ECAdditions.swift"; sourceTree = "<group>"; };
+		2553CC7C1D0F7D9100CA0F42 /* ECQRController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECQRController.swift; sourceTree = "<group>"; };
 		25594D6E1CEE86FF000B4561 /* ECConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECConstants.swift; sourceTree = "<group>"; };
 		256771EE1CD9678A007769AB /* ECCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategory.swift; sourceTree = "<group>"; };
 		25728F5E1CB1C7F20063C7E3 /* ECStoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECStoreManager.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				254394AE1D08E900001F079C /* ECActionInputController.swift */,
 				254394B01D08EFDE001F079C /* ECCarbonFootprintController.swift */,
+				2553CC7C1D0F7D9100CA0F42 /* ECQRController.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2553CC7D1D0F7D9100CA0F42 /* ECQRController.swift in Sources */,
 				256771EF1CD9678A007769AB /* ECCategory.swift in Sources */,
 				25752E8F1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift in Sources */,
 				252C5A881CB05BB0006CC6F9 /* Selector+ECAdditions.swift in Sources */,

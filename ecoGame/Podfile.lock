@@ -18,18 +18,21 @@ PODS:
     - HockeySDK/AllFeaturesLib (= 4.0.1)
   - HockeySDK/AllFeaturesLib (4.0.1)
   - KDCircularProgress (1.4.0)
+  - QRCode (0.5)
   - QRCodeReader.swift (6.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1)
   - HockeySDK (~> 4.0)
   - KDCircularProgress (~> 1.4)
+  - QRCode (~> 0.5)
   - QRCodeReader.swift (~> 6.0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   HockeySDK: 1b69a82782f6a3d4a1c0b1f04dca4bca83fc8c82
   KDCircularProgress: f5770bbd83da909bf6cd96c2dea0b8bae45ec774
+  QRCode: a249ed747aeb0f4bf5f9c58b5b001b6b3bc80073
   QRCodeReader.swift: 4aa8b0f88847a51312d6ffd2cafc387962da9dd8
 
 COCOAPODS: 0.39.0

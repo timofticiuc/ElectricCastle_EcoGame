@@ -227,6 +227,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
     func categoriesController(cc: ECCategoriesController, hasSelectedCategory category: ECCategory) {
         let categoryVC: ECCategoryController = ECCategoryController.ec_createFromStoryboard() as! ECCategoryController
         categoryVC.category = category
+        categoryVC.user = self.user
         
         self.navigationController?.pushViewController(categoryVC, animated: true)
     }
