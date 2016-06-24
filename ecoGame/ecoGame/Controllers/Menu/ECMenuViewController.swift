@@ -23,6 +23,10 @@ class ECMenuViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        if ECCoreManager.sharedInstance.currentUser == nil {
+            return
+        }
+        
         self.userNameLabel.text = (ECCoreManager.sharedInstance.currentUser?.userFirstName)! + " " + (ECCoreManager.sharedInstance.currentUser?.userLastName)!
         self.userRoleLabel.text = ECCoreManager.sharedInstance.currentUser?.userRole.ec_enumName()
         self.userSessionLabel.text = "Online for: " + String(NSDate().offsetFrom(ECCoreManager.sharedInstance.currentSessionTimeStamp))

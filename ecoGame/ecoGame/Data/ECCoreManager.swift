@@ -40,7 +40,7 @@ class ECCoreManager: NSObject {
         requestManager = ECRequestManager()
     }
     
-    //MARK: - Request methods
+    //MARK: - User Request methods
     
     func loginWithCredentials(userIdentifier: String, andPasswordHash passwordHash:String, withCompletion completion: (user: ECUser?) -> Void) {
         self.requestManager.loginWithCredentials(userIdentifier, andPasswordHash: passwordHash) { (userDictionary) in
@@ -80,19 +80,35 @@ class ECCoreManager: NSObject {
     
     func createUser(user: ECUser) {
         self.requestManager.createUser(user) { (success) in
-            
+            for category:ECCategory in user.userCategories {
+                self.requestManager.createCategory(category, withCompletion: { (success) in
+                    
+                })
+            }
         }
     }
     
     func updateUser(user: ECUser) {
         self.requestManager.updateUser(user) { (success) in
-            
+            for category:ECCategory in user.userCategories {
+                self.requestManager.updateCategory(category, withCompletion: { (success) in
+                    
+                })
+            }
         }
     }
     
     func deleteUser(user: ECUser, withCompletion completion: (success: Bool) -> Void) {
         self.requestManager.deleteUser(user) { (success) in
             completion(success: success);
+        }
+    }
+    
+    //MARK: - Category Request methods
+
+    func updateCategory(category: ECCategory) {
+        self.requestManager.updateCategory(category) { (success) in
+            
         }
     }
 }

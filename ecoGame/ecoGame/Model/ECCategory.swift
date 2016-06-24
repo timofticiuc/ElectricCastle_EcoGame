@@ -28,26 +28,53 @@ class ECCategory: ECSeralizableObject {
     var categoryScores:[Int]! {
         get {
             var tempScores:[Int] = [Int]()
-            if scores.characters.count == 0 {
-                return []
-            }
-            let scoresArray = scores.componentsSeparatedByString(",")
-            for score in scoresArray {
-                tempScores.append(Int(score)!)
+            do {
+                let jsonScores = try NSJSONSerialization.JSONObjectWithData(scores.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.MutableLeaves)
+                for jsonScore in (jsonScores as? [AnyObject])!  {
+                    guard let score = jsonScore["value"]! else {
+                        tempScores.append(0)
+                        continue
+                    }
+                    tempScores.append(Int((score.integerValue)!))
+                }
+            } catch {
+                
             }
             
             return tempScores
         }
         set {
-            var tempScores = ""
-            for i in (0...newValue!.count - 1) {
-                tempScores += String(newValue[i])
-                if i != newValue.count - 1 {
-                    tempScores += ","
+            do {
+                var tempJSONScores = [Dictionary<String, AnyObject>]()
+                
+                for score in newValue! {
+                    tempJSONScores.append(["value" : score])
                 }
+                
+                let jsonData = try NSJSONSerialization.dataWithJSONObject(tempJSONScores, options: NSJSONWritingOptions(rawValue: 0))
+                self.scores = String(data: jsonData, encoding: NSUTF8StringEncoding)!
+            } catch {
+                self.scores = ""
             }
-            self.scores = tempScores
         }
+    }
+    
+    override func serializationKeyForAttribute(attribute: String) -> String? {
+        if attribute == "id" {
+            return "category_name"
+        } else if attribute == "level" {
+            return "category_level"
+        } else if attribute == "type" {
+            return "category_type"
+        } else if attribute == "scores" {
+            return "category_scores"
+        } else if attribute == "createdAt" {
+            return nil
+        } else if attribute == "categoryName" {
+            return nil
+        }
+        
+        return attribute
     }
     
     func actions() -> [Dictionary<String, AnyObject>] {
@@ -129,7 +156,7 @@ class ECCategory: ECSeralizableObject {
         case .Social:
             return [0,0,0]
         case .Waste: 
-            return [0,0,0,0]
+            return [0,0,0]
         case .Count: 
             return []
         }

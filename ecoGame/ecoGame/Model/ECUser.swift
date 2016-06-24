@@ -87,30 +87,23 @@ class ECUser: ECSeralizableObject {
     }
     
     func defaultCategories() -> [ECCategory] {
-        let count = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECCategory.fetchRequestForCategories(), error: nil))!
-        
-        var id = count
-        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Energy.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         energyCategory.categoryType = .Energy
         energyCategory.categoryScores = energyCategory.defaultScores()
         
-        id = count + 1
-        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Water.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         waterCategory.categoryType = .Water
         waterCategory.categoryScores = waterCategory.defaultScores()
         
-        id = count + 2
-        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Transport.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         transportCategory.categoryType = .Transport
         transportCategory.categoryScores = transportCategory.defaultScores()
         
-        id = count + 3
-        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Waste.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         wasteCategory.categoryType = .Waste
         wasteCategory.categoryScores = wasteCategory.defaultScores()
         
-        id = count + 4
-        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(self.id)\(id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Social.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         socialCategory.categoryType = .Social
         socialCategory.categoryScores = socialCategory.defaultScores()
         
@@ -119,7 +112,7 @@ class ECUser: ECSeralizableObject {
     
     static func fetchRequestForUsers() -> NSFetchRequest {
         let fr: NSFetchRequest = NSFetchRequest(entityName: String(self))
-        fr.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
+        fr.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         
         return fr
     }

@@ -102,4 +102,42 @@ class ECRequestManager: NSObject {
             completion(userDictionary: nil)
         }
     }
+    
+    //MARK: - Categories
+    
+    func createCategory(category:ECCategory, withCompletion completion: (success: Bool) -> Void) {
+        let url = self.baseUrl+"/category"
+        
+        NSLog("%@", category.dictionaryRepresentation!)
+        self.manager.POST(url, parameters: category.dictionaryRepresentation, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { return }
+            NSLog("%@", responseDict)
+            let status = task?.response as! NSHTTPURLResponse
+            if status.statusCode == 200 {
+                completion(success: true)
+            } else {
+                completion(success: false)
+            }
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+            completion(success: false)
+        }
+    }
+    
+    func updateCategory(category:ECCategory, withCompletion completion: (success: Bool) -> Void) {
+        let url = self.baseUrl+"/category/"+category.id
+        
+        NSLog("%@", category.dictionaryRepresentation!)
+        self.manager.PUT(url, parameters: category.dictionaryRepresentation, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { return }
+            NSLog("%@", responseDict)
+            let status = task?.response as! NSHTTPURLResponse
+            if status.statusCode == 200 {
+                completion(success: true)
+            } else {
+                completion(success: false)
+            }
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+            completion(success: false)
+        }
+    }
 }

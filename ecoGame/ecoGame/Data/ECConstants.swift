@@ -12,6 +12,7 @@ public enum ECUserRole: Int32 {
     case ECUserRoleParticipant = 0
     case ECUserRoleVolunteer
     case ECUserRoleAdmin
+    case ECUserRoleNone
     
     func ec_enumName() -> String {
         switch self {

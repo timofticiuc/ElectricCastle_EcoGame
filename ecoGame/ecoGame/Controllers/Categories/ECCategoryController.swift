@@ -58,10 +58,6 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: - ECCategoryActionCellDelegate
     
-    func actionCell(cell: ECCategoryActionCell, hasChangedScore score: Int) {
-        self.saveActionForCell(cell)
-    }
-    
     private func saveActionForCell(cell: ECCategoryActionCell) {
         self.category.categoryScores[cell.index] = cell.actionScore
         self.category.userLevel = ECConstants.ECCategoryLevel.Beginner
@@ -73,6 +69,11 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         ECCoreManager.sharedInstance.storeManager.saveContext()
+        ECCoreManager.sharedInstance.updateCategory(self.category)
+    }
+    
+    func actionCell(cell: ECCategoryActionCell, hasChangedScore score: Int) {
+        self.saveActionForCell(cell)
     }
     
     func actionCell(cell: ECCategoryActionCell, requestsActionForIndex index: Int) {

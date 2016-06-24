@@ -102,7 +102,8 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
     }
     
     private func createUser() {
-        let id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
+        var id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
+        id += Int(arc4random()%32767)
         self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
         self.user.userFirstName = self.userFirstNameField.text!
         self.user.userLastName = self.userLastNameField.text!

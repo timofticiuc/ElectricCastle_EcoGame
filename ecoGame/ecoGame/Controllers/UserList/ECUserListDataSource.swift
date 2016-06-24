@@ -17,6 +17,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     private var users: [ECUser] = [ECUser]()
     private var query: String!
+    private var userFilter: ECUserRole! = .ECUserRoleNone
     private var delegate: ECUsersDataSourceDelegate?
     private var tableView: UITableView!
     private var _frc: NSFetchedResultsController!
@@ -57,19 +58,24 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     }
     
     private func reloadData() {
-        let tempUsers:[ECUser] = (self.frc.fetchedObjects as? [ECUser])!
+        var tempUsers:[ECUser] = (self.frc.fetchedObjects as? [ECUser])!
         defer {
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         }
         
-        guard self.query.characters.count > 0 else {
-            self.users = tempUsers
-            return
+        if self.query.characters.count > 0 {
+            tempUsers = tempUsers.filter({
+                ($0.userFirstName.lowercaseString.hasPrefix(self.query!) || $0.userLastName.lowercaseString.hasPrefix(self.query!))
+            })
         }
         
-        self.users = tempUsers.filter({
-            ($0.userFirstName.lowercaseString.hasPrefix(self.query!) || $0.userLastName.lowercaseString.hasPrefix(self.query!))
-        })
+        if self.userFilter != .ECUserRoleNone {
+            tempUsers = tempUsers.filter({
+                ($0.userRole == self.userFilter)
+            })
+        }
+        
+        self.users = tempUsers
     }
     
     func addUser() {
@@ -80,6 +86,11 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func fetchWithQuery(query: String) {
         self.query = query
+        self.reloadData()
+    }
+    
+    func applyUserFilter(userType: ECUserRole) {
+        self.userFilter = userType
         self.reloadData()
     }
     

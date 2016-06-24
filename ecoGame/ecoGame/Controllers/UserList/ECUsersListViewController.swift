@@ -9,9 +9,12 @@
 import UIKit
 
 class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, ECSearchDelegate {
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchContainerView: UIView!
+    @IBOutlet weak var userSegmentControl: UISegmentedControl!
+    @IBOutlet weak var userSortButton: UIButton!
+    @IBOutlet weak var toolBarHeightConstraint: NSLayoutConstraint!
+
     private var _searchView: ECSearchHeaderView!
     private var searchView: ECSearchHeaderView! {
         get {
@@ -36,6 +39,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.toolBarHeightConstraint.constant = (ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleAdmin ? 100 : 50)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -48,6 +52,14 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self.dataSource, action: #selector(ECUsersDataSource.addUser))
         self.navigationItem.rightBarButtonItem = addButton
         self.searchContainerView.ec_addSubView(self.searchView, withInsets: UIEdgeInsetsZero)
+        self.userSegmentControl.selectedSegmentIndex = 3
+        self.userSortButton.layer.cornerRadius = 5
+        self.userSortButton.layer.borderColor = UIColor.ec_greenFaded().CGColor
+        self.userSortButton.layer.borderWidth = 1
+    }
+    
+    @IBAction func userRoleSegmentDidChangeValue(segmentControl: UISegmentedControl) {
+        self.dataSource?.applyUserFilter(ECUserRole(rawValue: Int32(segmentControl.selectedSegmentIndex))!)
     }
     
     // MARK: ECUserListDataSourceDelegate
