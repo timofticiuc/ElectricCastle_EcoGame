@@ -111,4 +111,16 @@ class ECCoreManager: NSObject {
             
         }
     }
+    
+    func getCategoryForId(id: String, withCompletion completion: (category: ECCategory?) -> Void) {
+        self.requestManager.getCategoryForId(id) { (categoryDict: Dictionary<String, AnyObject>?) in
+            if categoryDict != nil {
+                var newCategDict = categoryDict
+                newCategDict!["id"] = categoryDict!["category_name"]
+                let category:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(newCategDict!, inContext: self.storeManager.managedObjectContext!) as! ECCategory
+                category.dictionaryRepresentation = newCategDict
+                completion(category: category)
+            }
+        }
+    }
 }

@@ -35,6 +35,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
     @IBOutlet var userRoleSegment: UISegmentedControl!
     @IBOutlet var userRemoveLabel: UILabel!
 
+    private var categoriesCollectionController: ECCategoriesController!
     private var isNewUser: Bool = false
     private var hasChangedPassword:Bool = false
 
@@ -49,8 +50,9 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.destinationViewController.self .isKindOfClass(ECCategoriesController) {
-            (segue.destinationViewController as! ECCategoriesController).user = self.user
-            (segue.destinationViewController as! ECCategoriesController).delegate = self
+            self.categoriesCollectionController = segue.destinationViewController as! ECCategoriesController
+            self.categoriesCollectionController.user = self.user
+            self.categoriesCollectionController.delegate = self
         }
     }
 
@@ -71,6 +73,15 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
             self.userEmailField.text = self.user.userEmail
             self.userPasswordField.text = self.user.userPasswordHash
             self.userRoleSegment.selectedSegmentIndex = Int(self.user.userRole.rawValue)
+            
+            for category in self.user.userCategories {
+                ECCoreManager.sharedInstance.getCategoryForId(category.id, withCompletion: { (category) in
+                    ECCoreManager.sharedInstance.storeManager.saveContext()
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        self.categoriesCollectionController.collectionView?.reloadData()
+                    })
+                })
+            }
         }
     }
     

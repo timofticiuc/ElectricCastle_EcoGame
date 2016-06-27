@@ -36,7 +36,7 @@ class ECRequestManager: NSObject {
 
         NSLog("%@", user.dictionaryRepresentation!)
         self.manager.POST(url, parameters: user.dictionaryRepresentation, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
-            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { return }
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(success: false); return }
             NSLog("%@", responseDict)
             let status = task?.response as! NSHTTPURLResponse
             if status.statusCode == 200 {
@@ -54,7 +54,7 @@ class ECRequestManager: NSObject {
         
         NSLog("%@", user.dictionaryRepresentation!)
         self.manager.PUT(url, parameters: user.dictionaryRepresentation, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
-            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { return }
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(success: false); return }
             NSLog("%@", responseDict)
             let status = task?.response as! NSHTTPURLResponse
             if status.statusCode == 200 {
@@ -71,7 +71,7 @@ class ECRequestManager: NSObject {
         let url = self.baseUrl+"/user/"+user.id
         
         self.manager.DELETE(url, parameters: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
-            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { return }
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(success: false); return }
             NSLog("%@", responseDict)
             let status = task?.response as! NSHTTPURLResponse
             if status.statusCode == 200 {
@@ -110,7 +110,7 @@ class ECRequestManager: NSObject {
         
         NSLog("%@", category.dictionaryRepresentation!)
         self.manager.POST(url, parameters: category.dictionaryRepresentation, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
-            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { return }
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(success: false); return }
             NSLog("%@", responseDict)
             let status = task?.response as! NSHTTPURLResponse
             if status.statusCode == 200 {
@@ -128,7 +128,7 @@ class ECRequestManager: NSObject {
         
         NSLog("%@", category.dictionaryRepresentation!)
         self.manager.PUT(url, parameters: category.dictionaryRepresentation, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
-            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { return }
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(success: false); return }
             NSLog("%@", responseDict)
             let status = task?.response as! NSHTTPURLResponse
             if status.statusCode == 200 {
@@ -138,6 +138,24 @@ class ECRequestManager: NSObject {
             }
         }) { (task: NSURLSessionDataTask?, error: NSError) in
             completion(success: false)
+        }
+    }
+    
+    func getCategoryForId(id: String, withCompletion completion: (categoryDict: Dictionary<String, AnyObject>?) -> Void) {
+        let url = self.baseUrl+"/category/"+id
+        
+        self.manager.GET(url, parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(categoryDict: nil); return }
+            guard let categoryDict = responseDict["data"] as? Dictionary<String, AnyObject> else { completion(categoryDict: nil); return }
+            NSLog("%@", categoryDict)
+            let status = task?.response as! NSHTTPURLResponse
+            if status.statusCode == 200 {
+                completion(categoryDict: categoryDict)
+            } else {
+                completion(categoryDict: nil)
+            }
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+            completion(categoryDict: nil)
         }
     }
 }

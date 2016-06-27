@@ -49,7 +49,7 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.actionDictionary = self.category.actions()[indexPath.row]
         cell.scoreMultiplier = self.category.actions().count - indexPath.row
-        cell.actionScore = self.category.categoryScores[indexPath.row]
+        cell.actionScore = self.category.categoryScores[indexPath.row].score
         cell.delegate = self
         cell.index = indexPath.row
         
@@ -59,10 +59,17 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
     //MARK: - ECCategoryActionCellDelegate
     
     private func saveActionForCell(cell: ECCategoryActionCell) {
-        self.category.categoryScores[cell.index] = cell.actionScore
+        self.saveActionForCell(cell, withMetadata: "")
+    }
+    
+    private func saveActionForCell(cell: ECCategoryActionCell, withMetadata metadata: String) {
+        var _scores = self.category.categoryScores
+        _scores[cell.index].score = cell.actionScore
+        _scores[cell.index].metadata = metadata
+        self.category.categoryScores = _scores
         self.category.userLevel = ECConstants.ECCategoryLevel.Beginner
         for i in (0...self.category.actions().count - 1).reverse() {
-            if self.category.categoryScores[i] != 0 {
+            if self.category.categoryScores[i].score != 0 {
                 let level = self.category.actions()[i][kScore]?.intValue
                 self.category.userLevel = ECConstants.ECCategoryLevel(rawValue: level!)!
             }
@@ -119,7 +126,8 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func handleQRForCell(cell: ECCategoryActionCell) {
         let qrVC: ECQRController = ECQRController.ec_createFromStoryboard() as! ECQRController
-        qrVC.qrDict = ["id":self.user.id]
+        qrVC.qrDict = ["id":self.user.id,
+                       "name":self.user.userFirstName]
         qrVC.delegate = self
         qrVC.targetActionCell = cell
         
@@ -151,7 +159,7 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         ac.targetActionCell.actionScore+=1
-        self.saveActionForCell(ac.targetActionCell)
+        self.saveActionForCell(ac.targetActionCell, withMetadata:value)
     }
     
     //MARK: - ECCarbonFootprintDelegate
@@ -161,7 +169,7 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         cfc.targetActionCell.actionScore+=1
-        self.saveActionForCell(cfc.targetActionCell)
+        self.saveActionForCell(cfc.targetActionCell, withMetadata:value)
         cfc.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -171,8 +179,9 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         if value.characters.count == 0 {
             return
         }
+        
         qrc.targetActionCell.actionScore+=1
-        self.saveActionForCell(qrc.targetActionCell)
+        self.saveActionForCell(qrc.targetActionCell, withMetadata:value)
         qrc.dismissViewControllerAnimated(true, completion: nil)
     }
 }

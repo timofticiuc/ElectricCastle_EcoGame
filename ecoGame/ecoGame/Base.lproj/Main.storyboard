@@ -905,6 +905,15 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKI-YG-UoU">
+                                <rect key="frame" x="100.5" y="300.5" width="400" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="tWJ-em-69n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vCX-CI-bSz">
                                 <rect key="frame" x="20" y="40" width="560" height="483"/>
                             </imageView>
@@ -965,11 +974,14 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                             <constraint firstAttribute="trailing" secondItem="vCX-CI-bSz" secondAttribute="trailing" constant="20" id="p4x-dw-zRp"/>
                             <constraint firstItem="vCX-CI-bSz" firstAttribute="leading" secondItem="xf4-2a-gO3" secondAttribute="leading" constant="20" id="r3L-Dj-zEk"/>
                             <constraint firstItem="ZAo-aa-zcF" firstAttribute="top" secondItem="1rJ-XO-YaZ" secondAttribute="bottom" constant="20" id="s8Z-sH-TzQ"/>
+                            <constraint firstItem="qKI-YG-UoU" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" id="vTi-WZ-Flf"/>
+                            <constraint firstItem="qKI-YG-UoU" firstAttribute="centerY" secondItem="xf4-2a-gO3" secondAttribute="centerY" id="yGs-RA-t0J"/>
                             <constraint firstItem="Gs4-cZ-5ru" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" constant="-158" id="zep-3e-vef"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="qrImageView" destination="vCX-CI-bSz" id="USz-a6-bGh"/>
+                        <outlet property="scoreLabel" destination="qKI-YG-UoU" id="zGI-4L-yXn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMb-1b-Nfe" userLabel="First Responder" sceneMemberID="firstResponder"/>

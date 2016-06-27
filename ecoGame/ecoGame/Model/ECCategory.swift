@@ -25,17 +25,13 @@ class ECCategory: ECSeralizableObject {
         }
     }
     @NSManaged private var scores: String
-    var categoryScores:[Int]! {
+    var categoryScores:[ECScore]! {
         get {
-            var tempScores:[Int] = [Int]()
+            var tempScores:[ECScore] = [ECScore]()
             do {
                 let jsonScores = try NSJSONSerialization.JSONObjectWithData(scores.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.MutableLeaves)
                 for jsonScore in (jsonScores as? [AnyObject])!  {
-                    guard let score = jsonScore["value"]! else {
-                        tempScores.append(0)
-                        continue
-                    }
-                    tempScores.append(Int((score.integerValue)!))
+                    tempScores.append(ECScore(dictionary: jsonScore as! Dictionary<String, AnyObject>))
                 }
             } catch {
                 
@@ -47,8 +43,8 @@ class ECCategory: ECSeralizableObject {
             do {
                 var tempJSONScores = [Dictionary<String, AnyObject>]()
                 
-                for score in newValue! {
-                    tempJSONScores.append(["value" : score])
+                for score:ECScore in newValue! {
+                    tempJSONScores.append(["score" : score.score, "metadata" : score.metadata])
                 }
                 
                 let jsonData = try NSJSONSerialization.dataWithJSONObject(tempJSONScores, options: NSJSONWritingOptions(rawValue: 0))
@@ -75,6 +71,17 @@ class ECCategory: ECSeralizableObject {
         }
         
         return attribute
+    }
+    
+    override func serializationValueForAttribute(attribute: String, andValue value:AnyObject) -> AnyObject? {
+        if attribute == "level" ||
+           attribute == "type" {
+            let stringValue = value as! String
+            
+            return NSNumber(integer: Int(stringValue)!)
+        }
+        
+        return value
     }
     
     func actions() -> [Dictionary<String, AnyObject>] {
@@ -145,18 +152,18 @@ class ECCategory: ECSeralizableObject {
         return [];
     }
     
-    func defaultScores() -> [Int] {
+    func defaultScores() -> [ECScore] {
         switch self.categoryType {
         case .Energy:
-            return [0,0,0]
+            return [ECScore(),ECScore(),ECScore()]
         case .Water:
-            return [0,0,0]
+            return [ECScore(),ECScore(),ECScore()]
         case .Transport:
-            return [0,0,0,0]
+            return [ECScore(),ECScore(),ECScore(),ECScore()]
         case .Social:
-            return [0,0,0]
+            return [ECScore(),ECScore(),ECScore()]
         case .Waste: 
-            return [0,0,0]
+            return [ECScore(),ECScore(),ECScore()]
         case .Count: 
             return []
         }
