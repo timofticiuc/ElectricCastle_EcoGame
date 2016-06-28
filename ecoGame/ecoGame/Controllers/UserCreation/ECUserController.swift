@@ -34,6 +34,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
     @IBOutlet var userPasswordField: UITextField!
     @IBOutlet var userRoleSegment: UISegmentedControl!
     @IBOutlet var userRemoveLabel: UILabel!
+    @IBOutlet var userNewsletterSwitch: UISwitch!
 
     private var categoriesCollectionController: ECCategoriesController!
     private var isNewUser: Bool = false
@@ -112,7 +113,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    private func createUser() {
+    private func createUserWithTerms(agreedTerms: Bool) {
         var id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
         id += Int(arc4random()%32767)
         self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
@@ -124,6 +125,8 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.user.userPasswordHash = String(self.userPasswordField.text!.hash)
         self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
         self.user.userCategories = self.user.defaultCategories()
+        self.user.userNewsletter = self.userNewsletterSwitch.on
+        self.user.userTerms = agreedTerms
         
         self.delegate?.userController(self, hasCreatedUser: self.user)
     }
@@ -247,6 +250,6 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
     //MARK: - ECAgreementDelegate
     
     func agreementController(ac: ECAgreementController, hasCompletedWithSelectedTerms selectedTerms:Bool) {
-        self.createUser()
+        self.createUserWithTerms(selectedTerms)
     }
 }

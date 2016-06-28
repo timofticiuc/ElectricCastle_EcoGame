@@ -562,6 +562,7 @@
                         <outlet property="userEmailField" destination="O3A-16-CjX" id="H6W-My-YmG"/>
                         <outlet property="userFirstNameField" destination="wen-Kt-DGj" id="fM2-gq-ch6"/>
                         <outlet property="userLastNameField" destination="Ejp-t8-kpf" id="fXT-b9-cbL"/>
+                        <outlet property="userNewsletterSwitch" destination="edf-qt-j5c" id="5f1-2I-Rnp"/>
                         <outlet property="userPasswordField" destination="rP2-FK-DF5" id="toT-zN-gL0"/>
                         <outlet property="userPhoneField" destination="xtS-g4-yNp" id="269-AT-KR3"/>
                         <outlet property="userRemoveLabel" destination="kH5-sF-85E" id="3CH-kR-b2N"/>

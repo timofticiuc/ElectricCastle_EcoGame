@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="ECCategory" representedClassName="ECCategory" parentEntity="ECSerializableObject" syncable="YES">
         <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -17,12 +17,15 @@
         <attribute name="userEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userFirstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userNewsletter" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="userPasswordHash" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userQuizTerms" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="userTerms" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
         <element name="ECCategory" positionX="-54" positionY="18" width="128" height="105"/>
         <element name="ECSerializableObject" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="ECUser" positionX="-54" positionY="0" width="128" height="165"/>
+        <element name="ECUser" positionX="-54" positionY="0" width="128" height="210"/>
     </elements>
 </model>

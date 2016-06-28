@@ -17,6 +17,9 @@ class ECUser: ECSeralizableObject {
     @NSManaged var userLastName: String
     @NSManaged var userPasswordHash: String
     @NSManaged var userPhone: String
+    @NSManaged var userNewsletter: Bool
+    @NSManaged var userQuizTerms: Bool
+    @NSManaged var userTerms: Bool
     @NSManaged private var role: Int32
     var userRole:ECUserRole {
         get { return ECUserRole(rawValue: role) ?? .ECUserRoleParticipant }
@@ -71,6 +74,12 @@ class ECUser: ECSeralizableObject {
             return "user_phone"
         } else if attribute == "createdAt" {
             return nil
+        } else if attribute == "userNewsletter" {
+            return "user_newsletter"
+        } else if attribute == "userQuizTerms" {
+            return "user_terms_quiz_agreement"
+        } else if attribute == "userTerms" {
+            return "user_terms_agreement"
         }
         
         return attribute
