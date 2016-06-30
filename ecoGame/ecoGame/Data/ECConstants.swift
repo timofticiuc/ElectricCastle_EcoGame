@@ -32,6 +32,7 @@ let kTitle                   = "kTitle"
 let kDescription             = "kDescription"
 let kScore                   = "kScore"
 let kAction                  = "kAction"
+let kAgreementNotification   = "kAgreementNotification"
 
 struct ECConstants {
     struct user {
@@ -48,11 +49,12 @@ struct ECConstants {
     
     enum Category: Int32 {
         case Energy = 0
+        case Waste
         case Water
         case Transport
         case Social
-        case Waste
         case Count
+        case None
         
         func ec_enumName() -> String {
             switch self {

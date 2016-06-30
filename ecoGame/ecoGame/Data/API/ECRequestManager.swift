@@ -31,21 +31,22 @@ class ECRequestManager: NSObject {
         }
     }
     
-    func createUser(user:ECUser, withCompletion completion: (success: Bool) -> Void) {
+    func createUser(user:ECUser, withCompletion completion: (userDict:Dictionary<String, AnyObject>?, success: Bool) -> Void) {
         let url = self.baseUrl+"/user"
 
         NSLog("%@", user.dictionaryRepresentation!)
         self.manager.POST(url, parameters: user.dictionaryRepresentation, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
-            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(success: false); return }
+            guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(userDict:nil, success: false); return }
+            guard let userDict = responseDict["data"] as? Dictionary<String, AnyObject> else { completion(userDict:nil, success: false); return }
             NSLog("%@", responseDict)
             let status = task?.response as! NSHTTPURLResponse
             if status.statusCode == 200 {
-                completion(success: true)
+                completion(userDict: userDict, success: true)
             } else {
-                completion(success: false)
+                completion(userDict: nil, success: false)
             }
         }) { (task: NSURLSessionDataTask?, error: NSError) in
-            completion(success: false)
+            completion(userDict:nil, success: false)
         }
     }
     

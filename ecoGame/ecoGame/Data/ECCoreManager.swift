@@ -79,12 +79,24 @@ class ECCoreManager: NSObject {
     }
     
     func createUser(user: ECUser) {
-        self.requestManager.createUser(user) { (success) in
-            for category:ECCategory in user.userCategories {
-                self.requestManager.createCategory(category, withCompletion: { (success) in
-                    
-                })
+        self.requestManager.createUser(user) { (userDict: Dictionary<String, AnyObject>?, success) in
+            defer {
+                user.userCategories = user.defaultCategories()
+                for category:ECCategory in user.userCategories {
+                    self.requestManager.createCategory(category, withCompletion: { (success) in
+                        NSLog("%@", category)
+                    })
+                }
+                self.storeManager.saveContext()
             }
+            
+            if userDict == nil {
+                return
+            }
+            
+            guard let user_tag = userDict!["user_unique_tag"] as? String else { return }
+            
+            user.id = user_tag
         }
     }
     

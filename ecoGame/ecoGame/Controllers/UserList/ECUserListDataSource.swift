@@ -18,6 +18,8 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     private var users: [ECUser] = [ECUser]()
     private var query: String!
     private var userFilter: ECUserRole! = .ECUserRoleNone
+    private var userCategoryFilter: ECConstants.Category! = ECConstants.Category.None
+    private var userCategoryFilterAscending: Bool = false
     private var delegate: ECUsersDataSourceDelegate?
     private var tableView: UITableView!
     private var _frc: NSFetchedResultsController!
@@ -75,6 +77,22 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
             })
         }
         
+        if self.userCategoryFilter != ECConstants.Category.None {
+            tempUsers = tempUsers.sort({
+                let categoryIndex = Int(self.userCategoryFilter.rawValue)
+                NSLog("%@ %ld %@ %ld", $0.userFirstName, $0.userCategories.count, $1.userFirstName, $1.userCategories.count)
+
+                let score1 = $0.userCategories[categoryIndex].overallScore()
+                let score2 = $1.userCategories[categoryIndex].overallScore()
+                
+                
+                if self.userCategoryFilterAscending {
+                    return (score1 > score2)
+                }
+                return (score1 < score2)
+            })
+        }
+        
         self.users = tempUsers
     }
     
@@ -92,6 +110,14 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     func applyUserFilter(userType: ECUserRole) {
         self.userFilter = userType
         self.reloadData()
+    }
+    
+    func applyCategorySort(categ: ECConstants.Category, ascending: Bool) {
+        self.userCategoryFilterAscending = ascending
+        self.userCategoryFilter = categ
+        
+        self.reloadData()
+        self.userCategoryFilter = ECConstants.Category.None
     }
     
     // MARK: UIScrollViewDelegate
@@ -136,7 +162,6 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     // MARK: ECUserControllerDelegate
     func userController(uc:ECUserController, hasCreatedUser user:ECUser) {
-        ECCoreManager.sharedInstance.storeManager.saveContext()
         ECCoreManager.sharedInstance.createUser(user)
     }
     

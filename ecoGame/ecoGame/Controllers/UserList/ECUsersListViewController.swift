@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, ECSearchDelegate {
+class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, ECSearchDelegate, ECSortDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var userSegmentControl: UISegmentedControl!
@@ -62,6 +62,14 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.dataSource?.applyUserFilter(ECUserRole(rawValue: Int32(segmentControl.selectedSegmentIndex))!)
     }
     
+    @IBAction func sortAction() {
+        let sortController = ECSortController.ec_createFromStoryboard() as! ECSortController
+        sortController.delegate = self
+        
+        sortController.modalPresentationStyle = .FormSheet
+        self.presentViewController(sortController, animated: true, completion: nil)
+    }
+    
     // MARK: ECUserListDataSourceDelegate
     
     func dataSource(ds: ECUsersDataSource, wantsToShowViewController vc: UIViewController) {        
@@ -72,6 +80,12 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     func searchView(searchView: ECSearchHeaderView, didChangeQueryWithText query: String) {
         self.dataSource?.fetchWithQuery(query)
+    }
+    
+    //MARK: - ECSortDelegate
+    
+    func sortController(sc: ECSortController, hasSelectedCategory category: ECConstants.Category, withSortAsAscending ascending: Bool) {
+        self.dataSource?.applyCategorySort(category, ascending: ascending)
     }
 }
 

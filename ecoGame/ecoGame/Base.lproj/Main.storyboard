@@ -62,6 +62,9 @@
                                                     <state key="normal" title="Sort: Score">
                                                         <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="sortAction" destination="JEX-9P-axG" eventType="touchUpInside" id="j0P-ox-N9E"/>
+                                                    </connections>
                                                 </button>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GkO-6R-YQz">
                                                     <rect key="frame" x="25" y="59" width="376" height="29"/>
@@ -128,6 +131,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
+        </scene>
+        <!--Sort Controller-->
+        <scene sceneID="G9X-zi-bj0">
+            <objects>
+                <viewController storyboardIdentifier="ECSortController" id="1kY-jS-4wd" customClass="ECSortController" customModule="ecoGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q1Y-9r-5em"/>
+                        <viewControllerLayoutGuide type="bottom" id="JCa-dr-zt7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hiG-ts-VU9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4Y-zl-KIr">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="523"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="1kY-jS-4wd" id="yWJ-SK-i0P"/>
+                                    <outlet property="delegate" destination="1kY-jS-4wd" id="W61-lH-WZn"/>
+                                </connections>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azM-iI-sSF">
+                                <rect key="frame" x="304" y="531" width="150" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="DMh-ld-7Af"/>
+                                    <constraint firstAttribute="height" constant="49" id="Ngp-zh-2Qa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneAction" destination="1kY-jS-4wd" eventType="touchUpInside" id="9eV-sY-lTe"/>
+                                    <action selector="doneAction" destination="4H1-cm-5KK" eventType="touchUpInside" id="i9m-4E-YOX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qI7-cK-rm4">
+                                <rect key="frame" x="146" y="531" width="150" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="36e-OK-MmJ"/>
+                                    <constraint firstAttribute="width" constant="150" id="Cne-Wj-ojm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelAction" destination="4H1-cm-5KK" eventType="touchUpInside" id="5qb-g8-dGJ"/>
+                                    <action selector="cancelAction" destination="1kY-jS-4wd" eventType="touchUpInside" id="CoL-s8-EW9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="U4Y-zl-KIr" secondAttribute="trailing" id="150-5q-n0S"/>
+                            <constraint firstItem="U4Y-zl-KIr" firstAttribute="top" secondItem="hiG-ts-VU9" secondAttribute="top" id="Cwb-Lx-eqa"/>
+                            <constraint firstItem="azM-iI-sSF" firstAttribute="centerX" secondItem="hiG-ts-VU9" secondAttribute="centerX" constant="79" id="OBB-hn-D0d"/>
+                            <constraint firstItem="qI7-cK-rm4" firstAttribute="top" secondItem="U4Y-zl-KIr" secondAttribute="bottom" constant="8" id="SRr-w2-fam"/>
+                            <constraint firstItem="JCa-dr-zt7" firstAttribute="top" secondItem="azM-iI-sSF" secondAttribute="bottom" constant="20" id="Stb-Zw-34u"/>
+                            <constraint firstItem="U4Y-zl-KIr" firstAttribute="leading" secondItem="hiG-ts-VU9" secondAttribute="leading" id="eU6-vA-uQx"/>
+                            <constraint firstItem="JCa-dr-zt7" firstAttribute="top" secondItem="qI7-cK-rm4" secondAttribute="bottom" constant="20" id="lLa-e8-rhy"/>
+                            <constraint firstItem="qI7-cK-rm4" firstAttribute="centerX" secondItem="hiG-ts-VU9" secondAttribute="centerX" constant="-79" id="tIE-Gc-vA3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pickerView" destination="U4Y-zl-KIr" id="B01-5N-J1Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VAQ-DO-deN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="709" y="857"/>
         </scene>
         <!--User Controller-->
         <scene sceneID="edv-VD-jsl">
@@ -606,7 +680,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qb1-EM-7kc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2040" y="788"/>
+            <point key="canvasLocation" x="2112" y="788"/>
         </scene>
         <!--Agreement Controller-->
         <scene sceneID="8pb-OE-xwq">
@@ -744,7 +818,7 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0A-7S-N0S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2040" y="129"/>
+            <point key="canvasLocation" x="2112" y="129"/>
         </scene>
         <!--Action Input Controller-->
         <scene sceneID="vMA-T6-CMf">
@@ -824,7 +898,7 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQG-7b-5Va" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2577" y="-71"/>
+            <point key="canvasLocation" x="2649" y="-71"/>
         </scene>
         <!--Carbon Footprint Controller-->
         <scene sceneID="9OD-ai-SW3">
@@ -892,7 +966,7 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jJ-KR-b15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2777" y="376"/>
+            <point key="canvasLocation" x="2849" y="376"/>
         </scene>
         <!--Controller-->
         <scene sceneID="y1U-J9-l5t">
@@ -987,7 +1061,7 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMb-1b-Nfe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2677" y="1038"/>
+            <point key="canvasLocation" x="2749" y="1038"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

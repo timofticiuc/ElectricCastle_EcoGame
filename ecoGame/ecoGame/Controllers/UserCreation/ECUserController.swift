@@ -124,9 +124,9 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.user.userEmail = self.userEmailField.text!
         self.user.userPasswordHash = String(self.userPasswordField.text!.hash)
         self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
-        self.user.userCategories = self.user.defaultCategories()
         self.user.userNewsletter = self.userNewsletterSwitch.on
         self.user.userTerms = agreedTerms
+        self.user.userQuizTerms = false
         
         self.delegate?.userController(self, hasCreatedUser: self.user)
     }

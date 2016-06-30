@@ -145,7 +145,7 @@ class ECCategory: ECSeralizableObject {
                     [kTitle:"Collect 10 waste packages",
                     kDescription:"Pe desen va arata ce poti aduce la reciclat (doze de aluminiu, pachete de tigari, sticle de plastic). In functie de cate aduci, primesti punctajul corespunzator.",
                     kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()]]
-        case .Count:
+        default:
             break;
         }
         
@@ -164,9 +164,18 @@ class ECCategory: ECSeralizableObject {
             return [ECScore(),ECScore(),ECScore()]
         case .Waste: 
             return [ECScore(),ECScore(),ECScore()]
-        case .Count: 
+        default:
             return []
         }
+    }
+    
+    func overallScore() -> Int {
+        var scoreTotal = 0
+        for score:ECScore in self.categoryScores {
+            scoreTotal += score.score
+        }
+        
+        return scoreTotal
     }
     
     static func fetchRequestForCategories() -> NSFetchRequest {

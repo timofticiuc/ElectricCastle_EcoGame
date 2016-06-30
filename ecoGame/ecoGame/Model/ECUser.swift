@@ -86,7 +86,10 @@ class ECUser: ECSeralizableObject {
     }
     
     override func serializationValueForAttribute(attribute: String, andValue value:AnyObject) -> AnyObject? {
-        if attribute == "role" {
+        if attribute == "role" ||
+            attribute == "userNewsletter" ||
+            attribute == "userQuizTerms" ||
+            attribute == "userTerms" {
             let stringValue = value as! String
             
             return NSNumber(integer: Int(stringValue)!)

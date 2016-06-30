@@ -13,12 +13,14 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
 
     var category:ECCategory!
     var user:ECUser!
+    var quizActionCell:ECCategoryActionCell!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.tableView.ec_registerCell(ECCategoryActionCell)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(handleEcoQuizAgreementNotification), name: kAgreementNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -111,6 +113,7 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         case .Social:
             switch index {
             case 2:
+                self.handleEcoQuizForCell(cell)
                 break
             default:
                 return
@@ -152,6 +155,19 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         self.presentViewController(actionVC, animated: true, completion: nil)
     }
     
+    func handleEcoQuizForCell(cell: ECCategoryActionCell) {
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(self.user.dictionaryRepresentation!, options: NSJSONWritingOptions(rawValue: 0))
+            let userDictString = jsonData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+            let url  = NSURL(string: "ecoQuiz://user?userdict="+userDictString)
+            self.quizActionCell = cell
+            UIApplication.sharedApplication().openURL(url!)
+        }
+        catch {
+        }
+
+    }
+    
     //MARK: - ECActionInputDelegate
     
     func actionController(ac: ECActionInputController, hasInputedValue value: String) {
@@ -183,5 +199,16 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         qrc.targetActionCell.actionScore+=1
         self.saveActionForCell(qrc.targetActionCell, withMetadata:value)
         qrc.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //MARK: - EcoQuiz notification
+    
+    func handleEcoQuizAgreementNotification(notification: NSNotification) {
+        let agreed = notification.object as! Bool
+        
+        if agreed && (self.quizActionCell != nil) {
+            self.quizActionCell.actionScore += 1
+            self.saveActionForCell(self.quizActionCell)
+        }
     }
 }

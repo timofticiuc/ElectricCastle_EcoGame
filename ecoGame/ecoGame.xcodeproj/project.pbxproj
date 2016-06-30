@@ -45,6 +45,7 @@
 		25752E8C1CD7A96D004040CB /* ECCategoryOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25752E8A1CD7A96D004040CB /* ECCategoryOverviewCell.swift */; };
 		25752E8D1CD7A96D004040CB /* ECCategoryOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25752E8B1CD7A96D004040CB /* ECCategoryOverviewCell.xib */; };
 		25752E8F1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25752E8E1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift */; };
+		2578ECFE1D25CE7B00158527 /* ECSortController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578ECFD1D25CE7B00158527 /* ECSortController.swift */; };
 		258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */; };
 		2593FC2E1D06352100F93DD0 /* ECAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593FC2D1D06352100F93DD0 /* ECAgreementController.swift */; };
 		25A7924E1D1F43A40075E654 /* ECScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A7924D1D1F43A40075E654 /* ECScore.swift */; };
@@ -119,6 +120,7 @@
 		25752E8A1CD7A96D004040CB /* ECCategoryOverviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategoryOverviewCell.swift; sourceTree = "<group>"; };
 		25752E8B1CD7A96D004040CB /* ECCategoryOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECCategoryOverviewCell.xib; sourceTree = "<group>"; };
 		25752E8E1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ECAdditions.swift"; sourceTree = "<group>"; };
+		2578ECFD1D25CE7B00158527 /* ECSortController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSortController.swift; sourceTree = "<group>"; };
 		258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+ECAdditions.swift"; sourceTree = "<group>"; };
 		2593FC2D1D06352100F93DD0 /* ECAgreementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECAgreementController.swift; sourceTree = "<group>"; };
 		25A7924D1D1F43A40075E654 /* ECScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECScore.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				252C5A8E1CB067D4006CC6F9 /* Cells */,
 				252C5A8A1CB062D7006CC6F9 /* ECUsersListViewController.swift */,
 				252C5A8C1CB062E8006CC6F9 /* ECUserListDataSource.swift */,
+				2578ECFD1D25CE7B00158527 /* ECSortController.swift */,
 			);
 			path = UserList;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 				2502B6D81CBC56EE00F7DC28 /* TegKeychainConstants.swift in Sources */,
 				252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */,
 				252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */,
+				2578ECFE1D25CE7B00158527 /* ECSortController.swift in Sources */,
 				2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */,
 				25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */,
 				2534D3511CBF02C8003A9195 /* UIVIew+ECAdditions.swift in Sources */,
