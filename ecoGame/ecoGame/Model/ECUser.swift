@@ -99,23 +99,23 @@ class ECUser: ECSeralizableObject {
     }
     
     func defaultCategories() -> [ECCategory] {
-        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Energy.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Energy.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         energyCategory.categoryType = .Energy
         energyCategory.categoryScores = energyCategory.defaultScores()
         
-        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Water.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Water.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         waterCategory.categoryType = .Water
         waterCategory.categoryScores = waterCategory.defaultScores()
         
-        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Transport.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Transport.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         transportCategory.categoryType = .Transport
         transportCategory.categoryScores = transportCategory.defaultScores()
         
-        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Waste.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Waste.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         wasteCategory.categoryType = .Waste
         wasteCategory.categoryScores = wasteCategory.defaultScores()
         
-        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Social.ec_enumName())\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Social.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         socialCategory.categoryType = .Social
         socialCategory.categoryScores = socialCategory.defaultScores()
         

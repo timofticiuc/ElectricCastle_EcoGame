@@ -11,14 +11,21 @@ import UIKit
 class ECScore: NSObject {
     var score: Int = 0
     var metadata: String = ""
+    var action: String = ""
     
     convenience init(dictionary: Dictionary<String, AnyObject>) {
         self.init()
         
-        guard let _score = dictionary["score"] else { return }
-        self.score = Int(_score.integerValue!)
+        if let _score = dictionary["score"] {
+            self.score = Int(_score.integerValue!)
+        }
         
-        guard let _metadata = dictionary["metadata"] else { return }
-        self.metadata = String(_metadata)
+        if let _metadata = dictionary["metadata"] {
+            self.metadata = String(_metadata)
+        }
+        
+        if let _action = dictionary["action"] {
+            self.action = String(_action)
+        }
     }
 }

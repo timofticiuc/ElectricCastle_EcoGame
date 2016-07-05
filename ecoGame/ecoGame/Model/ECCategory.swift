@@ -44,7 +44,7 @@ class ECCategory: ECSeralizableObject {
                 var tempJSONScores = [Dictionary<String, AnyObject>]()
                 
                 for score:ECScore in newValue! {
-                    tempJSONScores.append(["score" : score.score, "metadata" : score.metadata])
+                    tempJSONScores.append(["score" : score.score, "metadata" : score.metadata, "action" : score.action])
                 }
                 
                 let jsonData = try NSJSONSerialization.dataWithJSONObject(tempJSONScores, options: NSJSONWritingOptions(rawValue: 0))
@@ -123,7 +123,10 @@ class ECCategory: ECSeralizableObject {
                     [kTitle:"By bus",
                     kDescription:"Cei cu autobuzul ne arata biletul de autobuz, cu destinatia Cluj sau Bontida.",
                     kScore:ECConstants.ECCategoryLevel.Guardian.ec_value(),
-                    kAction:true]]
+                    kAction:true],
+                    [kTitle:"Transport video",
+                    kDescription:"In fiecare seara vor fi filme din toate categoriile, in sesiuni. Participarea la o sesiune pe tema APA se puncteaza ca actiune. Voluntarii de la ECO CINEMA inscriu participantul in aplicatie la finalul sesiunii.",
+                    kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()]]
         case .Social:
             return [[kTitle:"Play the Gas Twist",
                     kDescription:"Pe formatul jocului twister, câte 2-4 participanți, ghidați de un arbitru-voluntar MAINOI, învață structurile atomice ale gazelor cu efect de seră, precum și efectele acestora asupra mediului înconjurător",
@@ -134,7 +137,10 @@ class ECCategory: ECSeralizableObject {
                     [kTitle:"ECO-match / ECO Quiz",
                     kDescription:"ECO Quiz este o aplicatie pe care am dezvoltat-o anul trecut sub forma de intrebari si raspunsuri din zona eco, si il vom folosi daca nu dezvoltam aplicatia ECO Match. ECO Match este o aplicatie care combina oamenii singuri, in functie de obiceiurile si preferintele lor eco.",
                     kScore:ECConstants.ECCategoryLevel.Guardian.ec_value(),
-                    kAction:true]]
+                    kAction:true],
+                    [kTitle:"Social video",
+                    kDescription:"In fiecare seara vor fi filme din toate categoriile, in sesiuni. Participarea la o sesiune pe tema APA se puncteaza ca actiune. Voluntarii de la ECO CINEMA inscriu participantul in aplicatie la finalul sesiunii.",
+                    kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()]]
         case .Waste:
             return [[kTitle:"Collect 30 waste packages",
                     kDescription:"Pe desen va arata ce poti aduce la reciclat (doze de aluminiu, pachete de tigari, sticle de plastic). In functie de cate aduci, primesti punctajul corespunzator.",
@@ -144,6 +150,9 @@ class ECCategory: ECSeralizableObject {
                     kScore:ECConstants.ECCategoryLevel.Angel.ec_value()],
                     [kTitle:"Collect 10 waste packages",
                     kDescription:"Pe desen va arata ce poti aduce la reciclat (doze de aluminiu, pachete de tigari, sticle de plastic). In functie de cate aduci, primesti punctajul corespunzator.",
+                        kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()],
+                    [kTitle:"Waste video",
+                    kDescription:"In fiecare seara vor fi filme din toate categoriile, in sesiuni. Participarea la o sesiune pe tema APA se puncteaza ca actiune. Voluntarii de la ECO CINEMA inscriu participantul in aplicatie la finalul sesiunii.",
                     kScore:ECConstants.ECCategoryLevel.Guardian.ec_value()]]
         default:
             break;
@@ -155,15 +164,29 @@ class ECCategory: ECSeralizableObject {
     func defaultScores() -> [ECScore] {
         switch self.categoryType {
         case .Energy:
-            return [ECScore(),ECScore(),ECScore()]
+            return [ECScore(dictionary: ["action":"Play the Pedals Battle "]),
+                    ECScore(dictionary: ["action":"Calculate your carbon footprint"]),
+                    ECScore(dictionary: ["action":"Watch a video about energy at the ECO Cinema"])]
         case .Water:
-            return [ECScore(),ECScore(),ECScore()]
+            return [ECScore(dictionary: ["action":"Take 5 minutes showers"]),
+                    ECScore(dictionary: ["action":"Shower in two"]),
+                    ECScore(dictionary: ["action":"Watch a video about water at the ECO Cinema"])]
         case .Transport:
-            return [ECScore(),ECScore(),ECScore(),ECScore()]
+            return [ECScore(dictionary: ["action":"Come to the festival by bicycle"]),
+                    ECScore(dictionary: ["action":"By train"]),
+                    ECScore(dictionary: ["action":"4 in a car"]),
+                    ECScore(dictionary: ["action":"By bus"]),
+                    ECScore(dictionary: ["action":"Transport Video"])]
         case .Social:
-            return [ECScore(),ECScore(),ECScore()]
+            return [ECScore(dictionary: ["action":"Play the Gas Twist"]),
+                    ECScore(dictionary: ["action":"Music Drives Change"]),
+                    ECScore(dictionary: ["action":"ECO Quiz"]),
+                    ECScore(dictionary: ["action":"Social video"])]
         case .Waste: 
-            return [ECScore(),ECScore(),ECScore()]
+            return [ECScore(dictionary: ["action":"Collect 30 waste packages"]),
+                    ECScore(dictionary: ["action":"Collect 20 waste packages"]),
+                    ECScore(dictionary: ["action":"Collect 10 waste packages"]),
+                    ECScore(dictionary: ["action":"Waste video"])]
         default:
             return []
         }

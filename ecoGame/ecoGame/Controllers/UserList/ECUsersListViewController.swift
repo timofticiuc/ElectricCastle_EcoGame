@@ -56,6 +56,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.userSortButton.layer.cornerRadius = 5
         self.userSortButton.layer.borderColor = UIColor.ec_greenFaded().CGColor
         self.userSortButton.layer.borderWidth = 1
+        self.userSortButton.setTitle("Sort: --", forState: .Normal)
     }
     
     @IBAction func userRoleSegmentDidChangeValue(segmentControl: UISegmentedControl) {
@@ -86,6 +87,8 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     func sortController(sc: ECSortController, hasSelectedCategory category: ECConstants.Category, withSortAsAscending ascending: Bool) {
         self.dataSource?.applyCategorySort(category, ascending: ascending)
+        let title = "Sort: " + category.ec_enumName() + (ascending ? ", ascending" : ", descending")
+        self.userSortButton.setTitle(title, forState: .Normal)
     }
 }
 
