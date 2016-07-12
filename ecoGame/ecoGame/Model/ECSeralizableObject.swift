@@ -12,6 +12,7 @@ import Foundation
 class ECSeralizableObject: NSManagedObject {
     @NSManaged var id: String
     @NSManaged var createdAt: NSDate
+    @NSManaged var dirty: Bool
 
     private var _dictionaryRepresentation: Dictionary<String, AnyObject>?
     var dictionaryRepresentation: Dictionary<String, AnyObject>? {

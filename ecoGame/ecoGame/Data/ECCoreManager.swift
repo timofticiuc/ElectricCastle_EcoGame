@@ -82,12 +82,16 @@ class ECCoreManager: NSObject {
         self.requestManager.createUser(user) { (userDict: Dictionary<String, AnyObject>?, success) in
             defer {
                 user.userCategories = user.defaultCategories()
+                self.storeManager.saveContext()
                 for category:ECCategory in user.userCategories {
                     self.requestManager.createCategory(category, withCompletion: { (success) in
                         NSLog("%@", category)
+                        if success {
+                            category.dirty = false
+                            self.storeManager.saveContext()
+                        }
                     })
                 }
-                self.storeManager.saveContext()
             }
             
             if userDict == nil {
@@ -96,16 +100,29 @@ class ECCoreManager: NSObject {
             
             guard let user_tag = userDict!["user_unique_tag"] as? String else { return }
             
+            user.dirty = false
             user.id = user_tag
         }
     }
     
     func updateUser(user: ECUser) {
+        if user.dirty {
+            self.createUser(user)
+            return
+        }
+        
         self.requestManager.updateUser(user) { (success) in
             for category:ECCategory in user.userCategories {
-                self.requestManager.updateCategory(category, withCompletion: { (success) in
-                    
-                })
+                if category.dirty {
+                    self.requestManager.createCategory(category, withCompletion: { (success) in
+                        category.dirty = false
+                        self.storeManager.saveContext()
+                    })
+                } else {
+                    self.requestManager.updateCategory(category, withCompletion: { (success) in
+                        self.storeManager.saveContext()
+                    })
+                }
             }
         }
     }
@@ -119,8 +136,15 @@ class ECCoreManager: NSObject {
     //MARK: - Category Request methods
 
     func updateCategory(category: ECCategory) {
-        self.requestManager.updateCategory(category) { (success) in
-            
+        if category.dirty {
+            self.requestManager.createCategory(category, withCompletion: { (success) in
+                category.dirty = false
+                self.storeManager.saveContext()
+            })
+        } else {
+            self.requestManager.updateCategory(category, withCompletion: { (success) in
+                self.storeManager.saveContext()
+            })
         }
     }
     

@@ -977,11 +977,11 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                         <viewControllerLayoutGuide type="bottom" id="ZAo-aa-zcF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xf4-2a-gO3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKI-YG-UoU">
-                                <rect key="frame" x="100.5" y="300.5" width="400" height="0.0"/>
+                                <rect key="frame" x="0.0" y="300" width="400" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="tWJ-em-69n"/>
                                 </constraints>
@@ -990,12 +990,15 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vCX-CI-bSz">
-                                <rect key="frame" x="20" y="40" width="560" height="483"/>
+                                <rect key="frame" x="20" y="40" width="360" height="360"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="360" id="ItU-Y0-OLf"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rJ-XO-YaZ">
-                                <rect key="frame" x="225" y="531" width="150" height="49"/>
+                                <rect key="frame" x="150" y="501" width="100" height="49"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Mcc-RY-hMc"/>
+                                    <constraint firstAttribute="width" constant="100" id="Mcc-RY-hMc"/>
                                     <constraint firstAttribute="height" constant="49" id="f7Y-aS-ed7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -1008,9 +1011,9 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gs4-cZ-5ru">
-                                <rect key="frame" x="67" y="531" width="150" height="49"/>
+                                <rect key="frame" x="42" y="501" width="100" height="49"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Hq8-i4-l7A"/>
+                                    <constraint firstAttribute="width" constant="100" id="Hq8-i4-l7A"/>
                                     <constraint firstAttribute="height" constant="49" id="nxj-J5-24s"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -1023,10 +1026,10 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ou6-Ro-g77">
-                                <rect key="frame" x="383" y="531" width="150" height="49"/>
+                                <rect key="frame" x="258" y="501" width="100" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="5oy-xu-oCW"/>
-                                    <constraint firstAttribute="width" constant="150" id="m5a-d8-kdJ"/>
+                                    <constraint firstAttribute="width" constant="100" id="m5a-d8-kdJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="SCAN">
@@ -1040,20 +1043,21 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Gs4-cZ-5ru" firstAttribute="top" secondItem="vCX-CI-bSz" secondAttribute="bottom" constant="8" id="2K9-fa-Td2"/>
-                            <constraint firstItem="ZAo-aa-zcF" firstAttribute="top" secondItem="Gs4-cZ-5ru" secondAttribute="bottom" constant="20" id="Bcu-BA-E1U"/>
+                            <constraint firstItem="1rJ-XO-YaZ" firstAttribute="leading" secondItem="Gs4-cZ-5ru" secondAttribute="trailing" constant="8" id="A5c-CB-b46"/>
+                            <constraint firstItem="Gs4-cZ-5ru" firstAttribute="centerY" secondItem="1rJ-XO-YaZ" secondAttribute="centerY" id="Idv-vo-6o3"/>
                             <constraint firstItem="1rJ-XO-YaZ" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" id="Nr3-dO-qcK"/>
-                            <constraint firstItem="Ou6-Ro-g77" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" constant="158" id="Zfz-9s-FeH"/>
                             <constraint firstItem="vCX-CI-bSz" firstAttribute="top" secondItem="a1t-yJ-AsS" secondAttribute="bottom" constant="20" id="akM-ab-0fw"/>
-                            <constraint firstItem="ZAo-aa-zcF" firstAttribute="top" secondItem="Ou6-Ro-g77" secondAttribute="bottom" constant="20" id="h6I-cW-2mu"/>
+                            <constraint firstItem="Ou6-Ro-g77" firstAttribute="centerY" secondItem="1rJ-XO-YaZ" secondAttribute="centerY" id="e9Y-nz-gTv"/>
+                            <constraint firstItem="Ou6-Ro-g77" firstAttribute="leading" secondItem="1rJ-XO-YaZ" secondAttribute="trailing" constant="8" id="kOg-Ig-w66"/>
                             <constraint firstAttribute="trailing" secondItem="vCX-CI-bSz" secondAttribute="trailing" constant="20" id="p4x-dw-zRp"/>
                             <constraint firstItem="vCX-CI-bSz" firstAttribute="leading" secondItem="xf4-2a-gO3" secondAttribute="leading" constant="20" id="r3L-Dj-zEk"/>
-                            <constraint firstItem="ZAo-aa-zcF" firstAttribute="top" secondItem="1rJ-XO-YaZ" secondAttribute="bottom" constant="20" id="s8Z-sH-TzQ"/>
+                            <constraint firstItem="ZAo-aa-zcF" firstAttribute="top" secondItem="1rJ-XO-YaZ" secondAttribute="bottom" constant="50" id="s8Z-sH-TzQ"/>
                             <constraint firstItem="qKI-YG-UoU" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" id="vTi-WZ-Flf"/>
                             <constraint firstItem="qKI-YG-UoU" firstAttribute="centerY" secondItem="xf4-2a-gO3" secondAttribute="centerY" id="yGs-RA-t0J"/>
-                            <constraint firstItem="Gs4-cZ-5ru" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" constant="-158" id="zep-3e-vef"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="600"/>
                     <connections>
                         <outlet property="qrImageView" destination="vCX-CI-bSz" id="USz-a6-bGh"/>
                         <outlet property="scoreLabel" destination="qKI-YG-UoU" id="zGI-4L-yXn"/>

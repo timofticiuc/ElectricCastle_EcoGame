@@ -32,6 +32,7 @@ let kTitle                   = "kTitle"
 let kDescription             = "kDescription"
 let kScore                   = "kScore"
 let kAction                  = "kAction"
+let kMultiplier              = "kMultiplier"
 let kAgreementNotification   = "kAgreementNotification"
 
 struct ECConstants {

@@ -74,6 +74,8 @@ class ECUser: ECSeralizableObject {
             return "user_phone"
         } else if attribute == "createdAt" {
             return nil
+        } else if attribute == "dirty" {
+            return nil
         } else if attribute == "userNewsletter" {
             return "user_newsletter"
         } else if attribute == "userQuizTerms" {
@@ -102,23 +104,28 @@ class ECUser: ECSeralizableObject {
         let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Energy.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         energyCategory.categoryType = .Energy
         energyCategory.categoryScores = energyCategory.defaultScores()
+        energyCategory.dirty = true
         
         let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Water.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         waterCategory.categoryType = .Water
         waterCategory.categoryScores = waterCategory.defaultScores()
+        waterCategory.dirty = true
         
         let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Transport.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         transportCategory.categoryType = .Transport
         transportCategory.categoryScores = transportCategory.defaultScores()
-        
+        transportCategory.dirty = true
+
         let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Waste.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         wasteCategory.categoryType = .Waste
         wasteCategory.categoryScores = wasteCategory.defaultScores()
-        
+        wasteCategory.dirty = true
+
         let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Social.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         socialCategory.categoryType = .Social
         socialCategory.categoryScores = socialCategory.defaultScores()
-        
+        socialCategory.dirty = true
+
         return [energyCategory, wasteCategory, waterCategory, transportCategory, socialCategory]
     }
     

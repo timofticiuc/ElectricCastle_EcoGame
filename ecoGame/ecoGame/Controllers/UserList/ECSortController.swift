@@ -71,7 +71,7 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
     
     @IBAction func doneAction() {
         let selectedCateg = self.pickerView.selectedRowInComponent(0)
-        let ascending = Bool(self.pickerView.selectedRowInComponent(1))
+        let ascending = !Bool(self.pickerView.selectedRowInComponent(1))
         self.delegate?.sortController(self, hasSelectedCategory: ECConstants.Category(rawValue:Int32(selectedCateg))! , withSortAsAscending: ascending)
         
         self.dismissViewControllerAnimated(true, completion: nil)

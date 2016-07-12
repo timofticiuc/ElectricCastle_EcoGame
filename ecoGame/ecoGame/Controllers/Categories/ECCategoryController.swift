@@ -50,7 +50,7 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell:ECCategoryActionCell = tableView.dequeueReusableCellWithIdentifier(String(ECCategoryActionCell), forIndexPath: indexPath) as! ECCategoryActionCell
         
         cell.actionDictionary = self.category.actions()[indexPath.row]
-        cell.scoreMultiplier = self.category.actions().count - indexPath.row
+        cell.scoreMultiplier = self.category.actions()[indexPath.row][kMultiplier]!.integerValue
         cell.actionScore = self.category.categoryScores[indexPath.row].score
         cell.delegate = self
         cell.index = indexPath.row
@@ -133,6 +133,9 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
                        "name":self.user.userFirstName]
         qrVC.delegate = self
         qrVC.targetActionCell = cell
+        
+        let value = UIInterfaceOrientation.Portrait.rawValue
+        UIDevice.currentDevice().setValue(value, forKey: "orientation")
         
         qrVC.modalPresentationStyle = .FormSheet
         self.presentViewController(qrVC, animated: true, completion: nil)

@@ -33,8 +33,9 @@ class ECQRController: UIViewController {
         let JSONText = String(self.qrDict!["id"]!) + ";" + String(self.qrDict!["name"]!)
         let qrCode = QRCode(JSONText)
         self.qrImageView.image = qrCode?.image
+        self.preferredContentSize = CGSizeMake(400, 700);
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

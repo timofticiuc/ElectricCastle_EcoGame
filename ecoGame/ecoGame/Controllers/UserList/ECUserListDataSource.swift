@@ -87,9 +87,9 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
                 
                 
                 if self.userCategoryFilterAscending {
-                    return (score1 > score2)
+                    return (score1 < score2)
                 }
-                return (score1 < score2)
+                return (score1 > score2)
             })
         }
         
@@ -162,11 +162,11 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     // MARK: ECUserControllerDelegate
     func userController(uc:ECUserController, hasCreatedUser user:ECUser) {
+        user.dirty = true
         ECCoreManager.sharedInstance.createUser(user)
     }
     
     func userController(uc:ECUserController, hasUpdatedUser user:ECUser) {
-        ECCoreManager.sharedInstance.storeManager.saveContext()
         ECCoreManager.sharedInstance.updateUser(user)
     }
     
