@@ -11,6 +11,7 @@ import Foundation
 class ECCoreManager: NSObject {
     static let sharedInstance = ECCoreManager()
     
+    var hasJustLoggedIn: Bool = false
     var storeManager: ECStoreManager
     var requestManager: ECRequestManager
     var currentSessionTimeStamp: NSDate {
@@ -31,6 +32,7 @@ class ECCoreManager: NSObject {
                 KeychainSwift().delete(kCurrentUserId)
                 return
             }
+            self.hasJustLoggedIn = true
             KeychainSwift().set(newValue!.id, forKey: kCurrentUserId)
         }
     }

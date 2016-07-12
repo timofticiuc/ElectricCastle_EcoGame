@@ -55,6 +55,12 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func fetchData() {
         // fetch data
+        if ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleVolunteer {
+            self.userFilter = .ECUserRoleParticipant
+        } else {
+            self.userFilter = .ECUserRoleNone
+        }
+        
         self.frc.ec_performFetch()
         ECCoreManager.sharedInstance.getUsers()
     }
