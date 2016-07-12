@@ -19,7 +19,7 @@
                             <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.0" colorSpace="calibratedRGB"/>
                             <color key="textColor" red="0.40000000000000002" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <action selector="searchFieldTextDidChange:" destination="iN0-l3-epB" eventType="editingChanged" id="E6J-Pw-1SY"/>
                                 <outlet property="delegate" destination="iN0-l3-epB" id="5EQ-3P-0qn"/>

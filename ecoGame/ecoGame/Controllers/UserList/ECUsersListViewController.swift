@@ -26,7 +26,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         }
     }
 
-    private var dataSource: ECUsersDataSource?
+    private var dataSource: ECUsersDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,8 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         
         self.dataSource = ECUsersDataSource.init(withDelegate: self, andTableView: self.tableView)
         self.configureView()
+        self.dataSource.fetchData()
+        self.dataSource.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {

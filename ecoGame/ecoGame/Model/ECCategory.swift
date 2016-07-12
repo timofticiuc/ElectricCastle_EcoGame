@@ -222,6 +222,17 @@ class ECCategory: ECSeralizableObject {
         return scoreTotal
     }
     
+    func scoreCompleteness() -> Int {
+        var scoreComplete = 0
+        for i in (0...self.categoryScores.count - 1) {
+            if self.categoryScores[i].score > 0 {
+                scoreComplete += 1
+            }
+        }
+        
+        return scoreComplete
+    }
+    
     static func fetchRequestForCategories() -> NSFetchRequest {
         let fr: NSFetchRequest = NSFetchRequest(entityName: String(self))
         fr.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]

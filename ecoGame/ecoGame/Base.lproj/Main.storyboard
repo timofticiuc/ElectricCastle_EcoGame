@@ -226,7 +226,7 @@
                                                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="namePhonePad"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLe-Jc-URc">
                                                     <rect key="frame" x="25" y="0.0" width="150" height="70"/>
@@ -272,7 +272,7 @@
                                                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="namePhonePad"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkw-z8-CtM">
                                                     <rect key="frame" x="25" y="0.0" width="150" height="70"/>
@@ -318,7 +318,7 @@
                                                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYD-lf-DLA">
                                                     <rect key="frame" x="25" y="0.0" width="80" height="70"/>
@@ -364,7 +364,7 @@
                                                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l84-37-2th">
                                                     <rect key="frame" x="25" y="0.0" width="100" height="70"/>
@@ -410,7 +410,7 @@
                                                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lju-SL-LBM">
                                                     <rect key="frame" x="25" y="0.0" width="80" height="70"/>
@@ -456,7 +456,7 @@
                                                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="0Fm-Rg-csq" id="rSA-MV-YUn"/>
                                                     </connections>
@@ -836,7 +836,7 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                                 <rect key="frame" x="20" y="52" width="360" height="50"/>
                                 <color key="textColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLZ-nV-nWB">
                                 <rect key="frame" x="204" y="110" width="150" height="49"/>

@@ -56,10 +56,9 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         // fetch data
         self.frc.ec_performFetch()
         ECCoreManager.sharedInstance.getUsers()
-        self.reloadData()
     }
     
-    private func reloadData() {
+    func reloadData() {
         var tempUsers:[ECUser] = (self.frc.fetchedObjects as? [ECUser])!
         defer {
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
@@ -80,7 +79,6 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         if self.userCategoryFilter != ECConstants.Category.None {
             tempUsers = tempUsers.sort({
                 let categoryIndex = Int(self.userCategoryFilter.rawValue)
-                NSLog("%@ %ld %@ %ld", $0.userFirstName, $0.userCategories.count, $1.userFirstName, $1.userCategories.count)
 
                 let score1 = $0.userCategories[categoryIndex].overallScore()
                 let score2 = $1.userCategories[categoryIndex].overallScore()
@@ -139,6 +137,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: ECUserListCell = tableView.dequeueReusableCellWithIdentifier(String(ECUserListCell), forIndexPath: indexPath) as! ECUserListCell
         
+        cell.index = indexPath.row + 1
         cell.user = self.users[indexPath.row]
         
         return cell
