@@ -18,6 +18,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     private var users: [ECUser] = [ECUser]()
     private var query: String!
     private var userFilter: ECUserRole! = .ECUserRoleNone
+    private var categoryFilter: ECConstants.Category! = ECConstants.Category.None
     private var userCategoryFilter: ECConstants.Category! = ECConstants.Category.None
     private var userCategoryFilterAscending: Bool = false
     private var delegate: ECUsersDataSourceDelegate?
@@ -76,6 +77,15 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
             })
         }
         
+        if self.categoryFilter != ECConstants.Category.None {
+            tempUsers = tempUsers.filter({
+                let categoryIndex = Int(self.categoryFilter.rawValue)
+                let score = $0.userCategories[categoryIndex].overallScore()
+                
+                return score > 0
+            })
+        }
+        
         if self.userCategoryFilter != ECConstants.Category.None {
             tempUsers = tempUsers.sort({
                 let categoryIndex = Int(self.userCategoryFilter.rawValue)
@@ -110,12 +120,16 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         self.reloadData()
     }
     
+    func applyCategoryFilter(categoryType: ECConstants.Category) {
+        self.categoryFilter = categoryType
+        self.reloadData()
+    }
+    
     func applyCategorySort(categ: ECConstants.Category, ascending: Bool) {
         self.userCategoryFilterAscending = ascending
         self.userCategoryFilter = categ
         
         self.reloadData()
-        self.userCategoryFilter = ECConstants.Category.None
     }
     
     // MARK: UIScrollViewDelegate

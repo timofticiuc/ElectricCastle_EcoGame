@@ -34,17 +34,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nit-26-Bkt">
-                                <rect key="frame" x="0.0" y="165" width="600" height="435"/>
+                                <rect key="frame" x="0.0" y="215" width="600" height="385"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.94999999999999996" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJq-rf-mbc" userLabel="toolBarView">
-                                <rect key="frame" x="0.0" y="65" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="65" width="600" height="150"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzt-xQ-qrO">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="a69-er-5fT">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4w-F6-YdA">
@@ -82,15 +82,33 @@
                                                         <action selector="userRoleSegmentDidChangeValue:" destination="JEX-9P-axG" eventType="valueChanged" id="9vU-qL-rh8"/>
                                                     </connections>
                                                 </segmentedControl>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ez2-7B-NPd">
+                                                    <rect key="frame" x="25" y="100" width="550" height="29"/>
+                                                    <segments>
+                                                        <segment title="Energy"/>
+                                                        <segment title="Waste"/>
+                                                        <segment title="Water"/>
+                                                        <segment title="Transport"/>
+                                                        <segment title="Social"/>
+                                                        <segment title="All"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="categorySegmentDidChangeValue:" destination="JEX-9P-axG" eventType="valueChanged" id="JiT-cG-Na3"/>
+                                                    </connections>
+                                                </segmentedControl>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="rSb-Et-XmZ" secondAttribute="trailing" constant="25" id="6UO-x5-xeV"/>
                                                 <constraint firstItem="GkO-6R-YQz" firstAttribute="leading" secondItem="a69-er-5fT" secondAttribute="leading" constant="25" id="cFK-Vc-JBD"/>
                                                 <constraint firstItem="rSb-Et-XmZ" firstAttribute="top" secondItem="p4w-F6-YdA" secondAttribute="bottom" constant="8" id="eMb-jB-PF2"/>
+                                                <constraint firstItem="Ez2-7B-NPd" firstAttribute="top" secondItem="rSb-Et-XmZ" secondAttribute="bottom" constant="10" id="fVc-1I-9eU"/>
                                                 <constraint firstAttribute="trailing" secondItem="p4w-F6-YdA" secondAttribute="trailing" id="gR4-CW-aJs"/>
                                                 <constraint firstItem="p4w-F6-YdA" firstAttribute="top" secondItem="a69-er-5fT" secondAttribute="top" id="jvW-nf-mjg"/>
                                                 <constraint firstItem="rSb-Et-XmZ" firstAttribute="leading" secondItem="GkO-6R-YQz" secondAttribute="trailing" constant="25" id="lYv-wf-88c"/>
                                                 <constraint firstItem="p4w-F6-YdA" firstAttribute="leading" secondItem="a69-er-5fT" secondAttribute="leading" id="o2m-xY-98d"/>
+                                                <constraint firstItem="Ez2-7B-NPd" firstAttribute="leading" secondItem="a69-er-5fT" secondAttribute="leading" constant="25" id="ocb-rU-bW0"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ez2-7B-NPd" secondAttribute="trailing" constant="25" id="sPm-c3-phG"/>
                                                 <constraint firstItem="GkO-6R-YQz" firstAttribute="top" secondItem="p4w-F6-YdA" secondAttribute="bottom" constant="9" id="zzy-l4-dVZ"/>
                                             </constraints>
                                         </view>
@@ -103,7 +121,7 @@
                                     <constraint firstAttribute="bottom" secondItem="hzt-xQ-qrO" secondAttribute="bottom" id="Pm8-fv-9Gd"/>
                                     <constraint firstAttribute="trailing" secondItem="hzt-xQ-qrO" secondAttribute="trailing" id="fzt-vz-EdD"/>
                                     <constraint firstItem="hzt-xQ-qrO" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" id="hBY-2I-d7h"/>
-                                    <constraint firstAttribute="height" constant="100" id="oNh-SM-PMx"/>
+                                    <constraint firstAttribute="height" constant="150" id="oNh-SM-PMx"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -121,6 +139,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Participants" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="categorySegmentControl" destination="Ez2-7B-NPd" id="gFw-Mg-UiD"/>
                         <outlet property="searchContainerView" destination="p4w-F6-YdA" id="dfc-8p-QPL"/>
                         <outlet property="tableView" destination="nit-26-Bkt" id="PbP-LP-bLp"/>
                         <outlet property="toolBarHeightConstraint" destination="oNh-SM-PMx" id="V6a-X7-Jgx"/>

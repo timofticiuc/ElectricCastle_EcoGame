@@ -12,6 +12,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var userSegmentControl: UISegmentedControl!
+    @IBOutlet weak var categorySegmentControl: UISegmentedControl!
     @IBOutlet weak var userSortButton: UIButton!
     @IBOutlet weak var toolBarHeightConstraint: NSLayoutConstraint!
 
@@ -41,7 +42,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.toolBarHeightConstraint.constant = (ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleAdmin ? 100 : 50)
+        self.toolBarHeightConstraint.constant = (ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleAdmin ? 150 : 50)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -55,6 +56,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.navigationItem.rightBarButtonItem = addButton
         self.searchContainerView.ec_addSubView(self.searchView, withInsets: UIEdgeInsetsZero)
         self.userSegmentControl.selectedSegmentIndex = 3
+        self.categorySegmentControl.selectedSegmentIndex = 5
         self.userSortButton.layer.cornerRadius = 5
         self.userSortButton.layer.borderColor = UIColor.ec_greenFaded().CGColor
         self.userSortButton.layer.borderWidth = 1
@@ -63,6 +65,14 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     @IBAction func userRoleSegmentDidChangeValue(segmentControl: UISegmentedControl) {
         self.dataSource?.applyUserFilter(ECUserRole(rawValue: Int32(segmentControl.selectedSegmentIndex))!)
+    }
+    
+    @IBAction func categorySegmentDidChangeValue(segmentControl: UISegmentedControl) {
+        var categType = ECConstants.Category(rawValue: Int32(segmentControl.selectedSegmentIndex))!
+        if segmentControl.selectedSegmentIndex == 5 {
+            categType = ECConstants.Category.None
+        }
+        self.dataSource?.applyCategoryFilter(categType)
     }
     
     @IBAction func sortAction() {
