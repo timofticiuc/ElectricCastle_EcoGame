@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import ReachabilitySwift
 
 class ECCoreManager: NSObject {
     static let sharedInstance = ECCoreManager()
     
-    var hasJustLoggedIn: Bool = false
+    var reachabilityManager: Reachability?
     var storeManager: ECStoreManager
     var requestManager: ECRequestManager
     var currentSessionTimeStamp: NSDate {
@@ -32,14 +33,46 @@ class ECCoreManager: NSObject {
                 KeychainSwift().delete(kCurrentUserId)
                 return
             }
-            self.hasJustLoggedIn = true
             KeychainSwift().set(newValue!.id, forKey: kCurrentUserId)
         }
     }
-
+    
     override init() {
         storeManager = ECStoreManager()
         requestManager = ECRequestManager()
+        
+        super.init()
+        
+        do {
+            self.reachabilityManager = try Reachability.reachabilityForInternetConnection()
+        } catch {
+            print("Unable to create Reachability")
+            return
+        }
+        
+        if let reachability = self.reachabilityManager {
+            reachability.whenReachable = { reachability in
+                self.sendDirtyUsers()
+            }
+            
+            do {
+                try reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    }
+    
+    //MARK: - Send dirty users when in wifi
+    
+    func sendDirtyUsers() {
+        do {
+            let allUsers = try self.storeManager.managedObjectContext?.executeFetchRequest(ECUser.fetchRequestForUsers()) as! [ECUser]
+            for user:ECUser in allUsers {
+                self.updateUser(user)
+            }
+        } catch {
+        }
     }
     
     //MARK: - User Request methods

@@ -38,6 +38,19 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         }
     }
     
+    var musicDrive: Bool = false {
+        didSet {
+           self.reloadData()
+        }
+    }
+    
+    var random: Bool = false {
+        didSet {
+            self.reloadData()
+            random = false
+        }
+    }
+    
     convenience init(withDelegate delegate:ECUsersDataSourceDelegate, andTableView tableView:UITableView) {
         self.init()
         
@@ -105,6 +118,19 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
                 }
                 return (score1 > score2)
             })
+        }
+        
+        if self.musicDrive {
+            tempUsers = tempUsers.filter({
+                let category:ECCategory = $0.userCategories[Int(ECConstants.Category.Social.rawValue)] as ECCategory
+                let musicScore = category.categoryScores[1].score
+                return musicScore > 0
+            })
+        }
+        
+        if self.random {
+            let randomIndex:Int = Int(arc4random()%UInt32(tempUsers.count))
+            tempUsers = [tempUsers[randomIndex]]
         }
         
         self.users = tempUsers

@@ -41,19 +41,14 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if ECCoreManager.sharedInstance.hasJustLoggedIn {
-            self.dataSource.fetchData()
-            self.dataSource.reloadData()
-            ECCoreManager.sharedInstance.hasJustLoggedIn = false
-        }
-        
+
         self.toolBarHeightConstraint.constant = (ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleAdmin ? 150 : 50)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.dataSource?.fetchData()
+        self.dataSource.fetchData()
+        self.dataSource.reloadData()
     }
 
     func configureView() {
@@ -86,6 +81,14 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         
         sortController.modalPresentationStyle = .FormSheet
         self.presentViewController(sortController, animated: true, completion: nil)
+    }
+    
+    @IBAction func sortByMusicDrive() {
+        self.dataSource.musicDrive = !self.dataSource.musicDrive
+    }
+    
+    @IBAction func getRandomUser() {
+        self.dataSource.random = true
     }
     
     // MARK: ECUserListDataSourceDelegate

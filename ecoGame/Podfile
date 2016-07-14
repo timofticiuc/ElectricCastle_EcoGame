@@ -10,6 +10,7 @@ pod 'AFNetworking', '~> 3.1'
 pod 'QRCodeReader.swift', '~> 6.0.0'
 pod 'HockeySDK', '~> 4.0'
 pod 'QRCode', '~> 0.5'
+pod 'ReachabilitySwift'
 
 end
 

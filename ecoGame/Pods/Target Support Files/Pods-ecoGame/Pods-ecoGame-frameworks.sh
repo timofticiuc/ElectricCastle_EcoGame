@@ -88,10 +88,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-ecoGame/KDCircularProgress.framework"
   install_framework "Pods-ecoGame/QRCode.framework"
   install_framework "Pods-ecoGame/QRCodeReader.framework"
+  install_framework "Pods-ecoGame/ReachabilitySwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-ecoGame/AFNetworking.framework"
   install_framework "Pods-ecoGame/KDCircularProgress.framework"
   install_framework "Pods-ecoGame/QRCode.framework"
   install_framework "Pods-ecoGame/QRCodeReader.framework"
+  install_framework "Pods-ecoGame/ReachabilitySwift.framework"
 fi

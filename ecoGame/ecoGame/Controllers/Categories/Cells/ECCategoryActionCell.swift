@@ -54,8 +54,10 @@ class ECCategoryActionCell: UITableViewCell {
         if self.hasAction {
             self.delegate?.actionCell(self, requestsActionForIndex: self.index)
         } else {
-            self.actionScore += 1
-            self.delegate?.actionCell(self, hasChangedScore: self.actionScore * scoreMultiplier)
+            if actionScore == 0 {
+                self.actionScore += 1
+                self.delegate?.actionCell(self, hasChangedScore: self.actionScore * scoreMultiplier)
+            }
         }
     }
     

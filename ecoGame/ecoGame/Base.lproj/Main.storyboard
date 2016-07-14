@@ -55,8 +55,9 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSb-Et-XmZ">
-                                                    <rect key="frame" x="426" y="58" width="149" height="32"/>
+                                                    <rect key="frame" x="435" y="58" width="140" height="32"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="140" id="pcv-hk-VTW"/>
                                                         <constraint firstAttribute="height" constant="32" id="vMT-QD-PfZ"/>
                                                     </constraints>
                                                     <state key="normal" title="Sort: Score">
@@ -67,13 +68,10 @@
                                                     </connections>
                                                 </button>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GkO-6R-YQz">
-                                                    <rect key="frame" x="25" y="59" width="376" height="29"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="376" id="y5C-yU-cKc"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="25" y="59" width="251" height="29"/>
                                                     <segments>
-                                                        <segment title="Participant"/>
-                                                        <segment title="Volunteer"/>
+                                                        <segment title="Participant" width="80"/>
+                                                        <segment title="Volunteer" width="70"/>
                                                         <segment title="Admin"/>
                                                         <segment title="All"/>
                                                     </segments>
@@ -83,12 +81,12 @@
                                                     </connections>
                                                 </segmentedControl>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ez2-7B-NPd">
-                                                    <rect key="frame" x="25" y="100" width="550" height="29"/>
+                                                    <rect key="frame" x="25" y="100" width="376" height="29"/>
                                                     <segments>
                                                         <segment title="Energy"/>
                                                         <segment title="Waste"/>
                                                         <segment title="Water"/>
-                                                        <segment title="Transport"/>
+                                                        <segment title="Transport" width="80"/>
                                                         <segment title="Social"/>
                                                         <segment title="All"/>
                                                     </segments>
@@ -97,6 +95,32 @@
                                                         <action selector="categorySegmentDidChangeValue:" destination="JEX-9P-axG" eventType="valueChanged" id="JiT-cG-Na3"/>
                                                     </connections>
                                                 </segmentedControl>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9V-mX-uoG">
+                                                    <rect key="frame" x="426" y="98" width="149" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="149" id="YVB-CY-fmh"/>
+                                                        <constraint firstAttribute="height" constant="32" id="edx-Gh-H4e"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Music drives change">
+                                                        <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="sortByMusicDrive" destination="JEX-9P-axG" eventType="touchUpInside" id="kez-Jl-Ese"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muT-a6-2lg">
+                                                    <rect key="frame" x="284" y="58" width="149" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="149" id="5Q0-YQ-tvF"/>
+                                                        <constraint firstAttribute="height" constant="32" id="OQp-ra-c7f"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Pick random">
+                                                        <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="getRandomUser" destination="JEX-9P-axG" eventType="touchUpInside" id="eLJ-YO-TSn"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="rSb-Et-XmZ" secondAttribute="trailing" constant="25" id="6UO-x5-xeV"/>
@@ -104,11 +128,15 @@
                                                 <constraint firstItem="rSb-Et-XmZ" firstAttribute="top" secondItem="p4w-F6-YdA" secondAttribute="bottom" constant="8" id="eMb-jB-PF2"/>
                                                 <constraint firstItem="Ez2-7B-NPd" firstAttribute="top" secondItem="rSb-Et-XmZ" secondAttribute="bottom" constant="10" id="fVc-1I-9eU"/>
                                                 <constraint firstAttribute="trailing" secondItem="p4w-F6-YdA" secondAttribute="trailing" id="gR4-CW-aJs"/>
+                                                <constraint firstItem="J9V-mX-uoG" firstAttribute="top" secondItem="rSb-Et-XmZ" secondAttribute="bottom" constant="8" id="gix-Pl-0Td"/>
+                                                <constraint firstItem="muT-a6-2lg" firstAttribute="top" secondItem="p4w-F6-YdA" secondAttribute="bottom" constant="8" id="iAb-3n-mhd"/>
+                                                <constraint firstItem="muT-a6-2lg" firstAttribute="leading" secondItem="GkO-6R-YQz" secondAttribute="trailing" constant="8" id="iuq-fw-cnp"/>
                                                 <constraint firstItem="p4w-F6-YdA" firstAttribute="top" secondItem="a69-er-5fT" secondAttribute="top" id="jvW-nf-mjg"/>
-                                                <constraint firstItem="rSb-Et-XmZ" firstAttribute="leading" secondItem="GkO-6R-YQz" secondAttribute="trailing" constant="25" id="lYv-wf-88c"/>
+                                                <constraint firstItem="rSb-Et-XmZ" firstAttribute="leading" secondItem="muT-a6-2lg" secondAttribute="trailing" constant="2" id="mxN-Td-A4m"/>
                                                 <constraint firstItem="p4w-F6-YdA" firstAttribute="leading" secondItem="a69-er-5fT" secondAttribute="leading" id="o2m-xY-98d"/>
                                                 <constraint firstItem="Ez2-7B-NPd" firstAttribute="leading" secondItem="a69-er-5fT" secondAttribute="leading" constant="25" id="ocb-rU-bW0"/>
-                                                <constraint firstAttribute="trailing" secondItem="Ez2-7B-NPd" secondAttribute="trailing" constant="25" id="sPm-c3-phG"/>
+                                                <constraint firstAttribute="trailing" secondItem="J9V-mX-uoG" secondAttribute="trailing" constant="25" id="pZf-dq-HkF"/>
+                                                <constraint firstItem="J9V-mX-uoG" firstAttribute="leading" secondItem="Ez2-7B-NPd" secondAttribute="trailing" constant="25" id="uZf-5B-Hue"/>
                                                 <constraint firstItem="GkO-6R-YQz" firstAttribute="top" secondItem="p4w-F6-YdA" secondAttribute="bottom" constant="9" id="zzy-l4-dVZ"/>
                                             </constraints>
                                         </view>
