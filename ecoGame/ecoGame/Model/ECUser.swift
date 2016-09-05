@@ -100,6 +100,16 @@ class ECUser: ECSeralizableObject {
         return value
     }
     
+    func rebindCategories() {
+        var newCategs: [ECCategory] = [ECCategory]()
+        
+        for categ in self.userCategories {
+            categ.id = "\(categ.categoryType.ec_enumName())_\(self.id)"
+            newCategs.append(categ)
+        }
+        self.userCategories = newCategs
+    }
+    
     func defaultCategories() -> [ECCategory] {
         let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Energy.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
         energyCategory.categoryType = .Energy

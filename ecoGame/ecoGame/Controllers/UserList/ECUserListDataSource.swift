@@ -207,7 +207,6 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     // MARK: ECUserControllerDelegate
     func userController(uc:ECUserController, hasCreatedUser user:ECUser) {
-        user.dirty = true
         ECCoreManager.sharedInstance.createUser(user)
     }
     

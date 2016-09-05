@@ -69,7 +69,13 @@ class ECCoreManager: NSObject {
         do {
             let allUsers = try self.storeManager.managedObjectContext?.executeFetchRequest(ECUser.fetchRequestForUsers()) as! [ECUser]
             for user:ECUser in allUsers {
-                self.updateUser(user)
+                if user.dirty {
+                    if user.id.hasPrefix("temp_") {
+                        self.createUser(user)
+                    } else {
+                        self.updateUser(user)
+                    }
+                }
             }
         } catch {
         }
@@ -87,9 +93,9 @@ class ECCoreManager: NSObject {
             var newUserDict = userDictionary!
             newUserDict["id"] = userDictionary!["user_unique_tag"]
             let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(newUserDict, inContext: self.storeManager.managedObjectContext!) as! ECUser
-            if user.userCategories.count == 0 {
-                user.userCategories = user.defaultCategories()
-            }
+//            if user.userCategories.count == 0 {
+//                user.userCategories = user.defaultCategories()
+//            }
             
             NSLog("%@", user)
             completion(user: user)
@@ -103,9 +109,9 @@ class ECCoreManager: NSObject {
                 var newUserDict = userDict
                 newUserDict["id"] = userDict["user_unique_tag"]
                 let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(newUserDict, inContext: self.storeManager.managedObjectContext!) as! ECUser
-                if user.userCategories.count == 0 {
-                    user.userCategories = user.defaultCategories()
-                }
+//                if user.userCategories.count == 0 {
+//                    user.userCategories = user.defaultCategories()
+//                }
                 
                 NSLog("%@", user)
             }
@@ -116,17 +122,17 @@ class ECCoreManager: NSObject {
     func createUser(user: ECUser) {
         self.requestManager.createUser(user) { (userDict: Dictionary<String, AnyObject>?, success) in
             defer {
-                user.userCategories = user.defaultCategories()
+                user.rebindCategories()
                 self.storeManager.saveContext()
-                for category:ECCategory in user.userCategories {
-                    self.requestManager.createCategory(category, withCompletion: { (success) in
-                        NSLog("%@", category)
-                        if success {
-                            category.dirty = false
-                            self.storeManager.saveContext()
-                        }
-                    })
-                }
+//                for category:ECCategory in user.userCategories {
+//                    self.requestManager.createCategory(category, withCompletion: { (success) in
+//                        NSLog("%@", category)
+//                        if success {
+//                            category.dirty = false
+//                            self.storeManager.saveContext()
+//                        }
+//                    })
+//                }
             }
             
             if userDict == nil {
@@ -141,57 +147,55 @@ class ECCoreManager: NSObject {
     }
     
     func updateUser(user: ECUser) {
-        if user.dirty {
-            self.createUser(user)
-            return
-        }
-        
         self.requestManager.updateUser(user) { (success) in
-            for category:ECCategory in user.userCategories {
-                if category.dirty {
-                    self.requestManager.createCategory(category, withCompletion: { (success) in
-                        category.dirty = false
-                        self.storeManager.saveContext()
-                    })
-                } else {
-                    self.requestManager.updateCategory(category, withCompletion: { (success) in
-                        self.storeManager.saveContext()
-                    })
-                }
+//            for category:ECCategory in user.userCategories {
+//                if category.dirty {
+//                    self.requestManager.createCategory(category, withCompletion: { (success) in
+//                        category.dirty = false
+//                        self.storeManager.saveContext()
+//                    })
+//                } else {
+//                    self.requestManager.updateCategory(category, withCompletion: { (success) in
+//                        self.storeManager.saveContext()
+//                    })
+//                }
+//            }
+            if success {
+                user.dirty = false
             }
         }
     }
     
     func deleteUser(user: ECUser, withCompletion completion: (success: Bool) -> Void) {
-        self.requestManager.deleteUser(user) { (success) in
-            completion(success: success);
-        }
+//        self.requestManager.deleteUser(user) { (success) in
+//            completion(success: success);
+//        }
     }
     
     //MARK: - Category Request methods
 
     func updateCategory(category: ECCategory) {
-        if category.dirty {
-            self.requestManager.createCategory(category, withCompletion: { (success) in
-                category.dirty = false
-                self.storeManager.saveContext()
-            })
-        } else {
-            self.requestManager.updateCategory(category, withCompletion: { (success) in
-                self.storeManager.saveContext()
-            })
-        }
+//        if category.dirty {
+//            self.requestManager.createCategory(category, withCompletion: { (success) in
+//                category.dirty = false
+//                self.storeManager.saveContext()
+//            })
+//        } else {
+//            self.requestManager.updateCategory(category, withCompletion: { (success) in
+//                self.storeManager.saveContext()
+//            })
+//        }
     }
     
     func getCategoryForId(id: String, withCompletion completion: (category: ECCategory?) -> Void) {
-        self.requestManager.getCategoryForId(id) { (categoryDict: Dictionary<String, AnyObject>?) in
-            if categoryDict != nil {
-                var newCategDict = categoryDict
-                newCategDict!["id"] = categoryDict!["category_name"]
-                let category:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(newCategDict!, inContext: self.storeManager.managedObjectContext!) as! ECCategory
-                category.dictionaryRepresentation = newCategDict
-                completion(category: category)
-            }
-        }
+//        self.requestManager.getCategoryForId(id) { (categoryDict: Dictionary<String, AnyObject>?) in
+//            if categoryDict != nil {
+//                var newCategDict = categoryDict
+//                newCategDict!["id"] = categoryDict!["category_name"]
+//                let category:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(newCategDict!, inContext: self.storeManager.managedObjectContext!) as! ECCategory
+//                category.dictionaryRepresentation = newCategDict
+//                completion(category: category)
+//            }
+//        }
     }
 }

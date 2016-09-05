@@ -116,7 +116,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
     private func createUserWithTerms(agreedTerms: Bool) {
         var id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
         id += Int(arc4random()%32767)
-        self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
+        self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"temp_\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
         self.user.userFirstName = self.userFirstNameField.text!
         self.user.userLastName = self.userLastNameField.text!
         self.user.userPhone = self.userPhoneField.text!
@@ -127,6 +127,8 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.user.userNewsletter = self.userNewsletterSwitch.on
         self.user.userTerms = agreedTerms
         self.user.userQuizTerms = false
+//        self.user.userCategories = self.user.defaultCategories()
+        self.user.dirty = true
         
         self.delegate?.userController(self, hasCreatedUser: self.user)
     }
@@ -139,6 +141,8 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.user.userEmail = self.userEmailField.text!
         self.user.userPasswordHash = (self.hasChangedPassword ? String(self.userPasswordField.text!.hash) : self.userPasswordField.text!)
         self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
+        self.user.dirty = true
+        
         self.delegate?.userController(self, hasUpdatedUser: self.user)
     }
     
