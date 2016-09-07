@@ -127,7 +127,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.user.userNewsletter = self.userNewsletterSwitch.on
         self.user.userTerms = agreedTerms
         self.user.userQuizTerms = false
-//        self.user.userCategories = self.user.defaultCategories()
+        self.user.userCategories = self.user.defaultCategories()
         self.user.dirty = true
         
         self.delegate?.userController(self, hasCreatedUser: self.user)

@@ -77,8 +77,12 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         
+        self.category.dirty = true
         ECCoreManager.sharedInstance.storeManager.saveContext()
-        ECCoreManager.sharedInstance.updateCategory(self.category)
+        
+        if !self.user.id.hasPrefix("temp_") {
+            ECCoreManager.sharedInstance.updateCategory(self.category)
+        }
     }
     
     func actionCell(cell: ECCategoryActionCell, hasChangedScore score: Int) {
