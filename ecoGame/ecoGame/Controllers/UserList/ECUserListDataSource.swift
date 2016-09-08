@@ -189,6 +189,11 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         return cell
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = cell as! ECUserListCell
+        cell.displayScores()
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         

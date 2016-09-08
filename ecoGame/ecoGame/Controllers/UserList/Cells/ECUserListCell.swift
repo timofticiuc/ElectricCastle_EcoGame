@@ -32,23 +32,32 @@ class ECUserListCell: UITableViewCell {
         didSet {
             self.userNameLabel.text = String(self.index) + ". " + user.userFirstName + " " + user.userLastName
             self.userRoleLabel.text = user.userRole.ec_enumName()
-            
-            if user.userCategories.count < 5 {
-                return
-            }
-            
-            self.userEnergyLabel.text = "Score: " + String(self.user.userCategories[0].overallScore())
-            self.userWasteLabel.text = "Score: " + String(self.user.userCategories[1].overallScore())
-            self.userWaterLabel.text = "Score: " + String(self.user.userCategories[2].overallScore())
-            self.userTransportLabel.text = "Score: " + String(self.user.userCategories[3].overallScore())
-            self.userSocialLabel.text = "Score: " + String(self.user.userCategories[4].overallScore())
-            
-            self.userEnergyTitleLabel.text = "Energy " + String(self.user.userCategories[0].scoreCompleteness()) + "/" + String(self.user.userCategories[0].actions().count)
-            self.userWasteTitleLabel.text = "Waste " + String(self.user.userCategories[1].scoreCompleteness()) + "/" + String(self.user.userCategories[1].actions().count)
-            self.userWaterTitleLabel.text = "Water " + String(self.user.userCategories[2].scoreCompleteness()) + "/" + String(self.user.userCategories[2].actions().count)
-            self.userTransportTitleLabel.text = "Transport " + String(self.user.userCategories[3].scoreCompleteness()) + "/" + String(self.user.userCategories[3].actions().count)
-            self.userSocialTitleLabel.text = "Social " + String(self.user.userCategories[4].scoreCompleteness()) + "/" + String(self.user.userCategories[4].actions().count)
         }
     }
     
+    func displayScores() {
+        if user.userCategories.count < 5 {
+            return
+        }
+        
+        for index in 1...5 {
+            weak var weakSelf: ECUserListCell? = self
+
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                let categString = weakSelf!.user.userCategories[index - 1].categoryName
+                let scoreString = "Score: " + String(weakSelf!.user.userCategories[index - 1].overallScore())
+                let actions = "/" + String(weakSelf!.user.userCategories[index - 1].actions().count)
+                let titleString = categString + " " + String(weakSelf!.user.userCategories[index - 1].scoreCompleteness()) + actions
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    let label = weakSelf?.viewWithTag(index * 10) as! UILabel
+                    let titleLabel = weakSelf?.viewWithTag(index) as! UILabel
+                    
+                    label.text = scoreString
+                    titleLabel.text = titleString
+                }
+            }
+        }
+    }
 }
