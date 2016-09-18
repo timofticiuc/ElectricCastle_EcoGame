@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ReachabilitySwift
 
 class ECCoreManager: NSObject {
     static let sharedInstance = ECCoreManager()

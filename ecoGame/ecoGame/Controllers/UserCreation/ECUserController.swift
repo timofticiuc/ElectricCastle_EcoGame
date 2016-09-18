@@ -114,23 +114,28 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
     }
     
     private func createUserWithTerms(agreedTerms: Bool) {
-        var id = (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers(), error: nil))!
-        id += Int(arc4random()%32767)
-        self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"temp_\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
-        self.user.userFirstName = self.userFirstNameField.text!
-        self.user.userLastName = self.userLastNameField.text!
-        self.user.userPhone = self.userPhoneField.text!
-        self.user.userAddress = self.userAddressField.text!
-        self.user.userEmail = self.userEmailField.text!
-        self.user.userPasswordHash = String(self.userPasswordField.text!.hash)
-        self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
-        self.user.userNewsletter = self.userNewsletterSwitch.on
-        self.user.userTerms = agreedTerms
-        self.user.userQuizTerms = false
-        self.user.userCategories = self.user.defaultCategories()
-        self.user.dirty = true
-        
-        self.delegate?.userController(self, hasCreatedUser: self.user)
+        do {
+            var id = try (ECCoreManager.sharedInstance.storeManager.managedObjectContext?.countForFetchRequest(ECUser.fetchRequestForUsers()))!
+            id += Int(arc4random()%32767)
+            self.user = ECUser.objectCreatedOrUpdatedWithDictionary(["id":"temp_\(id)"], inContext:ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECUser
+            self.user.userFirstName = self.userFirstNameField.text!
+            self.user.userLastName = self.userLastNameField.text!
+            self.user.userPhone = self.userPhoneField.text!
+            self.user.userAddress = self.userAddressField.text!
+            self.user.userEmail = self.userEmailField.text!
+            self.user.userPasswordHash = String(self.userPasswordField.text!.hash)
+            self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
+            self.user.userNewsletter = self.userNewsletterSwitch.on
+            self.user.userTerms = agreedTerms
+            self.user.userQuizTerms = false
+            self.user.userCategories = self.user.defaultCategories()
+            self.user.dirty = true
+            
+            self.delegate?.userController(self, hasCreatedUser: self.user)
+        } catch {
+            let nserror = error as NSError
+            NSLog("Error performing fetch \(nserror), \(nserror.userInfo)")
+        }
     }
     
     private func updateUser() {

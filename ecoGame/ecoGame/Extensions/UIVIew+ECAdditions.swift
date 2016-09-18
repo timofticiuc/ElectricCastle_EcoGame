@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView {
     public class func loadFromNib<T: UIView>(viewType: T.Type) -> T {
-        return NSBundle.mainBundle().loadNibNamed(String(viewType), owner: nil, options: nil).first as! T
+        return NSBundle.mainBundle().loadNibNamed(String(viewType), owner: nil, options: nil)!.first as! T
     }
     
     public class func ec_loadFromNib() -> Self {

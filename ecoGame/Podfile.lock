@@ -14,28 +14,18 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - HockeySDK (4.0.1):
-    - HockeySDK/AllFeaturesLib (= 4.0.1)
-  - HockeySDK/AllFeaturesLib (4.0.1)
-  - KDCircularProgress (1.4.0)
-  - QRCode (0.5)
-  - QRCodeReader.swift (6.0.0)
-  - ReachabilitySwift (2.3.3)
+  - HockeySDK (4.0.2):
+    - HockeySDK/AllFeaturesLib (= 4.0.2)
+  - HockeySDK/AllFeaturesLib (4.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1)
   - HockeySDK (~> 4.0)
-  - KDCircularProgress (~> 1.4)
-  - QRCode (~> 0.5)
-  - QRCodeReader.swift (~> 6.0.0)
-  - ReachabilitySwift
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  HockeySDK: 1b69a82782f6a3d4a1c0b1f04dca4bca83fc8c82
-  KDCircularProgress: f5770bbd83da909bf6cd96c2dea0b8bae45ec774
-  QRCode: a249ed747aeb0f4bf5f9c58b5b001b6b3bc80073
-  QRCodeReader.swift: 4aa8b0f88847a51312d6ffd2cafc387962da9dd8
-  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
+  HockeySDK: ebaabf41808b4e4ea85b4d5266d425aef0d19c88
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: a0b31a747cdc28d5a6aff0c19f8136e062782eec
+
+COCOAPODS: 1.0.1

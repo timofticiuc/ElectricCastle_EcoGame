@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        let stringValue:String = url.absoluteString.stringByReplacingOccurrencesOfString("ecogame://quiz/agreement=", withString: "")
+        let stringValue:String = url.absoluteString!.stringByReplacingOccurrencesOfString("ecogame://quiz/agreement=", withString: "")
         let agreementBool = NSString(string:stringValue).boolValue
         
         NSNotificationCenter.defaultCenter().postNotificationName(kAgreementNotification, object: agreementBool)

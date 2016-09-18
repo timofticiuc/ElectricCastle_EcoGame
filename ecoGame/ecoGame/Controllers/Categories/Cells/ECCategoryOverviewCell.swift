@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import KDCircularProgress
 
 class ECCategoryOverviewCell: UICollectionViewCell {
     @IBOutlet private weak var categoryTitleLabel: UILabel!

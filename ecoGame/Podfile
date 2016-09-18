@@ -5,12 +5,12 @@ use_frameworks!
 
 target 'ecoGame' do
 
-pod 'KDCircularProgress', '~> 1.4'
+#pod 'KDCircularProgress', '~> 1.4'
 pod 'AFNetworking', '~> 3.1'
-pod 'QRCodeReader.swift', '~> 6.0.0'
+#pod 'QRCodeReader.swift', '~> 6.0.0'
 pod 'HockeySDK', '~> 4.0'
-pod 'QRCode', '~> 0.5'
-pod 'ReachabilitySwift'
+#pod 'QRCode', '~> 0.5'
+#pod 'ReachabilitySwift'
 
 end
 
@@ -21,4 +21,3 @@ end
 target 'ecoGameUITests' do
 
 end
-

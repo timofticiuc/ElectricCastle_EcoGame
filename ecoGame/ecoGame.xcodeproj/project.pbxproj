@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0218E6C5F49D36978B1FB936 /* Pods_ecoGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117647694C853D40E5A35906 /* Pods_ecoGame.framework */; };
 		2502B6D41CBC553200F7DC28 /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D31CBC553200F7DC28 /* KeychainSwift.swift */; };
 		2502B6D71CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D51CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift */; };
 		2502B6D81CBC56EE00F7DC28 /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502B6D61CBC56EE00F7DC28 /* TegKeychainConstants.swift */; };
@@ -48,6 +49,26 @@
 		2578ECFE1D25CE7B00158527 /* ECSortController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578ECFD1D25CE7B00158527 /* ECSortController.swift */; };
 		258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */; };
 		2593FC2E1D06352100F93DD0 /* ECAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593FC2D1D06352100F93DD0 /* ECAgreementController.swift */; };
+		25A1C9CF1D8F59B700628804 /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9B51D8F59B700628804 /* KDCircularProgress.swift */; };
+		25A1C9D01D8F59B700628804 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 25A1C9B61D8F59B700628804 /* LICENSE */; };
+		25A1C9D11D8F59B700628804 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9B71D8F59B700628804 /* README.md */; };
+		25A1C9D21D8F59B700628804 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 25A1C9B91D8F59B700628804 /* LICENSE */; };
+		25A1C9D31D8F59B700628804 /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9BB1D8F59B700628804 /* CIColorExtension.swift */; };
+		25A1C9D41D8F59B700628804 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9BC1D8F59B700628804 /* QRCode.swift */; };
+		25A1C9D51D8F59B700628804 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9BD1D8F59B700628804 /* UIImageViewExtension.swift */; };
+		25A1C9D61D8F59B700628804 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9BE1D8F59B700628804 /* README.md */; };
+		25A1C9D71D8F59B700628804 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 25A1C9C01D8F59B700628804 /* LICENSE */; };
+		25A1C9D81D8F59B700628804 /* QRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9C21D8F59B700628804 /* QRCodeReader.swift */; };
+		25A1C9D91D8F59B700628804 /* QRCodeReaderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9C31D8F59B700628804 /* QRCodeReaderResult.swift */; };
+		25A1C9DA1D8F59B700628804 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9C41D8F59B700628804 /* QRCodeViewController.swift */; };
+		25A1C9DB1D8F59B700628804 /* QRCodeViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9C51D8F59B700628804 /* QRCodeViewControllerBuilder.swift */; };
+		25A1C9DC1D8F59B700628804 /* ReaderOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9C61D8F59B700628804 /* ReaderOverlayView.swift */; };
+		25A1C9DD1D8F59B700628804 /* SwitchCameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9C71D8F59B700628804 /* SwitchCameraButton.swift */; };
+		25A1C9DE1D8F59B700628804 /* ToggleTorchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9C81D8F59B700628804 /* ToggleTorchButton.swift */; };
+		25A1C9DF1D8F59B700628804 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9C91D8F59B700628804 /* README.md */; };
+		25A1C9E01D8F59B700628804 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 25A1C9CB1D8F59B700628804 /* LICENSE */; };
+		25A1C9E11D8F59B700628804 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9CD1D8F59B700628804 /* Reachability.swift */; };
+		25A1C9E21D8F59B700628804 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9CE1D8F59B700628804 /* README.md */; };
 		25A7924E1D1F43A40075E654 /* ECScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A7924D1D1F43A40075E654 /* ECScore.swift */; };
 		25AC2A8B1CC3C307003D3C61 /* ECMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AC2A8A1CC3C307003D3C61 /* ECMenuViewController.swift */; };
 		25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E3BC951CB59FA100CCD783 /* ECUserController.swift */; };
@@ -55,7 +76,8 @@
 		25FC6D371CF51EAE00D06D21 /* ECCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FC6D361CF51EAE00D06D21 /* ECCategoryController.swift */; };
 		25FC6D3A1CF528D600D06D21 /* ECCategoryActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FC6D381CF528D600D06D21 /* ECCategoryActionCell.swift */; };
 		25FC6D3B1CF528D600D06D21 /* ECCategoryActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25FC6D391CF528D600D06D21 /* ECCategoryActionCell.xib */; };
-		7072DE3D9AC1CACE8A2ADC01 /* Pods_ecoGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2B3B446B52172628CA2D92 /* Pods_ecoGame.framework */; };
+		6B74BF22788528709FBD7086 /* Pods_ecoGameUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAE8A4B7D81FE1676753AF8 /* Pods_ecoGameUITests.framework */; };
+		8CBDAB5107091E6C6477A2BB /* Pods_ecoGameTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB9A41D9F66E79B7DFE186E5 /* Pods_ecoGameTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +98,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		117647694C853D40E5A35906 /* Pods_ecoGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ecoGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F1A25414635E9D9E6E56BA4 /* Pods-ecoGameTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGameTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGameTests/Pods-ecoGameTests.release.xcconfig"; sourceTree = "<group>"; };
 		2502B6D31CBC553200F7DC28 /* KeychainSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
 		2502B6D51CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
 		2502B6D61CBC56EE00F7DC28 /* TegKeychainConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TegKeychainConstants.swift; sourceTree = "<group>"; };
@@ -92,6 +116,7 @@
 		2513BB1B1CA9AF3A00CC9C7E /* ecoGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecoGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2513BB1F1CA9AF3A00CC9C7E /* ecoGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecoGameUITests.swift; sourceTree = "<group>"; };
 		2513BB211CA9AF3A00CC9C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2523F59A9A87142F1A168BB4 /* Pods-ecoGameUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGameUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGameUITests/Pods-ecoGameUITests.release.xcconfig"; sourceTree = "<group>"; };
 		252C5A7E1CB04DC4006CC6F9 /* ECUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUser.swift; sourceTree = "<group>"; };
 		252C5A871CB05BB0006CC6F9 /* Selector+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Selector+ECAdditions.swift"; sourceTree = "<group>"; };
 		252C5A8A1CB062D7006CC6F9 /* ECUsersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUsersListViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +148,26 @@
 		2578ECFD1D25CE7B00158527 /* ECSortController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSortController.swift; sourceTree = "<group>"; };
 		258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+ECAdditions.swift"; sourceTree = "<group>"; };
 		2593FC2D1D06352100F93DD0 /* ECAgreementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECAgreementController.swift; sourceTree = "<group>"; };
+		25A1C9B51D8F59B700628804 /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
+		25A1C9B61D8F59B700628804 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		25A1C9B71D8F59B700628804 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		25A1C9B91D8F59B700628804 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		25A1C9BB1D8F59B700628804 /* CIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIColorExtension.swift; sourceTree = "<group>"; };
+		25A1C9BC1D8F59B700628804 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		25A1C9BD1D8F59B700628804 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		25A1C9BE1D8F59B700628804 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		25A1C9C01D8F59B700628804 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		25A1C9C21D8F59B700628804 /* QRCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReader.swift; sourceTree = "<group>"; };
+		25A1C9C31D8F59B700628804 /* QRCodeReaderResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderResult.swift; sourceTree = "<group>"; };
+		25A1C9C41D8F59B700628804 /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
+		25A1C9C51D8F59B700628804 /* QRCodeViewControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewControllerBuilder.swift; sourceTree = "<group>"; };
+		25A1C9C61D8F59B700628804 /* ReaderOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderOverlayView.swift; sourceTree = "<group>"; };
+		25A1C9C71D8F59B700628804 /* SwitchCameraButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCameraButton.swift; sourceTree = "<group>"; };
+		25A1C9C81D8F59B700628804 /* ToggleTorchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleTorchButton.swift; sourceTree = "<group>"; };
+		25A1C9C91D8F59B700628804 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		25A1C9CB1D8F59B700628804 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		25A1C9CD1D8F59B700628804 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		25A1C9CE1D8F59B700628804 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		25A7924D1D1F43A40075E654 /* ECScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECScore.swift; sourceTree = "<group>"; };
 		25AC2A8A1CC3C307003D3C61 /* ECMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECMenuViewController.swift; sourceTree = "<group>"; };
 		25E3BC951CB59FA100CCD783 /* ECUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECUserController.swift; sourceTree = "<group>"; };
@@ -131,9 +176,12 @@
 		25FC6D381CF528D600D06D21 /* ECCategoryActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECCategoryActionCell.swift; sourceTree = "<group>"; };
 		25FC6D391CF528D600D06D21 /* ECCategoryActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECCategoryActionCell.xib; sourceTree = "<group>"; };
 		25FC6D3C1CF66CCD00D06D21 /* ecoGame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ecoGame-Bridging-Header.h"; sourceTree = "<group>"; };
-		C4AC105D40F2A4FA4262990B /* Pods-ecoGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame.debug.xcconfig"; sourceTree = "<group>"; };
-		CD2B3B446B52172628CA2D92 /* Pods_ecoGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ecoGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FACC02D0070F297BC3E1316D /* Pods-ecoGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame.release.xcconfig"; sourceTree = "<group>"; };
+		2BAE8A4B7D81FE1676753AF8 /* Pods_ecoGameUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ecoGameUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B156F2AD23EA55D49286349 /* Pods-ecoGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame.debug.xcconfig"; sourceTree = "<group>"; };
+		A68511DAF8BCDB9D4AC2F439 /* Pods-ecoGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame.release.xcconfig"; sourceTree = "<group>"; };
+		B25897D73D0CB78CE03E7403 /* Pods-ecoGameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGameTests/Pods-ecoGameTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EB9A41D9F66E79B7DFE186E5 /* Pods_ecoGameTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ecoGameTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F32CC2A92F315585CD0360A3 /* Pods-ecoGameUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecoGameUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ecoGameUITests/Pods-ecoGameUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +191,7 @@
 			files = (
 				254394AC1D08DC19001F079C /* AVFoundation.framework in Frameworks */,
 				25728F651CB1C8690063C7E3 /* CoreData.framework in Frameworks */,
-				7072DE3D9AC1CACE8A2ADC01 /* Pods_ecoGame.framework in Frameworks */,
+				0218E6C5F49D36978B1FB936 /* Pods_ecoGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CBDAB5107091E6C6477A2BB /* Pods_ecoGameTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B74BF22788528709FBD7086 /* Pods_ecoGameUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,9 +231,9 @@
 				2513BB131CA9AF3A00CC9C7E /* ecoGameTests */,
 				2513BB1E1CA9AF3A00CC9C7E /* ecoGameUITests */,
 				2513BAFB1CA9AF3A00CC9C7E /* Products */,
-				A0C16A8D2A20484EB6486184 /* Pods */,
 				80612B95B3E714FD7C415420 /* Frameworks */,
 				25FC6D3C1CF66CCD00D06D21 /* ecoGame-Bridging-Header.h */,
+				B7024C2FB80F41562B9041EA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,6 +250,7 @@
 		2513BAFC1CA9AF3A00CC9C7E /* ecoGame */ = {
 			isa = PBXGroup;
 			children = (
+				25A1C9B21D8F59B700628804 /* ThirdParty */,
 				252C5A821CB05B6E006CC6F9 /* Extensions */,
 				2513BB2F1CA9B1E600CC9C7E /* Data */,
 				2513BB301CA9B1E600CC9C7E /* Model */,
@@ -361,6 +412,97 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		25A1C9B21D8F59B700628804 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				25A1C9B31D8F59B700628804 /* KDCircularProgress */,
+				25A1C9B81D8F59B700628804 /* QRCode */,
+				25A1C9BF1D8F59B700628804 /* QRCodeReader.swift */,
+				25A1C9CA1D8F59B700628804 /* ReachabilitySwift */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		25A1C9B31D8F59B700628804 /* KDCircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				25A1C9B41D8F59B700628804 /* KDCircularProgress */,
+				25A1C9B61D8F59B700628804 /* LICENSE */,
+				25A1C9B71D8F59B700628804 /* README.md */,
+			);
+			path = KDCircularProgress;
+			sourceTree = "<group>";
+		};
+		25A1C9B41D8F59B700628804 /* KDCircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				25A1C9B51D8F59B700628804 /* KDCircularProgress.swift */,
+			);
+			path = KDCircularProgress;
+			sourceTree = "<group>";
+		};
+		25A1C9B81D8F59B700628804 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				25A1C9B91D8F59B700628804 /* LICENSE */,
+				25A1C9BA1D8F59B700628804 /* QRCode */,
+				25A1C9BE1D8F59B700628804 /* README.md */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		25A1C9BA1D8F59B700628804 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				25A1C9BB1D8F59B700628804 /* CIColorExtension.swift */,
+				25A1C9BC1D8F59B700628804 /* QRCode.swift */,
+				25A1C9BD1D8F59B700628804 /* UIImageViewExtension.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		25A1C9BF1D8F59B700628804 /* QRCodeReader.swift */ = {
+			isa = PBXGroup;
+			children = (
+				25A1C9C01D8F59B700628804 /* LICENSE */,
+				25A1C9C11D8F59B700628804 /* QRCodeReader */,
+				25A1C9C91D8F59B700628804 /* README.md */,
+			);
+			path = QRCodeReader.swift;
+			sourceTree = "<group>";
+		};
+		25A1C9C11D8F59B700628804 /* QRCodeReader */ = {
+			isa = PBXGroup;
+			children = (
+				25A1C9C21D8F59B700628804 /* QRCodeReader.swift */,
+				25A1C9C31D8F59B700628804 /* QRCodeReaderResult.swift */,
+				25A1C9C41D8F59B700628804 /* QRCodeViewController.swift */,
+				25A1C9C51D8F59B700628804 /* QRCodeViewControllerBuilder.swift */,
+				25A1C9C61D8F59B700628804 /* ReaderOverlayView.swift */,
+				25A1C9C71D8F59B700628804 /* SwitchCameraButton.swift */,
+				25A1C9C81D8F59B700628804 /* ToggleTorchButton.swift */,
+			);
+			path = QRCodeReader;
+			sourceTree = "<group>";
+		};
+		25A1C9CA1D8F59B700628804 /* ReachabilitySwift */ = {
+			isa = PBXGroup;
+			children = (
+				25A1C9CB1D8F59B700628804 /* LICENSE */,
+				25A1C9CC1D8F59B700628804 /* Reachability */,
+				25A1C9CE1D8F59B700628804 /* README.md */,
+			);
+			path = ReachabilitySwift;
+			sourceTree = "<group>";
+		};
+		25A1C9CC1D8F59B700628804 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				25A1C9CD1D8F59B700628804 /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		25AC2A891CC3C307003D3C61 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,16 +525,22 @@
 			children = (
 				25728F641CB1C8690063C7E3 /* CoreData.framework */,
 				254394AB1D08DC19001F079C /* AVFoundation.framework */,
-				CD2B3B446B52172628CA2D92 /* Pods_ecoGame.framework */,
+				117647694C853D40E5A35906 /* Pods_ecoGame.framework */,
+				EB9A41D9F66E79B7DFE186E5 /* Pods_ecoGameTests.framework */,
+				2BAE8A4B7D81FE1676753AF8 /* Pods_ecoGameUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A0C16A8D2A20484EB6486184 /* Pods */ = {
+		B7024C2FB80F41562B9041EA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C4AC105D40F2A4FA4262990B /* Pods-ecoGame.debug.xcconfig */,
-				FACC02D0070F297BC3E1316D /* Pods-ecoGame.release.xcconfig */,
+				5B156F2AD23EA55D49286349 /* Pods-ecoGame.debug.xcconfig */,
+				A68511DAF8BCDB9D4AC2F439 /* Pods-ecoGame.release.xcconfig */,
+				B25897D73D0CB78CE03E7403 /* Pods-ecoGameTests.debug.xcconfig */,
+				1F1A25414635E9D9E6E56BA4 /* Pods-ecoGameTests.release.xcconfig */,
+				F32CC2A92F315585CD0360A3 /* Pods-ecoGameUITests.debug.xcconfig */,
+				2523F59A9A87142F1A168BB4 /* Pods-ecoGameUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -404,13 +552,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2513BB241CA9AF3A00CC9C7E /* Build configuration list for PBXNativeTarget "ecoGame" */;
 			buildPhases = (
-				35C49208E6BBE5D4CE1F02EE /* Check Pods Manifest.lock */,
+				FB7889D50431F4F734853955 /* [CP] Check Pods Manifest.lock */,
 				2513BAF61CA9AF3A00CC9C7E /* Sources */,
 				2513BAF71CA9AF3A00CC9C7E /* Frameworks */,
 				2513BAF81CA9AF3A00CC9C7E /* Resources */,
-				FC4DF8EA267E49C07DAD9831 /* Embed Pods Frameworks */,
-				382945D04865E8F58DBAB0DA /* Copy Pods Resources */,
 				2553CC6B1D0F772F00CA0F42 /* ShellScript */,
+				208224B6C028C994B8691731 /* [CP] Embed Pods Frameworks */,
+				922BAFA23F57B87430294F86 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -425,9 +573,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2513BB271CA9AF3A00CC9C7E /* Build configuration list for PBXNativeTarget "ecoGameTests" */;
 			buildPhases = (
+				998E688F330EBE8C010F9754 /* [CP] Check Pods Manifest.lock */,
 				2513BB0C1CA9AF3A00CC9C7E /* Sources */,
 				2513BB0D1CA9AF3A00CC9C7E /* Frameworks */,
 				2513BB0E1CA9AF3A00CC9C7E /* Resources */,
+				2DC0A15E8952F58D1A2DFEE8 /* [CP] Embed Pods Frameworks */,
+				F213B07AB2292E1168D56EC6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -443,9 +594,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2513BB2A1CA9AF3A00CC9C7E /* Build configuration list for PBXNativeTarget "ecoGameUITests" */;
 			buildPhases = (
+				FAF36ED78F963167A7D27407 /* [CP] Check Pods Manifest.lock */,
 				2513BB171CA9AF3A00CC9C7E /* Sources */,
 				2513BB181CA9AF3A00CC9C7E /* Frameworks */,
 				2513BB191CA9AF3A00CC9C7E /* Resources */,
+				5B9C1D93083C4E93F6908909 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -508,9 +661,13 @@
 			files = (
 				2534D34F1CBF00F2003A9195 /* ECSearchHeaderView.xib in Resources */,
 				2513BB0A1CA9AF3A00CC9C7E /* LaunchScreen.storyboard in Resources */,
+				25A1C9D01D8F59B700628804 /* LICENSE in Resources */,
 				2513BB071CA9AF3A00CC9C7E /* Assets.xcassets in Resources */,
+				25A1C9D71D8F59B700628804 /* LICENSE in Resources */,
+				25A1C9E01D8F59B700628804 /* LICENSE in Resources */,
 				25752E8D1CD7A96D004040CB /* ECCategoryOverviewCell.xib in Resources */,
 				252C5A971CB07E9C006CC6F9 /* ECUserListCell.xib in Resources */,
+				25A1C9D21D8F59B700628804 /* LICENSE in Resources */,
 				2513BB051CA9AF3A00CC9C7E /* Main.storyboard in Resources */,
 				25FC6D3B1CF528D600D06D21 /* ECCategoryActionCell.xib in Resources */,
 			);
@@ -533,6 +690,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		208224B6C028C994B8691731 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2553CC6B1D0F772F00CA0F42 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -546,29 +718,44 @@
 			shellPath = /bin/sh;
 			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
 		};
-		35C49208E6BBE5D4CE1F02EE /* Check Pods Manifest.lock */ = {
+		2DC0A15E8952F58D1A2DFEE8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ecoGameTests/Pods-ecoGameTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		382945D04865E8F58DBAB0DA /* Copy Pods Resources */ = {
+		5B9C1D93083C4E93F6908909 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ecoGameUITests/Pods-ecoGameUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		922BAFA23F57B87430294F86 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,19 +763,64 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FC4DF8EA267E49C07DAD9831 /* Embed Pods Frameworks */ = {
+		998E688F330EBE8C010F9754 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ecoGame/Pods-ecoGame-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F213B07AB2292E1168D56EC6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ecoGameTests/Pods-ecoGameTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAF36ED78F963167A7D27407 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FB7889D50431F4F734853955 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -598,27 +830,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A1C9CF1D8F59B700628804 /* KDCircularProgress.swift in Sources */,
+				25A1C9DD1D8F59B700628804 /* SwitchCameraButton.swift in Sources */,
+				25A1C9D31D8F59B700628804 /* CIColorExtension.swift in Sources */,
 				2553CC7D1D0F7D9100CA0F42 /* ECQRController.swift in Sources */,
 				256771EF1CD9678A007769AB /* ECCategory.swift in Sources */,
 				25752E8F1CD7A9A2004040CB /* UICollectionView+ECAdditions.swift in Sources */,
 				252C5A881CB05BB0006CC6F9 /* Selector+ECAdditions.swift in Sources */,
+				25A1C9D41D8F59B700628804 /* QRCode.swift in Sources */,
 				25AC2A8B1CC3C307003D3C61 /* ECMenuViewController.swift in Sources */,
+				25A1C9D51D8F59B700628804 /* UIImageViewExtension.swift in Sources */,
 				25728F681CB1C8D20063C7E3 /* ECDataModel.xcdatamodeld in Sources */,
 				252C5A901CB067F7006CC6F9 /* ECUserListCell.swift in Sources */,
+				25A1C9E21D8F59B700628804 /* README.md in Sources */,
 				2502B6DA1CBC7C1B00F7DC28 /* NSDate+ECAdditions.swift in Sources */,
 				25FC6D371CF51EAE00D06D21 /* ECCategoryController.swift in Sources */,
 				2502B6D81CBC56EE00F7DC28 /* TegKeychainConstants.swift in Sources */,
 				252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */,
+				25A1C9D91D8F59B700628804 /* QRCodeReaderResult.swift in Sources */,
 				252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */,
 				2578ECFE1D25CE7B00158527 /* ECSortController.swift in Sources */,
+				25A1C9DC1D8F59B700628804 /* ReaderOverlayView.swift in Sources */,
 				2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */,
 				25728F5F1CB1C7F20063C7E3 /* ECStoreManager.swift in Sources */,
 				2534D3511CBF02C8003A9195 /* UIVIew+ECAdditions.swift in Sources */,
 				258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */,
 				254394AF1D08E900001F079C /* ECActionInputController.swift in Sources */,
 				25594D6F1CEE86FF000B4561 /* ECConstants.swift in Sources */,
+				25A1C9D61D8F59B700628804 /* README.md in Sources */,
 				25E3BC981CB59FD000CCD783 /* UIViewController+ECAdditions.swift in Sources */,
+				25A1C9DB1D8F59B700628804 /* QRCodeViewControllerBuilder.swift in Sources */,
 				2534D34D1CBF00D7003A9195 /* ECSearchHeaderView.swift in Sources */,
+				25A1C9DE1D8F59B700628804 /* ToggleTorchButton.swift in Sources */,
 				25A7924E1D1F43A40075E654 /* ECScore.swift in Sources */,
 				25752E8C1CD7A96D004040CB /* ECCategoryOverviewCell.swift in Sources */,
 				252C5A8B1CB062D7006CC6F9 /* ECUsersListViewController.swift in Sources */,
@@ -626,10 +869,15 @@
 				25752E881CD7A901004040CB /* ECCategoriesController.swift in Sources */,
 				25FC6D3A1CF528D600D06D21 /* ECCategoryActionCell.swift in Sources */,
 				25728F631CB1C8530063C7E3 /* ECSeralizableObject.swift in Sources */,
+				25A1C9E11D8F59B700628804 /* Reachability.swift in Sources */,
 				2543CCF91CBA954C00EA677B /* ECLoginController.swift in Sources */,
+				25A1C9D81D8F59B700628804 /* QRCodeReader.swift in Sources */,
+				25A1C9DA1D8F59B700628804 /* QRCodeViewController.swift in Sources */,
+				25A1C9D11D8F59B700628804 /* README.md in Sources */,
 				254394B11D08EFDE001F079C /* ECCarbonFootprintController.swift in Sources */,
 				2502B6D41CBC553200F7DC28 /* KeychainSwift.swift in Sources */,
 				2593FC2E1D06352100F93DD0 /* ECAgreementController.swift in Sources */,
+				25A1C9DF1D8F59B700628804 /* README.md in Sources */,
 				2502B6D71CBC56EE00F7DC28 /* KeychainSwiftAccessOptions.swift in Sources */,
 				25E3BC961CB59FA100CCD783 /* ECUserController.swift in Sources */,
 				25728F611CB1C8000063C7E3 /* ECRequestManager.swift in Sources */,
@@ -774,7 +1022,7 @@
 		};
 		2513BB251CA9AF3A00CC9C7E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4AC105D40F2A4FA4262990B /* Pods-ecoGame.debug.xcconfig */;
+			baseConfigurationReference = 5B156F2AD23EA55D49286349 /* Pods-ecoGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -783,6 +1031,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+					"$(PROJECT_DIR)/Pods/HockeySDK/HockeySDK-iOS/HockeySDK.embeddedframework",
 				);
 				INFOPLIST_FILE = ecoGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -792,12 +1041,13 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ecoGame-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		2513BB261CA9AF3A00CC9C7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FACC02D0070F297BC3E1316D /* Pods-ecoGame.release.xcconfig */;
+			baseConfigurationReference = A68511DAF8BCDB9D4AC2F439 /* Pods-ecoGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -806,6 +1056,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+					"$(PROJECT_DIR)/Pods/HockeySDK/HockeySDK-iOS/HockeySDK.embeddedframework",
 				);
 				INFOPLIST_FILE = ecoGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -814,40 +1065,47 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ecoGame-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
 		2513BB281CA9AF3A00CC9C7E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B25897D73D0CB78CE03E7403 /* Pods-ecoGameTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ecoGameTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timo.ecoGameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ecoGame.app/ecoGame";
 			};
 			name = Debug;
 		};
 		2513BB291CA9AF3A00CC9C7E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F1A25414635E9D9E6E56BA4 /* Pods-ecoGameTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ecoGameTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timo.ecoGameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ecoGame.app/ecoGame";
 			};
 			name = Release;
 		};
 		2513BB2B1CA9AF3A00CC9C7E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F32CC2A92F315585CD0360A3 /* Pods-ecoGameUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ecoGameUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timo.ecoGameUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = ecoGame;
 				USES_XCTRUNNER = YES;
 			};
@@ -855,11 +1113,13 @@
 		};
 		2513BB2C1CA9AF3A00CC9C7E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2523F59A9A87142F1A168BB4 /* Pods-ecoGameUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ecoGameUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timo.ecoGameUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = ecoGame;
 				USES_XCTRUNNER = YES;
 			};

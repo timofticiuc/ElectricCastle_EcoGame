@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import QRCode
-import QRCodeReader
 import AVFoundation
 
 protocol ECQRDelegate {
