@@ -75,7 +75,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         }
         
         self.frc.ec_performFetch()
-        ECCoreManager.sharedInstance.getUsers()
+//        ECCoreManager.sharedInstance.getUsers()
     }
     
     func reloadData() {
@@ -191,7 +191,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let cell = cell as! ECUserListCell
-        //cell.displayScores()
+        cell.displayScores()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

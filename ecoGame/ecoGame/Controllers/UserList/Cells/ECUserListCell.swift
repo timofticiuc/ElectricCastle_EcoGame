@@ -40,22 +40,36 @@ class ECUserListCell: UITableViewCell {
             return
         }
         
-        for index in 1...5 {
-            weak var weakSelf: ECUserListCell? = self
-
+        weak var weakSelf: ECUserListCell? = self
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let categs = self.user.userCategories
+            var scoreStrings = [String]()
+            var titleStrings = [String]()
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                let categString = weakSelf!.user.userCategories[index - 1].categoryName
-                let scoreString = "Score: " + String(weakSelf!.user.userCategories[index - 1].overallScore())
-                let actions = "/" + String(weakSelf!.user.userCategories[index - 1].actions().count)
-                let titleString = categString + " " + String(weakSelf!.user.userCategories[index - 1].scoreCompleteness()) + actions
+            for index in 1...5 {
+
+                let categString = categs[index - 1].categoryName
+                let scoreString = "Score: " + String(categs[index - 1].overallScore())
+                let actions = "/" + String(categs[index - 1].actions().count)
+                let titleString = categString + " " + String(categs[index - 1].scoreCompleteness()) + actions
+                scoreStrings.append(scoreString)
+                titleStrings.append(titleString)
                 
-                dispatch_async(dispatch_get_main_queue()) {
-                    let label = weakSelf?.viewWithTag(index * 10) as! UILabel
-                    let titleLabel = weakSelf?.viewWithTag(index) as! UILabel
-                    
-                    label.text = scoreString
-                    titleLabel.text = titleString
+                if titleStrings.count == 5 {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        for index in 1...5 {
+                            if weakSelf == nil {
+                                return
+                            }
+                            
+                            let label = weakSelf?.viewWithTag(index * 10) as! UILabel
+                            let titleLabel = weakSelf?.viewWithTag(index) as! UILabel
+                            
+                            label.text = scoreStrings[index - 1]
+                            titleLabel.text = titleStrings[index - 1]
+                        }
+                    }
                 }
             }
         }

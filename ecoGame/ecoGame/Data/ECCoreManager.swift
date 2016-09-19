@@ -130,8 +130,6 @@ class ECCoreManager: NSObject {
                 if user.userCategories.count == 0 {
                     user.userCategories = user.defaultCategories()
                 }
-                
-                NSLog("%@", user)
             }
             self.storeManager.saveContext()
         }
