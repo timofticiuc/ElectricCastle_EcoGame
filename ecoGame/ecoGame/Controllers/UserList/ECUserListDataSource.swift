@@ -11,6 +11,8 @@ import CoreData
 
 protocol ECUsersDataSourceDelegate {
     func dataSource(ds:ECUsersDataSource, wantsToShowViewController vc:UIViewController)
+    func dataSource(ds: ECUsersDataSource, hasChangedUserProgress userProgress: Int, count: Int)
+    func dataSource(ds: ECUsersDataSource, hasChangedCategoryProgress categoryProgress: Int, count: Int)
 }
 
 class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, ECUserControllerDelegate {
@@ -75,7 +77,16 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         }
         
         self.frc.ec_performFetch()
-//        ECCoreManager.sharedInstance.getUsers()
+    }
+    
+    func fetchRemoteData() {
+        ECCoreManager.sharedInstance.getUsersWithCompletion({ (success) in
+            
+            }, userProgressBlock: { (progress, count) in
+                self.delegate?.dataSource(self, hasChangedUserProgress: progress, count: count)
+            }) { (progress, count) in
+                self.delegate?.dataSource(self, hasChangedCategoryProgress: progress, count: count)
+        }
     }
     
     func reloadData() {

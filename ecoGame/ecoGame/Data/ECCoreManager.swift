@@ -120,9 +120,14 @@ class ECCoreManager: NSObject {
         }
     }
     
-    func getUsers() {
+    func getUsersWithCompletion( completion: (success:Bool) -> Void,
+                                 userProgressBlock: (progress:Int, count:Int) -> Void,
+                                 categoryProgressBlock: (progress:Int, count:Int) -> Void) {
         self.requestManager.fetchUsersWithCompletion { (users) in
+            var userCategCount = 0
+            var userIndex = 0
             for userObj in users {
+                userIndex += 1
                 guard let userDict = userObj as? Dictionary<String, AnyObject> else { continue }
                 var newUserDict = userDict
                 newUserDict["id"] = userDict["user_unique_tag"]
@@ -131,7 +136,30 @@ class ECCoreManager: NSObject {
                     user.userCategories = user.defaultCategories()
                 }
                 
-                NSLog("%@", user)
+                var categCount = 0
+                
+                for categ in user.userCategories {
+                    self.getCategoryForId(categ.id, withCompletion: { (category) in
+                        if category != nil {
+                            category?.scoreCompleteness()
+                            category?.overallScore()
+                        }
+                        categCount += 1
+                        
+                        if categCount == user.userCategories.count {
+                            userCategCount += 1
+//                            NSLog("%d : %d", userCategCount, users.count)
+                            categoryProgressBlock(progress: userCategCount, count: users.count)
+                        }
+                        
+                        if categCount == users.count {
+                            completion(success: true)
+                        }
+                    })
+                }
+                
+//                NSLog("%@", user)
+                userProgressBlock(progress: userIndex, count: users.count)
             }
             self.storeManager.saveContext()
         }
@@ -208,6 +236,7 @@ class ECCoreManager: NSObject {
                 category.dictionaryRepresentation = newCategDict
                 completion(category: category)
             }
+            completion(category: nil)
         }
     }
 }
