@@ -84,24 +84,40 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         }
         
-        if self.query.characters.count > 0 {
-            tempUsers = tempUsers.filter({
-                ($0.userFirstName.lowercaseString.hasPrefix(self.query!) || $0.userLastName.lowercaseString.hasPrefix(self.query!))
-            })
-        }
+        let shouldFilterByName = (self.query.characters.count > 0)
+        let shouldFilterByRole = (self.userFilter != .ECUserRoleNone)
+        let shouldFilterByCategoryScore = (self.categoryFilter != ECConstants.Category.None)
         
-        if self.userFilter != .ECUserRoleNone {
-            tempUsers = tempUsers.filter({
-                ($0.userRole == self.userFilter)
-            })
-        }
+        var filterCount = 0
+        filterCount += shouldFilterByCategoryScore ? 1 : 0
+        filterCount += shouldFilterByRole ? 1 : 0
+        filterCount += shouldFilterByName ? 1 : 0
+
         
-        if self.categoryFilter != ECConstants.Category.None {
+        if filterCount > 0 {
             tempUsers = tempUsers.filter({
-                let categoryIndex = Int(self.categoryFilter.rawValue)
-                let score = $0.userCategories[categoryIndex].overallScore()
+                var validCount = 0
+                if shouldFilterByName {
+                    let isValidByName = ($0.userFirstName.lowercaseString.hasPrefix(self.query!) || $0.userLastName.lowercaseString.hasPrefix(self.query!))
+                    validCount += isValidByName ? 1 : 0
+                }
                 
-                return score > 0
+                if shouldFilterByRole {
+                    let isValidByRole = ($0.userRole == self.userFilter)
+                    validCount += isValidByRole ? 1 : 0
+                }
+                
+                if shouldFilterByCategoryScore {
+                    var isValidByCategoryScore = false
+                    let categoryIndex = Int(self.categoryFilter.rawValue)
+                    let score = $0.userCategories[categoryIndex].overallScore()
+                    
+                    isValidByCategoryScore = (score > 0)
+                    
+                    validCount += isValidByCategoryScore ? 1 : 0
+                }
+                
+                return validCount == filterCount
             })
         }
         

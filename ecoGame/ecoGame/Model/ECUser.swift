@@ -27,22 +27,26 @@ class ECUser: ECSeralizableObject {
     }
     
     @NSManaged private var categories: String
+    private var _categs:[ECCategory]!
     var userCategories:[ECCategory]! {
         get {
-            var tempCategories:[ECCategory] = [ECCategory]()
-            if categories.characters.count == 0 {
-                return []
-            }
-            let categoryIds = categories.componentsSeparatedByString(",")
-            for categoryId in categoryIds {
-                let persistedCategory = ECCategory.objectWithIdentifier(categoryId, fromContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!)
-                tempCategories.append(persistedCategory as! ECCategory)
+            if _categs == nil {
+                _categs = [ECCategory]()
+                if categories.characters.count == 0 {
+                    return []
+                }
+                let categoryIds = categories.componentsSeparatedByString(",")
+                for categoryId in categoryIds {
+                    let persistedCategory = ECCategory.objectWithIdentifier(categoryId, fromContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!)
+                    _categs.append(persistedCategory as! ECCategory)
+                }
             }
             
-            return tempCategories
+            return _categs
         }
         set {
             var tempCategs = ""
+            _categs = nil
             for category:ECCategory in newValue! {
                 tempCategs += category.id
                 if newValue?.last != category {
