@@ -129,13 +129,13 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     }
     
     func dataSource(ds: ECUsersDataSource, hasChangedUserProgress userProgress: Int, count: Int) {
-        let progressString = "Fetching user: " + String(userProgress) + "/" + String(count)
-        NSLog(progressString)
+//        let progressString = "Fetching user: " + String(userProgress) + "/" + String(count)
+//        NSLog(progressString)
     }
     
     func dataSource(ds: ECUsersDataSource, hasChangedCategoryProgress categoryProgress: Int, count: Int) {
         var progressString = "Fetching category: " + String(categoryProgress) + "/" + String(count)
-        NSLog(progressString)
+//        NSLog(progressString)
         progressString = "Fetching user: " + String(categoryProgress) + "/" + String(count)
 
         dispatch_async(dispatch_get_main_queue(), {

@@ -152,53 +152,42 @@ class ECCoreManager: NSObject {
             self.bgMOC.persistentStoreCoordinator = self.storeManager.managedObjectContext!.persistentStoreCoordinator
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.bgMOCDidSave), name: NSManagedObjectContextDidSaveNotification, object: self.bgMOC)
             
+            var userIndex = 0
             var userCategCount = 0
-            var index = 0
-            var locked: Bool = false
             
-            while (index < users.count - 1) {
-                if !locked {
-                    locked = true
-                    guard let userDict = users[index] as? Dictionary<String, AnyObject> else { index += 1; continue }
-                    var newUserDict = userDict
-                    newUserDict["id"] = userDict["user_unique_tag"]
-                    let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(newUserDict, inContext: self.bgMOC) as! ECUser
-                    if user.userCategories.count == 0 {
-                        user.userCategories = user.defaultCategoriesWithMOC(self.bgMOC)
-                    }
-                    
-                    var categCount = 0
-                    
-                    for categ in user.userCategoriesForMOC(self.bgMOC) {
-                        self.getCategoryForId(categ.id, withCompletion: { (category) in
-                            if category != nil {
-                                category?.category_scores = nil
-                                category?.scoreCompleteness()
-                                category?.overallScore()
-                            }
-                            categCount += 1
-                            
-                            if categCount == 5 {
-                                userCategCount += 1
-                                index += 1
-                                locked = false
-                                categoryProgressBlock(progress: userCategCount, count: users.count)
+            for userObj in users {
+                userIndex += 1
+                guard let userDict = userObj as? Dictionary<String, AnyObject> else { continue }
+                var newUserDict = userDict
+                newUserDict["id"] = userDict["user_unique_tag"]
+                let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(newUserDict, inContext: self.bgMOC) as! ECUser
+                if user.userCategories.count == 0 {
+                    user.userCategories = user.defaultCategoriesWithMOC(self.bgMOC)
+                }
+                
+                for categ in user.userCategoriesForMOC(self.bgMOC) {
+                    self.getCategoryForId(categ.id, withCompletion: { (category) in
+                        if category != nil {
+                            category?.category_scores = nil
+                            category?.categoryScores
+                        }
+                        userCategCount += 1
+                        NSLog("userCategCount: %d / %d", userCategCount/5, users.count)
+                        
+                        categoryProgressBlock(progress: userCategCount/5, count: users.count)
+                        
+                        if userCategCount == users.count*5 {
+//                            completion(success: true)
+                            do {
+                                try self.bgMOC.save()
+                            } catch {
                                 
                             }
-                            
-                            if userCategCount == users.count {
-                                //                            completion(success: true)
-                                do {
-                                    try self.bgMOC.save()
-                                } catch {
-                                    
-                                }
-                            }
-                        })
-                    }
-                    userProgressBlock(progress: index + 1, count: users.count)
+                        }
+                    })
                 }
-                //                NSLog("%@", user)
+                
+                userProgressBlock(progress: userIndex + 1, count: users.count)
             }
         }
     }
@@ -273,8 +262,9 @@ class ECCoreManager: NSObject {
                 let category:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(newCategDict!, inContext: self.storeManager.managedObjectContext!) as! ECCategory
                 category.dictionaryRepresentation = newCategDict
                 completion(category: category)
+            } else {
+                completion(category: nil)
             }
-            completion(category: nil)
         }
     }
 }

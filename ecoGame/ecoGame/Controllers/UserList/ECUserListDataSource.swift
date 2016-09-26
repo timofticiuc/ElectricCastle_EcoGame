@@ -91,6 +91,14 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func reloadData() {
         var tempUsers:[ECUser] = (self.frc.fetchedObjects as? [ECUser])!
+//        
+//        for user in tempUsers {
+//            NSLog("%@ %@", user.id, "temp_"+user.id)
+//            user.id = "temp_"+user.id
+//        }
+//        ECCoreManager.sharedInstance.storeManager.saveContext()
+//        return
+        
         defer {
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         }
