@@ -17,7 +17,7 @@ protocol ECUsersDataSourceDelegate {
 
 class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, ECUserControllerDelegate {
     
-    private var users: [ECUser] = [ECUser]()
+    public var users: [ECUser] = [ECUser]()
     private var query: String!
     private var userFilter: ECUserRole! = .ECUserRoleNone
     private var categoryFilter: ECConstants.Category! = ECConstants.Category.None

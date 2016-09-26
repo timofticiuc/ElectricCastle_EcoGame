@@ -139,7 +139,7 @@ class ECCoreManager: NSObject {
         }
         
         self.storeManager.managedObjectContext?.mergeChangesFromContextDidSaveNotification(notification)
-//        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         fetchCompletion(true)
     }
     
@@ -170,6 +170,8 @@ class ECCoreManager: NSObject {
                         if category != nil {
                             category?.category_scores = nil
                             category?.categoryScores
+                            category?.overallScore()
+                            category?.scoreCompleteness()
                         }
                         userCategCount += 1
                         NSLog("userCategCount: %d / %d", userCategCount/5, users.count)
@@ -177,12 +179,9 @@ class ECCoreManager: NSObject {
                         categoryProgressBlock(progress: userCategCount/5, count: users.count)
                         
                         if userCategCount == users.count*5 {
-//                            completion(success: true)
                             do {
                                 try self.bgMOC.save()
-                            } catch {
-                                
-                            }
+                            } catch { }
                         }
                     })
                 }

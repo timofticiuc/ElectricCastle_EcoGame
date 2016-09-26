@@ -18,6 +18,7 @@ extension UIView {
     }
     
     public func ec_addSubView(subview: UIView, withInsets insets: UIEdgeInsets) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(subview)
         
         self.ec_addConstraint(.Top, inRelationToView: subview, withConstant: insets.top)

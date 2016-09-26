@@ -35,112 +35,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nit-26-Bkt">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.94999998807907104" green="0.94999998807907104" blue="0.94999998807907104" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            </tableView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJq-rf-mbc" userLabel="toolBarView">
-                                <subviews>
-                                    <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="MQT-PB-biU">
-                                        <subviews>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVF-Ud-1cF">
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="3uE-JW-ZGy"/>
-                                                </constraints>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jez-p8-04W">
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="3hz-Zr-cDc"/>
-                                                    <constraint firstAttribute="width" constant="140" id="mcq-LT-Zab"/>
-                                                </constraints>
-                                                <state key="normal" title="Sort: Score">
-                                                    <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="sortAction" destination="JEX-9P-axG" eventType="touchUpInside" id="VaW-cN-3GG"/>
-                                                </connections>
-                                            </button>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ap7-a2-vMU">
-                                                <segments>
-                                                    <segment title="Participant" width="80"/>
-                                                    <segment title="Volunteer" width="70"/>
-                                                    <segment title="Admin"/>
-                                                    <segment title="All"/>
-                                                </segments>
-                                                <color key="tintColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <connections>
-                                                    <action selector="userRoleSegmentDidChangeValueWithSegmentControl:" destination="JEX-9P-axG" eventType="valueChanged" id="WyK-UZ-o81"/>
-                                                </connections>
-                                            </segmentedControl>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5gc-Vo-gsF">
-                                                <segments>
-                                                    <segment title="Energy"/>
-                                                    <segment title="Waste"/>
-                                                    <segment title="Water"/>
-                                                    <segment title="Transport" width="80"/>
-                                                    <segment title="Social"/>
-                                                    <segment title="All"/>
-                                                </segments>
-                                                <color key="tintColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <connections>
-                                                    <action selector="categorySegmentDidChangeValueWithSegmentControl:" destination="JEX-9P-axG" eventType="valueChanged" id="agW-Ql-P8P"/>
-                                                </connections>
-                                            </segmentedControl>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggT-3y-gvi">
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="hlu-sm-Qkb"/>
-                                                    <constraint firstAttribute="width" constant="149" id="inG-Z1-Ir3"/>
-                                                </constraints>
-                                                <state key="normal" title="Music drives change">
-                                                    <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="sortByMusicDrive" destination="JEX-9P-axG" eventType="touchUpInside" id="Hmn-2g-nWC"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKN-PI-BTF">
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="149" id="GPG-jQ-z3Q"/>
-                                                    <constraint firstAttribute="height" constant="32" id="tAd-o9-qvV"/>
-                                                </constraints>
-                                                <state key="normal" title="Pick random">
-                                                    <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="getRandomUser" destination="JEX-9P-axG" eventType="touchUpInside" id="VYv-ec-SgO"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="ggT-3y-gvi" secondAttribute="trailing" constant="25" id="5yf-LX-8nF"/>
-                                            <constraint firstAttribute="trailing" secondItem="Jez-p8-04W" secondAttribute="trailing" constant="25" id="6Qj-O1-yg0"/>
-                                            <constraint firstAttribute="trailing" secondItem="fVF-Ud-1cF" secondAttribute="trailing" id="Ax1-12-Gx6"/>
-                                            <constraint firstItem="mKN-PI-BTF" firstAttribute="leading" secondItem="Ap7-a2-vMU" secondAttribute="trailing" constant="8" id="EHa-Z2-Is7"/>
-                                            <constraint firstItem="mKN-PI-BTF" firstAttribute="top" secondItem="fVF-Ud-1cF" secondAttribute="bottom" constant="8" id="J7O-8H-tK1"/>
-                                            <constraint firstItem="ggT-3y-gvi" firstAttribute="leading" secondItem="5gc-Vo-gsF" secondAttribute="trailing" constant="25" id="JhR-gS-PJ2"/>
-                                            <constraint firstItem="Ap7-a2-vMU" firstAttribute="top" secondItem="fVF-Ud-1cF" secondAttribute="bottom" constant="9" id="Lie-Qm-MSp"/>
-                                            <constraint firstItem="Jez-p8-04W" firstAttribute="leading" secondItem="mKN-PI-BTF" secondAttribute="trailing" constant="2" id="ceW-2M-C6o"/>
-                                            <constraint firstItem="Ap7-a2-vMU" firstAttribute="leading" secondItem="MQT-PB-biU" secondAttribute="leading" constant="25" id="dMQ-Z1-Eur"/>
-                                            <constraint firstItem="fVF-Ud-1cF" firstAttribute="top" secondItem="MQT-PB-biU" secondAttribute="top" id="e6B-It-N6w"/>
-                                            <constraint firstItem="5gc-Vo-gsF" firstAttribute="top" secondItem="Jez-p8-04W" secondAttribute="bottom" constant="10" id="gGp-Lc-bk0"/>
-                                            <constraint firstItem="Jez-p8-04W" firstAttribute="top" secondItem="fVF-Ud-1cF" secondAttribute="bottom" constant="8" id="lue-Zl-bI3"/>
-                                            <constraint firstItem="fVF-Ud-1cF" firstAttribute="leading" secondItem="MQT-PB-biU" secondAttribute="leading" id="nyS-IQ-HpB"/>
-                                            <constraint firstItem="ggT-3y-gvi" firstAttribute="top" secondItem="Jez-p8-04W" secondAttribute="bottom" constant="8" id="v5p-99-iR9"/>
-                                            <constraint firstItem="5gc-Vo-gsF" firstAttribute="leading" secondItem="MQT-PB-biU" secondAttribute="leading" constant="25" id="yX5-xA-xfh"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.80784313730000001" green="0.56470588239999997" blue="0.12549019610000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="MQT-PB-biU" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" id="5ja-Tp-Tvb"/>
-                                    <constraint firstItem="MQT-PB-biU" firstAttribute="top" secondItem="ZJq-rf-mbc" secondAttribute="top" id="AkE-re-5E6"/>
-                                    <constraint firstAttribute="trailing" secondItem="MQT-PB-biU" secondAttribute="trailing" id="hi4-4D-ahn"/>
-                                    <constraint firstAttribute="height" constant="150" id="oNh-SM-PMx"/>
-                                    <constraint firstAttribute="bottom" secondItem="MQT-PB-biU" secondAttribute="bottom" id="z4n-mZ-9I3"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcq-f4-mCw">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcq-f4-mCw">
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pl4-4H-ANm">
                                         <subviews>
@@ -163,40 +58,87 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="pl4-4H-ANm" firstAttribute="centerX" secondItem="Jcq-f4-mCw" secondAttribute="centerX" id="1Pk-aH-FYD"/>
                                     <constraint firstItem="pl4-4H-ANm" firstAttribute="centerY" secondItem="Jcq-f4-mCw" secondAttribute="centerY" id="BYr-RP-bSS"/>
+                                </constraints>
+                            </view>
+                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nit-26-Bkt">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.94999998807907104" green="0.94999998807907104" blue="0.94999998807907104" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJq-rf-mbc" userLabel="toolBarView">
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMW-fl-qSd">
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="aMh-eN-xZd"/>
+                                        </constraints>
+                                    </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ap7-a2-vMU">
+                                        <segments>
+                                            <segment title="Participant"/>
+                                            <segment title="Volunteer"/>
+                                            <segment title="Admin"/>
+                                            <segment title="All"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5gc-Vo-gsF">
+                                        <segments>
+                                            <segment title="Energy"/>
+                                            <segment title="Waste"/>
+                                            <segment title="Water"/>
+                                            <segment title="Transport"/>
+                                            <segment title="Social"/>
+                                            <segment title="All"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5gc-Vo-gsF" secondAttribute="trailing" constant="25" id="7nG-4U-pfz"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ap7-a2-vMU" secondAttribute="trailing" constant="25" id="Fwj-Tq-G9t"/>
+                                    <constraint firstItem="cMW-fl-qSd" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" id="G9W-sB-UbJ"/>
+                                    <constraint firstItem="5gc-Vo-gsF" firstAttribute="top" secondItem="Ap7-a2-vMU" secondAttribute="bottom" constant="8" id="GAJ-cv-c5m"/>
+                                    <constraint firstAttribute="bottom" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="28" id="Op0-fl-frI"/>
+                                    <constraint firstAttribute="height" constant="150" id="dHy-US-3n1"/>
+                                    <constraint firstItem="Ap7-a2-vMU" firstAttribute="top" secondItem="cMW-fl-qSd" secondAttribute="bottom" constant="8" id="j7n-bt-zs0"/>
+                                    <constraint firstAttribute="trailing" secondItem="cMW-fl-qSd" secondAttribute="trailing" id="jzv-sT-osn"/>
+                                    <constraint firstItem="5gc-Vo-gsF" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" constant="25" id="kGW-Ww-jI2"/>
+                                    <constraint firstItem="cMW-fl-qSd" firstAttribute="top" secondItem="ZJq-rf-mbc" secondAttribute="top" id="rKi-hq-U9Y"/>
+                                    <constraint firstItem="Ap7-a2-vMU" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" constant="25" id="sXy-Be-6Cc"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Jcq-f4-mCw" secondAttribute="trailing" id="2Vc-DQ-9lY"/>
-                            <constraint firstAttribute="trailing" secondItem="ZJq-rf-mbc" secondAttribute="trailing" id="5CM-6f-zmm"/>
-                            <constraint firstItem="ZJq-rf-mbc" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="1" id="7IP-eG-GIV"/>
+                            <constraint firstAttribute="trailing" secondItem="ZJq-rf-mbc" secondAttribute="trailing" id="5h5-SP-toM"/>
                             <constraint firstItem="nit-26-Bkt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="8Hm-0w-sro"/>
                             <constraint firstAttribute="trailing" secondItem="nit-26-Bkt" secondAttribute="trailing" id="IXn-5C-KTB"/>
-                            <constraint firstItem="nit-26-Bkt" firstAttribute="top" secondItem="ZJq-rf-mbc" secondAttribute="bottom" id="R08-tC-vGB"/>
+                            <constraint firstItem="ZJq-rf-mbc" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="Rn3-Ba-lYJ"/>
+                            <constraint firstItem="ZJq-rf-mbc" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="Yh9-qf-wE6"/>
                             <constraint firstItem="Jcq-f4-mCw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="Z4I-th-8wJ"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="nit-26-Bkt" secondAttribute="bottom" id="dDx-WB-0oO"/>
+                            <constraint firstItem="nit-26-Bkt" firstAttribute="top" secondItem="ZJq-rf-mbc" secondAttribute="bottom" id="emQ-5X-KN8"/>
                             <constraint firstItem="Jcq-f4-mCw" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="kWY-rk-v3U"/>
-                            <constraint firstItem="ZJq-rf-mbc" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="vNq-Pv-zSZ"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Jcq-f4-mCw" secondAttribute="bottom" id="yJU-mm-VtJ"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Participants" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="categorySegmentControl" destination="5gc-Vo-gsF" id="iCx-YO-LEB"/>
+                        <outlet property="categorySegmentControl" destination="5gc-Vo-gsF" id="zbI-iH-cWS"/>
                         <outlet property="overlayView" destination="Jcq-f4-mCw" id="V9F-CD-Ixf"/>
                         <outlet property="progressContainerView" destination="pl4-4H-ANm" id="cA3-YS-rIz"/>
                         <outlet property="progressLabel" destination="HmE-cP-gTF" id="GeH-RL-Ute"/>
-                        <outlet property="searchContainerView" destination="fVF-Ud-1cF" id="Te4-AT-sR0"/>
+                        <outlet property="searchContainerView" destination="cMW-fl-qSd" id="Emh-f5-ayF"/>
                         <outlet property="tableView" destination="nit-26-Bkt" id="PbP-LP-bLp"/>
-                        <outlet property="toolBarHeightConstraint" destination="oNh-SM-PMx" id="g1Y-gD-7c6"/>
-                        <outlet property="userSegmentControl" destination="Ap7-a2-vMU" id="J8H-a0-3Xc"/>
-                        <outlet property="userSortButton" destination="Jez-p8-04W" id="ibX-YH-9B3"/>
+                        <outlet property="toolBarHeightConstraint" destination="dHy-US-3n1" id="7bC-ux-2QR"/>
+                        <outlet property="userSegmentControl" destination="Ap7-a2-vMU" id="mRn-LV-oOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -250,17 +192,61 @@
                                     <action selector="cancelAction" destination="1kY-jS-4wd" eventType="touchUpInside" id="CoL-s8-EW9"/>
                                 </connections>
                             </button>
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="MQT-PB-biU">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jez-p8-04W">
+                                        <frame key="frameInset" minX="603" minY="58" width="140" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="3hz-Zr-cDc"/>
+                                            <constraint firstAttribute="width" constant="140" id="mcq-LT-Zab"/>
+                                        </constraints>
+                                        <state key="normal" title="Sort: Score">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggT-3y-gvi">
+                                        <frame key="frameInset" minX="594" minY="98" width="149" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="hlu-sm-Qkb"/>
+                                            <constraint firstAttribute="width" constant="149" id="inG-Z1-Ir3"/>
+                                        </constraints>
+                                        <state key="normal" title="Music drives change">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKN-PI-BTF">
+                                        <frame key="frameInset" minX="452" minY="58" width="149" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="149" id="GPG-jQ-z3Q"/>
+                                            <constraint firstAttribute="height" constant="32" id="tAd-o9-qvV"/>
+                                        </constraints>
+                                        <state key="normal" title="Pick random">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ggT-3y-gvi" secondAttribute="trailing" constant="25" id="5yf-LX-8nF"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jez-p8-04W" secondAttribute="trailing" constant="25" id="6Qj-O1-yg0"/>
+                                    <constraint firstItem="Jez-p8-04W" firstAttribute="leading" secondItem="mKN-PI-BTF" secondAttribute="trailing" constant="2" id="ceW-2M-C6o"/>
+                                    <constraint firstItem="ggT-3y-gvi" firstAttribute="top" secondItem="Jez-p8-04W" secondAttribute="bottom" constant="8" id="v5p-99-iR9"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="U4Y-zl-KIr" secondAttribute="trailing" id="150-5q-n0S"/>
+                            <constraint firstAttribute="trailing" secondItem="MQT-PB-biU" secondAttribute="trailing" id="B9o-Jg-eO1"/>
                             <constraint firstItem="U4Y-zl-KIr" firstAttribute="top" secondItem="hiG-ts-VU9" secondAttribute="top" id="Cwb-Lx-eqa"/>
                             <constraint firstItem="azM-iI-sSF" firstAttribute="centerX" secondItem="hiG-ts-VU9" secondAttribute="centerX" constant="79" id="OBB-hn-D0d"/>
                             <constraint firstItem="qI7-cK-rm4" firstAttribute="top" secondItem="U4Y-zl-KIr" secondAttribute="bottom" constant="8" id="SRr-w2-fam"/>
                             <constraint firstItem="JCa-dr-zt7" firstAttribute="top" secondItem="azM-iI-sSF" secondAttribute="bottom" constant="20" id="Stb-Zw-34u"/>
                             <constraint firstItem="U4Y-zl-KIr" firstAttribute="leading" secondItem="hiG-ts-VU9" secondAttribute="leading" id="eU6-vA-uQx"/>
+                            <constraint firstItem="MQT-PB-biU" firstAttribute="top" secondItem="hiG-ts-VU9" secondAttribute="top" id="hxR-r1-LC1"/>
                             <constraint firstItem="JCa-dr-zt7" firstAttribute="top" secondItem="qI7-cK-rm4" secondAttribute="bottom" constant="20" id="lLa-e8-rhy"/>
                             <constraint firstItem="qI7-cK-rm4" firstAttribute="centerX" secondItem="hiG-ts-VU9" secondAttribute="centerX" constant="-79" id="tIE-Gc-vA3"/>
+                            <constraint firstAttribute="bottom" secondItem="MQT-PB-biU" secondAttribute="bottom" constant="874" id="und-gn-T6g"/>
+                            <constraint firstItem="MQT-PB-biU" firstAttribute="leading" secondItem="hiG-ts-VU9" secondAttribute="leading" id="zZJ-iw-VAa"/>
                         </constraints>
                     </view>
                     <connections>
@@ -269,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAQ-DO-deN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="709" y="857"/>
+            <point key="canvasLocation" x="709" y="771"/>
         </scene>
         <!--User Controller-->
         <scene sceneID="edv-VD-jsl">

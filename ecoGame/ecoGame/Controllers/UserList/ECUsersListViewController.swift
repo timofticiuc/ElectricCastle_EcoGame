@@ -13,12 +13,13 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var userSegmentControl: UISegmentedControl!
     @IBOutlet weak var categorySegmentControl: UISegmentedControl!
-    @IBOutlet weak var userSortButton: UIButton!
+//    @IBOutlet weak var userSortButton: UIButton!
     @IBOutlet weak var toolBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var progressContainerView: UIView!
     @IBOutlet weak var progressLabel: UILabel!
 
+    private var refreshControl: UIRefreshControl!
     private var progressView:KDCircularProgress!
     private var _searchView: ECSearchHeaderView!
     private var searchView: ECSearchHeaderView! {
@@ -41,26 +42,30 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.configureView()
         self.setupProgressView()
         self.dataSource.fetchData()
-        self.dataSource.fetchRemoteData()
         self.dataSource.reloadData()
-        
-        UIView.animateWithDuration(0.25) { 
-            self.overlayView.alpha = 1
-        }
+        self.resetData()
+    }
+    
+    func resetData() {
+        //        if self.dataSource.users.count == 0 {
+        //            self.dataSource.fetchRemoteData()
+        //            self.view.bringSubviewToFront(self.overlayView)
+        //            UIView.animateWithDuration(0.25) {
+        //                self.overlayView.alpha = 1
+        //            }
+        //        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         self.toolBarHeightConstraint.constant = (ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleAdmin ? 150 : 50)
-        self.progressView.frame = self.progressContainerView.bounds
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.dataSource.fetchData()
         self.dataSource.reloadData()
-        self.progressView.frame = self.progressContainerView.bounds
     }
     
     func setupProgressView() {
@@ -88,17 +93,25 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.searchContainerView.ec_addSubView(self.searchView, withInsets: UIEdgeInsetsZero)
         self.userSegmentControl.selectedSegmentIndex = 3
         self.categorySegmentControl.selectedSegmentIndex = 5
-        self.userSortButton.layer.cornerRadius = 5
-        self.userSortButton.layer.borderColor = UIColor.ec_greenFaded().CGColor
-        self.userSortButton.layer.borderWidth = 1
-        self.userSortButton.setTitle("Sort: --", forState: .Normal)
+        self.userSegmentControl.addTarget(self, action: #selector(userRoleChanged), forControlEvents: .ValueChanged)
+        self.categorySegmentControl.addTarget(self, action: #selector(categoryChanged), forControlEvents: .ValueChanged)
+
+//        self.userSortButton.layer.cornerRadius = 5
+//        self.userSortButton.layer.borderColor = UIColor.ec_greenFaded().CGColor
+//        self.userSortButton.layer.borderWidth = 1
+//        self.userSortButton.setTitle("Sort: --", forState: .Normal)
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.tintColor = UIColor.ec_green()
+        self.refreshControl.addTarget(self, action: #selector(resetData), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(self.refreshControl)
     }
     
-    @IBAction func userRoleSegmentDidChangeValue(segmentControl: UISegmentedControl) {
+    func userRoleChanged(segmentControl: UISegmentedControl) {
         self.dataSource?.applyUserFilter(ECUserRole(rawValue: Int32(segmentControl.selectedSegmentIndex))!)
     }
     
-    @IBAction func categorySegmentDidChangeValue(segmentControl: UISegmentedControl) {
+    func categoryChanged(segmentControl: UISegmentedControl) {
         var categType = ECConstants.Category(rawValue: Int32(segmentControl.selectedSegmentIndex))!
         if segmentControl.selectedSegmentIndex == 5 {
             categType = ECConstants.Category.None
@@ -151,6 +164,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
             }
             
             if categoryProgress == count {
+                self.refreshControl.endRefreshing()
                 UIView.animateWithDuration(0.25, animations: {
                     self.overlayView.alpha = 0
                     }, completion: { (done) in
@@ -171,7 +185,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     func sortController(sc: ECSortController, hasSelectedCategory category: ECConstants.Category, withSortAsAscending ascending: Bool) {
         self.dataSource?.applyCategorySort(category, ascending: ascending)
         let title = "Sort: " + category.ec_enumName() + (ascending ? ", ascending" : ", descending")
-        self.userSortButton.setTitle(title, forState: .Normal)
+//        self.userSortButton.setTitle(title, forState: .Normal)
     }
 }
 
