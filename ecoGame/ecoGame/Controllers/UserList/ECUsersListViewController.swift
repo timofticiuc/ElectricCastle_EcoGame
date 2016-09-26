@@ -15,7 +15,11 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     @IBOutlet weak var categorySegmentControl: UISegmentedControl!
     @IBOutlet weak var userSortButton: UIButton!
     @IBOutlet weak var toolBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var progressContainerView: UIView!
+    @IBOutlet weak var progressLabel: UILabel!
 
+    private var progressView:KDCircularProgress!
     private var _searchView: ECSearchHeaderView!
     private var searchView: ECSearchHeaderView! {
         get {
@@ -35,20 +39,47 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         
         self.dataSource = ECUsersDataSource.init(withDelegate: self, andTableView: self.tableView)
         self.configureView()
+        self.setupProgressView()
         self.dataSource.fetchData()
+        self.dataSource.fetchRemoteData()
         self.dataSource.reloadData()
+        
+        UIView.animateWithDuration(0.25) { 
+            self.overlayView.alpha = 1
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         self.toolBarHeightConstraint.constant = (ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleAdmin ? 150 : 50)
+        self.progressView.frame = self.progressContainerView.bounds
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.dataSource.fetchData()
         self.dataSource.reloadData()
+        self.progressView.frame = self.progressContainerView.bounds
+    }
+    
+    func setupProgressView() {
+        if progressView != nil {
+            return
+        }
+        progressView = KDCircularProgress(frame: self.progressContainerView.bounds)
+        progressView.startAngle = -90
+        progressView.clockwise = true
+        progressView.center = self.progressContainerView.center
+        progressView.gradientRotateSpeed = 2
+        progressView.roundedCorners = true
+        progressView.glowMode = .Forward
+        progressView.setColors(UIColor.ec_green())
+        progressView.trackColor = UIColor ( red: 0.8588, green: 0.8588, blue: 0.8588, alpha: 1.0 )
+        progressView.trackThickness = 0.2
+        progressView.progressThickness = 0.2
+        self.progressContainerView.ec_addSubView(progressView, withInsets: UIEdgeInsetsZero)
+        self.progressView.frame = self.progressContainerView.bounds
     }
 
     func configureView() {
@@ -95,6 +126,38 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     func dataSource(ds: ECUsersDataSource, wantsToShowViewController vc: UIViewController) {        
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func dataSource(ds: ECUsersDataSource, hasChangedUserProgress userProgress: Int, count: Int) {
+        let progressString = "Fetching user: " + String(userProgress) + "/" + String(count)
+        NSLog(progressString)
+    }
+    
+    func dataSource(ds: ECUsersDataSource, hasChangedCategoryProgress categoryProgress: Int, count: Int) {
+        var progressString = "Fetching category: " + String(categoryProgress) + "/" + String(count)
+        NSLog(progressString)
+        progressString = "Fetching user: " + String(categoryProgress) + "/" + String(count)
+
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.progressLabel.text = progressString
+            let progress = Double(categoryProgress)/Double(count)
+            let angle: Double = progress * 360
+            
+            if self.progressView != nil {
+                self.progressView.animateToAngle(angle, duration: 0.25, completion: { (done) in
+                    
+                })
+            }
+            
+            if categoryProgress == count {
+                UIView.animateWithDuration(0.25, animations: {
+                    self.overlayView.alpha = 0
+                    }, completion: { (done) in
+                        self.overlayView.hidden = true
+                })
+            }
+        })
     }
     
     // MARK: ECSearchDelegate

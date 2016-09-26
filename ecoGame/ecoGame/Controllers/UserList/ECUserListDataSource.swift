@@ -81,7 +81,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func fetchRemoteData() {
         ECCoreManager.sharedInstance.getUsersWithCompletion({ (success) in
-            
+                self.reloadData()
             }, userProgressBlock: { (progress, count) in
                 self.delegate?.dataSource(self, hasChangedUserProgress: progress, count: count)
             }) { (progress, count) in

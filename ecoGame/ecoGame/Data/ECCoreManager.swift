@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import CoreData
 
 class ECCoreManager: NSObject {
     static let sharedInstance = ECCoreManager()
     var canSend: Bool = false
     
+    var bgMOC: NSManagedObjectContext!
     var reachabilityManager: Reachability?
-    var storeManager: ECStoreManager
-    var requestManager: ECRequestManager
+    var storeManager: ECStoreManager!
+    var requestManager: ECRequestManager!
     var currentSessionTimeStamp: NSDate {
         get {
             return NSUserDefaults.standardUserDefaults().objectForKey(kCurrentSessionTimeStamp) as! NSDate
@@ -38,10 +40,10 @@ class ECCoreManager: NSObject {
     }
     
     override init() {
-        storeManager = ECStoreManager()
-        requestManager = ECRequestManager()
-        
         super.init()
+
+        self.storeManager = ECStoreManager()
+        self.requestManager = ECRequestManager()
         
         do {
             self.reachabilityManager = try Reachability.reachabilityForInternetConnection()
@@ -54,7 +56,7 @@ class ECCoreManager: NSObject {
             reachability.whenReachable = { reachability in
                 if self.canSend {
                     self.canSend = false
-                    self.sendDirtyUsers()
+//                    self.sendDirtyUsers()
                 }
             }
             
@@ -74,6 +76,7 @@ class ECCoreManager: NSObject {
     
     func sendDirtyUsers() {
         do {
+            var count = 0
             let allUsers = try self.storeManager.managedObjectContext?.executeFetchRequest(ECUser.fetchRequestForUsers()) as! [ECUser]
             for user:ECUser in allUsers {
                 if user.dirty {
@@ -84,11 +87,20 @@ class ECCoreManager: NSObject {
                     }
                 }
                 
+                var categCount = 0
+                
                 for category:ECCategory in user.userCategories {
                     if category.dirty {
                         self.requestManager.updateCategory(category, withCompletion: { (success) in
                             if success {
                                 category.dirty = false
+                            }
+                            categCount += 1
+                            if categCount == 5 {
+                                count += 1
+                            }
+                            
+                            if count == allUsers.count {
                                 self.storeManager.saveContext()
                             }
                         })
@@ -120,48 +132,74 @@ class ECCoreManager: NSObject {
         }
     }
     
+    var fetchCompletion: ((Bool) -> Void)!
+    func bgMOCDidSave(notification: NSNotification) {
+        if !NSThread.isMainThread() {
+            self.performSelectorOnMainThread(#selector(bgMOCDidSave), withObject: notification, waitUntilDone: false)
+        }
+        
+        self.storeManager.managedObjectContext?.mergeChangesFromContextDidSaveNotification(notification)
+//        NSNotificationCenter.defaultCenter().removeObserver(self)
+        fetchCompletion(true)
+    }
+    
     func getUsersWithCompletion( completion: (success:Bool) -> Void,
                                  userProgressBlock: (progress:Int, count:Int) -> Void,
                                  categoryProgressBlock: (progress:Int, count:Int) -> Void) {
+        self.fetchCompletion = completion
         self.requestManager.fetchUsersWithCompletion { (users) in
+            self.bgMOC = NSManagedObjectContext()
+            self.bgMOC.persistentStoreCoordinator = self.storeManager.managedObjectContext!.persistentStoreCoordinator
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.bgMOCDidSave), name: NSManagedObjectContextDidSaveNotification, object: self.bgMOC)
+            
             var userCategCount = 0
-            var userIndex = 0
-            for userObj in users {
-                userIndex += 1
-                guard let userDict = userObj as? Dictionary<String, AnyObject> else { continue }
-                var newUserDict = userDict
-                newUserDict["id"] = userDict["user_unique_tag"]
-                let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(newUserDict, inContext: self.storeManager.managedObjectContext!) as! ECUser
-                if user.userCategories.count == 0 {
-                    user.userCategories = user.defaultCategories()
+            var index = 0
+            var locked: Bool = false
+            
+            while (index < users.count - 1) {
+                if !locked {
+                    locked = true
+                    guard let userDict = users[index] as? Dictionary<String, AnyObject> else { index += 1; continue }
+                    var newUserDict = userDict
+                    newUserDict["id"] = userDict["user_unique_tag"]
+                    let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(newUserDict, inContext: self.bgMOC) as! ECUser
+                    if user.userCategories.count == 0 {
+                        user.userCategories = user.defaultCategoriesWithMOC(self.bgMOC)
+                    }
+                    
+                    var categCount = 0
+                    
+                    for categ in user.userCategoriesForMOC(self.bgMOC) {
+                        self.getCategoryForId(categ.id, withCompletion: { (category) in
+                            if category != nil {
+                                category?.category_scores = nil
+                                category?.scoreCompleteness()
+                                category?.overallScore()
+                            }
+                            categCount += 1
+                            
+                            if categCount == 5 {
+                                userCategCount += 1
+                                index += 1
+                                locked = false
+                                categoryProgressBlock(progress: userCategCount, count: users.count)
+                                
+                            }
+                            
+                            if userCategCount == users.count {
+                                //                            completion(success: true)
+                                do {
+                                    try self.bgMOC.save()
+                                } catch {
+                                    
+                                }
+                            }
+                        })
+                    }
+                    userProgressBlock(progress: index + 1, count: users.count)
                 }
-                
-                var categCount = 0
-                
-                for categ in user.userCategories {
-                    self.getCategoryForId(categ.id, withCompletion: { (category) in
-                        if category != nil {
-                            category?.scoreCompleteness()
-                            category?.overallScore()
-                        }
-                        categCount += 1
-                        
-                        if categCount == user.userCategories.count {
-                            userCategCount += 1
-//                            NSLog("%d : %d", userCategCount, users.count)
-                            categoryProgressBlock(progress: userCategCount, count: users.count)
-                        }
-                        
-                        if categCount == users.count {
-                            completion(success: true)
-                        }
-                    })
-                }
-                
-//                NSLog("%@", user)
-                userProgressBlock(progress: userIndex, count: users.count)
+                //                NSLog("%@", user)
             }
-            self.storeManager.saveContext()
         }
     }
     

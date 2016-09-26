@@ -24,7 +24,9 @@ class ECRequestManager: NSObject {
         self.manager.GET(url, parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
             guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(users: []); return }
             guard let usersArray = responseDict["data"] as? [AnyObject] else { completion(users: []); return }
-            completion(users: usersArray)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                completion(users: usersArray)
+            }
             
         }) { (task: NSURLSessionDataTask?, error: NSError) in
             completion(users: [])
@@ -147,6 +149,7 @@ class ECRequestManager: NSObject {
         
         self.manager.GET(url, parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
             guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(categoryDict: nil); return }
+            NSLog("%@", responseDict)
             guard let categoryDict = responseDict["data"] as? Dictionary<String, AnyObject> else { completion(categoryDict: nil); return }
             NSLog("%@", categoryDict)
             let status = task?.response as! NSHTTPURLResponse

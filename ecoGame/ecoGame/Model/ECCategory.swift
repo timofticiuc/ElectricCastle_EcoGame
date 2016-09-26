@@ -25,28 +25,27 @@ class ECCategory: ECSeralizableObject {
         }
     }
     @NSManaged private var scores: String
-    private var _scores:[ECScore]!
+    var category_scores:[ECScore]!
     var categoryScores:[ECScore]! {
         get {
             
-            if _scores == nil {
-                _scores = [ECScore]()
+            if category_scores == nil {
+                category_scores = [ECScore]()
                 do {
                     let jsonScores = try NSJSONSerialization.JSONObjectWithData(scores.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.MutableLeaves)
                     for jsonScore in (jsonScores as? [AnyObject])!  {
-                        _scores.append(ECScore(dictionary: jsonScore as! Dictionary<String, AnyObject>))
+                        category_scores.append(ECScore(dictionary: jsonScore as! Dictionary<String, AnyObject>))
                     }
                 } catch {
                     
                 }
             }
             
-            return _scores
+            return category_scores
         }
         set {
-            _scores = nil
-            _overallScore = -1
-            _scoreCompleteness = -1
+            category_scores = nil
+
             do {
                 var tempJSONScores = [Dictionary<String, AnyObject>]()
                 
@@ -228,25 +227,19 @@ class ECCategory: ECSeralizableObject {
         return _defaultScores
     }
     
-    private var _overallScore: Int = -1
     func overallScore() -> Int {
-        if _overallScore == -1 {
-            _overallScore = 0
-            for i in (0...self.categoryScores.count - 1) {
-                _overallScore += self.categoryScores[i].score * self.actions()[i][kMultiplier]!.integerValue
-            }
+        var _overallScore = 0
+        for i in (0...self.categoryScores.count - 1) {
+            _overallScore += self.categoryScores[i].score * self.actions()[i][kMultiplier]!.integerValue
         }
         return _overallScore
     }
     
-    private var _scoreCompleteness: Int = -1
     func scoreCompleteness() -> Int {
-        if _scoreCompleteness == -1 {
-            _scoreCompleteness = 0
-            for i in (0...self.categoryScores.count - 1) {
-                if self.categoryScores[i].score > 0 {
-                    _scoreCompleteness += 1
-                }
+        var _scoreCompleteness = 0
+        for i in (0...self.categoryScores.count - 1) {
+            if self.categoryScores[i].score > 0 {
+                _scoreCompleteness += 1
             }
         }
         return _scoreCompleteness

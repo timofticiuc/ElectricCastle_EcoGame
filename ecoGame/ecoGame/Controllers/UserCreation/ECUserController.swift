@@ -77,6 +77,11 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
             
             for category in self.user.userCategories {
                 ECCoreManager.sharedInstance.getCategoryForId(category.id, withCompletion: { (category) in
+                    if category != nil {
+                        category?.category_scores = nil
+                        category?.scoreCompleteness()
+                        category?.overallScore()
+                    }
                     ECCoreManager.sharedInstance.storeManager.saveContext()
                     dispatch_async(dispatch_get_main_queue(), { 
                         self.categoriesCollectionController.collectionView?.reloadData()

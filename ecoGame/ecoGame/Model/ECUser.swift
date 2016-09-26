@@ -30,19 +30,7 @@ class ECUser: ECSeralizableObject {
     private var _categs:[ECCategory]!
     var userCategories:[ECCategory]! {
         get {
-            if _categs == nil {
-                _categs = [ECCategory]()
-                if categories.characters.count == 0 {
-                    return []
-                }
-                let categoryIds = categories.componentsSeparatedByString(",")
-                for categoryId in categoryIds {
-                    let persistedCategory = ECCategory.objectWithIdentifier(categoryId, fromContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!)
-                    _categs.append(persistedCategory as! ECCategory)
-                }
-            }
-            
-            return _categs
+            return self.userCategoriesForMOC(ECCoreManager.sharedInstance.storeManager.managedObjectContext!)
         }
         set {
             var tempCategs = ""
@@ -55,6 +43,23 @@ class ECUser: ECSeralizableObject {
             }
             self.categories = tempCategs
         }
+    }
+    
+    func userCategoriesForMOC(moc: NSManagedObjectContext) -> [ECCategory] {
+        if _categs == nil || _categs.count == 0 {
+            _categs = [ECCategory]()
+            if categories.characters.count == 0 {
+                return []
+            }
+            
+            let categoryIds = categories.componentsSeparatedByString(",")
+            for categoryId in categoryIds {
+                let persistedCategory = ECCategory.objectWithIdentifier(categoryId, fromContext: moc)
+                _categs.append(persistedCategory as! ECCategory)
+            }
+        }
+        
+        return _categs
     }
     
     override func serializationKeyForAttribute(attribute: String) -> String? {
@@ -114,33 +119,37 @@ class ECUser: ECSeralizableObject {
         self.userCategories = newCategs
     }
     
-    func defaultCategories() -> [ECCategory] {
-        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Energy.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+    func defaultCategoriesWithMOC(moc: NSManagedObjectContext)  -> [ECCategory] {
+        let energyCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Energy.ec_enumName())_\(self.id)"], inContext: moc) as! ECCategory
         energyCategory.categoryType = .Energy
         energyCategory.categoryScores = energyCategory.defaultScores()
         energyCategory.dirty = true
         
-        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Water.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let waterCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Water.ec_enumName())_\(self.id)"], inContext: moc) as! ECCategory
         waterCategory.categoryType = .Water
         waterCategory.categoryScores = waterCategory.defaultScores()
         waterCategory.dirty = true
         
-        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Transport.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        let transportCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Transport.ec_enumName())_\(self.id)"], inContext: moc) as! ECCategory
         transportCategory.categoryType = .Transport
         transportCategory.categoryScores = transportCategory.defaultScores()
         transportCategory.dirty = true
-
-        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Waste.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        
+        let wasteCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Waste.ec_enumName())_\(self.id)"], inContext: moc) as! ECCategory
         wasteCategory.categoryType = .Waste
         wasteCategory.categoryScores = wasteCategory.defaultScores()
         wasteCategory.dirty = true
-
-        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Social.ec_enumName())_\(self.id)"], inContext: ECCoreManager.sharedInstance.storeManager.managedObjectContext!) as! ECCategory
+        
+        let socialCategory:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(["id":"\(ECConstants.Category.Social.ec_enumName())_\(self.id)"], inContext: moc) as! ECCategory
         socialCategory.categoryType = .Social
         socialCategory.categoryScores = socialCategory.defaultScores()
         socialCategory.dirty = true
-
+        
         return [energyCategory, wasteCategory, waterCategory, transportCategory, socialCategory]
+    }
+    
+    func defaultCategories()  -> [ECCategory] {
+        return self.defaultCategoriesWithMOC(ECCoreManager.sharedInstance.storeManager.managedObjectContext!)
     }
     
     static func fetchRequestForUsers() -> NSFetchRequest {
