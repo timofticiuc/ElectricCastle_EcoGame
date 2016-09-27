@@ -96,6 +96,53 @@
                                         </segments>
                                         <color key="tintColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfB-gA-mQP">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="140" id="dds-pO-aj7"/>
+                                            <constraint firstAttribute="height" constant="32" id="zjm-ez-feq"/>
+                                        </constraints>
+                                        <state key="normal" title="Reset">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetFilters" destination="JEX-9P-axG" eventType="touchUpInside" id="roD-Ce-3KR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKN-PI-BTF">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="ZBM-22-DTs"/>
+                                            <constraint firstAttribute="width" constant="149" id="eux-6q-QHx"/>
+                                        </constraints>
+                                        <state key="normal" title="Pick random user">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="getRandomUser" destination="JEX-9P-axG" eventType="touchUpInside" id="dTn-gb-PCO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggT-3y-gvi">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="160" id="7Ap-Hz-mHO"/>
+                                            <constraint firstAttribute="height" constant="32" id="kx9-Wv-6Z6"/>
+                                        </constraints>
+                                        <state key="normal" title="Music drives change">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sortByMusicDrive" destination="JEX-9P-axG" eventType="touchUpInside" id="IIX-Bs-y0v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jez-p8-04W">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="P6e-Bw-nhG"/>
+                                        </constraints>
+                                        <state key="normal" title="Sort: None">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sortAction" destination="JEX-9P-axG" eventType="touchUpInside" id="iRJ-EU-Gen"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -103,13 +150,21 @@
                                     <constraint firstAttribute="trailing" secondItem="Ap7-a2-vMU" secondAttribute="trailing" constant="25" id="Fwj-Tq-G9t"/>
                                     <constraint firstItem="cMW-fl-qSd" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" id="G9W-sB-UbJ"/>
                                     <constraint firstItem="5gc-Vo-gsF" firstAttribute="top" secondItem="Ap7-a2-vMU" secondAttribute="bottom" constant="8" id="GAJ-cv-c5m"/>
-                                    <constraint firstAttribute="bottom" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="28" id="Op0-fl-frI"/>
-                                    <constraint firstAttribute="height" constant="150" id="dHy-US-3n1"/>
+                                    <constraint firstItem="KfB-gA-mQP" firstAttribute="top" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="8" id="IM2-cY-xzh"/>
+                                    <constraint firstItem="KfB-gA-mQP" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" constant="25" id="LLV-TL-Lwn"/>
+                                    <constraint firstItem="mKN-PI-BTF" firstAttribute="top" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="8" id="Lvp-5b-9A8"/>
+                                    <constraint firstItem="Jez-p8-04W" firstAttribute="top" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="8" id="S6I-JL-y8Z"/>
+                                    <constraint firstItem="ggT-3y-gvi" firstAttribute="top" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="8" id="ZHO-Vo-7eQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jez-p8-04W" secondAttribute="trailing" constant="25" id="auj-Th-L36"/>
+                                    <constraint firstAttribute="height" constant="170" id="dHy-US-3n1"/>
                                     <constraint firstItem="Ap7-a2-vMU" firstAttribute="top" secondItem="cMW-fl-qSd" secondAttribute="bottom" constant="8" id="j7n-bt-zs0"/>
                                     <constraint firstAttribute="trailing" secondItem="cMW-fl-qSd" secondAttribute="trailing" id="jzv-sT-osn"/>
                                     <constraint firstItem="5gc-Vo-gsF" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" constant="25" id="kGW-Ww-jI2"/>
+                                    <constraint firstItem="Jez-p8-04W" firstAttribute="leading" secondItem="ggT-3y-gvi" secondAttribute="trailing" constant="8" id="nJs-rj-i3V"/>
+                                    <constraint firstItem="ggT-3y-gvi" firstAttribute="leading" secondItem="mKN-PI-BTF" secondAttribute="trailing" constant="8" id="nqI-6p-xZw"/>
                                     <constraint firstItem="cMW-fl-qSd" firstAttribute="top" secondItem="ZJq-rf-mbc" secondAttribute="top" id="rKi-hq-U9Y"/>
                                     <constraint firstItem="Ap7-a2-vMU" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" constant="25" id="sXy-Be-6Cc"/>
+                                    <constraint firstItem="mKN-PI-BTF" firstAttribute="leading" secondItem="KfB-gA-mQP" secondAttribute="trailing" constant="8" id="suG-OJ-rdg"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -139,6 +194,7 @@
                         <outlet property="tableView" destination="nit-26-Bkt" id="PbP-LP-bLp"/>
                         <outlet property="toolBarHeightConstraint" destination="dHy-US-3n1" id="7bC-ux-2QR"/>
                         <outlet property="userSegmentControl" destination="Ap7-a2-vMU" id="mRn-LV-oOc"/>
+                        <outlet property="userSortButton" destination="Jez-p8-04W" id="yCL-3v-7cz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -192,46 +248,7 @@
                                     <action selector="cancelAction" destination="1kY-jS-4wd" eventType="touchUpInside" id="CoL-s8-EW9"/>
                                 </connections>
                             </button>
-                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="MQT-PB-biU">
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jez-p8-04W">
-                                        <frame key="frameInset" minX="603" minY="58" width="140" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="3hz-Zr-cDc"/>
-                                            <constraint firstAttribute="width" constant="140" id="mcq-LT-Zab"/>
-                                        </constraints>
-                                        <state key="normal" title="Sort: Score">
-                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggT-3y-gvi">
-                                        <frame key="frameInset" minX="594" minY="98" width="149" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="hlu-sm-Qkb"/>
-                                            <constraint firstAttribute="width" constant="149" id="inG-Z1-Ir3"/>
-                                        </constraints>
-                                        <state key="normal" title="Music drives change">
-                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKN-PI-BTF">
-                                        <frame key="frameInset" minX="452" minY="58" width="149" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="149" id="GPG-jQ-z3Q"/>
-                                            <constraint firstAttribute="height" constant="32" id="tAd-o9-qvV"/>
-                                        </constraints>
-                                        <state key="normal" title="Pick random">
-                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ggT-3y-gvi" secondAttribute="trailing" constant="25" id="5yf-LX-8nF"/>
-                                    <constraint firstAttribute="trailing" secondItem="Jez-p8-04W" secondAttribute="trailing" constant="25" id="6Qj-O1-yg0"/>
-                                    <constraint firstItem="Jez-p8-04W" firstAttribute="leading" secondItem="mKN-PI-BTF" secondAttribute="trailing" constant="2" id="ceW-2M-C6o"/>
-                                    <constraint firstItem="ggT-3y-gvi" firstAttribute="top" secondItem="Jez-p8-04W" secondAttribute="bottom" constant="8" id="v5p-99-iR9"/>
-                                </constraints>
-                            </view>
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="MQT-PB-biU"/>
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

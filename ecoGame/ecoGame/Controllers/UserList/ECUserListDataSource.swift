@@ -40,12 +40,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         }
     }
     
-    var musicDrive: Bool = false {
-        didSet {
-           self.reloadData()
-        }
-    }
-    
+    var musicDrive: Bool = false
     var random: Bool = false {
         didSet {
             self.reloadData()
@@ -91,10 +86,17 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func reloadData() {
         var tempUsers:[ECUser] = (self.frc.fetchedObjects as? [ECUser])!
-//        
+
 //        for user in tempUsers {
 //            NSLog("%@ %@", user.id, "temp_"+user.id)
 //            user.id = "temp_"+user.id
+//            for category:ECCategory in user.userCategories {
+//                ECCoreManager.sharedInstance.requestManager.createCategory(category, withCompletion: { (success) in
+//                    if success {
+//                        category.dirty = false
+//                    }
+//                })
+//            }
 //        }
 //        ECCoreManager.sharedInstance.storeManager.saveContext()
 //        return
@@ -184,19 +186,15 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func applyUserFilter(userType: ECUserRole) {
         self.userFilter = userType
-        self.reloadData()
     }
     
     func applyCategoryFilter(categoryType: ECConstants.Category) {
         self.categoryFilter = categoryType
-        self.reloadData()
     }
     
     func applyCategorySort(categ: ECConstants.Category, ascending: Bool) {
         self.userCategoryFilterAscending = ascending
         self.userCategoryFilter = categ
-        
-        self.reloadData()
     }
     
     // MARK: UIScrollViewDelegate

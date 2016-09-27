@@ -54,10 +54,10 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
         } else if component == 1 {
             switch row {
             case 0:
-                titleString = "ascending"
+                titleString = "descending"
                 break
             case 1:
-                titleString = "descending"
+                titleString = "ascending"
                 break
             default:
                 break
@@ -78,7 +78,6 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
     }
     
     @IBAction func cancelAction() {
-        self.delegate?.sortController(self, hasSelectedCategory: ECConstants.Category.None , withSortAsAscending: false)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

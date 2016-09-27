@@ -56,7 +56,7 @@ class ECCoreManager: NSObject {
             reachability.whenReachable = { reachability in
                 if self.canSend {
                     self.canSend = false
-//                    self.sendDirtyUsers()
+                    self.sendDirtyUsers()
                 }
             }
             
