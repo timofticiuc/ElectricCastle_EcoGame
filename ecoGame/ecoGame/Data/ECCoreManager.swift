@@ -134,24 +134,24 @@ class ECCoreManager: NSObject {
     
     var fetchCompletion: ((Bool) -> Void)!
     func bgMOCDidSave(notification: NSNotification) {
-        if !NSThread.isMainThread() {
-            self.performSelectorOnMainThread(#selector(bgMOCDidSave), withObject: notification, waitUntilDone: false)
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.storeManager.managedObjectContext?.mergeChangesFromContextDidSaveNotification(notification)
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            self.fetchCompletion(true)
         }
-        
-        self.storeManager.managedObjectContext?.mergeChangesFromContextDidSaveNotification(notification)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        fetchCompletion(true)
     }
     
-    func getUsersWithCompletion( completion: (success:Bool) -> Void,
-                                 userProgressBlock: (progress:Int, count:Int) -> Void,
-                                 categoryProgressBlock: (progress:Int, count:Int) -> Void) {
+    func getUsersWithLocalUsers(localUsers: Dictionary<String, ECUser>,
+                                completion: (success:Bool) -> Void,
+                                userProgressBlock: (progress:Int, count:Int) -> Void,
+                                categoryProgressBlock: (progress:Int, count:Int) -> Void) {
         self.fetchCompletion = completion
         self.requestManager.fetchUsersWithCompletion { (users) in
             self.bgMOC = NSManagedObjectContext()
             self.bgMOC.persistentStoreCoordinator = self.storeManager.managedObjectContext!.persistentStoreCoordinator
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.bgMOCDidSave), name: NSManagedObjectContextDidSaveNotification, object: self.bgMOC)
-            
+
+            var lUsers = localUsers
             var userIndex = 0
             var userCategCount = 0
             
@@ -161,18 +161,27 @@ class ECCoreManager: NSObject {
                 var newUserDict = userDict
                 newUserDict["id"] = userDict["user_unique_tag"]
                 let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(newUserDict, inContext: self.bgMOC) as! ECUser
-                if user.userCategories.count == 0 {
+                if user.userCategoriesForMOC(self.bgMOC).count == 0 {
                     user.userCategories = user.defaultCategoriesWithMOC(self.bgMOC)
                 }
+                lUsers.removeValueForKey(user.id)
                 
                 for categ in user.userCategoriesForMOC(self.bgMOC) {
-                    self.getCategoryForId(categ.id, withCompletion: { (category) in
-                        if category != nil {
-                            category?.category_scores = nil
-                            category?.categoryScores
-                            category?.overallScore()
-                            category?.scoreCompleteness()
+                    self.requestManager.getCategoryForId(categ.id) { (categoryDict: Dictionary<String, AnyObject>?) in
+                        if categoryDict != nil {
+                            var newCategDict = categoryDict
+                            newCategDict!["id"] = categoryDict!["category_name"]
+                            let category:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(newCategDict!, inContext: self.bgMOC) as! ECCategory
+                            category.dictionaryRepresentation = newCategDict
+                            category.category_scores = nil
+                            category.overallScore()
+                            category.scoreCompleteness()
+                        } else {
+                            categ.category_scores = nil
+                            categ.overallScore()
+                            categ.scoreCompleteness()
                         }
+                        
                         userCategCount += 1
                         NSLog("userCategCount: %d / %d", userCategCount/5, users.count)
                         
@@ -183,10 +192,18 @@ class ECCoreManager: NSObject {
                                 try self.bgMOC.save()
                             } catch { }
                         }
-                    })
+                    }
                 }
                 
                 userProgressBlock(progress: userIndex + 1, count: users.count)
+            }
+            
+            //we chech what users are left out. that means they were deleted server side and should be removed form the db
+            if lUsers.count > 0 {
+                for user in lUsers.values {
+                    user.removeFromStore()
+                }
+                self.storeManager.saveContext()
             }
         }
     }

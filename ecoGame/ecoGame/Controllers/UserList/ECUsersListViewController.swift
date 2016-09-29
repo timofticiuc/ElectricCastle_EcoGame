@@ -51,6 +51,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     func resetData() {
         self.dataSource.fetchRemoteData()
         self.view.bringSubviewToFront(self.overlayView)
+        self.overlayView.hidden = false
         UIView.animateWithDuration(0.25) {
             self.overlayView.alpha = 1
         }
@@ -66,7 +67,6 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         super.viewDidAppear(animated)
         self.dataSource.fetchData()
         self.dataSource.reloadData()
-        self.title = "Participants" + "(" + String(self.dataSource.users.count) + ")"
     }
     
     func setupProgressView() {
@@ -141,11 +141,23 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     }
     
     func dataSource(ds: ECUsersDataSource, hasChangedUserProgress userProgress: Int, count: Int) {
-        
+//        let progressString = "Fetching user: \n" + String(userProgress) + "/" + String(count)
+//        dispatch_async(dispatch_get_main_queue(), {
+//            
+//            self.progressLabel.text = progressString
+//            let progress = Double(userProgress)/Double(count)
+//            let angle: Double = progress * 360
+//            
+//            if self.progressView != nil {
+//                self.progressView.animateToAngle(angle, duration: 0.25, completion: { (done) in
+//                    
+//                })
+//            }
+//        })
     }
     
     func dataSource(ds: ECUsersDataSource, hasChangedCategoryProgress categoryProgress: Int, count: Int) {
-        let progressString = "Fetching user: " + String(categoryProgress) + "/" + String(count)
+        let progressString = "Fetching user: \n" + String(categoryProgress) + "/" + String(count)
 
         dispatch_async(dispatch_get_main_queue(), {
             
@@ -160,7 +172,6 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
             }
             
             if categoryProgress == count {
-                self.title = "Participants" + "(" + String(self.dataSource.users.count) + ")"
                 self.refreshControl.endRefreshing()
                 UIView.animateWithDuration(0.25, animations: {
                     self.overlayView.alpha = 0

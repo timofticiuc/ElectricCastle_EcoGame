@@ -39,9 +39,10 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pl4-4H-ANm">
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching user 1/868" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmE-cP-gTF">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching user 1/868" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmE-cP-gTF">
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="dfq-Ei-7db"/>
+                                                    <constraint firstAttribute="width" constant="150" id="Fp5-lc-LAv"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="dfq-Ei-7db"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,10 +51,9 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="HmE-cP-gTF" firstAttribute="centerX" secondItem="pl4-4H-ANm" secondAttribute="centerX" id="4gv-Jj-5ln"/>
                                             <constraint firstAttribute="width" constant="300" id="Dbn-fd-sWG"/>
                                             <constraint firstItem="HmE-cP-gTF" firstAttribute="centerY" secondItem="pl4-4H-ANm" secondAttribute="centerY" id="c3I-BR-LbB"/>
-                                            <constraint firstAttribute="trailing" secondItem="HmE-cP-gTF" secondAttribute="trailing" constant="10" id="rOn-J2-Q5h"/>
-                                            <constraint firstItem="HmE-cP-gTF" firstAttribute="leading" secondItem="pl4-4H-ANm" secondAttribute="leading" constant="10" id="sc7-V2-GEX"/>
                                             <constraint firstAttribute="height" constant="300" id="sg5-Wa-ESv"/>
                                         </constraints>
                                     </view>

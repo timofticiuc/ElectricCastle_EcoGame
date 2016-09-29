@@ -12,10 +12,17 @@ import AFNetworking
 class ECRequestManager: NSObject {
     let manager:AFHTTPSessionManager = AFHTTPSessionManager(sessionConfiguration: NSURLSessionConfiguration.defaultSessionConfiguration())
     let baseUrl = "http://www.mainoi.ro/service/api.php"
+    let bgQueue: dispatch_queue_t!
     
     override init() {
         manager.requestSerializer = AFJSONRequestSerializer()
         manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let queueAttrs: dispatch_queue_attr_t = dispatch_queue_attr_make_with_qos_class(
+            DISPATCH_QUEUE_SERIAL,
+            QOS_CLASS_USER_INITIATED /* Same as DISPATCH_QUEUE_PRIORITY_HIGH */,
+            0
+        )
+        bgQueue = dispatch_queue_create("com.timo.ecgame", queueAttrs)
     }
 
     func fetchUsersWithCompletion(completion: (users:[AnyObject]) -> Void) {
@@ -24,7 +31,7 @@ class ECRequestManager: NSObject {
         self.manager.GET(url, parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
             guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(users: []); return }
             guard let usersArray = responseDict["data"] as? [AnyObject] else { completion(users: []); return }
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            dispatch_async(self.bgQueue) {
                 completion(users: usersArray)
             }
             
@@ -153,10 +160,12 @@ class ECRequestManager: NSObject {
             guard let categoryDict = responseDict["data"] as? Dictionary<String, AnyObject> else { completion(categoryDict: nil); return }
             NSLog("%@", categoryDict)
             let status = task?.response as! NSHTTPURLResponse
-            if status.statusCode == 200 {
-                completion(categoryDict: categoryDict)
-            } else {
-                completion(categoryDict: nil)
+            dispatch_async(self.bgQueue) {
+                if status.statusCode == 200 {
+                    completion(categoryDict: categoryDict)
+                } else {
+                    completion(categoryDict: nil)
+                }
             }
         }) { (task: NSURLSessionDataTask?, error: NSError) in
             completion(categoryDict: nil)
