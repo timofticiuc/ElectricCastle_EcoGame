@@ -49,6 +49,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     }
     
     func resetData() {
+        self.resetFilters()
         self.dataSource.fetchRemoteData()
         self.view.bringSubviewToFront(self.overlayView)
         self.overlayView.hidden = false
@@ -105,6 +106,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     func userRoleChanged(segmentControl: UISegmentedControl) {
         self.dataSource.applyUserFilter(ECUserRole(rawValue: Int32(segmentControl.selectedSegmentIndex))!)
+        self.dataSource.fetchData()
         self.dataSource.reloadData()
     }
     
@@ -114,6 +116,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
             categType = ECConstants.Category.None
         }
         self.dataSource.applyCategoryFilter(categType)
+        self.dataSource.fetchData()
         self.dataSource.reloadData()
     }
     
@@ -127,6 +130,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     @IBAction func sortByMusicDrive() {
         self.dataSource.musicDrive = !self.dataSource.musicDrive
+        self.dataSource.fetchData()
         self.dataSource.reloadData()
     }
     
@@ -170,15 +174,31 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
                     
                 })
             }
-            
-            if categoryProgress == count {
+        })
+    }
+    
+    func dataSource(ds: ECUsersDataSource, hasFinishedFetchingData success: Bool) {
+        self.dataSource.optimizeUsersDataWithCompletion({ (success) in
+            dispatch_async(dispatch_get_main_queue(), {
                 self.refreshControl.endRefreshing()
                 UIView.animateWithDuration(0.25, animations: {
                     self.overlayView.alpha = 0
                     }, completion: { (done) in
                         self.overlayView.hidden = true
                 })
-            }
+            })
+            }, progressBlock: { (progress, count) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    let optProgress = Double(progress)/Double(count)
+                    let angle: Double = optProgress * 360
+                    self.progressLabel.text = "Optimizing data\n " + String(format:"%.f", optProgress * 100) + "%"
+                    
+                    if self.progressView != nil {
+                        self.progressView.animateToAngle(angle, duration: 0.25, completion: { (done) in
+                            
+                        })
+                    }
+                })
         })
     }
     
@@ -194,6 +214,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.dataSource.applyCategorySort(category, ascending: ascending)
         let title = "Sort: " + category.ec_enumName() + (ascending ? ", ascending" : ", descending")
         self.userSortButton.setTitle(title, forState: .Normal)
+        self.dataSource.fetchData()
         self.dataSource.reloadData()
     }
     
@@ -207,6 +228,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.categorySegmentControl.selectedSegmentIndex = 5
         self.dataSource.applyUserFilter(ECUserRole.ECUserRoleNone)
         self.dataSource.applyCategoryFilter(ECConstants.Category.None)
+        self.dataSource.fetchData()
         self.dataSource.reloadData()
     }
 }

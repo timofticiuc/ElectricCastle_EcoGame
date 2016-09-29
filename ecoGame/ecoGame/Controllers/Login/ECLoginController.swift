@@ -38,14 +38,12 @@ class ECLoginController: UITableViewController {
                 
                 self.presentViewController(alertController, animated: true, completion: nil)
                 return
-            }
-            
-            ECCoreManager.sharedInstance.currentUser = user
-            ECCoreManager.sharedInstance.currentSessionTimeStamp = NSDate()
-            ECCoreManager.sharedInstance.storeManager.saveContext()
-            
-            self.dismissViewControllerAnimated(true) {
+            } else {
+                ECCoreManager.sharedInstance.currentUser = user
+                ECCoreManager.sharedInstance.currentSessionTimeStamp = NSDate()
+                ECCoreManager.sharedInstance.storeManager.saveContext()
                 
+                self.dismissViewControllerAnimated(true) {}
             }
         }
     }

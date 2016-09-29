@@ -13,11 +13,12 @@ protocol ECUsersDataSourceDelegate {
     func dataSource(ds:ECUsersDataSource, wantsToShowViewController vc:UIViewController)
     func dataSource(ds: ECUsersDataSource, hasChangedUserProgress userProgress: Int, count: Int)
     func dataSource(ds: ECUsersDataSource, hasChangedCategoryProgress categoryProgress: Int, count: Int)
+    func dataSource(ds: ECUsersDataSource, hasFinishedFetchingData success: Bool)
 }
 
 class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, ECUserControllerDelegate {
     
-    public var users: [ECUser] = [ECUser]()
+    var users: [ECUser] = [ECUser]()
     private var query: String!
     private var userFilter: ECUserRole! = .ECUserRoleNone
     private var categoryFilter: ECConstants.Category! = ECConstants.Category.None
@@ -43,6 +44,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     var musicDrive: Bool = false
     var random: Bool = false {
         didSet {
+            self.fetchData()
             self.reloadData()
             random = false
         }
@@ -57,6 +59,11 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.registerRequiredCells()
+        if ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleVolunteer {
+            self.userFilter = .ECUserRoleParticipant
+        } else {
+            self.userFilter = .ECUserRoleNone
+        }
     }
     
     func registerRequiredCells() {
@@ -65,13 +72,25 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     func fetchData() {
         // fetch data
-        if ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleVolunteer {
-            self.userFilter = .ECUserRoleParticipant
-        } else {
-            self.userFilter = .ECUserRoleNone
-        }
         
         self.frc.ec_performFetch()
+        self.users = (self.frc.fetchedObjects as? [ECUser])!
+    }
+    
+    func optimizeUsersDataWithCompletion(completion: (success:Bool) -> Void,
+                                         progressBlock: (progress:Int, count:Int) -> Void) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for i in 0...self.users.count - 1 {
+                let user = self.users[i]
+                for category in user.userCategories {
+                    category.category_scores = nil
+                    category.overallScore()
+                    category.scoreCompleteness()
+                }
+                progressBlock(progress: i, count:  self.users.count)
+            }
+            completion(success: true)
+        }
     }
     
     func fetchRemoteData() {
@@ -81,7 +100,9 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         }
         
         ECCoreManager.sharedInstance.getUsersWithLocalUsers(usersMap, completion: { (success) in
+                self.fetchData()
                 self.reloadData()
+                self.delegate?.dataSource(self, hasFinishedFetchingData: true)
             }, userProgressBlock: { (progress, count) in
                 self.delegate?.dataSource(self, hasChangedUserProgress: progress, count: count)
 
@@ -91,7 +112,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     }
     
     func reloadData() {
-        var tempUsers:[ECUser] = (self.frc.fetchedObjects as? [ECUser])!
+        var tempUsers:[ECUser] = self.users
 
 //        for user in tempUsers {
 //            NSLog("%@ %@", user.id, "temp_"+user.id)
@@ -245,6 +266,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     // MARK: NSFetchedResultsControllerDelegate
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         dispatch_async(dispatch_get_main_queue()) {
+            self.users = (self.frc.fetchedObjects as? [ECUser])!
             self.reloadData()
         };
     }
