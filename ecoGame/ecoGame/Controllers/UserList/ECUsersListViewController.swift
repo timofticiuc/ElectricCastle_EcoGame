@@ -74,6 +74,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         if progressView != nil {
             return
         }
+        
         progressView = KDCircularProgress(frame: self.progressContainerView.bounds)
         progressView.startAngle = -90
         progressView.clockwise = true
@@ -145,19 +146,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     }
     
     func dataSource(ds: ECUsersDataSource, hasChangedUserProgress userProgress: Int, count: Int) {
-//        let progressString = "Fetching user: \n" + String(userProgress) + "/" + String(count)
-//        dispatch_async(dispatch_get_main_queue(), {
-//            
-//            self.progressLabel.text = progressString
-//            let progress = Double(userProgress)/Double(count)
-//            let angle: Double = progress * 360
-//            
-//            if self.progressView != nil {
-//                self.progressView.animateToAngle(angle, duration: 0.25, completion: { (done) in
-//                    
-//                })
-//            }
-//        })
+        
     }
     
     func dataSource(ds: ECUsersDataSource, hasChangedCategoryProgress categoryProgress: Int, count: Int) {

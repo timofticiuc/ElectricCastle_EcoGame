@@ -21,6 +21,7 @@ class ECUserListCell: UITableViewCell {
     @IBOutlet private weak var userWaterTitleLabel: UILabel!
     @IBOutlet private weak var userTransportTitleLabel: UILabel!
     @IBOutlet private weak var userSocialTitleLabel: UILabel!
+    @IBOutlet private weak var scoresView: UIView!
     
     var index : Int = 0
     
@@ -32,6 +33,7 @@ class ECUserListCell: UITableViewCell {
         didSet {
             self.userNameLabel.text = String(self.index) + ". " + user.userFirstName + " " + user.userLastName
             self.userRoleLabel.text = user.userRole.ec_enumName()
+            self.scoresView.hidden = user.userRole != .ECUserRoleParticipant
         }
     }
     
