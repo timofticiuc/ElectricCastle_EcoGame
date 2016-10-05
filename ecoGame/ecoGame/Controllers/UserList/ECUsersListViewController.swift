@@ -33,7 +33,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         }
     }
 
-    private var dataSource: ECUsersDataSource!
+    var dataSource: ECUsersDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()

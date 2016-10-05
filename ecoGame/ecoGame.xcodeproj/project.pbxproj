@@ -49,6 +49,7 @@
 		2578ECFE1D25CE7B00158527 /* ECSortController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578ECFD1D25CE7B00158527 /* ECSortController.swift */; };
 		258D82AC1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */; };
 		2593FC2E1D06352100F93DD0 /* ECAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593FC2D1D06352100F93DD0 /* ECAgreementController.swift */; };
+		259488A01DA5B46A008117A8 /* ECStatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2594889F1DA5B46A008117A8 /* ECStatsController.swift */; };
 		25A1C9CF1D8F59B700628804 /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9B51D8F59B700628804 /* KDCircularProgress.swift */; };
 		25A1C9D01D8F59B700628804 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 25A1C9B61D8F59B700628804 /* LICENSE */; };
 		25A1C9D11D8F59B700628804 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 25A1C9B71D8F59B700628804 /* README.md */; };
@@ -148,6 +149,7 @@
 		2578ECFD1D25CE7B00158527 /* ECSortController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSortController.swift; sourceTree = "<group>"; };
 		258D82AB1CB31F8A00CD39A3 /* NSFetchedResultsController+ECAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+ECAdditions.swift"; sourceTree = "<group>"; };
 		2593FC2D1D06352100F93DD0 /* ECAgreementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECAgreementController.swift; sourceTree = "<group>"; };
+		2594889F1DA5B46A008117A8 /* ECStatsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECStatsController.swift; sourceTree = "<group>"; };
 		25A1C9B51D8F59B700628804 /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
 		25A1C9B61D8F59B700628804 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		25A1C9B71D8F59B700628804 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 		2513BB2E1CA9B1E600CC9C7E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2594889E1DA5B458008117A8 /* Stats */,
 				25752E861CD7A8ED004040CB /* Categories */,
 				2543CCF51CBA8A7C00EA677B /* Login */,
 				25E3BC921CB59E3900CCD783 /* UserCreation */,
@@ -410,6 +413,14 @@
 				25FC6D391CF528D600D06D21 /* ECCategoryActionCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		2594889E1DA5B458008117A8 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				2594889F1DA5B46A008117A8 /* ECStatsController.swift */,
+			);
+			path = Stats;
 			sourceTree = "<group>";
 		};
 		25A1C9B21D8F59B700628804 /* ThirdParty */ = {
@@ -849,6 +860,7 @@
 				252C5A8D1CB062E8006CC6F9 /* ECUserListDataSource.swift in Sources */,
 				25A1C9D91D8F59B700628804 /* QRCodeReaderResult.swift in Sources */,
 				252C5A991CB09BDA006CC6F9 /* ECCoreManager.swift in Sources */,
+				259488A01DA5B46A008117A8 /* ECStatsController.swift in Sources */,
 				2578ECFE1D25CE7B00158527 /* ECSortController.swift in Sources */,
 				25A1C9DC1D8F59B700628804 /* ReaderOverlayView.swift in Sources */,
 				2543CCFB1CBA99F600EA677B /* UIColor+ECAdditions.swift in Sources */,

@@ -40,10 +40,39 @@ class ECMenuViewController: UITableViewController {
         });
     }
     
+    @IBAction func showStatsAction() {
+        let splitViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! UISplitViewController
+        let detailNavC = splitViewController.viewControllers.last as! UINavigationController
+        let userListVC = detailNavC.viewControllers.first as! ECUsersListViewController
+        let statsVC = ECStatsController.ec_createFromStoryboard() as! ECStatsController
+        statsVC.users = userListVC.dataSource.users
+        detailNavC.pushViewController(statsVC, animated: true)
+        splitViewController.preferredDisplayMode = .PrimaryHidden
+    }
+    
     // MARK: - Table View
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0:
+            return 250
+        case 1:
+            return 100
+        case 2:
+            return 44
+        case 3:
+            return 44
+        case 4:
+            return (ECCoreManager.sharedInstance.currentUser?.userRole == ECUserRole.ECUserRoleAdmin ? 44 : 0)
+        case 5:
+            return 60
+        default:
+            return 0
+        }
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
