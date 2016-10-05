@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, ECSearchDelegate, ECSortDelegate {
+class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, ECSearchDelegate, ECSortDelegate, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var userSegmentControl: UISegmentedControl!
@@ -219,6 +220,47 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.dataSource.applyCategoryFilter(ECConstants.Category.None)
         self.dataSource.fetchData()
         self.dataSource.reloadData()
+    }
+    
+    //MARK: - CSV Export with mail
+    
+    @IBAction func composeMailWithCSV() {
+        var csv = ",,,,ENERGY,,,WASTE,,,,WATER,,,TRANSPORT,,,,,SOCIAL,,,,\n"
+        csv += "NUME,PRENUME,PHONE,MAIL,Play the Pedals Battle,Calculate your carbon footprint,Watch a video about energy at the ECO Cinema,Collect 30 waste packages,Collect 20 waste packages,Collect 10 waste packages,Waste video,Take 5 minutes showers,Shower in two,Watch a video about water at the ECO Cinema,Come to the festival by bicycle,By train,4 in a car,By bus,Transport Video,Play the Gas Twist,Music Drives Change,ECO Quiz,Social video\n"
+        for user in self.dataSource.users {
+            csv += user.userLastName + "," + user.userFirstName + "," + user.userPhone + "," + user.userEmail
+            for categ in user.userCategories {
+                for i in 0...categ.actions().count - 1 {
+                    csv += "," + String(categ.categoryScores[i].score * categ.actions()[i][kMultiplier]!.integerValue)
+                }
+            }
+            csv += "\n"
+        }
+        NSLog("%@", csv)
+        
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients(["an3119151@yahoo.com"])
+        mailComposerVC.setSubject("Export users")
+        guard let data = csv.dataUsingEncoding(NSUTF8StringEncoding) else { return }
+        mailComposerVC.addAttachmentData(data, mimeType: "text/csv", fileName: "users.csv")
+        
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposerVC, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

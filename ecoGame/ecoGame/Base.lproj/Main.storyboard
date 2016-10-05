@@ -98,7 +98,7 @@
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfB-gA-mQP">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="140" id="dds-pO-aj7"/>
+                                            <constraint firstAttribute="width" constant="70" id="dds-pO-aj7"/>
                                             <constraint firstAttribute="height" constant="32" id="zjm-ez-feq"/>
                                         </constraints>
                                         <state key="normal" title="Reset">
@@ -143,15 +143,28 @@
                                             <action selector="sortAction" destination="JEX-9P-axG" eventType="touchUpInside" id="iRJ-EU-Gen"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t09-Pc-tGp">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="0Lw-X9-zaZ"/>
+                                            <constraint firstAttribute="width" constant="62" id="yAe-gA-Az8"/>
+                                        </constraints>
+                                        <state key="normal" title="Export">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="composeMailWithCSV" destination="JEX-9P-axG" eventType="touchUpInside" id="Euc-ZT-Yee"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="t09-Pc-tGp" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" constant="25" id="14K-cd-LWE"/>
                                     <constraint firstAttribute="trailing" secondItem="5gc-Vo-gsF" secondAttribute="trailing" constant="25" id="7nG-4U-pfz"/>
+                                    <constraint firstItem="t09-Pc-tGp" firstAttribute="top" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="8" id="EYJ-Sb-AJw"/>
                                     <constraint firstAttribute="trailing" secondItem="Ap7-a2-vMU" secondAttribute="trailing" constant="25" id="Fwj-Tq-G9t"/>
                                     <constraint firstItem="cMW-fl-qSd" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" id="G9W-sB-UbJ"/>
                                     <constraint firstItem="5gc-Vo-gsF" firstAttribute="top" secondItem="Ap7-a2-vMU" secondAttribute="bottom" constant="8" id="GAJ-cv-c5m"/>
                                     <constraint firstItem="KfB-gA-mQP" firstAttribute="top" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="8" id="IM2-cY-xzh"/>
-                                    <constraint firstItem="KfB-gA-mQP" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" constant="25" id="LLV-TL-Lwn"/>
                                     <constraint firstItem="mKN-PI-BTF" firstAttribute="top" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="8" id="Lvp-5b-9A8"/>
                                     <constraint firstItem="Jez-p8-04W" firstAttribute="top" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="8" id="S6I-JL-y8Z"/>
                                     <constraint firstItem="ggT-3y-gvi" firstAttribute="top" secondItem="5gc-Vo-gsF" secondAttribute="bottom" constant="8" id="ZHO-Vo-7eQ"/>
@@ -165,6 +178,7 @@
                                     <constraint firstItem="cMW-fl-qSd" firstAttribute="top" secondItem="ZJq-rf-mbc" secondAttribute="top" id="rKi-hq-U9Y"/>
                                     <constraint firstItem="Ap7-a2-vMU" firstAttribute="leading" secondItem="ZJq-rf-mbc" secondAttribute="leading" constant="25" id="sXy-Be-6Cc"/>
                                     <constraint firstItem="mKN-PI-BTF" firstAttribute="leading" secondItem="KfB-gA-mQP" secondAttribute="trailing" constant="8" id="suG-OJ-rdg"/>
+                                    <constraint firstItem="KfB-gA-mQP" firstAttribute="leading" secondItem="t09-Pc-tGp" secondAttribute="trailing" constant="8" id="xJi-ea-DRE"/>
                                 </constraints>
                             </view>
                         </subviews>
