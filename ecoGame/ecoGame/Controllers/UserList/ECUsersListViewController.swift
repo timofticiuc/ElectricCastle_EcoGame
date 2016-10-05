@@ -225,15 +225,19 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     //MARK: - CSV Export with mail
     
     @IBAction func composeMailWithCSV() {
-        var csv = ",,,,ENERGY,,,WASTE,,,,WATER,,,TRANSPORT,,,,,SOCIAL,,,,\n"
-        csv += "NUME,PRENUME,PHONE,MAIL,Play the Pedals Battle,Calculate your carbon footprint,Watch a video about energy at the ECO Cinema,Collect 30 waste packages,Collect 20 waste packages,Collect 10 waste packages,Waste video,Take 5 minutes showers,Shower in two,Watch a video about water at the ECO Cinema,Come to the festival by bicycle,By train,4 in a car,By bus,Transport Video,Play the Gas Twist,Music Drives Change,ECO Quiz,Social video\n"
+        // add address, creation date, total score
+        var csv = ",,,,,,ENERGY,,,WASTE,,,,WATER,,,TRANSPORT,,,,,SOCIAL,,,,\n"
+        csv += "FIRST NAME,LAST NAME,PHONE,MAIL,ADDRESS,CREATION DATE,Play the Pedals Battle,Calculate your carbon footprint,Watch a video about energy at the ECO Cinema,Collect 30 waste packages,Collect 20 waste packages,Collect 10 waste packages,Waste video,Take 5 minutes showers,Shower in two,Watch a video about water at the ECO Cinema,Come to the festival by bicycle,By train,4 in a car,By bus,Transport Video,Play the Gas Twist,Music Drives Change,ECO Quiz,Social video,TOTAL SCORE\n"
         for user in self.dataSource.users {
-            csv += user.userLastName + "," + user.userFirstName + "," + user.userPhone + "," + user.userEmail
+            var totalScore = 0
+            csv += user.userLastName + "," + user.userFirstName + "," + user.userPhone + "," + user.userEmail + "," + user.userAddress + "," + String(user.createdAt)
             for categ in user.userCategories {
                 for i in 0...categ.actions().count - 1 {
                     csv += "," + String(categ.categoryScores[i].score * categ.actions()[i][kMultiplier]!.integerValue)
+                    totalScore += categ.categoryScores[i].score * categ.actions()[i][kMultiplier]!.integerValue
                 }
             }
+            csv += "," + String(totalScore)
             csv += "\n"
         }
         NSLog("%@", csv)
