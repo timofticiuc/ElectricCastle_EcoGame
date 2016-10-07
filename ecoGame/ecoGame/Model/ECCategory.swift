@@ -76,15 +76,18 @@ class ECCategory: ECSeralizableObject {
             return nil
         } else if attribute == "dirty" {
             return nil
+        } else if attribute == "updatedAt" {
+            return nil
         }
         
         return attribute
     }
     
     override func serializationValueForAttribute(attribute: String, andValue value:AnyObject) -> AnyObject? {
+        let stringValue = value as! String
+
         if attribute == "level" ||
            attribute == "type" {
-            let stringValue = value as! String
             
             return NSNumber(integer: Int(stringValue)!)
         }

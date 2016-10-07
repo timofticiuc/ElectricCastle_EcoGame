@@ -91,19 +91,26 @@ class ECUser: ECSeralizableObject {
             return "user_terms_quiz_agreement"
         } else if attribute == "userTerms" {
             return "user_terms_agreement"
+        } else if attribute == "updatedAt" {
+            return "user_updated_timestamp"
         }
         
         return attribute
     }
     
     override func serializationValueForAttribute(attribute: String, andValue value:AnyObject) -> AnyObject? {
+        let stringValue = value as! String
+
         if attribute == "role" ||
             attribute == "userNewsletter" ||
             attribute == "userQuizTerms" ||
             attribute == "userTerms" {
-            let stringValue = value as! String
             
             return NSNumber(integer: Int(stringValue)!)
+        } else if attribute == "updatedAt" {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            return dateFormatter.dateFromString(stringValue)
         }
         
         return value

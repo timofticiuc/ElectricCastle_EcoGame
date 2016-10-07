@@ -44,7 +44,9 @@ class ECRequestManager: NSObject {
         let url = self.baseUrl+"/user"
 
         NSLog("%@", user.dictionaryRepresentation!)
-        self.manager.POST(url, parameters: user.dictionaryRepresentation, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
+        var dict = user.dictionaryRepresentation!
+        dict.removeValueForKey("user_updated_timestamp")
+        self.manager.POST(url, parameters: dict, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
             guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(userDict:nil, success: false); return }
             guard let userDict = responseDict["data"] as? Dictionary<String, AnyObject> else { completion(userDict:nil, success: false); return }
             NSLog("%@", responseDict)
@@ -63,7 +65,9 @@ class ECRequestManager: NSObject {
         let url = self.baseUrl+"/user/"+user.id
         
         NSLog("%@", user.dictionaryRepresentation!)
-        self.manager.PUT(url, parameters: user.dictionaryRepresentation, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
+        var dict = user.dictionaryRepresentation!
+        dict["user_updated_timestamp"] = "force_update"
+        self.manager.PUT(url, parameters: dict, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
             guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(success: false); return }
             NSLog("%@", responseDict)
             let status = task?.response as! NSHTTPURLResponse

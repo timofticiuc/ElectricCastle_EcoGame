@@ -82,6 +82,8 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if !self.user.id.hasPrefix("temp_") {
             ECCoreManager.sharedInstance.updateCategory(self.category)
+            self.user.dirty = true
+            ECCoreManager.sharedInstance.updateUser(self.user)
         }
     }
     

@@ -144,6 +144,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
     }
     
     private func updateUser() {
+        
         self.user.userFirstName = self.userFirstNameField.text!
         self.user.userLastName = self.userLastNameField.text!
         self.user.userPhone = self.userPhoneField.text!
@@ -153,7 +154,11 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
         self.user.dirty = true
         
-        self.delegate?.userController(self, hasUpdatedUser: self.user)
+        if self.user.id.hasPrefix("temp_") {
+            self.delegate?.userController(self, hasCreatedUser: self.user)
+        } else {
+            self.delegate?.userController(self, hasUpdatedUser: self.user)
+        }
     }
     
     func removeUser(alert: UIAlertAction!) {

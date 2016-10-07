@@ -68,9 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         if ECCoreManager.sharedInstance.currentUser == nil {
             let splitViewController = self.window!.rootViewController as! UISplitViewController
-            splitViewController.presentViewController(ECLoginController.ec_createFromStoryboard(), animated: true, completion: { 
-                
-            });
+            splitViewController.presentViewController(ECLoginController.ec_createFromStoryboard(), animated: true, completion: { });
         }
     }
 

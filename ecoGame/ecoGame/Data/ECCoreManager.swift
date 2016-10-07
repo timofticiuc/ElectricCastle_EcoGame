@@ -146,6 +146,9 @@ class ECCoreManager: NSObject {
                                 userProgressBlock: (progress:Int, count:Int) -> Void,
                                 categoryProgressBlock: (progress:Int, count:Int) -> Void) {
         self.fetchCompletion = completion
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
         self.requestManager.fetchUsersWithCompletion { (users) in
             self.bgMOC = NSManagedObjectContext()
             self.bgMOC.persistentStoreCoordinator = self.storeManager.managedObjectContext!.persistentStoreCoordinator
@@ -160,45 +163,66 @@ class ECCoreManager: NSObject {
                 guard let userDict = userObj as? Dictionary<String, AnyObject> else { continue }
                 var newUserDict = userDict
                 newUserDict["id"] = userDict["user_unique_tag"]
+                let remoteDate = dateFormatter.dateFromString(newUserDict["user_updated_timestamp"] as! String)
+                var shouldUpdateCategs = false
                 let user:ECUser = ECUser.objectCreatedOrUpdatedWithDictionary(newUserDict, inContext: self.bgMOC) as! ECUser
+                
+                if remoteDate != nil {
+                    if user.updatedAt.compare(remoteDate!) == .OrderedAscending {
+                        user.dictionaryRepresentation = newUserDict
+                        shouldUpdateCategs = true
+                    }
+                } else {
+                    user.dictionaryRepresentation = newUserDict
+                    shouldUpdateCategs = true
+                }
+                                
                 if user.userCategoriesForMOC(self.bgMOC).count == 0 {
                     user.userCategories = user.defaultCategoriesWithMOC(self.bgMOC)
+                    shouldUpdateCategs = true
                 }
+                
                 lUsers.removeValueForKey(user.id)
                 
-                for categ in user.userCategoriesForMOC(self.bgMOC) {
-                    self.requestManager.getCategoryForId(categ.id) { (categoryDict: Dictionary<String, AnyObject>?) in
-                        if categoryDict != nil {
-                            var newCategDict = categoryDict
-                            newCategDict!["id"] = categoryDict!["category_name"]
-                            let category:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(newCategDict!, inContext: self.bgMOC) as! ECCategory
-                            category.dictionaryRepresentation = newCategDict
-                            category.category_scores = nil
-                            category.overallScore()
-                            category.scoreCompleteness()
-                        } else {
-                            categ.category_scores = nil
-                            categ.overallScore()
-                            categ.scoreCompleteness()
+                if shouldUpdateCategs {
+                    for categ in user.userCategoriesForMOC(self.bgMOC) {
+                        self.requestManager.getCategoryForId(categ.id) { (categoryDict: Dictionary<String, AnyObject>?) in
+                            if categoryDict != nil {
+                                var newCategDict = categoryDict
+                                newCategDict!["id"] = categoryDict!["category_name"]
+                                let category:ECCategory = ECCategory.objectCreatedOrUpdatedWithDictionary(newCategDict!, inContext: self.bgMOC) as! ECCategory
+                                category.dictionaryRepresentation = newCategDict
+                            }
+                            
+                            userCategCount += 1
+                            NSLog("userCategCount: %d / %d", userCategCount/5, users.count)
+                            
+                            categoryProgressBlock(progress: userCategCount/5, count: users.count)
+                            
+                            if userCategCount == users.count*5 {
+                                do {
+                                    try self.bgMOC.save()
+                                } catch { }
+                            }
                         }
-                        
-                        userCategCount += 1
-                        NSLog("userCategCount: %d / %d", userCategCount/5, users.count)
-                        
-                        categoryProgressBlock(progress: userCategCount/5, count: users.count)
-                        
-                        if userCategCount == users.count*5 {
-                            do {
-                                try self.bgMOC.save()
-                            } catch { }
-                        }
+                    }
+                } else {
+                    userCategCount += 5
+                    NSLog("userCategCount: %d / %d", userCategCount/5, users.count)
+                    
+                    categoryProgressBlock(progress: userCategCount/5, count: users.count)
+                    
+                    if userCategCount == users.count*5 {
+                        do {
+                            try self.bgMOC.save()
+                        } catch { }
                     }
                 }
                 
                 userProgressBlock(progress: userIndex + 1, count: users.count)
             }
             
-            //we chech what users are left out. that means they were deleted server side and should be removed form the db
+            //we check what users are left out. that means they were deleted server side and should be removed form the db
             if lUsers.count > 0 {
                 for user in lUsers.values {
                     user.removeFromStore()
