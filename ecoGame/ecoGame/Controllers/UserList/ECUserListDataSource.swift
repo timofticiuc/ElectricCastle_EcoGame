@@ -13,7 +13,7 @@ protocol ECUsersDataSourceDelegate {
     func dataSource(ds:ECUsersDataSource, wantsToShowViewController vc:UIViewController)
     func dataSource(ds: ECUsersDataSource, hasChangedUserProgress userProgress: Int, count: Int)
     func dataSource(ds: ECUsersDataSource, hasChangedCategoryProgress categoryProgress: Int, count: Int)
-    func dataSource(ds: ECUsersDataSource, hasFinishedFetchingData success: Bool)
+    func dataSource(ds: ECUsersDataSource, hasFinishedFetchingData wasCanceled: Bool)
 }
 
 class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, ECUserControllerDelegate {
@@ -99,16 +99,21 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
             usersMap[user.id] = user
         }
         
+        ECCoreManager.sharedInstance.shouldStopFetching = false
         ECCoreManager.sharedInstance.getUsersWithLocalUsers(usersMap, completion: { (success) in
                 self.fetchData()
                 self.reloadData()
-                self.delegate?.dataSource(self, hasFinishedFetchingData: true)
+                self.delegate?.dataSource(self, hasFinishedFetchingData: success)
             }, userProgressBlock: { (progress, count) in
                 self.delegate?.dataSource(self, hasChangedUserProgress: progress, count: count)
 
             }) { (progress, count) in
                 self.delegate?.dataSource(self, hasChangedCategoryProgress: progress, count: count)
         }
+    }
+    
+    func cancelFetchRemoteData() {
+        ECCoreManager.sharedInstance.shouldStopFetching = true
     }
     
     func reloadData() {
@@ -273,7 +278,11 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     
     // MARK: ECUserControllerDelegate
     func userController(uc:ECUserController, hasCreatedUser user:ECUser) {
-        ECCoreManager.sharedInstance.createUser(user)
+        ECCoreManager.sharedInstance.createUser(user) { (success, error) in
+            if !success && (error != nil) {
+                NSNotificationCenter.defaultCenter().postNotificationName(kFailedUserNotification, object: user, userInfo: ["error":error!])
+            }
+        }
     }
     
     func userController(uc:ECUserController, hasUpdatedUser user:ECUser) {

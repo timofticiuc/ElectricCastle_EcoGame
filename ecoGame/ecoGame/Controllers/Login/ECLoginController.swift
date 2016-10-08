@@ -29,7 +29,7 @@ class ECLoginController: UITableViewController {
     }
     
     @IBAction func loginAction() {
-        ECCoreManager.sharedInstance.loginWithCredentials(self.userNameField.text!, andPasswordHash: String(self.userPasswordField.text!.hash)) { (user) in
+        ECCoreManager.sharedInstance.loginWithCredentials(self.userNameField.text!, andPasswordHash: self.userPasswordField.text!) { (user) in
             if user == nil {
                 let alertController = UIAlertController(title: "Alert", message: "Login failed", preferredStyle: .Alert)
                 

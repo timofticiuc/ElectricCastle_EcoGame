@@ -14,7 +14,7 @@ class ECCoreManager: NSObject {
     var canSend: Bool = false
     
     var bgMOC: NSManagedObjectContext!
-    var reachabilityManager: Reachability?
+    var reachabilityManager: Reachability!
     var storeManager: ECStoreManager!
     var requestManager: ECRequestManager!
     var currentSessionTimeStamp: NSDate {
@@ -76,34 +76,15 @@ class ECCoreManager: NSObject {
     
     func sendDirtyUsers() {
         do {
-            var count = 0
             let allUsers = try self.storeManager.managedObjectContext?.executeFetchRequest(ECUser.fetchRequestForUsers()) as! [ECUser]
             for user:ECUser in allUsers {
                 if user.dirty {
                     if user.id.hasPrefix("temp_") {
-                        self.createUser(user)
+                        self.createUser(user, completion: { (success, error) in
+                            NSNotificationCenter.defaultCenter().postNotificationName(kFailedUserNotification, object: user, userInfo: ["error":error!])
+                        })
                     } else {
                         self.updateUser(user)
-                    }
-                }
-                
-                var categCount = 0
-                
-                for category:ECCategory in user.userCategories {
-                    if category.dirty {
-                        self.requestManager.updateCategory(category, withCompletion: { (success) in
-                            if success {
-                                category.dirty = false
-                            }
-                            categCount += 1
-                            if categCount == 5 {
-                                count += 1
-                            }
-                            
-                            if count == allUsers.count {
-                                self.storeManager.saveContext()
-                            }
-                        })
                     }
                 }
             }
@@ -133,11 +114,12 @@ class ECCoreManager: NSObject {
     }
     
     var fetchCompletion: ((Bool) -> Void)!
+    var shouldStopFetching: Bool = false
     func bgMOCDidSave(notification: NSNotification) {
         dispatch_async(dispatch_get_main_queue()) { 
             self.storeManager.managedObjectContext?.mergeChangesFromContextDidSaveNotification(notification)
             NSNotificationCenter.defaultCenter().removeObserver(self)
-            self.fetchCompletion(true)
+            self.fetchCompletion(self.shouldStopFetching)
         }
     }
     
@@ -159,6 +141,13 @@ class ECCoreManager: NSObject {
             var userCategCount = 0
             
             for userObj in users {
+                if self.shouldStopFetching {
+                    do {
+                        try self.bgMOC.save()
+                    } catch { }
+                    return
+                }
+                
                 userIndex += 1
                 guard let userDict = userObj as? Dictionary<String, AnyObject> else { continue }
                 var newUserDict = userDict
@@ -232,22 +221,35 @@ class ECCoreManager: NSObject {
         }
     }
     
-    func createUser(user: ECUser) {
+    func createUser(user: ECUser, completion: (success:Bool, error: String?) -> Void) {
+        NSLog("creating %@ %@ %@", user.userFirstName, user.userLastName, user.id)
         self.requestManager.createUser(user) { (userDict: Dictionary<String, AnyObject>?, success) in
             defer {
                 user.rebindCategories()
                 self.storeManager.saveContext()
-                for category:ECCategory in user.userCategories {
-                    self.requestManager.createCategory(category, withCompletion: { (success) in
-                        if success {
-                            category.dirty = false
-                            self.storeManager.saveContext()
-                        }
-                    })
+                if !user.id.hasPrefix("temp_") {
+                    for category:ECCategory in user.userCategories {
+                        self.requestManager.createCategory(category, withCompletion: { (success) in
+                            if success {
+                                category.dirty = false
+                                self.storeManager.saveContext()
+                            }
+                        })
+                    }
+                }
+                
+                if userDict != nil {
+                    if let error = userDict!["error"] as? String {
+                        completion(success: success, error: error)
+                    } else {
+                        completion(success: success, error: nil)
+                    }
+                } else {
+                    completion(success: success, error: nil)
                 }
             }
             
-            if userDict == nil {
+            if (userDict == nil) || (userDict!["error"] != nil) {
                 return
             }
             
@@ -259,6 +261,7 @@ class ECCoreManager: NSObject {
     }
     
     func updateUser(user: ECUser) {
+        NSLog("updating %@ %@ %@", user.userFirstName, user.userLastName, user.id)
         self.requestManager.updateUser(user) { (success) in
             for category:ECCategory in user.userCategories {
                 if category.dirty {

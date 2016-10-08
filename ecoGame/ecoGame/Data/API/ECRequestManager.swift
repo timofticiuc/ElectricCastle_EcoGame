@@ -48,7 +48,15 @@ class ECRequestManager: NSObject {
         dict.removeValueForKey("user_updated_timestamp")
         self.manager.POST(url, parameters: dict, progress: nil, success: { (task: NSURLSessionDataTask?, responseObject: AnyObject?) in
             guard let responseDict = responseObject as? Dictionary<String, AnyObject> else { completion(userDict:nil, success: false); return }
-            guard let userDict = responseDict["data"] as? Dictionary<String, AnyObject> else { completion(userDict:nil, success: false); return }
+            guard let userDict = responseDict["data"] as? Dictionary<String, AnyObject> else {
+                guard let error = responseDict["error"]!["message"] else {
+                    completion(userDict:nil, success: false);
+                    return
+                }
+                
+                completion(userDict:["error":error!], success: false);
+                return
+            }
             NSLog("%@", responseDict)
             let status = task?.response as! NSHTTPURLResponse
             if status.statusCode == 200 {

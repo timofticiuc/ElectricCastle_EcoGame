@@ -42,6 +42,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
 
     var delegate:ECUserControllerDelegate? = nil
     var user:ECUser! = nil
+    var errorMessage: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +67,12 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.userRemoveLabel.layer.masksToBounds = true
         self.userRemoveLabel.layer.cornerRadius = 15.0
         
+        if ECCoreManager.sharedInstance.currentUser?.userRole == ECUserRole.ECUserRoleAdmin {
+            self.userPasswordField.secureTextEntry = false
+        } else {
+            self.userPasswordField.secureTextEntry = true
+        }
+        
         if !isNewUser {
             self.userFirstNameField.text = self.user.userFirstName
             self.userLastNameField.text = self.user.userLastName
@@ -88,6 +95,15 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
                     })
                 })
             }
+        }
+        
+        if self.errorMessage != nil {
+            let alertController = UIAlertController(title: "Alert", message: errorMessage, preferredStyle: .Alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
         }
     }
     
@@ -128,7 +144,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
             self.user.userPhone = self.userPhoneField.text!
             self.user.userAddress = self.userAddressField.text!
             self.user.userEmail = self.userEmailField.text!
-            self.user.userPasswordHash = String(self.userPasswordField.text!.hash)
+            self.user.userPasswordHash = self.userPasswordField.text!
             self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
             self.user.userNewsletter = self.userNewsletterSwitch.on
             self.user.userTerms = agreedTerms
@@ -150,7 +166,7 @@ class ECUserController: UITableViewController, ECCategoriesDelegate, ECAgreement
         self.user.userPhone = self.userPhoneField.text!
         self.user.userAddress = self.userAddressField.text!
         self.user.userEmail = self.userEmailField.text!
-        self.user.userPasswordHash = (self.hasChangedPassword ? String(self.userPasswordField.text!.hash) : self.userPasswordField.text!)
+        self.user.userPasswordHash = self.userPasswordField.text!
         self.user.userRole = ECUserRole(rawValue:Int32(self.userRoleSegment.selectedSegmentIndex))!
         self.user.dirty = true
         

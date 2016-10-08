@@ -34,6 +34,7 @@ let kScore                   = "kScore"
 let kAction                  = "kAction"
 let kMultiplier              = "kMultiplier"
 let kAgreementNotification   = "kAgreementNotification"
+let kFailedUserNotification  = "kFailedUserNotification"
 
 struct ECConstants {
     struct user {

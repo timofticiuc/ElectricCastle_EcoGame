@@ -39,6 +39,8 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(catchFailedUserNotification), name: kFailedUserNotification, object: nil)
+        
         self.dataSource = ECUsersDataSource.init(withDelegate: self, andTableView: self.tableView)
         self.configureView()
         self.setupProgressView()
@@ -46,16 +48,6 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.dataSource.reloadData()
         if self.dataSource.users.count == 0 {
             self.resetData()
-        }
-    }
-    
-    func resetData() {
-        self.resetFilters()
-        self.dataSource.fetchRemoteData()
-        self.view.bringSubviewToFront(self.overlayView)
-        self.overlayView.hidden = false
-        UIView.animateWithDuration(0.25) {
-            self.overlayView.alpha = 1
         }
     }
     
@@ -69,6 +61,37 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         super.viewDidAppear(animated)
         self.dataSource.fetchData()
         self.dataSource.reloadData()
+    }
+    
+    func resetData() {
+        if ECCoreManager.sharedInstance.reachabilityManager.isReachable() {
+            self.resetFilters()
+            self.dataSource.fetchRemoteData()
+            self.view.bringSubviewToFront(self.overlayView)
+            self.overlayView.hidden = false
+            
+            if self.progressView != nil {
+                self.progressView.animateToAngle(0, duration: 0.25, completion: { (done) in })
+            }
+            
+            UIView.animateWithDuration(0.25) {
+                self.overlayView.alpha = 1
+            }
+        } else {
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
+    @IBAction func cancelFetch() {
+        self.dataSource.cancelFetchRemoteData()
+    }
+    
+    func catchFailedUserNotification(notif: NSNotification) {
+        let userVC = ECUserController.ec_createFromStoryboard() as! ECUserController
+        userVC.user = notif.object as! ECUser
+        userVC.errorMessage = notif.userInfo!["error"] as! String
+        userVC.delegate = self.dataSource
+        self.navigationController?.pushViewController(userVC, animated: true)
     }
     
     func setupProgressView() {
@@ -167,8 +190,32 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         })
     }
     
-    func dataSource(ds: ECUsersDataSource, hasFinishedFetchingData success: Bool) {
-        self.dataSource.optimizeUsersDataWithCompletion({ (success) in
+    func dataSource(ds: ECUsersDataSource, hasFinishedFetchingData wasCanceled: Bool) {
+        if !wasCanceled {
+            self.dataSource.optimizeUsersDataWithCompletion({ (success) in
+                self.resetFilters()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.refreshControl.endRefreshing()
+                    UIView.animateWithDuration(0.25, animations: {
+                        self.overlayView.alpha = 0
+                        }, completion: { (done) in
+                            self.overlayView.hidden = true
+                    })
+                })
+                }, progressBlock: { (progress, count) in
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let optProgress = Double(progress)/Double(count)
+                        let angle: Double = optProgress * 360
+                        self.progressLabel.text = "Optimizing data\n " + String(format:"%.f", optProgress * 100) + "%"
+                        
+                        if self.progressView != nil {
+                            self.progressView.animateToAngle(angle, duration: 0.25, completion: { (done) in
+                                
+                            })
+                        }
+                    })
+            })
+        } else {
             dispatch_async(dispatch_get_main_queue(), {
                 self.refreshControl.endRefreshing()
                 UIView.animateWithDuration(0.25, animations: {
@@ -177,24 +224,13 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
                         self.overlayView.hidden = true
                 })
             })
-            }, progressBlock: { (progress, count) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    let optProgress = Double(progress)/Double(count)
-                    let angle: Double = optProgress * 360
-                    self.progressLabel.text = "Optimizing data\n " + String(format:"%.f", optProgress * 100) + "%"
-                    
-                    if self.progressView != nil {
-                        self.progressView.animateToAngle(angle, duration: 0.25, completion: { (done) in
-                            
-                        })
-                    }
-                })
-        })
+        }
     }
     
     // MARK: ECSearchDelegate
     
     func searchView(searchView: ECSearchHeaderView, didChangeQueryWithText query: String) {
+        self.dataSource.fetchData()
         self.dataSource?.fetchWithQuery(query)
     }
     
@@ -230,7 +266,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         csv += "FIRST NAME,LAST NAME,PHONE,MAIL,ADDRESS,CREATION DATE,Play the Pedals Battle,Calculate your carbon footprint,Watch a video about energy at the ECO Cinema,Collect 30 waste packages,Collect 20 waste packages,Collect 10 waste packages,Waste video,Take 5 minutes showers,Shower in two,Watch a video about water at the ECO Cinema,Come to the festival by bicycle,By train,4 in a car,By bus,Transport Video,Play the Gas Twist,Music Drives Change,ECO Quiz,Social video,TOTAL SCORE\n"
         for user in self.dataSource.users {
             var totalScore = 0
-            csv += user.userLastName + "," + user.userFirstName + "," + user.userPhone + "," + user.userEmail + "," + user.userAddress + "," + String(user.createdAt)
+            csv += user.userLastName + "," + user.userFirstName + "," + user.userPhone + "," + user.userEmail + "," + user.userAddress.stringByReplacingOccurrencesOfString(",", withString: "") + "," + String(user.createdAt)
             for categ in user.userCategories {
                 for i in 0...categ.actions().count - 1 {
                     csv += "," + String(categ.categoryScores[i].score * categ.actions()[i][kMultiplier]!.integerValue)
@@ -243,7 +279,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         NSLog("%@", csv)
         
         let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        mailComposerVC.mailComposeDelegate = self
         
         mailComposerVC.setToRecipients(["an3119151@yahoo.com"])
         mailComposerVC.setSubject("Export users")

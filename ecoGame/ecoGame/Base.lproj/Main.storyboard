@@ -39,7 +39,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pl4-4H-ANm">
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching user 1/868" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmE-cP-gTF">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmE-cP-gTF">
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="Fp5-lc-LAv"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="dfq-Ei-7db"/>
@@ -57,11 +57,26 @@
                                             <constraint firstAttribute="height" constant="300" id="sg5-Wa-ESv"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7N-BQ-xzS">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="Dl8-y2-cTC"/>
+                                            <constraint firstAttribute="height" constant="40" id="iFT-Oq-x7J"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelFetch" destination="JEX-9P-axG" eventType="touchUpInside" id="h37-So-8v0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="c7N-BQ-xzS" firstAttribute="top" secondItem="pl4-4H-ANm" secondAttribute="bottom" constant="8" id="0tf-oZ-IdT"/>
                                     <constraint firstItem="pl4-4H-ANm" firstAttribute="centerX" secondItem="Jcq-f4-mCw" secondAttribute="centerX" id="1Pk-aH-FYD"/>
                                     <constraint firstItem="pl4-4H-ANm" firstAttribute="centerY" secondItem="Jcq-f4-mCw" secondAttribute="centerY" id="BYr-RP-bSS"/>
+                                    <constraint firstItem="c7N-BQ-xzS" firstAttribute="centerX" secondItem="Jcq-f4-mCw" secondAttribute="centerX" id="jGH-pd-JZ3"/>
                                 </constraints>
                             </view>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nit-26-Bkt">
