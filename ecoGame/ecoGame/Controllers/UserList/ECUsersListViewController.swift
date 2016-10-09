@@ -54,13 +54,15 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.toolBarHeightConstraint.constant = (ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleAdmin ? 170 : 50)
+        self.toolBarHeightConstraint.constant = (ECCoreManager.sharedInstance.currentUser?.userRole == .ECUserRoleAdmin ? 220 : 50)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.dataSource.fetchData()
-        self.dataSource.reloadData()
+        if !self.dataSource.isReloading {
+            self.dataSource.fetchData()
+            self.dataSource.reloadData()
+        }
     }
     
     func resetData() {
@@ -143,6 +145,29 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         self.dataSource.applyCategoryFilter(categType)
         self.dataSource.fetchData()
         self.dataSource.reloadData()
+    }
+    
+    @IBAction func showStats() {
+        let statsVC = ECStatsController.ec_createFromStoryboard() as! ECStatsController
+        statsVC.users = self.dataSource.unfilteredUsers()
+        self.navigationController?.pushViewController(statsVC, animated: true)
+    }
+    
+    @IBAction func deleteAll() {
+        let alertController = UIAlertController(title: "Alert", message: "Are you sure you wish to delete all participants both locally and remote?", preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "Ok", style: .Default) { (UIAlertAction) in
+            self.dataSource.removeAllUsersOfType(.ECUserRoleParticipant) { (success) in
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+
     }
     
     @IBAction func sortAction() {
@@ -281,7 +306,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
         
-        mailComposerVC.setToRecipients(["an3119151@yahoo.com"])
+        mailComposerVC.setToRecipients(["contact@mainoi.ro"])
         mailComposerVC.setSubject("Export users")
         guard let data = csv.dataUsingEncoding(NSUTF8StringEncoding) else { return }
         mailComposerVC.addAttachmentData(data, mimeType: "text/csv", fileName: "users.csv")

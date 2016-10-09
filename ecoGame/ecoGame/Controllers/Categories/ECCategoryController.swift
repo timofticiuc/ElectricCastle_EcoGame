@@ -55,6 +55,28 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.delegate = self
         cell.index = indexPath.row
         
+        switch self.category.categoryType {
+        case .Energy:
+            if indexPath.row == 1 {
+                let metaData = self.category.categoryScores[indexPath.row].metadata
+                if metaData.characters.count != 0 {
+                    cell.actionTitleLabel.text! += " (" + metaData + ")"
+                }
+            }
+            break
+        case .Transport:
+            if indexPath.row < self.category.categoryScores.count - 1 {
+                let metaData = self.category.categoryScores[indexPath.row].metadata
+                if metaData.characters.count != 0 {
+                    cell.actionTitleLabel.text! += " (" + metaData + " km)"
+                }
+            }
+            break
+        
+        default:
+            break
+        }
+        
         return cell
     }
     

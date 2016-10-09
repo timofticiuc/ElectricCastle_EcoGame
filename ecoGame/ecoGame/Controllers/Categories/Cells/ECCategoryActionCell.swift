@@ -14,7 +14,7 @@ protocol ECCategoryActionCellDelegate {
 }
 
 class ECCategoryActionCell: UITableViewCell {
-    @IBOutlet private weak var actionTitleLabel:UILabel!
+    @IBOutlet weak var actionTitleLabel:UILabel!
     @IBOutlet private weak var actionDescriptionLabel:UILabel!
     @IBOutlet private weak var actionScoreLabel:UILabel!
     private var hasAction: Bool = false

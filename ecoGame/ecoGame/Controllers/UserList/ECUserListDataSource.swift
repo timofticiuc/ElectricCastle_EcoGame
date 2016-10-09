@@ -70,6 +70,10 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         self.tableView.ec_registerCell(ECUserListCell);
     }
     
+    func unfilteredUsers() -> [ECUser] {
+        return (self.frc.fetchedObjects as? [ECUser])!
+    }
+    
     func fetchData() {
         // fetch data
         
@@ -77,8 +81,10 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         self.users = (self.frc.fetchedObjects as? [ECUser])!
     }
     
+    var isOptimizing = false
     func optimizeUsersDataWithCompletion(completion: (success:Bool) -> Void,
                                          progressBlock: (progress:Int, count:Int) -> Void) {
+        self.isOptimizing = true
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for i in 0...self.users.count - 1 {
                 let user = self.users[i]
@@ -89,11 +95,14 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
                 }
                 progressBlock(progress: i, count:  self.users.count)
             }
+            self.isOptimizing = false
             completion(success: true)
         }
     }
     
+    var isFecthingRemoteData = false
     func fetchRemoteData() {
+        self.isFecthingRemoteData = true
         var usersMap = Dictionary<String, ECUser>()
         for user in self.users {
             usersMap[user.id] = user
@@ -104,6 +113,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
                 self.fetchData()
                 self.reloadData()
                 self.delegate?.dataSource(self, hasFinishedFetchingData: success)
+                self.isFecthingRemoteData = false
             }, userProgressBlock: { (progress, count) in
                 self.delegate?.dataSource(self, hasChangedUserProgress: progress, count: count)
 
@@ -116,99 +126,122 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         ECCoreManager.sharedInstance.shouldStopFetching = true
     }
     
+    var isReloading = false
     func reloadData() {
-        var tempUsers:[ECUser] = self.users
-
-//        for user in tempUsers {
-//            NSLog("%@ %@", user.id, "temp_"+user.id)
-//            user.id = "temp_"+user.id
-//            for category:ECCategory in user.userCategories {
-//                ECCoreManager.sharedInstance.requestManager.createCategory(category, withCompletion: { (success) in
-//                    if success {
-//                        category.dirty = false
-//                    }
-//                })
-//            }
+        self.isReloading = true
+        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            var tempUsers:[ECUser] = self.users
+            let shouldFilterByName = (self.query.characters.count > 0)
+            let shouldFilterByRole = (self.userFilter != .ECUserRoleNone)
+            let shouldFilterByCategoryScore = (self.categoryFilter != ECConstants.Category.None)
+            
+            var filterCount = 0
+            filterCount += shouldFilterByCategoryScore ? 1 : 0
+            filterCount += shouldFilterByRole ? 1 : 0
+            filterCount += shouldFilterByName ? 1 : 0
+            
+            
+            if filterCount > 0 {
+                tempUsers = tempUsers.filter({
+                    var validCount = 0
+                    if shouldFilterByName {
+                        let isValidByName = ($0.userFirstName.lowercaseString.hasPrefix(self.query!) || $0.userLastName.lowercaseString.hasPrefix(self.query!))
+                        validCount += isValidByName ? 1 : 0
+                    }
+                    
+                    if shouldFilterByRole {
+                        let isValidByRole = ($0.userRole == self.userFilter)
+                        validCount += isValidByRole ? 1 : 0
+                    }
+                    
+                    if shouldFilterByCategoryScore {
+                        var isValidByCategoryScore = false
+                        let categoryIndex = Int(self.categoryFilter.rawValue)
+                        let score = $0.userCategories[categoryIndex].overallScore()
+                        
+                        isValidByCategoryScore = (score > 0)
+                        
+                        validCount += isValidByCategoryScore ? 1 : 0
+                    }
+                    
+                    return validCount == filterCount
+                })
+            }
+            
+            if self.userCategoryFilter != ECConstants.Category.None {
+                tempUsers = tempUsers.sort({
+                    let categoryIndex = Int(self.userCategoryFilter.rawValue)
+                    
+                    let score1 = $0.userCategories[categoryIndex].overallScore()
+                    let score2 = $1.userCategories[categoryIndex].overallScore()
+                    
+                    
+                    if self.userCategoryFilterAscending {
+                        return (score1 < score2)
+                    }
+                    return (score1 > score2)
+                })
+            }
+            
+            if self.musicDrive {
+                tempUsers = tempUsers.filter({
+                    let category:ECCategory = $0.userCategories[Int(ECConstants.Category.Social.rawValue)] as ECCategory
+                    let musicScore = category.categoryScores[1].score
+                    return musicScore > 0
+                })
+            }
+            
+            if self.random {
+                let randomIndex:Int = Int(arc4random()%UInt32(tempUsers.count))
+                tempUsers = [tempUsers[randomIndex]]
+            }
+            
+        
+//            dispatch_async(dispatch_get_main_queue(), {
+                self.users = tempUsers
+                self.isReloading = false
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+//            })
 //        }
-//        ECCoreManager.sharedInstance.storeManager.saveContext()
-//        return
-        
-        defer {
-            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
-        }
-        
-        let shouldFilterByName = (self.query.characters.count > 0)
-        let shouldFilterByRole = (self.userFilter != .ECUserRoleNone)
-        let shouldFilterByCategoryScore = (self.categoryFilter != ECConstants.Category.None)
-        
-        var filterCount = 0
-        filterCount += shouldFilterByCategoryScore ? 1 : 0
-        filterCount += shouldFilterByRole ? 1 : 0
-        filterCount += shouldFilterByName ? 1 : 0
-
-        
-        if filterCount > 0 {
-            tempUsers = tempUsers.filter({
-                var validCount = 0
-                if shouldFilterByName {
-                    let isValidByName = ($0.userFirstName.lowercaseString.hasPrefix(self.query!) || $0.userLastName.lowercaseString.hasPrefix(self.query!))
-                    validCount += isValidByName ? 1 : 0
-                }
-                
-                if shouldFilterByRole {
-                    let isValidByRole = ($0.userRole == self.userFilter)
-                    validCount += isValidByRole ? 1 : 0
-                }
-                
-                if shouldFilterByCategoryScore {
-                    var isValidByCategoryScore = false
-                    let categoryIndex = Int(self.categoryFilter.rawValue)
-                    let score = $0.userCategories[categoryIndex].overallScore()
-                    
-                    isValidByCategoryScore = (score > 0)
-                    
-                    validCount += isValidByCategoryScore ? 1 : 0
-                }
-                
-                return validCount == filterCount
-            })
-        }
-        
-        if self.userCategoryFilter != ECConstants.Category.None {
-            tempUsers = tempUsers.sort({
-                let categoryIndex = Int(self.userCategoryFilter.rawValue)
-
-                let score1 = $0.userCategories[categoryIndex].overallScore()
-                let score2 = $1.userCategories[categoryIndex].overallScore()
-                
-                
-                if self.userCategoryFilterAscending {
-                    return (score1 < score2)
-                }
-                return (score1 > score2)
-            })
-        }
-        
-        if self.musicDrive {
-            tempUsers = tempUsers.filter({
-                let category:ECCategory = $0.userCategories[Int(ECConstants.Category.Social.rawValue)] as ECCategory
-                let musicScore = category.categoryScores[1].score
-                return musicScore > 0
-            })
-        }
-        
-        if self.random {
-            let randomIndex:Int = Int(arc4random()%UInt32(tempUsers.count))
-            tempUsers = [tempUsers[randomIndex]]
-        }
-        
-        self.users = tempUsers
     }
     
     func addUser() {
         let userController: ECUserController = ECUserController.ec_createFromStoryboard() as! ECUserController
         userController.delegate = self
         self.delegate?.dataSource(self, wantsToShowViewController: userController)
+    }
+    
+    func removeAllUsersOfType(type: ECUserRole,
+                              completion: (success:Bool) -> Void) {
+        defer {
+            completion(success: true)
+            ECCoreManager.sharedInstance.storeManager.saveContext()
+        }
+        
+        let lUsers = self.unfilteredUsers()
+        var count = 0
+        for i in 0...lUsers.count - 1 {
+            let user = lUsers[i]
+            if user.userRole == type {
+                ECCoreManager.sharedInstance.deleteUser(user, withCompletion: { (success) in
+                    count += 1
+                    if success {
+                        user.removeFromStore()
+                    }
+                    
+                    if count == lUsers.count {
+                        return
+                    }
+                })
+            } else {
+                count += 1
+                
+                if count == lUsers.count {
+                    return
+                }
+            }
+        }
     }
     
     func fetchWithQuery(query: String) {
