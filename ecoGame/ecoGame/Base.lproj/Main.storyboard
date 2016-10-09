@@ -305,25 +305,37 @@
                                     <action selector="cancelAction" destination="1kY-jS-4wd" eventType="touchUpInside" id="CoL-s8-EW9"/>
                                 </connections>
                             </button>
-                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="MQT-PB-biU"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jlP-od-9qX">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="rV1-Zw-8SM"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Energy"/>
+                                    <segment title="Waste"/>
+                                    <segment title="Water"/>
+                                    <segment title="Transport"/>
+                                    <segment title="Social"/>
+                                </segments>
+                                <color key="tintColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="U4Y-zl-KIr" secondAttribute="trailing" id="150-5q-n0S"/>
-                            <constraint firstAttribute="trailing" secondItem="MQT-PB-biU" secondAttribute="trailing" id="B9o-Jg-eO1"/>
-                            <constraint firstItem="U4Y-zl-KIr" firstAttribute="top" secondItem="hiG-ts-VU9" secondAttribute="top" id="Cwb-Lx-eqa"/>
+                            <constraint firstItem="jlP-od-9qX" firstAttribute="leading" secondItem="hiG-ts-VU9" secondAttribute="leading" constant="25" id="5uQ-0t-aod"/>
+                            <constraint firstAttribute="trailing" secondItem="jlP-od-9qX" secondAttribute="trailing" constant="25" id="FTG-Zn-VxR"/>
+                            <constraint firstItem="U4Y-zl-KIr" firstAttribute="top" secondItem="jlP-od-9qX" secondAttribute="bottom" constant="18" id="HRE-oQ-n30"/>
                             <constraint firstItem="azM-iI-sSF" firstAttribute="centerX" secondItem="hiG-ts-VU9" secondAttribute="centerX" constant="79" id="OBB-hn-D0d"/>
+                            <constraint firstItem="jlP-od-9qX" firstAttribute="top" secondItem="Q1Y-9r-5em" secondAttribute="bottom" constant="34" id="QMg-g5-w2K"/>
                             <constraint firstItem="qI7-cK-rm4" firstAttribute="top" secondItem="U4Y-zl-KIr" secondAttribute="bottom" constant="8" id="SRr-w2-fam"/>
                             <constraint firstItem="JCa-dr-zt7" firstAttribute="top" secondItem="azM-iI-sSF" secondAttribute="bottom" constant="20" id="Stb-Zw-34u"/>
                             <constraint firstItem="U4Y-zl-KIr" firstAttribute="leading" secondItem="hiG-ts-VU9" secondAttribute="leading" id="eU6-vA-uQx"/>
-                            <constraint firstItem="MQT-PB-biU" firstAttribute="top" secondItem="hiG-ts-VU9" secondAttribute="top" id="hxR-r1-LC1"/>
                             <constraint firstItem="JCa-dr-zt7" firstAttribute="top" secondItem="qI7-cK-rm4" secondAttribute="bottom" constant="20" id="lLa-e8-rhy"/>
                             <constraint firstItem="qI7-cK-rm4" firstAttribute="centerX" secondItem="hiG-ts-VU9" secondAttribute="centerX" constant="-79" id="tIE-Gc-vA3"/>
-                            <constraint firstAttribute="bottom" secondItem="MQT-PB-biU" secondAttribute="bottom" constant="874" id="und-gn-T6g"/>
-                            <constraint firstItem="MQT-PB-biU" firstAttribute="leading" secondItem="hiG-ts-VU9" secondAttribute="leading" id="zZJ-iw-VAa"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categorySegmentControl" destination="jlP-od-9qX" id="DNz-mA-60b"/>
                         <outlet property="pickerView" destination="U4Y-zl-KIr" id="B01-5N-J1Y"/>
                     </connections>
                 </viewController>

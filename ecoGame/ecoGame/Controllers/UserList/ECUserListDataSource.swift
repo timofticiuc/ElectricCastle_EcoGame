@@ -23,6 +23,7 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
     private var userFilter: ECUserRole! = .ECUserRoleNone
     private var categoryFilter: ECConstants.Category! = ECConstants.Category.None
     private var userCategoryFilter: ECConstants.Category! = ECConstants.Category.None
+    private var userCategoryActionFilter: Int = -1
     private var userCategoryFilterAscending: Bool = false
     private var delegate: ECUsersDataSourceDelegate?
     private var tableView: UITableView!
@@ -173,8 +174,8 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
                 tempUsers = tempUsers.sort({
                     let categoryIndex = Int(self.userCategoryFilter.rawValue)
                     
-                    let score1 = $0.userCategories[categoryIndex].overallScore()
-                    let score2 = $1.userCategories[categoryIndex].overallScore()
+                    let score1 = $0.userCategories[categoryIndex].categoryScores[self.userCategoryActionFilter].score
+                    let score2 = $1.userCategories[categoryIndex].categoryScores[self.userCategoryActionFilter].score
                     
                     
                     if self.userCategoryFilterAscending {
@@ -257,7 +258,8 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         self.categoryFilter = categoryType
     }
     
-    func applyCategorySort(categ: ECConstants.Category, ascending: Bool) {
+    func applyCategorySort(categ: ECConstants.Category, ascending: Bool, actionIndex: Int) {
+        self.userCategoryActionFilter = actionIndex
         self.userCategoryFilterAscending = ascending
         self.userCategoryFilter = categ
     }

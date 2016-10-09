@@ -261,8 +261,8 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     //MARK: - ECSortDelegate
     
-    func sortController(sc: ECSortController, hasSelectedCategory category: ECConstants.Category, withSortAsAscending ascending: Bool) {
-        self.dataSource.applyCategorySort(category, ascending: ascending)
+    func sortController(sc: ECSortController, hasSelectedCategory category: ECConstants.Category, withSortAsAscending ascending: Bool, actionIndex: Int) {
+        self.dataSource.applyCategorySort(category, ascending: ascending, actionIndex: actionIndex)
         let title = "Sort: " + category.ec_enumName() + (ascending ? ", ascending" : ", descending")
         self.userSortButton.setTitle(title, forState: .Normal)
         self.dataSource.fetchData()
@@ -273,7 +273,7 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     @IBAction func resetFilters() {
         self.userSortButton.setTitle("Sort: None", forState: .Normal)
-        self.dataSource.applyCategorySort(ECConstants.Category.None, ascending: false)
+        self.dataSource.applyCategorySort(ECConstants.Category.None, ascending: false, actionIndex: 0)
         self.dataSource.musicDrive = false
         self.userSegmentControl.selectedSegmentIndex = 3
         self.categorySegmentControl.selectedSegmentIndex = 5

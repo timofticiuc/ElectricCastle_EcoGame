@@ -9,17 +9,21 @@
 import UIKit
 
 protocol ECSortDelegate {
-    func sortController(sc: ECSortController, hasSelectedCategory category:ECConstants.Category, withSortAsAscending ascending: Bool)
+    func sortController(sc: ECSortController, hasSelectedCategory category:ECConstants.Category, withSortAsAscending ascending: Bool, actionIndex: Int)
 }
 
 class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     var delegate: ECSortDelegate?
     @IBOutlet private weak var pickerView: UIPickerView!
-    
+    @IBOutlet weak var categorySegmentControl: UISegmentedControl!
+    private var category: ECConstants.Category = .Energy
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.categorySegmentControl.addTarget(self, action: #selector(categoryChanged), forControlEvents: .ValueChanged)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,6 +31,10 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
         // Dispose of any resources that can be recreated.
     }
     
+    func categoryChanged(segmentControl: UISegmentedControl) {
+        self.category = ECConstants.Category(rawValue: Int32(segmentControl.selectedSegmentIndex))!
+        self.pickerView.reloadAllComponents()
+    }
 
     //MARK: - UIPickerViewDataSource & UIPickerViewDelegate
     
@@ -36,7 +44,7 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
-            return Int(ECConstants.Category.Count.rawValue)
+            return ECCategory.defaultActionsForCategory(self.category).count
         }
         
         return 2
@@ -49,8 +57,7 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         var titleString = ""
         if component == 0 {
-            let categ = ECConstants.Category(rawValue: Int32(row))
-            titleString = (categ?.ec_enumName())!
+            titleString = ECCategory.defaultActionsForCategory(self.category)[row][kTitle] as! String
         } else if component == 1 {
             switch row {
             case 0:
@@ -70,9 +77,9 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
     //MARK: - Actions
     
     @IBAction func doneAction() {
-        let selectedCateg = self.pickerView.selectedRowInComponent(0)
+        let selectedAction = self.pickerView.selectedRowInComponent(0)
         let ascending = Bool(self.pickerView.selectedRowInComponent(1))
-        self.delegate?.sortController(self, hasSelectedCategory: ECConstants.Category(rawValue:Int32(selectedCateg))! , withSortAsAscending: ascending)
+        self.delegate?.sortController(self, hasSelectedCategory: self.category, withSortAsAscending: ascending, actionIndex: selectedAction)
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
