@@ -294,8 +294,31 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
             csv += user.userLastName + "," + user.userFirstName + "," + user.userPhone + "," + user.userEmail + "," + user.userAddress.stringByReplacingOccurrencesOfString(",", withString: "") + "," + String(user.createdAt)
             for categ in user.userCategories {
                 for i in 0...categ.actions().count - 1 {
-                    csv += "," + String(categ.categoryScores[i].score * categ.actions()[i][kMultiplier]!.integerValue)
-                    totalScore += categ.categoryScores[i].score * categ.actions()[i][kMultiplier]!.integerValue
+                    let score = categ.categoryScores[i].score * categ.actions()[i][kMultiplier]!.integerValue
+                    csv += "," + String(score)
+                    totalScore += score
+                    
+                    switch categ.categoryType {
+                    case .Energy:
+                        if i == 1 {
+                            let metaData = categ.categoryScores[i].metadata
+                            if metaData.characters.count != 0 {
+                                csv += " (" + metaData + ")"
+                            }
+                        }
+                        break
+                    case .Transport:
+                        if i > 0 && i < categ.categoryScores.count - 1 {
+                            let metaData = categ.categoryScores[i].metadata
+                            if metaData.characters.count != 0 {
+                                csv += " (" + metaData + " km)"
+                            }
+                        }
+                        break
+                        
+                    default:
+                        break
+                    }
                 }
             }
             csv += "," + String(totalScore)
@@ -326,6 +349,10 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     // MARK: MFMailComposeViewControllerDelegate Method
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
+        if error != nil {
+            let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: error!.localizedDescription, delegate: self, cancelButtonTitle: "OK")
+            sendMailErrorAlert.show()
+        }
     }
 }
 

@@ -188,15 +188,15 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func handleEcoQuizForCell(cell: ECCategoryActionCell) {
         do {
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(self.user.dictionaryRepresentation!, options: NSJSONWritingOptions(rawValue: 0))
+            var dict = self.user.dictionaryRepresentation!
+            dict.removeValueForKey("user_updated_timestamp")
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions(rawValue: 0))
             let userDictString = jsonData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
             let url  = NSURL(string: "ecoQuiz://user?userdict="+userDictString)
             self.quizActionCell = cell
             UIApplication.sharedApplication().openURL(url!)
+        } catch {
         }
-        catch {
-        }
-
     }
     
     //MARK: - ECActionInputDelegate
