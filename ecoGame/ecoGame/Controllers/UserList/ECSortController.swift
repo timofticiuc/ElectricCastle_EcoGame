@@ -44,7 +44,7 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
-            return ECCategory.defaultActionsForCategory(self.category).count
+            return ECCategory.defaultActionsForCategory(self.category).count + 1
         }
         
         return 2
@@ -57,7 +57,11 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         var titleString = ""
         if component == 0 {
-            titleString = ECCategory.defaultActionsForCategory(self.category)[row][kTitle] as! String
+            if row == 0 {
+                titleString = "overall score"
+            } else {
+                titleString = ECCategory.defaultActionsForCategory(self.category)[row - 1][kTitle] as! String
+            }
         } else if component == 1 {
             switch row {
             case 0:
@@ -77,8 +81,15 @@ class ECSortController: UIViewController, UIPickerViewDelegate, UIPickerViewData
     //MARK: - Actions
     
     @IBAction func doneAction() {
-        let selectedAction = self.pickerView.selectedRowInComponent(0)
+        var selectedAction = self.pickerView.selectedRowInComponent(0)
         let ascending = Bool(self.pickerView.selectedRowInComponent(1))
+        
+        if selectedAction == 0 {
+            selectedAction = -1
+        } else {
+            selectedAction -= 1
+        }
+        
         self.delegate?.sortController(self, hasSelectedCategory: self.category, withSortAsAscending: ascending, actionIndex: selectedAction)
         
         self.dismissViewControllerAnimated(true, completion: nil)

@@ -57,7 +57,12 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
         
         switch self.category.categoryType {
         case .Energy:
-            if indexPath.row == 1 {
+            if indexPath.row == 0 {
+                let metaData = self.category.categoryScores[indexPath.row].metadata
+                if metaData.characters.count != 0 {
+                    cell.actionTitleLabel.text! += " (" + metaData + ")"
+                }
+            } else if indexPath.row == 1 {
                 let metaData = self.category.categoryScores[indexPath.row].metadata
                 if metaData.characters.count != 0 {
                     cell.actionTitleLabel.text! += " (" + metaData + ")"
@@ -107,6 +112,8 @@ class ECCategoryController: UIViewController, UITableViewDelegate, UITableViewDa
             self.user.dirty = true
             ECCoreManager.sharedInstance.updateUser(self.user)
         }
+        
+        self.tableView.reloadData()
     }
     
     func actionCell(cell: ECCategoryActionCell, hasChangedScore score: Int) {

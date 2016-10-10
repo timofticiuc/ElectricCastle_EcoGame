@@ -1094,6 +1094,17 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                                     <constraint firstAttribute="height" constant="360" id="ItU-Y0-OLf"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sp7-O4-seW">
+                                <color key="textColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.019607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eo7-f7-8TC">
+                                <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="50E-Ee-LJF"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rJ-XO-YaZ">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Mcc-RY-hMc"/>
@@ -1122,46 +1133,38 @@ Doriţi să primiţi informaţii despre produsele, serviciile, evenimentele etc.
                                     <action selector="cancelAction" destination="yeu-MJ-neN" eventType="touchUpInside" id="xYo-px-muz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ou6-Ro-g77">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="5oy-xu-oCW"/>
-                                    <constraint firstAttribute="width" constant="100" id="m5a-d8-kdJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="SCAN">
-                                    <color key="titleColor" red="0.34509803919999998" green="0.77647058820000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelAction" destination="4H1-cm-5KK" eventType="touchUpInside" id="PtE-AZ-Oc5"/>
-                                    <action selector="showQRScanner" destination="yeu-MJ-neN" eventType="touchUpInside" id="AbX-2j-4Bd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1rJ-XO-YaZ" firstAttribute="leading" secondItem="Gs4-cZ-5ru" secondAttribute="trailing" constant="8" id="A5c-CB-b46"/>
+                            <constraint firstItem="Sp7-O4-seW" firstAttribute="leading" secondItem="xf4-2a-gO3" secondAttribute="leading" constant="20" id="Iai-EX-OGZ"/>
                             <constraint firstItem="Gs4-cZ-5ru" firstAttribute="centerY" secondItem="1rJ-XO-YaZ" secondAttribute="centerY" id="Idv-vo-6o3"/>
-                            <constraint firstItem="1rJ-XO-YaZ" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" id="Nr3-dO-qcK"/>
+                            <constraint firstAttribute="trailing" secondItem="Eo7-f7-8TC" secondAttribute="trailing" constant="20" id="LcI-B5-kaw"/>
+                            <constraint firstItem="Gs4-cZ-5ru" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" constant="-54" id="VaK-V4-fOH"/>
                             <constraint firstItem="vCX-CI-bSz" firstAttribute="top" secondItem="a1t-yJ-AsS" secondAttribute="bottom" constant="20" id="akM-ab-0fw"/>
-                            <constraint firstItem="Ou6-Ro-g77" firstAttribute="centerY" secondItem="1rJ-XO-YaZ" secondAttribute="centerY" id="e9Y-nz-gTv"/>
-                            <constraint firstItem="Ou6-Ro-g77" firstAttribute="leading" secondItem="1rJ-XO-YaZ" secondAttribute="trailing" constant="8" id="kOg-Ig-w66"/>
+                            <constraint firstItem="Eo7-f7-8TC" firstAttribute="top" secondItem="Sp7-O4-seW" secondAttribute="bottom" id="cCL-4K-x2z"/>
                             <constraint firstAttribute="trailing" secondItem="vCX-CI-bSz" secondAttribute="trailing" constant="20" id="p4x-dw-zRp"/>
+                            <constraint firstAttribute="trailing" secondItem="Sp7-O4-seW" secondAttribute="trailing" constant="20" id="pwo-LQ-722"/>
+                            <constraint firstItem="Sp7-O4-seW" firstAttribute="top" secondItem="vCX-CI-bSz" secondAttribute="bottom" constant="42" id="q0e-TX-Pur"/>
                             <constraint firstItem="vCX-CI-bSz" firstAttribute="leading" secondItem="xf4-2a-gO3" secondAttribute="leading" constant="20" id="r3L-Dj-zEk"/>
                             <constraint firstItem="ZAo-aa-zcF" firstAttribute="top" secondItem="1rJ-XO-YaZ" secondAttribute="bottom" constant="50" id="s8Z-sH-TzQ"/>
+                            <constraint firstItem="1rJ-XO-YaZ" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" constant="54" id="twF-gv-71D"/>
+                            <constraint firstItem="Eo7-f7-8TC" firstAttribute="top" secondItem="Sp7-O4-seW" secondAttribute="bottom" id="vL3-qc-PpO"/>
                             <constraint firstItem="qKI-YG-UoU" firstAttribute="centerX" secondItem="xf4-2a-gO3" secondAttribute="centerX" id="vTi-WZ-Flf"/>
                             <constraint firstItem="qKI-YG-UoU" firstAttribute="centerY" secondItem="xf4-2a-gO3" secondAttribute="centerY" id="yGs-RA-t0J"/>
+                            <constraint firstItem="Eo7-f7-8TC" firstAttribute="leading" secondItem="xf4-2a-gO3" secondAttribute="leading" constant="20" id="zi1-jp-WOB"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="600"/>
                     <connections>
+                        <outlet property="inputField" destination="Sp7-O4-seW" id="NhJ-61-CTb"/>
                         <outlet property="qrImageView" destination="vCX-CI-bSz" id="USz-a6-bGh"/>
                         <outlet property="scoreLabel" destination="qKI-YG-UoU" id="zGI-4L-yXn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMb-1b-Nfe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2749" y="1038"/>
+            <point key="canvasLocation" x="2692" y="771"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

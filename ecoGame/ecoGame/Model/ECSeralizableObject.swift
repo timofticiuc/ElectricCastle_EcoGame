@@ -14,6 +14,7 @@ class ECSeralizableObject: NSManagedObject {
     @NSManaged var createdAt: NSDate
     @NSManaged var updatedAt: NSDate
     @NSManaged var dirty: Bool
+    @NSManaged var dirtyDelete: Bool
 
     private var _dictionaryRepresentation: Dictionary<String, AnyObject>?
     var dictionaryRepresentation: Dictionary<String, AnyObject>? {

@@ -173,9 +173,16 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
             if self.userCategoryFilter != ECConstants.Category.None {
                 tempUsers = tempUsers.sort({
                     let categoryIndex = Int(self.userCategoryFilter.rawValue)
+                    var score1 = 0
+                    var score2 = 0
                     
-                    let score1 = $0.userCategories[categoryIndex].categoryScores[self.userCategoryActionFilter].score
-                    let score2 = $1.userCategories[categoryIndex].categoryScores[self.userCategoryActionFilter].score
+                    if self.userCategoryActionFilter == -1 {
+                        score1 = $0.userCategories[categoryIndex].overallScore()
+                        score2 = $1.userCategories[categoryIndex].overallScore()
+                    } else {
+                        score1 = $0.userCategories[categoryIndex].categoryScores[self.userCategoryActionFilter].score
+                        score2 = $1.userCategories[categoryIndex].categoryScores[self.userCategoryActionFilter].score
+                    }
                     
                     
                     if self.userCategoryFilterAscending {
@@ -227,9 +234,6 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
             if user.userRole == type {
                 ECCoreManager.sharedInstance.deleteUser(user, withCompletion: { (success) in
                     count += 1
-                    if success {
-                        user.removeFromStore()
-                    }
                     
                     if count == lUsers.count {
                         return
@@ -328,7 +332,5 @@ class ECUsersDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, N
         ECCoreManager.sharedInstance.deleteUser(user) { (success) in
             uc.navigationController?.popViewControllerAnimated(true)
         }
-        user.removeFromStore()
-        ECCoreManager.sharedInstance.storeManager.saveContext()
     }
 }

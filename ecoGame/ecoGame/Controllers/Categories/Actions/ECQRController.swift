@@ -16,8 +16,8 @@ protocol ECQRDelegate {
 class ECQRController: UIViewController {
     @IBOutlet private weak var qrImageView: UIImageView!
     @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet private weak var inputField: UITextField!
     
-    lazy var readerVC = QRCodeReaderViewController(metadataObjectTypes: [AVMetadataObjectTypeQRCode])
     var qrDict: Dictionary<String, AnyObject>? = nil
     var delegate: ECQRDelegate? = nil
     var scannedValue: String! = ""
@@ -32,6 +32,9 @@ class ECQRController: UIViewController {
         let qrCode = QRCode(JSONText)
         self.qrImageView.image = qrCode?.image
         self.preferredContentSize = CGSizeMake(400, 700);
+        self.inputField.attributedPlaceholder = NSAttributedString(string: "input value", attributes: [NSForegroundColorAttributeName : UIColor.lightGrayColor()])
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGR)
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,50 +42,14 @@ class ECQRController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func showQRScanner() {
-        self.qrImageView.hidden = true
-        self.readerVC.completionBlock = { (result: QRCodeReaderResult?) in
-            if result != nil {
-                let values = result!.value.componentsSeparatedByString(";")
-                if values.count == 3 {
-                    let id = values[0]
-                    let name = values[1]
-                    let score = values[2]
-                    
-                    if id != String(self.qrDict!["id"]!) {
-                        self.readerVC.dismissViewControllerAnimated(true, completion: nil)
-                        return
-                    }
-                    
-                    self.scoreLabel.text = "Generated power:\n" + score + " watts"
-                    
-                    let scoreDict = ["id":id,
-                                     "name":name,
-                                     "score":score]
-                    
-                    do {
-                        let jsonData = try NSJSONSerialization.dataWithJSONObject(scoreDict, options: NSJSONWritingOptions.PrettyPrinted)
-                        self.scannedValue = String(data: jsonData, encoding: NSASCIIStringEncoding)
-                    } catch {
-                        
-                    }
-                }
-            }
-            self.readerVC.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        // Presents the readerVC as modal form sheet
-        readerVC.modalPresentationStyle = .FormSheet
-        presentViewController(readerVC, animated: true, completion: nil)
+    func dismissKeyboard() {
+        self.view.endEditing(true)
     }
     
     @IBAction func doneAction() {
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        if self.scannedValue.characters.count == 0 {
-            return
-        }
-        self.delegate?.qrController(self, hasScannedWithValue: self.scannedValue)
+        self.delegate?.qrController(self, hasScannedWithValue: self.inputField.text!)
     }
     
     @IBAction func cancelAction() {

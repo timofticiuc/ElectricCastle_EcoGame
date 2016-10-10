@@ -9,6 +9,7 @@
     <entity name="ECSerializableObject" representedClassName="ECSerializableObject" isAbstract="YES" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="dirty" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dirtyDelete" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
@@ -27,7 +28,7 @@
     </entity>
     <elements>
         <element name="ECCategory" positionX="-54" positionY="18" width="128" height="105"/>
-        <element name="ECSerializableObject" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="ECSerializableObject" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="ECUser" positionX="-54" positionY="0" width="128" height="210"/>
     </elements>
 </model>

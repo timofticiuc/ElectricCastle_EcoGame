@@ -217,8 +217,8 @@ class ECUsersListViewController: UIViewController, ECUsersDataSourceDelegate, EC
     
     func dataSource(ds: ECUsersDataSource, hasFinishedFetchingData wasCanceled: Bool) {
         if !wasCanceled {
+            self.resetFilters()
             self.dataSource.optimizeUsersDataWithCompletion({ (success) in
-                self.resetFilters()
                 dispatch_async(dispatch_get_main_queue(), {
                     self.refreshControl.endRefreshing()
                     UIView.animateWithDuration(0.25, animations: {

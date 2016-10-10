@@ -159,8 +159,16 @@ class ECUser: ECSeralizableObject {
         return self.defaultCategoriesWithMOC(ECCoreManager.sharedInstance.storeManager.managedObjectContext!)
     }
     
+    static func fetchRequestForAllUsers() -> NSFetchRequest {
+        let fr: NSFetchRequest = NSFetchRequest(entityName: String(self))
+        fr.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        
+        return fr
+    }
+    
     static func fetchRequestForUsers() -> NSFetchRequest {
         let fr: NSFetchRequest = NSFetchRequest(entityName: String(self))
+        fr.predicate = NSPredicate(format: "dirtyDelete == %@", false)
         fr.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         
         return fr

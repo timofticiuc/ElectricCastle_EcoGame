@@ -54,10 +54,10 @@ class ECCoreManager: NSObject {
         
         if let reachability = self.reachabilityManager {
             reachability.whenReachable = { reachability in
-                if self.canSend {
-                    self.canSend = false
+//                if self.canSend {
+//                    self.canSend = false
                     self.sendDirtyUsers()
-                }
+//                }
             }
             
             reachability.whenUnreachable = { reachability in
@@ -76,12 +76,18 @@ class ECCoreManager: NSObject {
     
     func sendDirtyUsers() {
         do {
-            let allUsers = try self.storeManager.managedObjectContext?.executeFetchRequest(ECUser.fetchRequestForUsers()) as! [ECUser]
+            let allUsers = try self.storeManager.managedObjectContext?.executeFetchRequest(ECUser.fetchRequestForAllUsers()) as! [ECUser]
             for user:ECUser in allUsers {
-                if user.dirty {
+                if user.dirtyDelete {
+                    self.deleteUser(user, withCompletion: { (success) in
+
+                    })
+                } else if user.dirty {
                     if user.id.hasPrefix("temp_") {
                         self.createUser(user, completion: { (success, error) in
-                            NSNotificationCenter.defaultCenter().postNotificationName(kFailedUserNotification, object: user, userInfo: ["error":error!])
+                            if error != nil {
+                                NSNotificationCenter.defaultCenter().postNotificationName(kFailedUserNotification, object: user, userInfo: ["error":error!])
+                            }
                         })
                     } else {
                         self.updateUser(user)
@@ -281,7 +287,14 @@ class ECCoreManager: NSObject {
     }
     
     func deleteUser(user: ECUser, withCompletion completion: (success: Bool) -> Void) {
+        user.dirtyDelete = true
+        self.storeManager.saveContext()
+
         self.requestManager.deleteUser(user) { (success) in
+            if success {
+                user.removeFromStore()
+            }
+            self.storeManager.saveContext()
             completion(success: success);
         }
     }
